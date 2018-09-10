@@ -3,8 +3,8 @@
 } */
 
 .header-container {
-  /* background-color: rgb(160, 12, 17); */
-  background: linear-gradient(rgb(243, 72, 72) to rgb(179, 0, 0));
+  background-color: rgb(255, 62, 62);
+  /*background: linear-gradient(rgb(243, 72, 72) to rgb(179, 0, 0));*/
   font-family: Arial, Helvetica, sans-serif;
   margin: auto;
   padding: 1px;
@@ -13,6 +13,60 @@
   border-color: rgba(0, 0, 0, 0.048);
 }
 
+/* Dropdown Button */
+.dropbtn {
+  background-color: #3498DB;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.drowpdowntest{
+
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #2980B9;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: block;
+}
+
+.dropdowntest{
+  display: block !important;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  top: 115px;
+  right: 50px;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
 
 .left-header-text {
   /* border: solid; */
@@ -46,7 +100,7 @@
 }
 
 body {
-  background-color: rgb(160, 12, 17);
+  background-color: rgb(255, 255, 255);
   font-family: Arial, Helvetica, sans-serif;
   padding: 0;
   margin: 0;
@@ -58,6 +112,7 @@ a {
 
 h1 {
   color: rgb(192, 48, 52);
+  text-align: center;
 }
 
 h2 {
@@ -77,10 +132,11 @@ h5 {
 
 
 img {
-  margin: auto;
-  display: block;
+  border-radius: 50%;
   float: middle;
-  height: 100px
+  height: 100px;
+  background: transparent;
+
 }
 
 legend {
@@ -168,7 +224,7 @@ td {
 }
 
 #header-organization {
-  color: rgb(192, 48, 52);
+  background-color: rgb(255, 62, 62);
 }
 
 ::-webkit-input-placeholder {
@@ -178,7 +234,16 @@ td {
 
 .nav-button {
   border: none;
-  background-color: rgb(160, 12, 17);
+  background-color: rgb(224, 224, 224);
+  padding: 10px;
+  width: 100%;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  line-height: 3.0;
+  letter-spacing: 2px;
+  transition: all .3s ease-in-out;
   /* border-bottom: 1px solid rgb(117, 0, 0); */
 }
 
@@ -401,26 +466,58 @@ textarea {
 /* !! INDEX (LANDING PAGE) !! */
 
 .container-index {
+  display:grid;
   background-color: white;
   height: 500px;
   /* border-style: solid; */
+  margin-top: 3%;
+  margin-left: 22%;
+  width: 55%;
+  border: 1px solid black;
 }
 
 .table-container-index {
   /* float: right; */
-  width: 85%;
+  width: 90%;
   margin: auto;
   /* border-style: solid; */
   display: inline-block;
   text-align: center;
+  margin-left: 5%;
+  margin-top: 3%;
+  border: 1px solid red;
+}
+
+.table-container-margin-index {
+  width: auto;
+  /* margin: auto; */
+  margin-top: 6%;
+  /* margin-left: 5%; */
+  line-height: 1.8;
+  border: 1px solid blue;
 }
 
 .nav-left-container-index {
-  background-color: rgb(160, 12, 17);
-  ;
+  background-color: rgb(224, 224, 224);
+  border-color: white;
   float: left;
   width: 15%;
-  height: 500px;
+  height: 70%;
+  margin-left: 5%;
+  margin-top: 3%;
+  
+  /* border-style: solid;
+  border-width: 1px; */
+}
+
+.nav-right-container-index {
+  background-color: rgb(224, 224, 224);
+  border-color: white;
+  float: right;
+  width: 15%;
+  height: 70%;
+  margin-right: 5%;
+  margin-top: 3%;
   /* border-style: solid;
   border-width: 1px; */
 }
@@ -429,21 +526,19 @@ textarea {
   text-align: center;
   /* border-style: solid; */
   /* margin: auto; */
+  margin-top: 0%;
+}
+
+
+
+.nav-right-container-margin-index {
+  text-align: center;
+  /* border-style: solid; */
+  /* margin: auto; */
   margin-top: 10%;
 }
 
-.table-container-margin-index {
-  /* border: solid; */
-  width: auto;
-  /* margin: auto; */
-  margin-top: 1%;
-  /* margin-left: 5%; */
-  line-height: 1.8;
-}
-
-.nav-button-left {
-  border: none;
-  background-color: rgb(160, 12, 17);
+#nav-button-left {
   padding: 10px;
   width: 100%;
   color: white;
@@ -454,10 +549,6 @@ textarea {
   letter-spacing: 2px;
   transition: all .3s ease-in-out;
   /* border: solid; */
-}
-
-.nav-button-left:hover {
-  background-color: rgba(252, 63, 63, 0.452);
 }
 
 #proposal-table {

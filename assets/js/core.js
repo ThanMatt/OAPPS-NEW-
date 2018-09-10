@@ -3,6 +3,11 @@ var flag;
 
 $(function () {
 
+  $(".img").on("click", function () {
+    $(".dropdown-content").toggle("dropdowntest");
+  });
+
+
   function queryTable(response) {
     account_id = response['account_id'];
 
