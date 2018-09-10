@@ -1,0 +1,525 @@
+/* #header-body {
+  background-color: rgb(160, 12, 17) !important;
+} */
+
+.header-container {
+  /* background-color: rgb(160, 12, 17); */
+  background: linear-gradient(rgb(243, 72, 72) to rgb(179, 0, 0));
+  font-family: Arial, Helvetica, sans-serif;
+  margin: auto;
+  padding: 1px;
+  border-bottom: solid;
+  border-width: 1px;
+  border-color: rgba(0, 0, 0, 0.048);
+}
+
+
+.left-header-text {
+  /* border: solid; */
+  line-height: 0.5;
+  display: flex;
+  justify-content: space-between;
+  /* display: inline-block; */
+}
+
+.heady{
+  display:flex;
+  flex-direction: column;
+}
+
+.heady label:nth-child(2){
+  font-size: 15px;
+  margin-top: 20px;
+}
+
+.heady label:nth-child(3){
+  font-size: 13px;
+  margin-top: 20px;
+}
+
+.header-margin {
+  /* border: solid; */
+  margin-left: 1%;
+  margin-right: 1%;
+  margin-top: 0.5%;
+  margin-bottom: 0.5%;
+}
+
+body {
+  background-color: rgb(160, 12, 17);
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1 {
+  color: rgb(192, 48, 52);
+}
+
+h2 {
+  color: white;
+}
+
+h3 {
+  /* font-family: Arial, Helvetica, sans-serif; */
+  font-family: 'Times New Roman', Times, serif;
+  color: rgb(192, 48, 52);
+  font-weight: normal;
+}
+
+h5 {
+  color: white;
+}
+
+
+img {
+  margin: auto;
+  display: block;
+  float: middle;
+  height: 100px
+}
+
+legend {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  /* color: rgb(192, 48, 52); */
+}
+
+p {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+input[type=text] {
+  font-size: 15px;
+}
+
+textarea:focus, input:focus, select:focus {
+  outline: none;
+}
+
+textarea {
+  font-family: Arial, Helvetica, sans-serif;
+  resize: none;
+}
+
+hr {
+  width: 760px;
+}
+
+th {
+  border-bottom: 1px solid;
+}
+
+td {
+  font-size: 15px;
+  text-align: center;
+}
+
+/* #index {
+  background-color: white;
+} */
+
+.button {
+  border: none;
+  color: white;
+  background-color: rgb(192, 48, 52);
+  height: 30px;
+  width: auto;
+  font-weight: bold;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+#next_btn_ap {
+  border: none;
+  color: white;
+  background-color: rgb(192, 48, 52);
+  height: 30px;
+  width: auto;
+  font-weight: bold;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+#next_btn_far {
+  border: none;
+  color: white;
+  background-color: rgb(192, 48, 52);
+  height: 30px;
+  width: auto;
+  font-weight: bold;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+#next_btn_oe {
+  border: none;
+  color: white;
+  background-color: rgb(192, 48, 52);
+  height: 30px;
+  width: auto;
+  font-weight: bold;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+#header-organization {
+  color: rgb(192, 48, 52);
+}
+
+::-webkit-input-placeholder {
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: italic;
+}
+
+.nav-button {
+  border: none;
+  background-color: rgb(160, 12, 17);
+  /* border-bottom: 1px solid rgb(117, 0, 0); */
+}
+
+.nav-button:hover {
+  background-color: rgba(252, 63, 63, 0.452);
+}
+
+/* !! SENT.HTML !! */
+
+.container-sent {
+  background-color: white;
+  width: 800px;
+  max-width: 800px;
+  margin: auto;
+  margin-top: 8%;
+  border-style: solid;
+  border-radius: 10px;
+  border-width: 1px;
+}
+
+.margin-sent {
+  margin-left: 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  width: 760px;
+  /* border-style: solid;   */
+}
+
+.header-container-sent {
+  /* text-align: center; */
+  color: rgb(192, 48, 52);
+}
+
+.button-container-sent {
+  text-align: right;
+}
+
+#continue {
+  background-color: rgb(192, 48, 52);
+  color: white;
+  border: none;
+  font-weight: bold;
+  font-size: 15px;
+  height: 30px;
+}
+
+/* !! FORGOT.HTML !! */
+
+.container-password {
+  width: 400px;
+  max-width: 400px;
+  border-radius: 20px;
+  border-style: solid;
+  border-width: 1px;
+  margin: auto;
+  margin-top: 7%;
+  height: 225px;
+  background-color: white;
+}
+
+.button-container-password {
+  text-align: right;
+}
+
+.input-container-password {
+  margin-top: 10%;
+  line-height: 1.8;
+}
+
+.sub-container-password {
+  margin: auto;
+  margin-top: 5%;
+  width: 50%;
+  /* border-style: solid;  */
+}
+
+/* !! LOGIN.HTML !! */
+
+#forgot {
+  font-size: 11px;
+}
+
+#account-id {
+  border: none;
+  border-bottom: 2px solid rgb(192, 48, 52);
+  font-size: 15px;
+  width: 100%;
+}
+
+#password {
+  border: none;
+  border-bottom: 2px solid rgb(192, 48, 52);
+  font-size: 15px;
+  width: 100%;
+}
+
+.button-container-login {
+  text-align: right;
+}
+
+.container-login {
+  width: 400px;
+  max-width: 400px;
+  border-radius: 20px;
+  border-style: solid;
+  border-width: 1px;
+  margin: auto;
+  margin-top: 7%;
+  height: 460px;
+  background-color: white;
+  box-shadow: 20px 20px 30px 0px rgba(0,0,0,0.2);
+}
+
+.sub-container-login {
+  margin: auto;
+  margin-top: 5%;
+  width: 50%;
+  /* border-style: solid;  */
+}
+
+.input-container-login {
+  margin-top: 10%;
+  line-height: 1.8;
+}
+
+.image-container-login {
+  text-align: center;
+}
+
+/* !! PROPOSAL.HTML AND VIEW.PHP !! */
+
+.container-proposal {
+  /* border: solid; */
+  height: 700px;
+}
+
+.button-container-proposal {
+  text-align: right;
+  line-height: 3.0;
+  /* border: solid; */
+}
+
+#proposal_hr {
+  width: auto;
+}
+
+#decline {
+  float: left;
+}
+
+#accept {
+  display: inline-block;
+}
+
+/* !! ACTIVITY PROPOSAL !! */
+
+.container-proposal-activity {
+  background-color: white;
+  border-style: solid;
+  border-width: 1px;
+  width: 35%;
+  min-width: 250px;
+  box-shadow: 15px 15px 30px 10px rgba(0,0,0,.3);
+  /* float: left; */
+  margin: auto;
+}
+
+.header-proposal {
+  text-align: center;
+}
+
+.content-container-proposal-activity {
+  line-height: 1.9;
+  /* border-style: solid; */
+  margin-left: 30px;
+  margin-right: 30px;
+  margin: auto;
+  width: 90%;
+}
+
+#activity_name {
+  width: 64.7%;
+}
+
+textarea {
+  width: 99%;
+}
+
+#activity_chair {
+  width: 76%;
+}
+
+#activity_venue {
+  width: 87%;
+}
+
+#label_radiobutton {
+  font-weight: bold;
+}
+
+/* !! BUDGET PROPOSAL !! */
+
+.container-proposal-budget {
+  background-color: white;
+  border-style: solid;
+  border-width: 1px;
+  width: 64%;
+  float: left;
+}
+
+.content-container-proposal-budget {
+  line-height: 1.9;
+  /* border-style: solid; */
+  margin-left: 30px;
+  margin-right: 30px;
+  margin: auto;
+  width: 90%;
+}
+
+/* !! INDEX (LANDING PAGE) !! */
+
+.container-index {
+  background-color: white;
+  height: 500px;
+  /* border-style: solid; */
+}
+
+.table-container-index {
+  /* float: right; */
+  width: 85%;
+  margin: auto;
+  /* border-style: solid; */
+  display: inline-block;
+  text-align: center;
+}
+
+.nav-left-container-index {
+  background-color: rgb(160, 12, 17);
+  ;
+  float: left;
+  width: 15%;
+  height: 500px;
+  /* border-style: solid;
+  border-width: 1px; */
+}
+
+.nav-left-container-margin-index {
+  text-align: center;
+  /* border-style: solid; */
+  /* margin: auto; */
+  margin-top: 10%;
+}
+
+.table-container-margin-index {
+  /* border: solid; */
+  width: auto;
+  /* margin: auto; */
+  margin-top: 1%;
+  /* margin-left: 5%; */
+  line-height: 1.8;
+}
+
+.nav-button-left {
+  border: none;
+  background-color: rgb(160, 12, 17);
+  padding: 10px;
+  width: 100%;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  line-height: 3.0;
+  letter-spacing: 2px;
+  transition: all .3s ease-in-out;
+  /* border: solid; */
+}
+
+.nav-button-left:hover {
+  background-color: rgba(252, 63, 63, 0.452);
+}
+
+#proposal-table {
+  border-spacing: 100px 0;
+  border-collapse: separate;
+  margin: auto;
+}
+
+#table-title {
+  color: black;
+  margin: auto;
+}
+
+/* !! REVISE.PHP !! */
+
+.main-container-proposal{
+transform: translateY(50px);  
+}
+
+.container-proposal-activity-revise {
+  background-color: white;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 10px;
+  width: 35%;
+  min-width: 250px;
+  float: left;
+  /* margin: auto; */
+}
+
+.comments-container {
+  background-color: white;
+  border-style: solid;
+  border-width: 1px;
+  width: 35%;
+  min-width: 250px;
+  display: inline-block;
+  /* margin: auto; */
+}
+
+/* !! EDIT_REVISION.PHP !! */
+
+
+.content-container-proposal-revision {
+  line-height: 1.9;
+  /* border-style: solid; */
+  margin-left: 30px;
+  margin-right: 100px;
+  margin: auto;
+  text-align: center;
+  width: 60%;
+}
+
+/* !! budget_proposal.html !! */
+
+.container-far, .container-oe {
+  background-color: white;
+  width: 1000px;
+  max-width: 1000px;
+  margin: auto;
+  margin-top: 8%;
+  border-style: solid;
+  border-radius: 10px;
+  border-width: 1px;
+}
