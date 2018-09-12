@@ -3,7 +3,7 @@
 } */
 
 .header-container {
-  background-color: rgb(255, 62, 62);
+  background-color: rgb(144, 37, 41);
   /*background: linear-gradient(rgb(243, 72, 72) to rgb(179, 0, 0));*/
   font-family: Arial, Helvetica, sans-serif;
   margin: auto;
@@ -11,6 +11,8 @@
   border-bottom: solid;
   border-width: 1px;
   border-color: rgba(0, 0, 0, 0.048);
+  max-height: 115px;
+  min-height: 115px;
 }
 
 /* Dropdown Button */
@@ -21,10 +23,6 @@
   font-size: 16px;
   border: none;
   cursor: pointer;
-}
-
-.drowpdowntest{
-
 }
 
 /* Dropdown button on hover & focus */
@@ -49,9 +47,15 @@
   background-color: #f1f1f1;
   top: 115px;
   right: 50px;
-  min-width: 160px;
+  min-width: 200px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
+  text-align: 1000px;
+  line-height: 30px;
+}
+
+.dropdown-details {
+  margin: 30%;
 }
 
 /* Links inside the dropdown */
@@ -77,9 +81,21 @@
 }
 
 .heady{
-  display:flex;
-  flex-direction: column;
+  font-family: serif;
+  font-size: 90px;
+  margin-top: 40px;
+  margin-left: 60px;
 }
+
+.smaller-heady{
+  color: white !important;
+  font-size: 30px;
+  font-family: serif;
+  margin-top: 75px;
+  margin-right: 400px;
+  width: auto;
+}
+
 
 .heady label:nth-child(2){
   font-size: 15px;
@@ -97,10 +113,11 @@
   margin-right: 1%;
   margin-top: 0.5%;
   margin-bottom: 0.5%;
+  width: auto;
 }
 
 body {
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(233, 235, 238);
   font-family: Arial, Helvetica, sans-serif;
   padding: 0;
   margin: 0;
@@ -116,6 +133,7 @@ h1 {
 }
 
 h2 {
+  font-weight: normal;
   color: white;
 }
 
@@ -126,9 +144,15 @@ h3 {
   font-weight: normal;
 }
 
+h4 {
+  font-weight: normal;
+  color:black;
+}
+
 h5 {
   color: white;
 }
+
 
 
 img {
@@ -147,6 +171,7 @@ legend {
 
 p {
   font-family: Arial, Helvetica, sans-serif;
+  color: black !important;
 }
 
 input[type=text] {
@@ -185,9 +210,16 @@ td {
   background-color: rgb(192, 48, 52);
   height: 30px;
   width: auto;
-  font-weight: bold;
   border-radius: 3px;
   cursor: pointer;
+}
+
+#btn_pending{
+  margin-top: 0px !important; /*removes margin of top button*/
+}
+
+.table-button{
+  width: 100%;
 }
 
 #next_btn_ap {
@@ -196,7 +228,6 @@ td {
   background-color: rgb(192, 48, 52);
   height: 30px;
   width: auto;
-  font-weight: bold;
   border-radius: 3px;
   cursor: pointer;
 }
@@ -207,7 +238,6 @@ td {
   background-color: rgb(192, 48, 52);
   height: 30px;
   width: auto;
-  font-weight: bold;
   border-radius: 3px;
   cursor: pointer;
 }
@@ -218,7 +248,6 @@ td {
   background-color: rgb(192, 48, 52);
   height: 30px;
   width: auto;
-  font-weight: bold;
   border-radius: 3px;
   cursor: pointer;
 }
@@ -232,23 +261,66 @@ td {
   font-style: italic;
 }
 
-.nav-button {
+.nav-button-right {
+  font-family: serif;
+  font-size: 20px;
+  line-height: 150%;
+  letter-spacing: 2px;
   border: none;
-  background-color: rgb(224, 224, 224);
+  background-color: white;
   padding: 10px;
   width: 100%;
-  color: white;
-  font-weight: bold;
+  color: rgb(138, 138, 138);
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+  margin-top: 20px;
+  max-height: 70px;
+  min-height: 70px;
+  /* border-bottom: 1px solid rgb(117, 0, 0); */
+}
+
+.nav-button-left {
+  border: none;
+  background-color: white;
+  padding: 10px;
+  width: 100%;
+  color: rgb(138, 138, 138);
   font-size: 15px;
   cursor: pointer;
   line-height: 3.0;
   letter-spacing: 2px;
   transition: all .3s ease-in-out;
+  margin-top: 20px;
+  max-height: 70px;
+  min-height: 70px;
   /* border-bottom: 1px solid rgb(117, 0, 0); */
 }
 
-.nav-button:hover {
-  background-color: rgba(252, 63, 63, 0.452);
+
+
+.header-texts {
+  border: none;
+  padding: 15px;
+  width: auto;
+  color: white;
+  font-size: 25px;
+  line-height: 150%;
+  letter-spacing: 2px;
+  text-align: center;
+  max-height: 40px;
+  min-height: 40px;
+  font-family: serif;
+  /* border-bottom: 1px solid rgb(117, 0, 0); */
+}
+
+.nav-button-right:hover {
+  background-color: rgb(144, 37, 41);
+  color: rgb(255, 255, 255);
+}
+
+.nav-button-left:hover{
+  background-color: rgb(144, 37, 41);
+  color: rgb(255, 255, 255);
 }
 
 /* !! SENT.HTML !! */
@@ -274,7 +346,7 @@ td {
 
 .header-container-sent {
   /* text-align: center; */
-  color: rgb(192, 48, 52);
+  color: rgb(144, 37, 41);
 }
 
 .button-container-sent {
@@ -282,10 +354,9 @@ td {
 }
 
 #continue {
-  background-color: rgb(192, 48, 52);
+  color: rgb(144, 37, 41);
   color: white;
   border: none;
-  font-weight: bold;
   font-size: 15px;
   height: 30px;
 }
@@ -440,10 +511,6 @@ textarea {
   width: 87%;
 }
 
-#label_radiobutton {
-  font-weight: bold;
-}
-
 /* !! BUDGET PROPOSAL !! */
 
 .container-proposal-budget {
@@ -466,14 +533,29 @@ textarea {
 /* !! INDEX (LANDING PAGE) !! */
 
 .container-index {
-  display:grid;
   background-color: white;
-  height: 500px;
   /* border-style: solid; */
   margin-top: 3%;
   margin-left: 22%;
   width: 55%;
-  border: 1px solid black;
+  min-height: 550px !important;  
+  max-height: 550px !important;
+}
+
+.container-content-body {
+  overflow-y: auto;
+  background-color: white;
+  min-height: 475px !important;  
+  max-height: 475px !important; 
+}
+
+.container-content {
+  margin-left: 20px;
+}
+
+.container-content-labels {
+  font-size: 20px;
+  color: rgb(144, 37, 41);
 }
 
 .table-container-index {
@@ -497,59 +579,72 @@ textarea {
   border: 1px solid blue;
 }
 
-.nav-left-container-index {
-  background-color: rgb(224, 224, 224);
-  border-color: white;
-  float: left;
-  width: 15%;
-  height: 70%;
-  margin-left: 5%;
-  margin-top: 3%;
-  
-  /* border-style: solid;
-  border-width: 1px; */
-}
-
-.nav-right-container-index {
-  background-color: rgb(224, 224, 224);
-  border-color: white;
-  float: right;
-  width: 15%;
-  height: 70%;
-  margin-right: 5%;
-  margin-top: 3%;
-  /* border-style: solid;
-  border-width: 1px; */
-}
-
-.nav-left-container-margin-index {
+.nav-container-header-index {
   text-align: center;
+  background-color: rgb(144, 37, 41); 
   /* border-style: solid; */
-  /* margin: auto; */
-  margin-top: 0%;
 }
 
+.nav-left-container-header-index {
+  text-align: center;
+  background-color: rgb(144, 37, 41); 
+  /* border-style: solid; */
+}
 
-
-.nav-right-container-margin-index {
+.nav-right-container-header-index {
   text-align: center;
   /* border-style: solid; */
   /* margin: auto; */
   margin-top: 10%;
 }
 
-#nav-button-left {
+#nav-left-container-no-records {
+  padding: 10px;
+  width: auto;
+  color: rgb(138, 138, 138);
+  font-size: 15px;
+  line-height: 3.0;
+  letter-spacing: 2px;
+  margin-top: 15px;
+  font-weight: normal;
+}
+
+.nav-left-container-index {
+  background-color: white;
+  border-color: white;
+  float: left;
+  width: 15%;
+  min-height: 550px !important;  
+  max-height: 550px !important;
+  margin-left: 5%;
+  margin-top: 3%;  
+  /* border-style: solid;
+  border-width: 1px; */
+}
+
+.nav-right-container-index {
+  border-color: white;
+  float: right;
+  width: 15%;
+  min-height: 550px !important;  
+  max-height: 550px !important;
+  margin-right: 5%;
+  margin-top: 3%;
+  /* border-style: solid;
+  border-width: 1px; */
+}
+
+#nav-button-right {
   padding: 10px;
   width: 100%;
   color: white;
-  font-weight: bold;
   font-size: 15px;
   cursor: pointer;
   line-height: 3.0;
   letter-spacing: 2px;
   transition: all .3s ease-in-out;
-  /* border: solid; */
 }
+
 
 #proposal-table {
   border-spacing: 100px 0;
@@ -558,8 +653,9 @@ textarea {
 }
 
 #table-title {
-  color: black;
   margin: auto;
+  text-align: center;
+
 }
 
 /* !! REVISE.PHP !! */
