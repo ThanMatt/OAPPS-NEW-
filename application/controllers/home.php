@@ -7,19 +7,19 @@ class Home extends CI_Controller {
   public function index() {
     $response = array();
     if (!isset($_POST['flag'])) {
-      $flag = 'PENDING';
+      $flag = 'Pending';
     } else {
       $flag = $this->input->post('flag');
     }
 
     $record = false;
-    if ($flag == 'PENDING') {
+    if ($flag == 'Pending') {
       $record = $this->proposals_model->getPendingRecords();
-    } else if ($flag == 'APPROVED') {
+    } else if ($flag == 'Approved') {
       $record = $this->proposals_model->getApprovedRecords();
-    } else if ($flag == 'REVISIONS') {
+    } else if ($flag == 'Revisions') {
       $record = $this->proposals_model->getRevisionRecords();
-    } else if ($flag == 'DRAFTS') {
+    } else if ($flag == 'Drafts') {
       $record = $this->proposals_model->getDraftRecords();
     }
 

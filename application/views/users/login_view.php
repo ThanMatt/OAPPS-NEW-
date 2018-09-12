@@ -12,6 +12,7 @@
     var BASE_URL = "<?= base_url();?>";
   </script>
   <script src="<?= base_url();?>assets/js/jquery-3.3.1.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script src="<?= base_url();?>assets/js/core.js"></script>
 </head>
 

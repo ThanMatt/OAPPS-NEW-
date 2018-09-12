@@ -57,7 +57,7 @@ $(function () {
 
     $('#btn_approved').click(function () {
 
-      flag = 'APPROVED';
+      flag = 'Approved';
       $.ajax({
         type: 'POST',
         url: BASE_URL + "/accounts/getJSON",
@@ -68,7 +68,7 @@ $(function () {
     });
 
     $('#btn_pending').click(function () {
-      flag = 'PENDING';
+      flag = 'Pending';
       $.ajax({
         type: 'POST',
         url: BASE_URL + "/accounts/getJSON",
@@ -79,7 +79,7 @@ $(function () {
     });
 
     $('#btn_drafts').click(function () {
-      flag = 'DRAFTS';
+      flag = 'Drafts';
       $.ajax({
         type: 'POST',
         url: BASE_URL + "/accounts/getJSON",
@@ -90,7 +90,7 @@ $(function () {
     });
 
     $('#btn_revisions').click(function () {
-      flag = 'REVISIONS';
+      flag = 'Revisions';
       $.ajax({
         type: 'POST',
         url: BASE_URL + "/accounts/getJSON",

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 
+<!-- Check user login -->
   <?php if ($this->session->userdata('logged_in')): ?>
   <?php 
   $account_id = $this->session->userdata('prefix'); 
@@ -31,17 +32,18 @@
       <div class="header-margin">
         <div class="left-header-text">
           <h2 class="heady">
-            <label><?=$organization?></label>
-            <label>Logged in as <?=$full_name?></label>
-            <label> <?=strtoupper($position)?></label>
+            OAPPS
           </h2>
+          <h4 class="smaller-heady">
+            Online Activity Proposal Processing System
+          </h4>
           <div class="dropdown">
             <div class="img">
               <img src="<?=base_url()?>assets/img/logo/<?=$account_id?>_logo.png">
             </div>
             <div id="myDropdown" class="dropdown-content">
-              <a href="#">Link 1</a>
-              <a href="#">Link 2</a>
+              <div class="dropdown-details">Org: <?=$account_id?></div>
+              <div class="dropdown-details"><?=$position . ': ' . $full_name?></div>
               <a href="<?=base_url()?>accounts/logout">
                 <input type="button" id="nav-button-left" class="nav-button" value="Log Out">
               </a>
@@ -51,76 +53,97 @@
       </div>
     </header>
   </div>
+
+    <!-- Right Container -->
+
   <div class="nav-right-container-index">
     <div class="nav-right-container-margin-index">
     <!-- N/A means Not An org -->
     <?php if ($this->session->userdata('org_type') == 'N/A'): ?>
       
-      <input type="button" id="btn_pending" class="nav-button" value="Pending">
-      <input type="button" id="btn_approved" class="nav-button" value="Approved">
-      <input type="button" id="btn_revisions" class="nav-button" value="Revisions">
+      <input type="button" id="btn_pending" class="nav-button-right" value="Pending">
+      <input type="button" id="btn_approved" class="nav-button-right" value="Approved">
+      <input type="button" id="btn_revisions" class="nav-button-right" value="Revisions">
   
     <?php else: ?>
 
-      <input type="button" id="btn_pending" class="nav-button" value="Pending">
-      <input type="button" id="btn_approved" class="nav-button" value="Approved">
-      <input type="button" id="btn_revisions" class="nav-button" value="Revisions">
-      <input type="button" id="btn_new" class="nav-button" value="Submit">
-      <input type="button" id="btn_drafts" class="nav-button" value="Drafts">  
+      <input type="button" id="btn_pending" class="nav-button-right" value="Pending">
+      <input type="button" id="btn_approved" class="nav-button-right" value="Approved">
+      <input type="button" id="btn_revisions" class="nav-button-right" value="Revisions">
+      <input type="button" id="btn_new" class="nav-button-right" value="Submit">
+      <input type="button" id="btn_drafts" class="nav-button-right" value="Drafts">  
     
     <?php endif ?>
     
     </div>
   </div>
-  <!-- Table -->
-  <div class="container-index" id="table-container">
-    <h2 id="table-title"><?php echo $title ?></h2>
+
+  <!-- Left Container-->
+
+  <div class="nav-left-container-index">
+    <div class="nav-left-container-header-index">
+      <h2 id="table-title" class="header-texts"><?php echo $title ?></h2>
+    </div>
     <?php if (is_array($records) || is_object($records)): ?>
-    <table id="proposal-table">
-      <tr>
-      <?php if ($this->session->userdata('org_type') != 'N/A'): ?>
-        <th>#</th>
-        <th>Proposal Title</th>
-        <th>Date Submitted</th>
-        <th>Office</th>
-        <?php
-
+      <?php
         foreach($records as $record) {
           $counter = 1;
-          echo "<tr>";
-          echo "<td>" . $counter++ . "</td>";
-          echo "<td>" . $record->ActivityName . "</td>";
-          echo "<td>" . $record->DateProposed . "</td>";
-          echo "<td>" . $record->OfficeProposal . "</td>";
-          echo "<td><input type='button' class='button' id='btn_view' value='VIEW'></td>";
-          echo "</tr>";
+          echo '<input type="button" class="nav-button-left" value="'. $record->ActivityName . '"> </input>';
         } 
-
-        ?>
-      <?php else: ?>
-        <th>#</th>
-        <th>Proposal Title</th>
-        <th>Date Submitted</th>
-        <?php
-
-        foreach($records as $record) {
-          $counter = 1;
-          echo "<tr>";
-          echo "<td>" . $counter++ . "</td>";
-          echo "<td>" . $record->ActivityName . "</td>";
-          echo "<td>" . $record->DateProposed . "</td>";
-          echo "<td><input type='button' class='button' id='btn_view' value='VIEW'></td>";
-          echo "</tr>";
-        } 
-
-        ?>
-      <?php endif ?>
-      </tr>
-    </table>
-  <?php else: ?>
-  <h1>No records</h1>
-  <?php endif ?>
+      ?>
+    <?php else: ?>
+    <h1 id="nav-left-container-no-records">No Records</h1>
+    <?php endif ?>
   </div>
+
+  <!-- Table -->
+  
+  <div class="container-index" id="table-container">
+    <div class="nav-container-header-index">
+      <h2 id="table-title" class="header-texts">Proposal Overview</h2>
+      <!-- Add Proposal Name, Organization Name, Organization Representative, Nature of Activity, Date Of Activity, Date Of Submission, Contact Number -->
+    </div>
+    <div class="container-content-body">
+    <div id="proposal-name" class="container-content">
+        <h4 class="container-content-labels">Proposal Name: </h4>
+        <p>Sample Proposal name</p>
+      </div>
+      <div id="org-name" class="container-content">
+        <h4 class="container-content-labels">Organization Name: </h4>
+        <p>Sample Org name</p> 
+      </div>
+      <div id="org-rep" class="container-content">
+        <h4 class="container-content-labels">Organization Representative: </h4>
+        <p>Sample Org Rep name</p>
+      </div>
+      <div id="nature" class="container-content">
+        <h4 class="container-content-labels">Nature of the Activity: </h4>
+        <p>
+          This is a sample nature of the activity. 
+          This is a sample nature of the activity. 
+          This is a sample nature of the activity. 
+          This is a sample nature of the activity. 
+          This is a sample nature of the activity. 
+          This is a sample nature of the activity. 
+          This is a sample nature of the activity. 
+        </p>
+      </div>
+      <div id="activity-date" class="container-content">
+        <h4 class="container-content-labels">Date of Activity: </h4>
+        <p>Sample Date of Activity</p>
+      </div>
+      <div id="submission-date" class="container-content">
+        <h4 class="container-content-labels">Date of Submission: </h4>
+        <p>Sample Date of Submission</p> 
+      </div>
+      <div id="rep-contact" class="container-content">
+        <h4 class="container-content-labels">Representative Contact Info: </h4>
+        <p>Sample Contact Info</p> 
+      </div>
+    </div>
+  </div>
+
+
 
   <?php else: ?>
   <?php 
