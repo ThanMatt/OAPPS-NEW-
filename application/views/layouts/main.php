@@ -39,14 +39,18 @@
           </h4>
           <div class="dropdown">
             <div class="img">
-              <img src="<?=base_url()?>assets/img/logo/<?=$account_id?>_logo.png">
+              <img class="dropbtn" src="<?=base_url()?>assets/img/logo/<?=$account_id?>_logo.png">
             </div>
             <div id="myDropdown" class="dropdown-content">
-              <div class="dropdown-details">Org: <?=$account_id?></div>
-              <div class="dropdown-details"><?=$position . ': ' . $full_name?></div>
-              <a href="<?=base_url()?>accounts/logout">
-                <input type="button" id="nav-button-left" class="nav-button" value="Log Out">
-              </a>
+              <div class="dropdown-details">
+                Org: <?=$account_id?>
+              </div>
+              <div class="dropdown-details">
+                <?=$position . ': ' . $full_name?>
+              </div>
+              <div>
+                <a href="<?=base_url()?>accounts/logout">Log Out</a>
+              </div>
             </div>
           </div>
         </div>
