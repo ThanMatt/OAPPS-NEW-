@@ -389,6 +389,10 @@ td {
   height: 30px;
 }
 
+#btn_new {
+  margin-top: 140px;
+}
+
 /* !! FORGOT.HTML !! */
 
 .container-password {

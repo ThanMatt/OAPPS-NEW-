@@ -74,9 +74,9 @@
       <input type="button" id="btn_pending" class="nav-button-right" value="Pending">
       <input type="button" id="btn_approved" class="nav-button-right" value="Approved">
       <input type="button" id="btn_revisions" class="nav-button-right" value="Revisions">
-      <input type="button" id="btn_new" class="nav-button-right" value="Submit">
       <input type="button" id="btn_drafts" class="nav-button-right" value="Drafts">  
-    
+      <input type="button" id="btn_new" class="nav-button-right" value="Submit">  
+        
     <?php endif ?>
     
     </div>

@@ -7,9 +7,9 @@ $(function () {
     $(".dropdown-content").toggle("dropdowntest");
   });
 
-  $(document).on("click", function (){
-    $(".dropdown-content").hide("dropdowntest");
-  });
+  // $(document).on("click", function (){
+  //   $(".dropdown-content").hide("dropdowntest");
+  // });
 
 
   function queryTable(response) {
