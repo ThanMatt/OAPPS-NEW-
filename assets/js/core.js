@@ -104,7 +104,7 @@ $(function () {
     });
   });
 
-  //::Fix this
+  //:: View proposal
   $('body').on('click', '.nav-button-left', function () {
     var proposal_title = $(this).val();
     flag = 'View';
