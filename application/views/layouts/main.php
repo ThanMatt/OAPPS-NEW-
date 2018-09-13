@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
+<?php $counter = 0 ?>
 <!-- Check user login -->
   <?php if ($this->session->userdata('logged_in')): ?>
   <?php 
@@ -90,8 +90,8 @@
     <?php if (is_array($records) || is_object($records)): ?>
       <?php
         foreach($records as $record) {
-          $counter = 1;
-          echo '<input type="button" id="view_btn" class="nav-button-left" value="'. $record->ActivityName . '"/>';
+          $counter++;
+          echo '<input type="button" id="view_btn'.$counter.'" class="nav-button-left" value="'. $record->ActivityName . '"/>';
         } 
       ?>
     <?php else: ?>

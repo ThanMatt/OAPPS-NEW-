@@ -44,7 +44,7 @@ $(function () {
       success: function (response) {
         if (response.success) {
           // alert("pasok");
-          window.location.replace("index");
+          window.location.replace(BASE_URL + "home/index");
         } else {
           // alert("Hindi ka pasok");
           $("#button").effect("shake");
@@ -104,8 +104,9 @@ $(function () {
     });
   });
 
-  $('#view_btn').click(function () {
-    var proposal_title = $('#view_btn').val();
+  //::Fix this
+  $('body').on('click', '.nav-button-left', function () {
+    var proposal_title = $(this).val();
     flag = 'View';
 
    $.ajax({
@@ -116,6 +117,7 @@ $(function () {
         flag: flag
       },
       success: function (response) {
+        // alert(response);
         $('#table-container').html(response);
       },
       error: function (response) {

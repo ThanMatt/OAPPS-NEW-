@@ -207,7 +207,7 @@ class Proposals_Model extends CI_Model {
     $type = $this->session->userdata('org_type');
     $position = $this->session->userdata('position');
     
-    $this->db->from('activity_proposal');
+    $this->db->from('activity_proposal, `timestamp`');
     $this->db->join('accounts','activity_proposal.Account_ID = accounts.Account_ID');
     $this->db->where('ActivityName', $proposal_title);
   
@@ -228,6 +228,17 @@ class Proposals_Model extends CI_Model {
     }
 
   }
+  //:: Checks proposal title first
+  // public function checkTitle($proposal_title) {
+
+  //   $this->db->select('Account_ID, ActivityName');
+  //   $this->db->from('activity_proposal');
+
+  //   $result = $this->db->get();
+
+  //   $data = $result->result();
+
+  // }
 
 }
 

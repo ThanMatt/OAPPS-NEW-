@@ -26,7 +26,7 @@
     </div>
     <div id="submission-date" class="container-content">
       <h4 class="container-content-labels">Date of Submission: </h4>
-      <p>Sample Date of Submission</p>
+      <p><?=$records->DateProposed?></p>
     </div>
     <div id="rep-contact" class="container-content">
       <h4 class="container-content-labels">Representative Contact Info: </h4>
