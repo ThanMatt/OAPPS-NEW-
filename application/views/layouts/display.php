@@ -1,25 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-
-  <?php if ($this->session->userdata('logged_in')): ?>
-
-  <meta charset="UTF-8">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-
-  <link rel="stylesheet" href="<?= base_url();?>assets/css/styles.css">
-
-  <script type="text/javascript">
-    var BASE_URL = "<?= base_url();?>";
-  </script>
-  <script src="<?= base_url();?>assets/js/jquery-3.3.1.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script src="<?= base_url();?>assets/js/core.js"></script>
-
-</head>
-
-<?php else: ?>
-<?php endif ?>
+  <div class="nav-container-header-index">
+    <h2 id="table-title" class="header-texts">Proposal Overview</h2>
+  </div>
+  <div class="container-content-body">
+    <div id="proposal-name" class="container-content">
+      <h4 class="container-content-labels">Proposal Name: </h4>
+      <p><?=$records->ActivityName?></p>
+    </div>
+    <div id="org-name" class="container-content">
+      <h4 class="container-content-labels">Organization Name: </h4>
+      <p><?=$records->Account_ID?></p>
+    </div>
+    <div id="org-rep" class="container-content">
+      <h4 class="container-content-labels">Organization Representative: </h4>
+      <p><?=$records->FullName?></p>
+    </div>
+    <div id="nature" class="container-content">
+      <h4 class="container-content-labels">Nature of the Activity: </h4>
+      <p>
+        <?=$records->Nature?>
+      </p>
+    </div>
+    <div id="activity-date" class="container-content">
+      <h4 class="container-content-labels">Date of Activity: </h4>
+      <p><?=$records->DateActivity?></p>
+    </div>
+    <div id="submission-date" class="container-content">
+      <h4 class="container-content-labels">Date of Submission: </h4>
+      <p>Sample Date of Submission</p>
+    </div>
+    <div id="rep-contact" class="container-content">
+      <h4 class="container-content-labels">Representative Contact Info: </h4>
+      <p><?=$records->ContactNumber?></p>
+    </div>
+  </div>

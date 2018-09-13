@@ -34,7 +34,7 @@ class Proposals_Model extends CI_Model {
 
         $this->db->where('ProposalStatus', 'PENDING');
         $this->db->where('OfficeProposal', 'Secretary-General');
- 
+
         //:: Show pending records for OPSA Assistant Prefect (Professional)
       } else if ($account_id == 'OPSA_APP') {
 
@@ -58,7 +58,7 @@ class Proposals_Model extends CI_Model {
 
         $this->db->where('ProposalStatus', 'PENDING');
         $this->db->where('OfficeProposal', 'Dean');
-      
+
       }
 
     }
@@ -124,11 +124,11 @@ class Proposals_Model extends CI_Model {
       } else if ($account_id == 'OD') {
 
         $this->db->where("TimeApproved != '' AND ProposalStatus = 'APPROVED'");
-        
+
       }
-      
+
     }
-    
+
     $this->db->order_by('DateProposed', 'asc');
     $result = $this->db->get();
 
@@ -180,14 +180,14 @@ class Proposals_Model extends CI_Model {
     if ($type != 'N/A') {
 
       $this->db->where('activity_proposal.Account_ID', $account_id);
-      
+
     } else {
 
       $this->db->where('ProposalStatus', 'REVISION');
       $this->db->where('OfficeProposal', $position);
-      
+
     }
-    
+
     $this->db->order_by('DateProposed', 'asc');
     $result = $this->db->get();
 
@@ -195,6 +195,36 @@ class Proposals_Model extends CI_Model {
       return false;
     } else {
       return $result->result();
+    }
+
+  }
+
+  //:: Fetches proposal details
+  public function viewRecord($proposal_title) {
+    $response = array();
+
+    $account_id = $this->session->userdata('account_id');
+    $type = $this->session->userdata('org_type');
+    $position = $this->session->userdata('position');
+    
+    $this->db->from('activity_proposal');
+    $this->db->join('accounts','activity_proposal.Account_ID = accounts.Account_ID');
+    $this->db->where('ActivityName', $proposal_title);
+  
+    if ($type != 'N/A') {
+      $this->db->where('activity_proposal.Account_ID', $account_id);
+    } else {
+      //:: For offices
+    }
+    
+
+
+    $result = $this->db->get();
+
+    if (!$result) {
+      return false;
+    } else {
+      return $result->row();
     }
 
   }

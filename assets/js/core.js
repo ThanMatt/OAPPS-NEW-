@@ -3,9 +3,15 @@ var flag;
 
 $(function () {
 
+  
+
   $(".img").on("click", function () {
     $(".dropdown-content").toggle("dropdowntest");
   });
+
+  // $(document).on("click", function (){
+  //   $(".dropdown-content").hide("dropdowntest");
+  // });
 
 
   function queryTable(response) {
@@ -18,10 +24,7 @@ $(function () {
         flag: flag
       },
       success: function (response) {
-        // alert(response);
-        // $('#proposal-container').load(' #proposal-container');
         $('body').html(response);
-        // window.location.replace("index");
       },
       error: function (response) {
         return;
@@ -100,5 +103,26 @@ $(function () {
       });
     });
   });
+
+  $('#view_btn').click(function () {
+    var proposal_title = $('#view_btn').val();
+    flag = 'View';
+
+   $.ajax({
+      type: 'POST',
+      url: BASE_URL + 'home/index',
+      data: {
+        proposal_title: proposal_title,
+        flag: flag
+      },
+      success: function (response) {
+        $('#table-container').html(response);
+      },
+      error: function (response) {
+        // $('#table-container').html(response);
+      },
+    });
+    
+  })
 
 });

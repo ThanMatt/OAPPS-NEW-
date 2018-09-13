@@ -38,14 +38,18 @@
           </h4>
           <div class="dropdown">
             <div class="img">
-              <img src="<?=base_url()?>assets/img/logo/<?=$account_id?>_logo.png">
+              <img class="dropbtn" src="<?=base_url()?>assets/img/logo/<?=$account_id?>_logo.png">
             </div>
             <div id="myDropdown" class="dropdown-content">
-              <div class="dropdown-details">Org: <?=$account_id?></div>
-              <div class="dropdown-details"><?=$position . ': ' . $full_name?></div>
-              <a href="<?=base_url()?>accounts/logout">
-                <input type="button" id="nav-button-left" class="nav-button" value="Log Out">
-              </a>
+              <div class="dropdown-details">
+                Org: <?=$account_id?>
+              </div>
+              <div class="dropdown-details">
+                <?=$position . ': ' . $full_name?>
+              </div>
+              <div>
+                <a href="<?=base_url()?>accounts/logout">Log Out</a>
+              </div>
             </div>
           </div>
         </div>
@@ -69,9 +73,9 @@
       <input type="button" id="btn_pending" class="nav-button-right" value="Pending">
       <input type="button" id="btn_approved" class="nav-button-right" value="Approved">
       <input type="button" id="btn_revisions" class="nav-button-right" value="Revisions">
-      <input type="button" id="btn_new" class="nav-button-right" value="Submit">
       <input type="button" id="btn_drafts" class="nav-button-right" value="Drafts">  
-    
+      <input type="button" id="btn_new" class="nav-button-right" value="Submit">  
+        
     <?php endif ?>
     
     </div>
@@ -87,7 +91,7 @@
       <?php
         foreach($records as $record) {
           $counter = 1;
-          echo '<input type="button" class="nav-button-left" value="'. $record->ActivityName . '"> </input>';
+          echo '<input type="button" id="view_btn" class="nav-button-left" value="'. $record->ActivityName . '"/>';
         } 
       ?>
     <?php else: ?>
@@ -96,52 +100,12 @@
   </div>
 
   <!-- Table -->
-  
-  <div class="container-index" id="table-container">
-    <div class="nav-container-header-index">
-      <h2 id="table-title" class="header-texts">Proposal Overview</h2>
-      <!-- Add Proposal Name, Organization Name, Organization Representative, Nature of Activity, Date Of Activity, Date Of Submission, Contact Number -->
-    </div>
-    <div class="container-content-body">
-    <div id="proposal-name" class="container-content">
-        <h4 class="container-content-labels">Proposal Name: </h4>
-        <p>Sample Proposal name</p>
-      </div>
-      <div id="org-name" class="container-content">
-        <h4 class="container-content-labels">Organization Name: </h4>
-        <p>Sample Org name</p> 
-      </div>
-      <div id="org-rep" class="container-content">
-        <h4 class="container-content-labels">Organization Representative: </h4>
-        <p>Sample Org Rep name</p>
-      </div>
-      <div id="nature" class="container-content">
-        <h4 class="container-content-labels">Nature of the Activity: </h4>
-        <p>
-          This is a sample nature of the activity. 
-          This is a sample nature of the activity. 
-          This is a sample nature of the activity. 
-          This is a sample nature of the activity. 
-          This is a sample nature of the activity. 
-          This is a sample nature of the activity. 
-          This is a sample nature of the activity. 
-        </p>
-      </div>
-      <div id="activity-date" class="container-content">
-        <h4 class="container-content-labels">Date of Activity: </h4>
-        <p>Sample Date of Activity</p>
-      </div>
-      <div id="submission-date" class="container-content">
-        <h4 class="container-content-labels">Date of Submission: </h4>
-        <p>Sample Date of Submission</p> 
-      </div>
-      <div id="rep-contact" class="container-content">
-        <h4 class="container-content-labels">Representative Contact Info: </h4>
-        <p>Sample Contact Info</p> 
-      </div>
-    </div>
+<div class="container-index" id="table-container">
+  <div class="nav-container-header-index">
+    <h2 id="table-title" class="header-texts">Proposal Overview</h2>
   </div>
-
+  <!-- Add Proposal Name, Organization Name, Organization Representative, Nature of Activity, Date Of Activity, Date Of Submission, Contact Number -->
+</div>
 
 
   <?php else: ?>
