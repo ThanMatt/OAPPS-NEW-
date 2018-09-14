@@ -1,9 +1,11 @@
 var account_id;
 var flag;
 
+//:: Variable `flag` is an indicator that tells
+//:: which type of proposal 
+
 $(function () {
 
-  
 
   $(".img").on("click", function () {
     $(".dropdown-content").toggle("dropdowntest");
@@ -13,7 +15,7 @@ $(function () {
   //   $(".dropdown-content").hide("dropdowntest");
   // });
 
-
+  
   function queryTable(response) {
     account_id = response['account_id'];
 
@@ -32,6 +34,7 @@ $(function () {
     });
   }
 
+  //:: Check login credentials
   $("#ajax_form").submit(function (event) {
     event.preventDefault();
     var $form = $(this);
@@ -43,10 +46,8 @@ $(function () {
       dataType: 'json',
       success: function (response) {
         if (response.success) {
-          // alert("pasok");
-          window.location.replace(BASE_URL + "home/index");
+          window.location.replace(BASE_URL + "home");
         } else {
-          // alert("Hindi ka pasok");
           $("#button").effect("shake");
         }
       },
@@ -56,8 +57,10 @@ $(function () {
     });
   });
 
+  //:: View Pending/Approved/Revisions/Drafts Proposals
   $("#table-container").ready(function (event) {
 
+    //:: View Approved
     $('#btn_approved').click(function () {
 
       flag = 'Approved';
@@ -70,6 +73,7 @@ $(function () {
       });
     });
 
+    //:: View Pending
     $('#btn_pending').click(function () {
       flag = 'Pending';
       $.ajax({
@@ -81,6 +85,7 @@ $(function () {
       });
     });
 
+    //:: View Drafts
     $('#btn_drafts').click(function () {
       flag = 'Drafts';
       $.ajax({
@@ -92,6 +97,7 @@ $(function () {
       });
     });
 
+    //:: View Revisions
     $('#btn_revisions').click(function () {
       flag = 'Revisions';
       $.ajax({
@@ -104,7 +110,7 @@ $(function () {
     });
   });
 
-  //:: View proposal
+  //:: View clicked proposals
   $('body').on('click', '.nav-button-left', function () {
     var proposal_title = $(this).val();
     flag = 'View';
@@ -117,11 +123,11 @@ $(function () {
         flag: flag
       },
       success: function (response) {
-        // alert(response);
         $('#table-container').html(response);
       },
       error: function (response) {
-        // $('#table-container').html(response);
+        alert("There was an error! " + response);
+        location.reload();
       },
     });
     

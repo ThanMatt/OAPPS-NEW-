@@ -5,7 +5,8 @@
 <!-- Check user login -->
   <?php if ($this->session->userdata('logged_in')): ?>
   <?php 
-  $account_id = $this->session->userdata('prefix'); 
+  $prefix = $this->session->userdata('prefix'); 
+  $account_id = $this->session->userdata('account_id'); 
   $organization = $this->session->userdata('organization');
   $full_name = $this->session->userdata('full_name');
   $position = $this->session->userdata('position');
@@ -14,7 +15,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title><?= $account_id . " - Index" ?></title>
+  <title><?= $prefix . " - Index" ?></title>
 
   <link rel="stylesheet" href="<?= base_url();?>assets/css/styles.css">
 
@@ -38,11 +39,11 @@
           </h4>
           <div class="dropdown">
             <div class="img">
-              <img class="dropbtn" src="<?=base_url()?>assets/img/logo/<?=$account_id?>_logo.png">
+              <img class="dropbtn" src="<?=base_url()?>assets/image.php?id=<?=$account_id?>">
             </div>
             <div id="myDropdown" class="dropdown-content">
               <div class="dropdown-details">
-                Org: <?=$account_id?>
+                Org: <?=$prefix?>
               </div>
               <div class="dropdown-details">
                 <?=$position . ': ' . $full_name?>
@@ -74,8 +75,9 @@
       <input type="button" id="btn_approved" class="nav-button-right" value="Approved">
       <input type="button" id="btn_revisions" class="nav-button-right" value="Revisions">
       <input type="button" id="btn_drafts" class="nav-button-right" value="Drafts">  
-      <input type="button" id="btn_new" class="nav-button-right" value="Submit">  
-        
+      <a href="<?=base_url()?>submit">
+        <input type="button" id="btn_new" class="nav-button-right" value="Submit">  
+      </a>
     <?php endif ?>
     
     </div>
