@@ -15,9 +15,9 @@ class Home extends CI_Controller {
     $record = false;
 
     if ($flag == 'View') {
-      $proposal_title = $this->input->post('proposal_title');
+      $proposal_id = $this->input->post('proposal_id');
 
-      $record = $this->proposals_model->viewRecord($proposal_title);
+      $record = $this->proposals_model->viewRecord($proposal_id);
 
       $data['records'] = null;
 

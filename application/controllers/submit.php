@@ -30,7 +30,6 @@ class Submit extends CI_Controller {
     }
   }
 
-
 }
 
 ?>

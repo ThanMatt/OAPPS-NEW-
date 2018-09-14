@@ -93,7 +93,7 @@
       <?php
         foreach($records as $record) {
           $counter++;
-          echo '<input type="button" id="view_btn'.$counter.'" class="nav-button-left" value="'. $record->ActivityName . '"/>';
+          echo '<input type="button" id="view_btn/'.$record->Proposal_ID.'" class="nav-button-left" value="'. $record->ActivityName . '"/>';
         } 
       ?>
     <?php else: ?>

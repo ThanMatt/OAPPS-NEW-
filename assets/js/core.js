@@ -15,7 +15,7 @@ $(function () {
   //   $(".dropdown-content").hide("dropdowntest");
   // });
 
-  
+
   function queryTable(response) {
     account_id = response['account_id'];
 
@@ -41,7 +41,7 @@ $(function () {
 
     $.ajax({
       type: 'POST',
-      url: BASE_URL + "/accounts/login",
+      url: BASE_URL + "accounts/login",
       data: $form.serialize(),
       dataType: 'json',
       success: function (response) {
@@ -112,14 +112,16 @@ $(function () {
 
   //:: View clicked proposals
   $('body').on('click', '.nav-button-left', function () {
-    var proposal_title = $(this).val();
+    var view_buttonID = $(this).attr('id');
+    var proposal_id = view_buttonID.split("/")[1];
+
     flag = 'View';
 
-   $.ajax({
+    $.ajax({
       type: 'POST',
       url: BASE_URL + 'home/index',
       data: {
-        proposal_title: proposal_title,
+        proposal_id: proposal_id,
         flag: flag
       },
       success: function (response) {
@@ -130,7 +132,7 @@ $(function () {
         location.reload();
       },
     });
-    
+
   })
 
 });

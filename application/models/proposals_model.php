@@ -200,24 +200,23 @@ class Proposals_Model extends CI_Model {
   }
 
   //:: Fetches proposal details
-  public function viewRecord($proposal_title) {
+  public function viewRecord($proposal_id) {
     $response = array();
 
     $account_id = $this->session->userdata('account_id');
     $type = $this->session->userdata('org_type');
     $position = $this->session->userdata('position');
-    
-    $this->db->from('activity_proposal, `timestamp`');
-    $this->db->join('accounts','activity_proposal.Account_ID = accounts.Account_ID');
-    $this->db->where('ActivityName', $proposal_title);
-  
+
+    $this->db->from('activity_proposal');
+    $this->db->join('accounts', 'activity_proposal.Account_ID = accounts.Account_ID');
+    $this->db->join('timestamp', 'timestamp.Proposal_ID = activity_proposal.Proposal_ID');
+    $this->db->where('activity_proposal.Proposal_ID', $proposal_id);
+
     if ($type != 'N/A') {
       $this->db->where('activity_proposal.Account_ID', $account_id);
     } else {
       //:: For offices
     }
-    
-
 
     $result = $this->db->get();
 
@@ -228,17 +227,77 @@ class Proposals_Model extends CI_Model {
     }
 
   }
-  //:: Checks proposal title first
-  // public function checkTitle($proposal_title) {
+  
+  public function save_activity_proposal($account_id, $proposal_id, $activity_name, $date_activity,
+    $start_time, $end_time, $nature, $rationale, $activity_chair, $participants,
+    $activity_venue) {
 
-  //   $this->db->select('Account_ID, ActivityName');
-  //   $this->db->from('activity_proposal');
+    $proposal_status = "DRAFT";
+    $office_proposal = "N/A";
 
-  //   $result = $this->db->get();
+    $data = array(
+      'Proposal_ID' => $proposal_id,
+      'Account_ID' => $account_id,
+      'ActivityName' => $activity_name,
+      'DateActivity' => $date_activity,
+      'StartTime' => $start_time,
+      'EndTime' => $end_time,
+      'Nature' => $nature,
+      'Rationale' => $rationale,
+      'ActivityChair' => $activity_chair,
+      'Participants' => $participants,
+      'ActivityVenue' => $activity_venue,
+      'ProposalStatus' => $proposal_status,
+      'OfficeProposal' => $office_proposal,
+    );
 
-  //   $data = $result->result();
+    if (checkIfExists($proposal_id)) {
+      $result = $this->db->replace('activity_proposal', $data);
+    } else {
+      $result = $this->db->insert('activity_proposal', $data);
+    }
 
-  // }
+
+    $this->getSubmissionDate($proposal_id);
+
+    if (!$result) {
+      $response['success'] = false;
+      echo json_encode($response);
+    } else {
+      $response['success'] = true;
+      echo json_encode($response);
+    }
+  }
+
+  public function getSubmissionDate($proposal_id) {
+    $date = date("Y-m-d");
+
+    $data = array(
+      'Proposal_ID' => $proposal_id,
+      'DateProposed' => $date,
+    );
+
+    $result = $this->db->insert('timestamp', $data);
+
+    if (!$result) {
+      $response['success'] = false;
+      echo json_encode($response);
+    }
+  }
+
+  public function checkIfExists($proposal_id) {
+    $this->db->from('activity_proposal');
+    $this->db->where('activity_proposal.Proposal_ID', $proposal_id);
+    $result->db->get();
+
+    $row = $result->num_rows();
+
+    if ($row == 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
 }
 
