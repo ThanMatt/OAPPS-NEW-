@@ -8,7 +8,7 @@
     </div>
     <div id="org-name" class="container-content">
       <h4 class="container-content-labels">Organization Name: </h4>
-      <p><?=$records->Account_ID?></p>
+      <p><?=$records->Organization?></p>
     </div>
     <div id="org-rep" class="container-content">
       <h4 class="container-content-labels">Organization Representative: </h4>
@@ -31,5 +31,24 @@
     <div id="rep-contact" class="container-content">
       <h4 class="container-content-labels">Representative Contact Info: </h4>
       <p><?=$records->ContactNumber?></p>
+
+      <!-- For Drafts -->
+      <?php if(($records->ProposalStatus) == 'DRAFT'):  ?>
+        
+        <a href="submit/edit/<?=$records->Proposal_ID?>">
+          <input type="button" value="Edit Proposal">
+        </a>
+
+        <a href="submit/delete/<?=$records->Proposal_ID?>">
+          <input type="button" value="Delete Proposal">
+        </a>
+        
+
+      <!-- For Pending/Approved/Revisions -->
+      <?php else: ?>
+        <a href="proposal/view/<?=$records->Proposal_ID?>">
+          <input type="button" value="View Proposal">
+        </a>
+      <?php endif ?>
     </div>
   </div>

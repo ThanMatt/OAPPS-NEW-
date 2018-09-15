@@ -200,7 +200,7 @@ class Proposals_Model extends CI_Model {
   }
 
   //:: Fetches proposal details
-  public function viewRecord($proposal_id) {
+  public function viewAPRecord($proposal_id) {
     $response = array();
 
     $account_id = $this->session->userdata('account_id');
@@ -227,16 +227,107 @@ class Proposals_Model extends CI_Model {
     }
 
   }
-  
-  public function save_activity_proposal($account_id, $proposal_id, $activity_name, $date_activity,
-    $start_time, $end_time, $nature, $rationale, $activity_chair, $participants,
-    $activity_venue) {
 
-    $proposal_status = "DRAFT";
+  public function checkIfBPExists($proposal_id) {
+    $response = array();
+
+    $account_id = $this->session->userdata('account_id');
+    $type = $this->session->userdata('org_type');
+    $position = $this->session->userdata('position');
+
+    $this->db->from('fixed_assets_requirements');
+    $this->db->where('Proposal_ID', $proposal_id);
+    $result = $this->db->get();
+
+    if (!$result) {
+      return false;
+    }
+
+    $row = $result->num_rows();
+
+    if ($row != 0) {
+      return true;
+
+    } else {
+
+      $this->db->from('fixed_assets_requirements');
+      $this->db->where('Proposal_ID', $proposal_id);
+      $result = $this->db->get();
+
+      if (!$result) {
+        return false;
+      }
+      $row = $result->num_rows();
+
+      if ($row != 0) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public function createActivityProposal($proposal_id, $account_id, $activity_name) {
+
     $office_proposal = "N/A";
+    $proposal_status = "DRAFT";
 
     $data = array(
       'Proposal_ID' => $proposal_id,
+      'Account_ID' => $account_id,
+      'ActivityName' => $activity_name,
+      'ProposalStatus' => $proposal_status,
+      'OfficeProposal' => $office_proposal,
+    );
+
+    $result = $this->db->insert('activity_proposal', $data);
+
+    if (!$result) {
+      return false;
+    } else {
+      $this->createDate($proposal_id);
+      return true;
+    }
+  }
+
+  public function createOE($proposal_id, $account_id, $oe_id) {
+    $data = array(
+      'OE_ID' => $oe_id,
+      'Proposal_ID' => $proposal_id,
+      'Account_ID' => $account_id,
+    );
+
+    $result = $this->db->insert('operating_expenses', $data);
+
+    if (!$result) {
+      return false;
+    } else {
+      return true;
+    }
+
+  }
+
+  public function createFAR($proposal_id, $account_id, $far_id) {
+    $data = array(
+      'FAR_ID' => $far_id,
+      'Proposal_ID' => $proposal_id,
+      'Account_ID' => $account_id,
+    );
+
+    $result = $this->db->insert('fixed_assets_requirements', $data);
+
+    if (!$result) {
+      return false;
+    } else {
+      return true;
+    }
+
+  }
+
+  public function saveActivityProposal($account_id, $proposal_id, $activity_name, $date_activity,
+    $start_time, $end_time, $nature, $rationale, $activity_chair, $participants,
+    $activity_venue) {
+
+    $data = array(
       'Account_ID' => $account_id,
       'ActivityName' => $activity_name,
       'DateActivity' => $date_activity,
@@ -247,29 +338,33 @@ class Proposals_Model extends CI_Model {
       'ActivityChair' => $activity_chair,
       'Participants' => $participants,
       'ActivityVenue' => $activity_venue,
-      'ProposalStatus' => $proposal_status,
-      'OfficeProposal' => $office_proposal,
     );
 
-    if (checkIfExists($proposal_id)) {
-      $result = $this->db->replace('activity_proposal', $data);
-    } else {
-      $result = $this->db->insert('activity_proposal', $data);
-    }
-
-
-    $this->getSubmissionDate($proposal_id);
+    $this->db->where('Proposal_ID', $proposal_id);
+    $result = $this->db->update('activity_proposal', $data);
 
     if (!$result) {
       $response['success'] = false;
       echo json_encode($response);
     } else {
+      $this->updateDate($proposal_id);
       $response['success'] = true;
       echo json_encode($response);
     }
   }
 
-  public function getSubmissionDate($proposal_id) {
+  public function deleteThis($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $result = $this->db->delete('activity_proposal');
+
+    if (!$result) {
+      return false;
+    }
+
+    return true;
+  }
+
+  public function createDate($proposal_id) {
     $date = date("Y-m-d");
 
     $data = array(
@@ -285,17 +380,19 @@ class Proposals_Model extends CI_Model {
     }
   }
 
-  public function checkIfExists($proposal_id) {
-    $this->db->from('activity_proposal');
-    $this->db->where('activity_proposal.Proposal_ID', $proposal_id);
-    $result->db->get();
+  public function updateDate($proposal_id) {
+    $date = date("Y-m-d");
 
-    $row = $result->num_rows();
+    $data = array(
+      'DateProposed' => $date,
+    );
 
-    if ($row == 1) {
-      return true;
-    } else {
-      return false;
+    $this->db->where('Proposal_ID', $proposal_id);
+    $result = $this->db->update('timestamp', $data);
+
+    if (!$result) {
+      $response['success'] = false;
+      echo json_encode($response);
     }
   }
 

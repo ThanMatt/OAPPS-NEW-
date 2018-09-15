@@ -21,6 +21,7 @@ $(function () {
     var far = $("#chk_far:checked").val();
     var oe = $("#chk_oe:checked").val();
 
+    //:: If there is bp
     if (radio == 'yes_bp') {
 
       $.ajax({
@@ -32,6 +33,9 @@ $(function () {
           oe: oe,
         },
         success: function (response) {
+          alert(radio);
+          alert(far);
+          alert(oe);
           $('body').html(response);
         },
         error: function (response) {
@@ -40,14 +44,13 @@ $(function () {
         },
       });
 
+      //:: If no bp
     } else {
       $.ajax({
         type: 'POST',
         url: BASE_URL + 'submit',
         data: {
           radio: radio,
-          far: far,
-          oe: oe,
         },
         success: function (response) {
           $('body').html(response);
@@ -62,7 +65,7 @@ $(function () {
 
   $("#ajax_form_activity").submit(function (event) {
     event.preventDefault();
-    // var proposal_id = Math.floor((Math.random() * 9999) + 1000);
+    var proposal_id = $("#proposal_id").val();
     var activity_name = $("#activity_name").val();
     var date_activity = $("#date_activity").val();
     var start_time_activity = $("#start_time_activity").val();
@@ -76,9 +79,10 @@ $(function () {
 
     $.ajax({
       type: 'POST',
-      url: BASE_URL + 'proposals/save',
+      url: BASE_URL + 'submit/save',
       data: {
         flag: flag,
+        proposal_id: proposal_id,
         activity_name: activity_name,
         date_activity: date_activity,
         start_time_activity: start_time_activity,
@@ -90,7 +94,7 @@ $(function () {
         activity_venue: activity_venue
       },
       dataType: 'json',
-      success: function(response) {
+      success: function (response) {
         if (response.success) {
           alert("Save successful!");
         } else {
@@ -104,6 +108,30 @@ $(function () {
       },
     });
   });
+
+  $("#ajax_form_title").submit(function (event) {
+    event.preventDefault();
+    var activity_name = $("#activity_name").val();
+    var proposal_id;
+    $.ajax({
+      type: 'POST',
+      url: BASE_URL + 'submit/create',
+      data: {
+        activity_name: activity_name
+      },
+      dataType: 'json',
+      success: function (response) {
+        proposal_id = response.proposal_id;
+        window.location.replace(BASE_URL + "submit/edit/" + proposal_id);
+      },
+      error: function (response) {
+        alert("There was an error! " + response.proposal_id);
+      },
+
+    });
+  });
+
+
 
 
 
