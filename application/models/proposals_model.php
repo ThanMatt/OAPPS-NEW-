@@ -116,9 +116,16 @@ class Proposals_Model extends CI_Model {
         $this->db->where("OD_TimeIn != ''");
         $this->db->order_by('DateProposed', 'asc');
 
-      } else if ($account_id == 'OPSA_APP' || $account_id == 'OPSA_APN') {
+      } else if ($account_id == 'OPSA_APP') {
 
         $this->db->where("OPSA_P_TimeIn != ''");
+        $this->db->where("Type = 'Pro'");
+        $this->db->order_by('DateProposed', 'asc');
+
+      } else if ($account_id == 'OPSA_APN') {
+
+        $this->db->where("OPSA_P_TimeIn != ''");
+        $this->db->where("Type = 'NonPro'");
         $this->db->order_by('DateProposed', 'asc');
 
       } else if ($account_id == 'OD') {
@@ -353,6 +360,88 @@ class Proposals_Model extends CI_Model {
     }
   }
 
+  public function getDateTime($account_id, $proposal_id) {
+    $date_time = date('Y-m-d h:i:sa');
+
+    if ($this->session->userdata('org_type') == 'N/A') {
+      $time_in = $account_id . "_TimeIn";
+
+      $this->db->where('Proposal_ID', $proposal_id);
+      $this->db->set($time_in, $date_time);
+      $result = $this->db->update('timestamp');
+
+      if (!$result) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+
+  }
+
+  public function nextOffice($account_id, $proposal_id) {
+
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->join('accounts', 'accounts.Account_ID = activity_proposal.Account_ID');
+    $this->db->from('activity_proposal');
+    $query = $this->db->get();
+
+    $result = $query->row();
+
+    $org_type = $result->Type;
+
+    $offices = array(
+      'SC_SG',
+      'SC_TR',
+      'SC_P',
+      'OPSA_APP',
+      'OPSA_APN',
+      'OPSA_P',
+      'OD',
+    );
+
+    if ($account_id == 'SC_TR') {
+      unset($offices[0]);
+    } else if ($account_id == 'SC_SG') {
+      unset($offices[1]);
+    } else if ($account_id == 'OPSA_APP') {
+      unset($offices[4]);
+    } else if ($account_id == 'OPSA_APN') {
+      unset($offices[3]);
+    } else if ($account_id == 'SC_P' && $org_type == 'Pro') {
+      unset($offices[4]);
+    } else if ($account_id == 'SC_P' && $org_type == 'NonPro') {
+      unset($offices[3]);
+    }
+
+    $new_offices = array_values(array_filter($offices));
+
+    while ($office = current($offices)) {
+      if ($office == $account_id) {
+        $office = next($offices);
+        break;
+      } else {
+        next($offices);
+        continue;
+      }
+    }
+
+    return $office;
+  }
+
+  public function nextOfficePosition($next_office, $proposal_id) {
+
+    $this->db->where('Account_ID', $next_office);
+    $this->db->from('accounts');
+    $query = $this->db->get();
+
+    $result = $query->row();
+
+    $position = $result->Position;
+
+    return $position;
+  }
+
   public function deleteThis($proposal_id) {
     $this->db->where('Proposal_ID', $proposal_id);
     $result = $this->db->delete('activity_proposal');
@@ -362,6 +451,93 @@ class Proposals_Model extends CI_Model {
     }
 
     return true;
+  }
+
+  public function forwardAP($next_office, $next_position, $proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->set('OfficeProposal', $next_position);
+    $result = $this->db->update('activity_proposal');
+
+    if (!$result) {
+      return false;
+    }
+
+    $blank_time = "00-00-0000 00:00:00am";
+    $time_in = $next_office . "_TimeIn";
+
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->set($time_in, $blank_time);
+    $result = $this->db->update('timestamp');
+
+    if (!$result) {
+      return false;
+    }
+
+    return true;
+
+  }
+
+  public function didIApproveThis($account_id, $proposal_id) {
+
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->join('accounts', 'accounts.Account_ID = activity_proposal.Account_ID');
+    $this->db->from('activity_proposal');
+    $query = $this->db->get();
+
+    $result = $query->row();
+
+    $org_type = $result->Type;
+
+    $offices = array(
+      'SC_SG',
+      'SC_TR',
+      'SC_P',
+      'OPSA_APP',
+      'OPSA_APN',
+      'OPSA_P',
+      'OD',
+    );
+
+    if ($account_id == 'SC_TR') {
+      unset($offices[0]);
+    } else if ($account_id == 'SC_SG') {
+      unset($offices[1]);
+    } else if ($account_id == 'OPSA_APP') {
+      unset($offices[4]);
+    } else if ($account_id == 'OPSA_APN') {
+      unset($offices[3]);
+    } else if ($account_id == 'SC_P' && $org_type == 'Pro') {
+      unset($offices[4]);
+    } else if ($account_id == 'SC_P' && $org_type == 'NonPro') {
+      unset($offices[3]);
+    }
+
+    $new_offices = array_values(array_filter($offices));
+
+    while ($office = current($offices)) {
+      if ($office == $account_id) {
+        $office = next($offices);
+        break;
+      } else {
+        next($offices);
+        continue;
+      }
+    }
+
+    $time_in = $office . "_TimeIn";
+
+    $this->db->where($time_in . " != ''");
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('timestamp');
+    $query = $this->db->get();
+
+    $row = $query->num_rows();
+
+    if ($row == 0) {
+      return true;
+    }
+
+    return false;
   }
 
   public function createDate($proposal_id) {

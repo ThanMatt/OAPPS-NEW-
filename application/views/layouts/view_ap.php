@@ -8,6 +8,7 @@
   $account_id = $this->session->userdata('account_id');
   $position = $this->session->userdata('position');
   $org_type = $this->session->userdata('org_type');
+  $proposal_id = $record->Proposal_ID;
   ?>
 
   <?php if ($org_type != 'N/A' && $account_id != $record->Account_ID): ?>
@@ -70,9 +71,11 @@
             <!-- Office has these buttons -->
             <?php if($this->session->userdata('org_type') == 'N/A'): ?>
 
-              <a href="#">
-                <input type="button" value="Approve">
-              </a>
+              <?php if($this->proposals_model->didIApproveThis($account_id, $proposal_id)): ?>
+                <a href="<?=base_url()?>proposal/approve/<?=$proposal_id?>">
+                  <input type="button" value="Approve">
+                </a>
+              <?php endif ?>
               
               <a href="#">
                 <input type="button" value="Ask for Revision">
