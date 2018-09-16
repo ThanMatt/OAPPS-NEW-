@@ -206,6 +206,110 @@ class Proposals_Model extends CI_Model {
 
   }
 
+  public function checkCollaborative($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('activity_proposal');
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    $proposal_type1 = $row->ProposalType1;
+
+    if ($proposal_type1 == "Collaborative") {
+      return "checked";
+    } 
+  }
+
+  public function checkIndependent($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('activity_proposal');
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    $proposal_type1 = $row->ProposalType1;
+
+    if ($proposal_type1 == "Independent") {
+      return "checked";
+    }
+
+  }
+
+  public function checkAcademic($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('activity_proposal');
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    $proposal_type2 = $row->ProposalType2;
+
+    if ($proposal_type2 == "Academic") {
+      return "checked";
+    }
+     
+  }
+
+  public function checkNonAcademic($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('activity_proposal');
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    $proposal_type2 = $row->ProposalType2;
+
+    if ($proposal_type2 == "Non-Academic") {
+      return "checked";
+    }
+     
+  }
+
+  public function checkCommunity($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('activity_proposal');
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    $non_academic_type = $row->NonAcademicType;
+
+    if ($non_academic_type == "Community Involvement") {
+      return "checked";
+    }
+     
+  }
+
+  public function checkCoCurricular($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('activity_proposal');
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    $non_academic_type = $row->NonAcademicType;
+
+    if ($non_academic_type == "Co-Curricular") {
+      return "checked";
+    }
+     
+  }
+
+  public function checkExtraCurricular($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('activity_proposal');
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    $non_academic_type = $row->NonAcademicType;
+
+    if ($non_academic_type == "Extra-Curricular") {
+      return "checked";
+    }
+     
+  }
+
   //:: Fetches proposal details
   public function viewAPRecord($proposal_id) {
     $response = array();
@@ -330,9 +434,10 @@ class Proposals_Model extends CI_Model {
 
   }
 
-  public function saveActivityProposal($account_id, $proposal_id, $activity_name, $date_activity,
+  public function saveActivityProposal($account_id, $proposal_id, $contact_number, $activity_name, $date_activity,
     $start_time, $end_time, $nature, $rationale, $activity_chair, $participants,
-    $activity_venue) {
+    $activity_venue, $proposal_type1, $proposal_type2, $non_academic_type,
+    $collab_partner, $specified) {
 
     $data = array(
       'Account_ID' => $account_id,
@@ -343,8 +448,14 @@ class Proposals_Model extends CI_Model {
       'Nature' => $nature,
       'Rationale' => $rationale,
       'ActivityChair' => $activity_chair,
+      'ChairContactNumber' => $contact_number,
       'Participants' => $participants,
       'ActivityVenue' => $activity_venue,
+      'ProposalType1' => $proposal_type1,
+      'Partners' => $collab_partner,
+      'ProposalType2' => $proposal_type2,
+      'NonAcademicType' => $non_academic_type,
+      'Specified' => $specified,
     );
 
     $this->db->where('Proposal_ID', $proposal_id);
@@ -358,6 +469,76 @@ class Proposals_Model extends CI_Model {
       $response['success'] = true;
       echo json_encode($response);
     }
+  }
+
+  public function submitActivityProposal($account_id, $proposal_id, $contact_number, $activity_name, $date_activity,
+  $start_time, $end_time, $nature, $rationale, $activity_chair, $participants,
+  $activity_venue, $proposal_type1, $proposal_type2, $non_academic_type,
+  $collab_partner, $specified) {
+
+    $office_proposal = "Secretary-General";
+    $proposal_status = "PENDING";
+
+    $data = array(
+      'Account_ID' => $account_id,
+      'ActivityName' => $activity_name,
+      'DateActivity' => $date_activity,
+      'StartTime' => $start_time,
+      'EndTime' => $end_time,
+      'Nature' => $nature,
+      'Rationale' => $rationale,
+      'ActivityChair' => $activity_chair,
+      'ChairContactNumber' => $contact_number,
+      'Participants' => $participants,
+      'ActivityVenue' => $activity_venue,
+      'ProposalType1' => $proposal_type1,
+      'Partners' => $collab_partner,
+      'ProposalType2' => $proposal_type2,
+      'NonAcademicType' => $non_academic_type,
+      'Specified' => $specified,
+      'OfficeProposal' => $office_proposal,
+      'ProposalStatus' => $proposal_status,
+    );
+
+    $this->db->where('Proposal_ID', $proposal_id);
+    $result = $this->db->update('activity_proposal', $data);
+
+    // $this->insertTracker($account_id, $proposal_id);
+
+    if (!$result) {
+      return false;
+    } else {
+      $this->updateDate($proposal_id);
+      return true;
+    }
+
+  }
+
+  public function insertTracker($account_id, $proposal_id) {
+
+    if ($this->checkIfBPExists($proposal_id)) {
+      $data = array(
+        'Proposal_ID' => $proposal_id,
+        'Account_ID' => $account_id,
+        'SC_TR' => "PENDING",
+        'SC_SG' => "PENDING",
+      );
+
+    } else {
+      $data = array(
+        'Proposal_ID' => $proposal_id,
+        'Account_ID' => $account_id,
+        'SC_TR' => "N/A",
+        'SC_SG' => "PENDING",
+      );
+    }
+
+    $result = $this->db->insert('proposal_tracker', $data);
+
+    if (!$result) {
+      return false;
+    }
+    return true;
   }
 
   public function getDateTime($account_id, $proposal_id) {
@@ -475,6 +656,22 @@ class Proposals_Model extends CI_Model {
 
     return true;
 
+  }
+
+  public function isThisMine($account_id, $proposal_id) {
+    $account_id = $this->session->userdata('account_id');
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->where('Account_ID', $account_id);
+    $this->db->from('activity_proposal');
+    $result = $this->db->get();
+    
+    $row = $result->num_rows();
+
+    if ($row != 0) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   public function didIApproveThis($account_id, $proposal_id) {

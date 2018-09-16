@@ -39,7 +39,7 @@
           </h4>
           <div class="dropdown">
             <div class="img">
-              <img class="dropbtn" src="<?=base_url()?>assets/image.php?id=<?=$account_id?>">
+              <img class="dropbtn" src="<?=base_url()?>assets/img/logo/<?=$prefix?>_logo.png">
             </div>
             <div id="myDropdown" class="dropdown-content">
               <div class="dropdown-details">

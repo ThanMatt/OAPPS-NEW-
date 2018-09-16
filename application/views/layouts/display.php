@@ -35,11 +35,11 @@
       <!-- For Drafts -->
       <?php if(($records->ProposalStatus) == 'DRAFT'):  ?>
         
-        <a href="submit/edit/<?=$records->Proposal_ID?>">
+        <a href="proposal/edit/<?=$records->Proposal_ID?>">
           <input type="button" value="Edit Proposal">
         </a>
 
-        <a href="submit/delete/<?=$records->Proposal_ID?>">
+        <a href="proposal/delete/<?=$records->Proposal_ID?>">
           <input type="button" value="Delete Proposal">
         </a>
         

@@ -58,67 +58,12 @@ class Submit extends CI_Controller {
     }
   }
 
-  public function create() {
-    $response = array();
+  public function success($proposal_id) {
 
-    $account_id = $this->session->userdata('account_id');
-    $activity_name = $this->input->post('activity_name', true);
-    $proposal_id = $this->session->flashdata('proposal_id');
-    $oe_id = $this->session->flashdata('oe_id');
-    $far_id = $this->session->flashdata('far_id');
+    $records = $this->proposals_model->viewAPRecord($proposal_id);
+    $data['proposal'] = $records;
+    $this->load->view('success_view', $data);
 
-    if ($this->proposals_model->createActivityProposal($proposal_id, $account_id, $activity_name)) {
-      $response['success'] = true;
-      $response['proposal_id'] = $proposal_id;
-
-      if ($oe_id != false) {
-        $this->proposals_model->createOE($proposal_id, $account_id, $oe_id);
-      }
-
-      if ($far_id != false) {
-        $this->proposals_model->createFAR($proposal_id, $account_id, $far_id);
-      }
-
-      echo json_encode($response);
-
-    } else {
-      $response['success'] = false;
-      echo json_encode($response);
-    }
-  }
-
-  public function edit($proposal_id) {
-
-    $data['record'] = $this->proposals_model->viewAPRecord($proposal_id);
-
-    $this->load->view('layouts/activity_proposal', $data);
-
-  }
-
-  public function delete($proposal_id) {
-    $this->proposals_model->deleteThis($proposal_id);
-    redirect('home');
-  }
-
-  public function save() {
-    $response = array();
-
-    // $proposal_id = $this->session->flashdata('proposal_id');
-    $account_id = $this->session->userdata('account_id');
-    $proposal_id = $this->input->post('proposal_id', true);
-    $activity_name = $this->input->post('activity_name', true);
-    $date_activity = $this->input->post('date_activity', true);
-    $start_time = $this->input->post('start_time_activity', true);
-    $end_time = $this->input->post('end_time_activity', true);
-    $nature = $this->input->post('nature', true);
-    $rationale = $this->input->post('rationale', true);
-    $activity_chair = $this->input->post('activity_chair', true);
-    $participants = $this->input->post('participants', true);
-    $activity_venue = $this->input->post('activity_venue', true);
-
-    $this->proposals_model->saveActivityProposal($account_id, $proposal_id, $activity_name, $date_activity,
-      $start_time, $end_time, $nature, $rationale, $activity_chair, $participants,
-      $activity_venue);
   }
 
 }

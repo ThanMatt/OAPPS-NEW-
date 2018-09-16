@@ -28,10 +28,6 @@ class Accounts_Model extends CI_Model {
     $batch = $result->row(6)->Batch;
     $org_type = $result->row(7)->Type;
     $position = $result->row(8)->Position;
-    $logo = $result->row(9)->Logo;
-
-    // $account_prefix = substr($account_id, 0
-    //   , strrpos($account_id, "_"));
 
     $account_prefix = strstr($account_id, "_", true);
 
