@@ -753,6 +753,21 @@ class Proposals_Model extends CI_Model {
     }
   }
 
+  public function approveTracker($account_id, $proposal_id) {
+
+    $next_office = $this->nextOffice($account_id, $proposal_id);
+    
+    $data = array (
+      $account_id => "APPROVED",
+      $next_office => "PENDING",
+    );
+
+    echo $account_id;
+    $this->db->where('Proposal_ID', $proposal_id);
+    $result = $this->db->update('proposal_tracker', $data);
+    
+  }
+
   public function updateDate($proposal_id) {
     $date = date("Y-m-d");
 

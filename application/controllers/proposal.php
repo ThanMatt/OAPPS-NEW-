@@ -23,7 +23,8 @@ class Proposal extends CI_Controller {
     $next_position = $this->proposals_model->nextOfficePosition($next_office, $proposal_id);
 
     $this->proposals_model->forwardAP($next_office, $next_position, $proposal_id);
-
+    
+    $this->proposals_model->approveTracker($account_id, $proposal_id);
     redirect(base_url() . "proposal/view/" . $proposal_id);
 
   }
@@ -107,7 +108,7 @@ class Proposal extends CI_Controller {
 
   }
 
-  public function submit() {
+  public function submit($proposal_id) {
 
     if ($proposal_id == null) {
       redirect(base_url() . "home");
@@ -134,13 +135,13 @@ class Proposal extends CI_Controller {
 
     if ($specified_ex == '' && $specified_co != '') {
       $specified = $specified_co;
+
     } else if ($specified_ex != '' && $specified_co == '') {
       $specified = $specified_ex;
+
     } else {
       $specified = "";
     }
-
-    $specified = "";
 
     $this->proposals_model->submitActivityProposal($account_id, $proposal_id, $contact_number, $activity_name, $date_activity,
       $start_time, $end_time, $nature, $rationale, $activity_chair, $participants,

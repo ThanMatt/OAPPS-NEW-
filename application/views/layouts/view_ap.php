@@ -9,6 +9,11 @@
   $position = $this->session->userdata('position');
   $org_type = $this->session->userdata('org_type');
   $proposal_id = $record->Proposal_ID;
+
+  if ($proposal_id == "") {
+    redirect("home");
+  }
+  $non_academic_type = $record->NonAcademicType;
   ?>
 
   <?php if ($org_type != 'N/A' && $account_id != $record->Account_ID): ?>
@@ -59,6 +64,40 @@
 
             <br> Venue: <?=$record->ActivityVenue?>
             <br>
+
+            <div class="radio-container-proposal">
+              <div class="radio-subcontainer-proposal-1">
+                <label id="label_radiobutton"><?=$record->ProposalType1?></label>
+              
+              <?php if ($record->ProposalType1 == 'Collaborative'):?>
+                <div id="collab-container">
+                  Partner/s: <label><?=$record->Partners?></label>
+                </div>
+              <?php endif ?>
+
+              </div>
+
+              <div class="radio-subcontainer-proposal-2">
+                <label id="label_radiobutton"><?=$record->ProposalType2?></label>
+                <br>
+                <div class="rd-non-academic-container">
+
+                  <?php if ($record->ProposalType2 == 'Non-Academic'): ?>
+                    <label><?=$record->NonAcademicType?></label>
+
+                    <?php if ($record->NonAcademicType != 'Community Involvement'):?>
+                      <br>
+                      Specified: <label><?=$record->Specified?></label>
+                    <?php endif ?>
+
+                  <?php endif ?>
+                  
+                
+                </div>
+
+              </div>
+            </div>
+
 
             <a href="<?=base_url()?>home">
               <input type="button" value="Go Back">
