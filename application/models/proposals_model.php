@@ -55,11 +55,11 @@ class Proposals_Model extends CI_Model {
 
       $this->db->where('ProposalStatus', 'APPROVED');
       $this->db->where('activity_proposal.Account_ID', $account_id);
-      
+
     } else {
       $this->db->where($account_id, 'APPROVED');
     }
-    
+
     $this->db->order_by('DateProposed', 'asc');
     $result = $this->db->get();
 
@@ -438,21 +438,33 @@ class Proposals_Model extends CI_Model {
 
   public function insertTracker($account_id, $proposal_id) {
 
-    if ($this->checkIfBPExists($proposal_id)) {
-      $data = array(
-        'Proposal_ID' => $proposal_id,
-        'Account_ID' => $account_id,
-        'SC_TR' => "PENDING",
-        'SC_SG' => "PENDING",
-      );
+    $prefix = $this->session->userdata('prefix');
+
+    if ($prefix != 'SC') {
+
+      if ($this->checkIfBPExists($proposal_id)) {
+        $data = array(
+          'Proposal_ID' => $proposal_id,
+          'Account_ID' => $account_id,
+          'SC_TR' => "PENDING",
+          'SC_SG' => "PENDING",
+        );
+
+      } else {
+        $data = array(
+          'Proposal_ID' => $proposal_id,
+          'Account_ID' => $account_id,
+          'SC_SG' => "PENDING",
+        );
+      }
 
     } else {
-      $data = array(
+      $data = array (
         'Proposal_ID' => $proposal_id,
         'Account_ID' => $account_id,
-        'SC_TR' => "N/A",
-        'SC_SG' => "PENDING",
+        'OPSA_APP' => "PENDING",
       );
+
     }
 
     $result = $this->db->insert('proposal_tracker', $data);
@@ -662,7 +674,7 @@ class Proposals_Model extends CI_Model {
         $account_id => "APPROVED",
         $next_office => "PENDING",
       );
-      
+
     } else {
       $data = array(
         $account_id => "APPROVED",
