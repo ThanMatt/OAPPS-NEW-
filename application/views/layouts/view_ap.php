@@ -114,15 +114,16 @@
                 <a href="<?=base_url()?>proposal/approve/<?=$proposal_id?>">
                   <input type="button" value="Approve">
                 </a>
+                
+                <a href="#">
+                  <input type="button" value="Ask for Revision">
+                </a>
+
+                <a href="#">
+                  <input type="button" value="Decline">
+                </a>
               <?php endif ?>
-              
-              <a href="#">
-                <input type="button" value="Ask for Revision">
-              </a>
-              
-              <a href="#">
-                <input type="button" value="Decline">
-              </a>
+
             <?php endif ?>
           </div>
         </div>
