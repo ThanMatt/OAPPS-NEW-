@@ -32,6 +32,12 @@
       <h4 class="container-content-labels">Representative Contact Info: </h4>
       <p><?=$records->ContactNumber?></p>
 
+      <div class="progress-container">
+        <ol class="progress-meter">
+          <li class="progress-point done">Treasurer</li><li class="progress-point done">Secretary-General</li><li class="progress-point pending">President</li><li class="progress-point todo">Assistant Prefect</li><li class="progress-point todo">Prefect</li><li class="progress-point todo">Dean</li>
+        </ol>
+     </div>
+
       <!-- For Drafts -->
       <?php if(($records->ProposalStatus) == 'DRAFT'):  ?>
         
@@ -42,7 +48,6 @@
         <a href="proposal/delete/<?=$records->Proposal_ID?>">
           <input type="button" value="Delete Proposal">
         </a>
-        
 
       <!-- For Pending/Approved/Revisions -->
       <?php else: ?>

@@ -25,6 +25,7 @@
 
 <body>
 
+
   <form id="ajax_form_activity">
     <div class="container-proposal">
       <div class="container-proposal-activity">

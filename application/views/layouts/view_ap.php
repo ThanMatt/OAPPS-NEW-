@@ -33,6 +33,13 @@
 </head>
 <body>
 
+  <!-- Don't add spaces or newlines between the li elements! -->
+  <div class="progress-container">
+    <ol class="progress-meter">
+      </li><li class="progress-point done">Treasurer</li><li class="progress-point done">Secretary-General</li><li class="progress-point pending">President</li><li class="progress-point todo">Assistant Prefect</li><li class="progress-point todo">Prefect</li><li class="progress-point todo">Dean</li>
+    </ol>
+  </div>
+
   <form id="ajax_form_activity">
     <div class="main-container-proposal">
       <div class="container-proposal">
