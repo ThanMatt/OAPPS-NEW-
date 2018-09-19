@@ -123,6 +123,8 @@
   width: auto;
 }
 
+
+
 body {
   background-color: rgb(233, 235, 238);
   font-family: Arial, Helvetica, sans-serif;
@@ -132,6 +134,12 @@ body {
 
 a {
   text-decoration: none;
+  color: white;
+}
+
+
+#forgot {
+  color: blue;
 }
 
 h1 {
@@ -809,7 +817,6 @@ ol.progress-meter li:before {
   /* left: calc(50% - 9.5px); */
 }
 
-
 ol.progress-meter li.done {
   font-size: 8px;
 }
@@ -838,6 +845,20 @@ ol.progress-meter li.pending:before {
   border-radius: 19px;
 }
 
+ol.progress-meter li.revise {
+  font-size: 8px;
+}
+
+ol.progress-meter li.revise:before {
+  content: "\2B24";
+  height: 19px;
+  width: 19px;
+  line-height: 21.85px;
+  bottom: -28.175px;
+  border: none;
+  border-radius: 19px;
+}
+
 ol.progress-meter li.todo {
   font-size: 8px;
 }
@@ -845,7 +866,7 @@ ol.progress-meter li.todo {
 ol.progress-meter li.todo:before {
   content: "\2B24";
   font-size: 17.1px;
-  bottom: -26.95px;
+  bottom: -28.95px;
   line-height: 18.05px;
 }
 
@@ -867,6 +888,16 @@ ol.progress-meter li.pending:before {
   color: rgb(255, 221, 25);
   background-color: rgb(255, 221, 25);
 }
+
+ol.progress-meter li.revise {
+  color: black;
+  border-bottom-color: rgb(0, 255, 55);
+}
+ol.progress-meter li.revise:before {
+  color: rgb(255, 55, 0);
+  background-color: rgb(255, 55, 0);
+}
+
 
 ol.progress-meter li.todo {
   color: silver;

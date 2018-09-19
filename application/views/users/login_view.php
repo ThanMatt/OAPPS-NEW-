@@ -57,7 +57,7 @@
           <legend>Password</legend>
           <?= form_password($data_pass); ?>
 
-          <a href="forgot.html">
+          <a href="forgot.html" id="forgot">
             <p id="forgot">Forgot password?</a>
           </p>
 

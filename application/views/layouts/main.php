@@ -15,7 +15,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title><?= $prefix . " - Index" ?></title>
+  <title><?= strtoupper($prefix) . " - Index" ?></title>
 
   <link rel="stylesheet" href="<?= base_url();?>assets/css/styles.css">
 
@@ -24,6 +24,7 @@
   </script>
   <script src="<?= base_url();?>assets/js/jquery-3.3.1.js"></script>
   <script src="<?= base_url();?>assets/js/core.js"></script>
+  <script src="<?= base_url();?>assets/js/progress.js"></script>
 
 </head>
 <body>
@@ -32,7 +33,9 @@
       <div class="header-margin">
         <div class="left-header-text">
           <h2 class="heady">
-            OAPPS
+            <a href="home">
+              OAPPS
+            </a>
           </h2>
           <h4 class="smaller-heady">
             Online Activity Proposal Processing System

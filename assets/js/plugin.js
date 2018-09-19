@@ -322,4 +322,40 @@ $(function () {
     });
   });
 
+  $('#ajax_form_revise').submit(function (event) {
+    event.preventDefault();
+    var proposal_id = $('#proposal_id').val();
+    var activity_name = $('#activity_name').val();
+    var date = $('#date_activity').val();
+    var time = $('#time_activity').val();
+    var nature = $('#nature_textarea').val();
+    var rationale = $('#rationale_textarea').val();
+    var activity_chair = $('#activity_chair').val();
+    var contact_number = $('#contact_number').val();
+    var participants = $('#participants_textarea').val();
+    var venue = $('#activity_venue').val();
+    var proposal_type1 = $('#proposal_type1').val();
+    var proposal_type2 = $('#proposal_type2').val();
+
+    $.ajax({
+      type: 'POST',
+      url: BASE_URL + "proposal/revise",
+      data: {
+        proposal_id: proposal_id,
+        activity_name: activity_name,
+        date: date,
+        time: time,
+        nature: nature,
+        rationale: rationale,
+        activity_chair: activity_chair,
+        contact_number: contact_number,
+        participants: participants,
+        venue: venue,
+        proposal_type1: proposal_type1,
+        proposal_type2: proposal_type2,
+      },
+
+    });
+  });
+
 });

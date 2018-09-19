@@ -1,3 +1,6 @@
+
+<body id="display_proposal"> 
+  <input type="text" id="proposal_id" value="<?=$records->Proposal_ID?>" hidden>
   <div class="nav-container-header-index">
     <h2 id="table-title" class="header-texts">Proposal Overview</h2>
   </div>
@@ -32,9 +35,11 @@
       <h4 class="container-content-labels">Representative Contact Info: </h4>
       <p><?=$records->ContactNumber?></p>
 
+    <!-- Progress tracker -->
+    <!-- Don't add spaces or newlines between the li elements! -->
       <div class="progress-container">
         <ol class="progress-meter">
-          <li class="progress-point done">Treasurer</li><li class="progress-point done">Secretary-General</li><li class="progress-point pending">President</li><li class="progress-point todo">Assistant Prefect</li><li class="progress-point todo">Prefect</li><li class="progress-point todo">Dean</li>
+          <li class="progress-point done">Treasurer</li><li class="progress-point done">Secretary-General</li><li class="progress-point done">President</li><li class="progress-point revise">Assistant Prefect</li><li class="progress-point todo">Prefect</li><li class="progress-point todo">Dean</li>
         </ol>
      </div>
 
@@ -57,3 +62,4 @@
       <?php endif ?>
     </div>
   </div>
+</body>

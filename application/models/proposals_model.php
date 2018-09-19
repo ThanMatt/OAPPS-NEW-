@@ -8,12 +8,10 @@ class Proposals_Model extends CI_Model {
     $account_id = $this->session->userdata('account_id');
     $type = $this->session->userdata('org_type');
 
-    $this->db->select('activity_proposal.Proposal_ID, ActivityName, OfficeProposal,
-    `TimeStamp`.DateProposed, activity_proposal.Account_ID');
     $this->db->from('activity_proposal');
     $this->db->join('`TimeStamp`', 'activity_proposal.Proposal_ID = `TimeStamp`.Proposal_ID');
     $this->db->join('accounts', 'accounts.Account_ID = activity_proposal.Account_ID');
-    $this->db->join('proposal_tracker', 'proposal_tracker.Account_ID = activity_proposal.Account_ID');
+    $this->db->join('proposal_tracker', 'proposal_tracker.Proposal_ID = activity_proposal.Proposal_ID');
 
     //:: Show pending records for orgs
     if ($type != 'N/A') {
@@ -24,7 +22,6 @@ class Proposals_Model extends CI_Model {
       //:: Show pending records for OFFICES
     } else {
       $this->db->where($account_id, 'PENDING');
-
     }
 
     $this->db->order_by('DateProposed', 'asc');
@@ -44,12 +41,10 @@ class Proposals_Model extends CI_Model {
     $account_id = $this->session->userdata('account_id');
     $type = $this->session->userdata('org_type');
 
-    // $this->db->select('activity_proposal.Proposal_ID, ActivityName, OfficeProposal,
-    //   `TimeStamp`.DateProposed, activity_proposal.Account_ID');
     $this->db->from('activity_proposal');
     $this->db->join('`TimeStamp`', 'activity_proposal.Proposal_ID = `TimeStamp`.Proposal_ID');
     $this->db->join('accounts', 'accounts.Account_ID = activity_proposal.Account_ID');
-    $this->db->join('proposal_tracker', 'proposal_tracker.Account_ID = activity_proposal.Account_ID');
+    $this->db->join('proposal_tracker', 'proposal_tracker.Proposal_ID = activity_proposal.Proposal_ID');
 
     if ($type != 'N/A') {
 
@@ -400,7 +395,7 @@ class Proposals_Model extends CI_Model {
     $activity_venue, $proposal_type1, $proposal_type2, $non_academic_type,
     $collab_partner, $specified) {
 
-    $office_proposal = "Secretary-General";
+    $office_proposal = "SC_SG";
     $proposal_status = "PENDING";
 
     $data = array(
@@ -579,7 +574,7 @@ class Proposals_Model extends CI_Model {
     if ($this->session->userdata('account_id') != 'OD') {
 
       $this->db->where('Proposal_ID', $proposal_id);
-      $this->db->set('OfficeProposal', $next_position);
+      $this->db->set('OfficeProposal', $next_office);
       $result = $this->db->update('activity_proposal');
 
       if (!$result) {

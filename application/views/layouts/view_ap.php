@@ -64,8 +64,8 @@
             <p><?=$record->Rationale?></p>
 
             <br> Activity Chair: <?=$record->ActivityChair?>
+            <br> Contact Number: <?=$record->ChairContactNumber?>
             <br>
-
             <label>Participants: </label>
             <p><?=$record->Participants?></p>
 
@@ -119,10 +119,10 @@
 
               <?php if($this->proposals_model->didIApproveThis($account_id, $proposal_id)): ?>
                 <a href="<?=base_url()?>proposal/approve/<?=$proposal_id?>">
-                  <input type="button" value="Approve">
+                  <input type="button" id="approve_btn" value="Approve">
                 </a>
                 
-                <a href="#">
+                <a href="<?=base_url()?>proposal/revise/<?=$record->Proposal_ID?>">
                   <input type="button" value="Ask for Revision">
                 </a>
 

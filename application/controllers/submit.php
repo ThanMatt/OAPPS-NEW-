@@ -66,6 +66,23 @@ class Submit extends CI_Controller {
 
   }
 
+  public function revision($proposal_id) {
+    $activity_name = $this->post->input('activity_name', true);
+    $date = $this->post->input('date_activity', true);
+    $time = $this->post->input('time_activity', true);
+    $nature = $this->post->input('nature', true);
+    $rationale = $this->post->input('rationale', true);
+    $activity_chair = $this->post->input('activity_chair', true);
+    $contact_number = $this->post->input('contact_number', true);
+    $participants = $this->post->input('participants', true);
+    $venue = $this->post->input('activity_venue', true);
+    $proposal_type1 = $this->post->input('proposal_type1', true);
+    $proposal_type2 = $this->post->input('proposal_type2', true);
+
+    
+
+  }
+
 }
 
 ?>
