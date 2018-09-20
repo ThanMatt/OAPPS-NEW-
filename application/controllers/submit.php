@@ -60,26 +60,62 @@ class Submit extends CI_Controller {
 
   public function success($proposal_id) {
 
-    $records = $this->proposals_model->viewAPRecord($proposal_id);
-    $data['proposal'] = $records;
-    $this->load->view('success_view', $data);
+    $org_type = $this->session->userdata('org_type');
+
+    if ($org_type != 'N/A') {
+      $records = $this->proposals_model->viewAPRecord($proposal_id);
+      $data['proposal'] = $records;
+      $this->load->view('success_view', $data);
+    }
 
   }
 
   public function revision($proposal_id) {
-    $activity_name = $this->post->input('activity_name', true);
-    $date = $this->post->input('date_activity', true);
-    $time = $this->post->input('time_activity', true);
-    $nature = $this->post->input('nature', true);
-    $rationale = $this->post->input('rationale', true);
-    $activity_chair = $this->post->input('activity_chair', true);
-    $contact_number = $this->post->input('contact_number', true);
-    $participants = $this->post->input('participants', true);
-    $venue = $this->post->input('activity_venue', true);
-    $proposal_type1 = $this->post->input('proposal_type1', true);
-    $proposal_type2 = $this->post->input('proposal_type2', true);
 
-    
+    $activity_name = $this->input->post('activity_name', true);
+    $date = $this->input->post('date_activity', true);
+    $time = $this->input->post('time_activity', true);
+    $nature = $this->input->post('nature', true);
+    $rationale = $this->input->post('rationale', true);
+    $activity_chair = $this->input->post('activity_chair', true);
+    $contact_number = $this->input->post('contact_number', true);
+    $participants = $this->input->post('participants', true);
+    $venue = $this->input->post('activity_venue', true);
+    $proposal_type1 = $this->input->post('proposal_type1', true);
+    $proposal_type2 = $this->input->post('proposal_type2', true);
+
+    $inputs = array (
+      'Activity Name' => $activity_name,
+      'Date of Activity' => $date,
+      'Time' => $time,
+      'Nature' => $nature,
+      'Rationale' => $rationale,
+      'Activity Chair' => $activity_chair,
+      'Contact Number' => $contact_number,
+      'Participants' => $participants,
+      'Venue' => $venue,
+      'Proposal Type 1' => $proposal_type1,
+      'Proposal Type 2' => $proposal_type2,
+    );
+
+    $values = array();
+    $field_name = array();
+
+    foreach ($inputs as $key => $value) {
+      if ($value != '') {
+        $values[] = $value;
+        $field_name[] = $key;
+      } else {
+        continue;
+      }
+    }
+
+    if ($this->proposals_model->submitRevision($field_name, $values, $proposal_id)) {
+      $account_id = $this->session->userdata('account_id');
+      $this->proposals_model->reviseTracker($account_id, $proposal_id);
+    } else {
+      echo "You are out";
+    }
 
   }
 

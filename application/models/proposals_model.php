@@ -569,6 +569,30 @@ class Proposals_Model extends CI_Model {
     return $date_time;
   }
 
+
+  public function submitRevision($field_name, $values, $proposal_id) {
+    $counter = 0;
+    $account_id = $this->session->userdata('account_id');
+    while ($counter < count($values)) {
+      $comment_id = rand(1000, 9999);
+      $data = array(
+        "CommentID" => $comment_id,
+        "Proposal_ID" => $proposal_id,
+        "Account_ID" => $account_id,
+        "Field" => $field_name[$counter],
+        "Comment" => $values[$counter],
+      );
+
+      $result = $this->db->insert('comments', $data);
+      if (!$result) {
+        return false;
+      }
+      $counter++;
+
+    }
+    return true;
+  }
+
   public function forwardAP($next_office, $next_position, $proposal_id) {
 
     if ($this->session->userdata('account_id') != 'OD') {
@@ -679,6 +703,23 @@ class Proposals_Model extends CI_Model {
     $this->db->where('Proposal_ID', $proposal_id);
     $result = $this->db->update('proposal_tracker', $data);
 
+  }
+
+  public function reviseTracker($account_id, $proposal_id) {
+    $data = array (
+      $account_id => "UNDER REVISION",
+    );
+
+    $this->db->where('Proposal_ID', $proposal_id);
+    $result = $this->db->update('proposal_tracker', $data);
+
+    $data = array (
+      "ProposalStatus" => "UNDER REVISION"
+    );
+    
+    $this->db->where('Proposal_ID', $proposal_id);
+    $result = $this->db->update('activity_proposal', $data);
+    
   }
 
   public function updateDate($proposal_id) {

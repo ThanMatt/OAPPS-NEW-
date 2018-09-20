@@ -102,7 +102,7 @@
         </div>
         
       </div>
-      <?=form_open(base_url() . "submit/revision/" . $proposal_id);?>
+      <?=form_open("submit/revision/" . $proposal_id);?>
         <div class="comments-container">
           <div class="header-proposal">
             <h1>Comments</h1>
@@ -115,7 +115,7 @@
             <input type="text" name="date_activity" id="date_activity">
 
             <br> Time:
-            <input type="text" name="start_time_activity" id="time_activity">
+            <input type="text" name="time_activity" id="time_activity">
             <br>
         
             <label>Nature of the Activity</label>
