@@ -46,7 +46,7 @@
             </div>
             <div id="myDropdown" class="dropdown-content">
               <div class="dropdown-details">
-                Org: <?=$prefix?>
+                Org: <?=strtoupper($prefix)?>
               </div>
               <div class="dropdown-details">
                 <?=$position . ': ' . $full_name?>
@@ -78,6 +78,7 @@
       <input type="button" id="btn_approved" class="nav-button-right" value="Approved">
       <input type="button" id="btn_revisions" class="nav-button-right" value="Revisions">
       <input type="button" id="btn_drafts" class="nav-button-right" value="Drafts">  
+      <!-- <input type="button" id="btn_forms" class="nav-button-right" value="Forms">   -->
       <a href="<?=base_url()?>submit">
         <input type="button" id="btn_new" class="nav-button-right" value="Submit">  
       </a>

@@ -4,6 +4,7 @@
 <?php if ($this->session->userdata('logged_in')): ?>
 <?php 
 $account_id = $this->session->userdata('account_id');
+$org_type = $this->session->userdata('org_type');
 $proposal_id = $proposal->Proposal_ID;
 ?>
 
@@ -26,7 +27,7 @@ $proposal_id = $proposal->Proposal_ID;
 <body>
   <div class="container-sent">
     <div class="margin-sent">
-
+    <?php if ($org_type != 'N/A' && $proposal->ProposalStatus == 'PENDING'): ?>
       <div class="header-container-sent">
         <h1>Your proposal has been submitted!</h1>
         <hr>
@@ -34,22 +35,37 @@ $proposal_id = $proposal->Proposal_ID;
 
       <div class="body-container-sent">
         <p>Your proposal, <?=$proposal->ActivityName?>, has been submitted
-        to the Student Council! Lorem ipsum dolor sit amet, 
-        consectetur adipiscing elit, sed do eiusmod tempor incididunt 
-        ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-        quis nostrud exercitation ullamco laboris nisi ut aliquip 
-        ex ea commodo consequat. Duis aute irure dolor in reprehenderit 
-        in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-        Excepteur sint occaecat cupidatat non proident, sunt in culpa 
-        qui officia deserunt mollit anim id est laborum.</p>
+        to the ! You can view your proposal by clicking 
+        the View My Proposal button, otherwise click the Home button
+        to redirect back to the home page </p>
       </div>
 
       <div class="button-container-sent">
-      <a href="<?=base_url()?>home">
-        <button type="button" id="button">CONTINUE</button>
-      </a>
+        <a href="<?=base_url()?>home">
+          <button type="button" id="button">Home</button>
+        </a>
+        <a href="<?=base_url()?>proposal/view/<?=$proposal_id?>">
+          <button type="button" id="button">View My Proposal</button>
+        </a>
+      </div>
+    <?php elseif ($org_type == 'N/A' && $proposal->ProposalStatus == 'UNDER REVISION'): ?>
+      <div class="header-container-sent">
+        <h1>Your comments have been submitted!</h1>
+        <hr>
       </div>
 
+      <div class="body-container-sent">
+        <p>It has been submitted to <?=$proposal->Account_ID?>! IF you want to view your comments 
+        just click the View My Comments button, otherwise click the Home button to 
+        redirect to the home page</p>
+      </div>
+
+      <div class="button-container-sent">
+        <a href="<?=base_url()?>home">
+          <button type="button" id="button">Home</button>
+        </a>
+      </div>
+    <?php endif ?>
     </div>
   </div>
 

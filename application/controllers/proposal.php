@@ -3,19 +3,36 @@
 class Proposal extends CI_Controller {
 
   public function view($proposal_id) {
+
     $account_id = $this->session->userdata('account_id');
-    $this->proposals_model->getDateTime($account_id, $proposal_id);
+    $records = $this->proposals_model->viewAPRecord($proposal_id);
+    $proposal_status = $records->ProposalStatus;
+    $org_type = $this->session->userdata('org_type');
 
     $data['record'] = $this->proposals_model->viewAPRecord($proposal_id);
-    $this->load->view('layouts/view_ap', $data);
+
+    if ($proposal_status == 'UNDER REVISION') {
+      $data['comments'] = $this->proposals_model->viewComments($proposal_id);
+      $data['office'] = $this->proposals_model->getTheirOfficeInfo($records->OfficeProposal);
+      
+      if ($org_type != 'N/A') {
+        $this->load->view('layouts/view_comments', $data);
+      } else {
+        $this->load->view('layouts/view_revision_office', $data);
+      }
+
+    } else {
+      $this->proposals_model->getDateTime($account_id, $proposal_id);
+      $this->load->view('layouts/view_ap', $data);
+    }
   }
 
-  public function revise($proposal_id) {
+  public function ask($proposal_id) {
     $account_id = $this->session->userdata('account_id');
     $this->proposals_model->getDateTime($account_id, $proposal_id);
 
     $data['record'] = $this->proposals_model->viewAPRecord($proposal_id);
-    $this->load->view('layouts/submit_revision', $data);
+    $this->load->view('layouts/submit_comments', $data);
   }
 
   public function approve($proposal_id) {
@@ -158,6 +175,16 @@ class Proposal extends CI_Controller {
 
     $this->proposals_model->insertTracker($account_id, $proposal_id);
 
+  }
+
+  public function tracker($proposal_id) {
+    $flag = $this->input->post('flag', true);
+
+    if ($flag == '') {
+      redirect('home');
+    } else {
+      echo "henlo";
+    }
   }
 
 }

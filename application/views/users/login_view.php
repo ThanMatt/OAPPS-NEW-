@@ -6,7 +6,7 @@
 
   <meta charset="utf-8">
 
-  <title>Login Page</title>
+  <title>OAPPS</title>
   <link rel="stylesheet" href="<?= base_url();?>assets/css/styles.css">
   <script type="text/javascript">
     var BASE_URL = "<?= base_url();?>";

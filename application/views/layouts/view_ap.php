@@ -122,7 +122,7 @@
                   <input type="button" id="approve_btn" value="Approve">
                 </a>
                 
-                <a href="<?=base_url()?>proposal/revise/<?=$record->Proposal_ID?>">
+                <a href="<?=base_url()?>proposal/ask/<?=$record->Proposal_ID?>">
                   <input type="button" value="Ask for Revision">
                 </a>
 

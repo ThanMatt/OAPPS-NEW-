@@ -39,7 +39,7 @@
     <!-- Don't add spaces or newlines between the li elements! -->
       <div class="progress-container">
         <ol class="progress-meter">
-          <li class="progress-point done">Treasurer</li><li class="progress-point done">Secretary-General</li><li class="progress-point done">President</li><li class="progress-point revise">Assistant Prefect</li><li class="progress-point todo">Prefect</li><li class="progress-point todo">Dean</li>
+          <li class="progress-point todo">Treasurer</li><li class="progress-point todo">Secretary-General</li><li class="progress-point todo">President</li><li class="progress-point todo">Assistant Prefect</li><li class="progress-point todo">Prefect</li><li class="progress-point todo">Dean</li>
         </ol>
      </div>
 
