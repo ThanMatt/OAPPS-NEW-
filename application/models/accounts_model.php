@@ -9,12 +9,7 @@ class Accounts_Model extends CI_Model {
     $db_password = $result->row(1)->Pass;
     // $account_id = $result->row(0);
 
-    if (password_verify($password, $db_password)) {
-      return true;
-    } else {
-      return false;
-    }
-    return false;
+    return password_verify($password, $db_password);
   }
 
   public function getMyRecords($account_id) {

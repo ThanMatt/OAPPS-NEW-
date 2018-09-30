@@ -5,8 +5,8 @@ class Accounts extends CI_Controller {
   public function login() {
 
     
-    $account_id = $this->input->post('account-id');
-    $password = $this->input->post('password');
+    $account_id = $this->input->post('account-id', true);
+    $password = $this->input->post('password', true);
     $response = array(
       'success' => FALSE,
       'account_id' => $account_id
