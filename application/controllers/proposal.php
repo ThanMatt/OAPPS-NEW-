@@ -85,7 +85,9 @@ class Proposal extends CI_Controller {
 
   public function edit($proposal_id) {
 
-    $data['record'] = $this->proposals_model->viewAPRecord($proposal_id);
+    $data['ap_record'] = $this->proposals_model->viewAPRecord($proposal_id);
+    $data['far_record'] = $this->proposals_model->viewFARRecord($proposal_id);
+    $data['oe_record'] = $this->proposals_model->viewOERecord($proposal_id);
 
     $this->load->view('layouts/activity_proposal', $data);
 

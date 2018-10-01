@@ -203,6 +203,9 @@ $(function () {
     var collab_partner = $("#partner_collab").val();
     var specified_ex = $("#specified_ex").val();
     var specified_co = $("#specified_co").val();
+
+    
+
     var flag = true;
 
     $.ajax({

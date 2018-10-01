@@ -224,7 +224,7 @@ class Proposals_Model extends CI_Model {
 
   }
 
-  //:: Fetches proposal details
+  //:: Fetches activity proposal details
   public function viewAPRecord($proposal_id) {
     $response = array();
 
@@ -253,6 +253,64 @@ class Proposals_Model extends CI_Model {
 
   }
 
+  //:: Fetches FAR detais
+  public function viewFARRecord($proposal_id) {
+    $response = array();
+
+    $account_id = $this->session->userdata('account_id');
+    $type = $this->session->userdata('org_type');
+    $position = $this->session->userdata('position');
+
+    $this->db->from('fixed_assets_requirements');
+    $this->db->join('accounts', 'fixed_assets_requirements.Account_ID = accounts.Account_ID');
+    $this->db->join('timestamp', 'timestamp.Proposal_ID = fixed_assets_requirements.Proposal_ID');
+    $this->db->where('fixed_assets_requirements.Proposal_ID', $proposal_id);
+
+    if ($type != 'N/A') {
+      $this->db->where('fixed_assets_requirements.Account_ID', $account_id);
+    } else {
+      //:: For offices
+    }
+
+    $result = $this->db->get();
+
+    if (!$result) {
+      return false;
+    } else {
+      return $result->row();
+    }
+
+  }
+
+    //:: Fetches FAR detais
+    public function viewOERecord($proposal_id) {
+      $response = array();
+  
+      $account_id = $this->session->userdata('account_id');
+      $type = $this->session->userdata('org_type');
+      $position = $this->session->userdata('position');
+  
+      $this->db->from('operating_expenses');
+      $this->db->join('accounts', 'operating_expenses.Account_ID = accounts.Account_ID');
+      $this->db->join('timestamp', 'timestamp.Proposal_ID = operating_expenses.Proposal_ID');
+      $this->db->where('operating_expenses.Proposal_ID', $proposal_id);
+  
+      if ($type != 'N/A') {
+        $this->db->where('operating_expenses.Account_ID', $account_id);
+      } else {
+        //:: For offices
+      }
+  
+      $result = $this->db->get();
+  
+      if (!$result) {
+        return false;
+      } else {
+        return $result->row();
+      }
+  
+    }
+
   public function viewComments($proposal_id) {
     $this->db->where('Proposal_ID', $proposal_id);
     $this->db->from('comments');
@@ -275,6 +333,54 @@ class Proposals_Model extends CI_Model {
 
   }
 
+  public function checkIfFARExists($proposal_id) {
+    
+    $account_id = $this->session->userdata('account_id');
+    $type = $this->session->userdata('org_type');
+    $position = $this->session->userdata('position');
+
+    $this->db->from('fixed_assets_requirements');
+    $this->db->where('Proposal_ID', $proposal_id);
+    $result = $this->db->get();
+
+    if (!$result) {
+      return false;
+    }
+
+    $row = $result->num_rows();
+
+    if ($row != 0) {
+      return true;
+    } 
+    
+    return false;
+  }
+
+  public function checkIfOEExists($proposal_id) {
+    
+    $account_id = $this->session->userdata('account_id');
+    $type = $this->session->userdata('org_type');
+    $position = $this->session->userdata('position');
+
+    $this->db->from('operating_expenses');
+    $this->db->where('Proposal_ID', $proposal_id);
+    $result = $this->db->get();
+
+    if (!$result) {
+      return false;
+    }
+
+    $row = $result->num_rows();
+
+    if ($row != 0) {
+      return true;
+    } 
+    
+    return false;
+  }
+
+
+
   public function checkIfBPExists($proposal_id) {
     $response = array();
 
@@ -294,22 +400,8 @@ class Proposals_Model extends CI_Model {
 
     if ($row != 0) {
       return true;
+    } 
 
-    } else {
-
-      $this->db->from('fixed_assets_requirements');
-      $this->db->where('Proposal_ID', $proposal_id);
-      $result = $this->db->get();
-
-      if (!$result) {
-        return false;
-      }
-      $row = $result->num_rows();
-
-      if ($row != 0) {
-        return true;
-      }
-    }
     return false;
   }
 
