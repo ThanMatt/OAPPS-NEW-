@@ -282,34 +282,34 @@ class Proposals_Model extends CI_Model {
 
   }
 
-    //:: Fetches FAR detais
-    public function viewOERecord($proposal_id) {
-      $response = array();
-  
-      $account_id = $this->session->userdata('account_id');
-      $type = $this->session->userdata('org_type');
-      $position = $this->session->userdata('position');
-  
-      $this->db->from('operating_expenses');
-      $this->db->join('accounts', 'operating_expenses.Account_ID = accounts.Account_ID');
-      $this->db->join('timestamp', 'timestamp.Proposal_ID = operating_expenses.Proposal_ID');
-      $this->db->where('operating_expenses.Proposal_ID', $proposal_id);
-  
-      if ($type != 'N/A') {
-        $this->db->where('operating_expenses.Account_ID', $account_id);
-      } else {
-        //:: For offices
-      }
-  
-      $result = $this->db->get();
-  
-      if (!$result) {
-        return false;
-      } else {
-        return $result->row();
-      }
-  
+  //:: Fetches FAR detais
+  public function viewOERecord($proposal_id) {
+    $response = array();
+
+    $account_id = $this->session->userdata('account_id');
+    $type = $this->session->userdata('org_type');
+    $position = $this->session->userdata('position');
+
+    $this->db->from('operating_expenses');
+    $this->db->join('accounts', 'operating_expenses.Account_ID = accounts.Account_ID');
+    $this->db->join('timestamp', 'timestamp.Proposal_ID = operating_expenses.Proposal_ID');
+    $this->db->where('operating_expenses.Proposal_ID', $proposal_id);
+
+    if ($type != 'N/A') {
+      $this->db->where('operating_expenses.Account_ID', $account_id);
+    } else {
+      //:: For offices
     }
+
+    $result = $this->db->get();
+
+    if (!$result) {
+      return false;
+    } else {
+      return $result->row();
+    }
+
+  }
 
   public function viewComments($proposal_id) {
     $this->db->where('Proposal_ID', $proposal_id);
@@ -334,7 +334,7 @@ class Proposals_Model extends CI_Model {
   }
 
   public function checkIfFARExists($proposal_id) {
-    
+
     $account_id = $this->session->userdata('account_id');
     $type = $this->session->userdata('org_type');
     $position = $this->session->userdata('position');
@@ -351,13 +351,13 @@ class Proposals_Model extends CI_Model {
 
     if ($row != 0) {
       return true;
-    } 
-    
+    }
+
     return false;
   }
 
   public function checkIfOEExists($proposal_id) {
-    
+
     $account_id = $this->session->userdata('account_id');
     $type = $this->session->userdata('org_type');
     $position = $this->session->userdata('position');
@@ -374,12 +374,10 @@ class Proposals_Model extends CI_Model {
 
     if ($row != 0) {
       return true;
-    } 
-    
+    }
+
     return false;
   }
-
-
 
   public function checkIfBPExists($proposal_id) {
     $response = array();
@@ -400,7 +398,7 @@ class Proposals_Model extends CI_Model {
 
     if ($row != 0) {
       return true;
-    } 
+    }
 
     return false;
   }
@@ -495,6 +493,66 @@ class Proposals_Model extends CI_Model {
 
     $this->db->where('Proposal_ID', $proposal_id);
     $result = $this->db->update('activity_proposal', $data);
+
+    if (!$result) {
+      $response['success'] = false;
+      echo json_encode($response);
+    } else {
+      $this->updateDate($proposal_id);
+      $response['success'] = true;
+      echo json_encode($response);
+    }
+  }
+
+  public function saveFAR($account_id, $proposal_id, $far_item,
+    $far_quantity, $far_unit, $far_total_amount, $far_source) {
+
+    $proposal_status = "DRAFT";
+    $office_proposal = "N/A";
+
+    $data = array(
+      'Account_ID' => $account_id,
+      'Item' => $far_item,
+      'Quantity' => $far_quantity,
+      'Unit_Price' => $far_unit,
+      'Total_Amount' => $far_total_amount,
+      'Source' => $far_source,
+      'ProposalStatus' => $proposal_status,
+      'OfficeProposal' => $office_proposal,
+    );
+
+    $this->db->where('Proposal_ID', $proposal_id);
+    $result = $this->db->update('fixed_assets_requirements', $data);
+
+    if (!$result) {
+      $response['success'] = false;
+      echo json_encode($response);
+    } else {
+      $this->updateDate($proposal_id);
+      $response['success'] = true;
+      echo json_encode($response);
+    }
+  }
+
+  public function saveOE($account_id, $proposal_id, $oe_item,
+    $oe_quantity, $oe_unit, $oe_total_amount, $oe_source) {
+
+    $proposal_status = "DRAFT";
+    $office_proposal = "N/A";
+
+    $data = array(
+      'Account_ID' => $account_id,
+      'Item' => $oe_item,
+      'Quantity' => $oe_quantity,
+      'Unit_Price' => $oe_unit,
+      'Total_Amount' => $oe_total_amount,
+      'Source' => $oe_source,
+      'ProposalStatus' => $proposal_status,
+      'OfficeProposal' => $office_proposal,
+    );
+
+    $this->db->where('Proposal_ID', $proposal_id);
+    $result = $this->db->update('operating_expenses', $data);
 
     if (!$result) {
       $response['success'] = false;

@@ -184,7 +184,8 @@ $(function () {
     }
   });
 
-  $("#btn_save").click(function (event) {
+  //:: Saving Activity Proposal
+  $("#btn_save_ap").click(function (event) {
     event.preventDefault();
     var proposal_id = $("#proposal_id").val();
     var activity_name = $("#activity_name").val();
@@ -204,13 +205,13 @@ $(function () {
     var specified_ex = $("#specified_ex").val();
     var specified_co = $("#specified_co").val();
 
-    
+
 
     var flag = true;
 
     $.ajax({
       type: 'POST',
-      url: BASE_URL + 'proposal/save',
+      url: BASE_URL + 'proposal/save_ap',
       data: {
         flag: flag,
         proposal_id: proposal_id,
@@ -238,6 +239,80 @@ $(function () {
           alert("Save successful!");
         } else {
           alert("There was an error");
+        }
+      },
+      error: function (response) {
+        if (!response.success) {
+          alert("There was an error");
+        }
+      },
+    });
+  });
+
+  //:: Saving FAR
+  $("#btn_save_far").click(function (event) {
+    event.preventDefault();
+    var proposal_id = $("#proposal_id").val();
+    var far_item = $("#far_txt_item1").val();
+    var far_quantity = $("#far_txt_quantity1").val();
+    var far_unit = $("#far_txt_unit1").val();
+    var far_total_amount = $("#far_txt_total1").val();
+    var far_source = $("#far_source_of_fund1").val();
+
+    var flag = true;
+
+    $.ajax({
+      type: 'POST',
+      url: BASE_URL + 'proposal/save_far',
+      data: {
+        proposal_id: proposal_id,
+        far_item: far_item,
+        far_quantity: far_quantity,
+        far_unit: far_unit,
+        far_total_amount: far_total_amount,
+        far_source: far_source,
+      },
+      dataType: 'json',
+      success: function (response) {
+        if (response.success) {
+          alert("Save FAR successful!");
+        }
+      },
+      error: function (response) {
+        if (!response.success) {
+          alert("There was an error");
+        }
+      },
+    });
+  });
+
+  //:: Saving OE
+  $("#btn_save_oe").click(function (event) {
+    event.preventDefault();
+    var proposal_id = $("#proposal_id").val();
+    var oe_item = $("#oe_txt_item1").val();
+    var oe_quantity = $("#oe_txt_quantity1").val();
+    var oe_unit = $("#oe_txt_unit1").val();
+    var oe_total_amount = $("#oe_txt_total1").val();
+    var oe_source = $("#oe_source_of_fund1").val();
+
+    var flag = true;
+
+    $.ajax({
+      type: 'POST',
+      url: BASE_URL + 'proposal/save_oe',
+      data: {
+        proposal_id: proposal_id,
+        oe_item: oe_item,
+        oe_quantity: oe_quantity,
+        oe_unit: oe_unit,
+        oe_total_amount: oe_total_amount,
+        oe_source: oe_source,
+      },
+      dataType: 'json',
+      success: function (response) {
+        if (response.success) {
+          alert("Save OE successful!");
         }
       },
       error: function (response) {
@@ -325,3 +400,33 @@ $(function () {
     });
   });
 });
+
+//:: For FAR
+function calculate(textbox) {
+  var number_id = textbox.slice(-1);
+
+  var quantity = document.getElementById("far_txt_quantity" + number_id).value;
+  var unit_price = document.getElementById("far_txt_unit" + number_id).value;
+  var total_amount = document.getElementById("far_txt_total" + number_id);
+  var overall_amount = document.getElementById("far_overall_amount");
+  var calculated_amount = quantity * unit_price;
+
+  calculated_amount = calculated_amount.toFixed(2);
+  total_amount.value = calculated_amount;
+
+}
+
+//:: For Operating Expenses
+function calculate2(textbox) {
+  var number_id = textbox.slice(-1);
+
+  var quantity = document.getElementById("oe_txt_quantity" + number_id).value;
+  var unit_price = document.getElementById("oe_txt_unit" + number_id).value;
+  var total_amount = document.getElementById("oe_txt_total" + number_id);
+  var overall_amount = document.getElementById("oe_overall_amount");
+  var calculated_amount = quantity * unit_price;
+
+  calculated_amount = calculated_amount.toFixed(2);
+  total_amount.value = calculated_amount;
+
+}

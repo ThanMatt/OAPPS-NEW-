@@ -106,7 +106,9 @@
                 </div>
               
               </div>
-
+              <input type="reset" class="button" name="clear" id="btn_reset" value="Clear">
+              <input type="button" class="button" name="save_btn" id="btn_save_ap" value="Save">
+  
             </div>
           </div>
         </div>
@@ -130,21 +132,21 @@
 
             <td>1</td>
             <td>
-              <input type="text" class="field_far" name="far_item1" id="far_txt_item1" />
+              <input type="text" class="field_far" name="far_item1" id="far_txt_item1" value="<?=$far_record->Item?>" />
             </td>
             <td>
-              <input type="number" class="field_far" name="far_quantity1" id="far_txt_quantity1" oninput="calculate(this.id)" min=0 value=0
+              <input type="number" class="field_far" name="far_quantity1" id="far_txt_quantity1" oninput="calculate(this.id)" min=0 value="<?=$far_record->Quantity?>"
               />
             </td>
             <td>
               <input type="number" class="field_far" name="far_unit_price1" id="far_txt_unit1" oninput="calculate(this.id)" step="any"
-                min=0 value=0 />
+                min=0 value="<?=$far_record->Unit_Price?>" />
             </td>
             <td>
-              <input type="number" class="field_far" name="far_total_amount1" id="far_txt_total1" value=0.00 readonly />
+              <input type="number" class="field_far" name="far_total_amount1" id="far_txt_total1" value="<?=$far_record->Total_Amount?>" readonly />
             </td>
             <td>
-              <select name="far_source_of_fund1" id="far_source_of_fund1">
+              <select name="far_source_of_fund1" id="far_source_of_fund1" value="what">
                 <option>Student Activity Fund</option>
                 <option>Cultural Fund</option>
                 <option>Organizational Fund</option>
@@ -154,7 +156,7 @@
               </select>
             </td>
             <td>
-              <input type="text" class="field_far" name="far_id1" id="far_txt_id1" required />
+              <input type="text" class="field_far" name="far_id1" id="far_txt_id1" value="<?=$far_record->Far_ID?>" required readonly />
             </td>
           </tr>
         </table>
@@ -167,6 +169,7 @@
         <input type="button" class="button" name="btn_add_far" id="button" onClick="addField()" value="ADD">
         <input type="button" class="button" name="btn_delete_far" id="button" onClick="deleteField()" value="DELETE">
         <input type="reset" class="button" id="button" value="CLEAR">
+        <input type="button" class="button" name="save_btn" id="btn_save_far" value="Save">
       </div>
     <?php endif ?>
 
@@ -188,18 +191,18 @@
 
             <td>1</td>
             <td>
-              <input type="text" class="field_oe" name="oe_item1" id="oe_txt_item1" />
+              <input type="text" class="field_oe" name="oe_item1" id="oe_txt_item1" value="<?=$oe_record->Item?>"  />
             </td>
             <td>
-              <input type="number" class="field_oe" name="oe_quantity1" id="oe_txt_quantity1" oninput="calculate2(this.id)" min=0 value=0
+              <input type="number" class="field_oe" name="oe_quantity1" id="oe_txt_quantity1" oninput="calculate2(this.id)" min=0 value="<?=$oe_record->Quantity?>"
               />
             </td>
             <td>
               <input type="number" class="field_oe" name="oe_unit_price1" id="oe_txt_unit1" oninput="calculate2(this.id)" step="any" min=0
-                value=0 />
+                value="<?=$oe_record->Unit_Price?>" />
             </td>
             <td>
-              <input type="number" class="field_oe" name="oe_total_amount1" id="oe_txt_total1" value=0.00 readonly />
+              <input type="number" class="field_oe" name="oe_total_amount1" id="oe_txt_total1" value="<?=$oe_record->Total_Amount?>" readonly />
             </td>
             <td>
               <select name="oe_source_of_fund1" id="oe_source_of_fund1">
@@ -212,7 +215,7 @@
               </select>
             </td>
             <td>
-              <input type="text" class="field_oe" name="oe_id1" id="oe_txt_id1" required />
+              <input type="text" class="field_oe" name="oe_id1" id="oe_txt_id1" value="<?=$oe_record->OE_ID?>" required readonly />
             </td>
           </tr>
         </table>
@@ -224,6 +227,7 @@
         <input type="button" class="button" name="btn_add_oe" id="button" onClick="addField2()" value="ADD">
         <input type="button" class="button" name="btn_delete_oe" id="button" onClick="deleteField2()" value="DELETE">
         <input type="reset" class="button" id="button" value="CLEAR">
+        <input type="button" class="button" name="save_btn" id="btn_save_oe" value="Save">
       </div>
     <?php endif ?>
 
@@ -236,10 +240,7 @@
         <a href="delete/<?=$ap_record->Proposal_ID?>">
           <input type="button" class="button" name="delete_btn" id="btn_delete" value="Delete Proposal">
         </a>
-
-        <input type="reset" class="button" name="clear" id="btn_reset" value="Clear">
-        <input type="button" class="button" name="save_btn" id="btn_save" value="Save">
-    </div>
+      </div>
 
   </form>
 

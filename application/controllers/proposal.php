@@ -14,7 +14,7 @@ class Proposal extends CI_Controller {
     if ($proposal_status == 'UNDER REVISION') {
       $data['comments'] = $this->proposals_model->viewComments($proposal_id);
       $data['office'] = $this->proposals_model->getTheirOfficeInfo($records->OfficeProposal);
-      
+
       if ($org_type != 'N/A') {
         $this->load->view('layouts/view_comments', $data);
       } else {
@@ -98,7 +98,7 @@ class Proposal extends CI_Controller {
     redirect(base_url() . "home");
   }
 
-  public function save() {
+  public function save_ap() {
     $response = array();
 
     $account_id = $this->session->userdata('account_id');
@@ -132,6 +132,38 @@ class Proposal extends CI_Controller {
       $start_time, $end_time, $nature, $rationale, $activity_chair, $participants,
       $activity_venue, $proposal_type1, $proposal_type2, $non_academic_type,
       $collab_partner, $specified);
+
+  }
+
+  public function save_far() {
+    $response = array();
+
+    $account_id = $this->session->userdata('account_id');
+    $proposal_id = $this->input->post('proposal_id', true);
+    $far_item = $this->input->post('far_item', true);
+    $far_quantity = $this->input->post('far_quantity', true);
+    $far_unit = $this->input->post('far_unit', true);
+    $far_total_amount = $this->input->post('far_total_amount', true);
+    $far_source = $this->input->post('far_source', true);
+
+    $this->proposals_model->saveFAR($account_id, $proposal_id, $far_item,
+      $far_quantity, $far_unit, $far_total_amount, $far_source);
+
+  }
+
+  public function save_oe() {
+    $response = array();
+
+    $account_id = $this->session->userdata('account_id');
+    $proposal_id = $this->input->post('proposal_id', true);
+    $oe_item = $this->input->post('oe_item', true);
+    $oe_quantity = $this->input->post('oe_quantity', true);
+    $oe_unit = $this->input->post('oe_unit', true);
+    $oe_total_amount = $this->input->post('oe_total_amount', true);
+    $oe_source = $this->input->post('oe_source', true);
+
+    $this->proposals_model->saveOE($account_id, $proposal_id, $oe_item,
+      $oe_quantity, $oe_unit, $oe_total_amount, $oe_source);
 
   }
 
