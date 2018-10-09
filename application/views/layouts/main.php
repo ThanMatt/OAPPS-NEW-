@@ -1,8 +1,7 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<?php $counter = 0 ?>
-<!-- Check user login -->
+  <?php $counter = 0 ?>
   <?php if ($this->session->userdata('logged_in')): ?>
   <?php 
   $prefix = $this->session->userdata('prefix'); 
@@ -11,118 +10,152 @@
   $full_name = $this->session->userdata('full_name');
   $position = $this->session->userdata('position');
   ?>
-  <meta charset="UTF-8">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title><?= strtoupper($prefix) . " - Index" ?></title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <link rel="stylesheet" href="<?= base_url();?>assets/css/styles.css">
-
-  <script type="text/javascript">
-    var BASE_URL = "<?= base_url();?>";
-  </script>
-  <script src="<?= base_url();?>assets/js/jquery-3.3.1.js"></script>
-  <script src="<?= base_url();?>assets/js/core.js"></script>
-  <script src="<?= base_url();?>assets/js/progress.js"></script>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+  <link rel="stylesheet" href="<?= base_url();?>assets/css/boot_styles.css">
+  
 
 </head>
 <body>
-  <div class="header-container">
-    <header>
-      <div class="header-margin">
-        <div class="left-header-text">
-          <h2 class="heady">
-            <a href="home">
-              OAPPS
-            </a>
-          </h2>
-          <h4 class="smaller-heady">
-            Online Activity Proposal Processing System
-          </h4>
-          <div class="dropdown">
-            <div class="img">
+    
+  <!-- MAIN HEADER START -->
+
+  <div class="container-fluid">
+    <div class="row linear-gradient header-height">
+      <!-- <div style="width: 2.5vw !important;"> 
+          header spacing 
+      </div> -->
+        <div class="col-md-4 col-xs-4">          
+          <!-- <div class="javanese-header col-md" style="height: 5.2vw;">OAPPS</div>
+          <div class="calibri-sub-header col-xl-0" style="margin-left:-2%;">Online Activity Proposal Processing System</div> -->
+          <div class="javanese-header" style="height: 5.2vw;">OAPPS</div>
+          <div class="calibri-sub-header" style="margin-left:-2%;">Online Activity Proposal Processing System</div>
+        </div>
+        <div class="col-md-8 col-xs-8">
+          <!-- <div class="row justify-content-end align-items-center" style="height: 100%; margin-right:-6%;">
+            <div class="display-picture row"></div>
+          </div> -->
+          <div class="row display-picture-holder">
+            <div class="display-picture row">
               <img class="dropbtn" src="<?=base_url()?>assets/img/logo/<?=$prefix?>_logo.png">
-            </div>
-            <div id="myDropdown" class="dropdown-content">
-              <div class="dropdown-details">
-                Org: <?=strtoupper($prefix)?>
-              </div>
-              <div class="dropdown-details">
-                <?=$position . ': ' . $full_name?>
-              </div>
-              <div>
-                <a href="<?=base_url()?>accounts/logout">Log Out</a>
-              </div>
             </div>
           </div>
         </div>
+    </div>
+  </div>
+
+  <!-- MAIN HEADER END -->
+  <!-- SECOND HEADER START -->
+
+  <div class="container-fluid">
+    <div class="row second-header-color second-header-height align-items-center">
+      <div style="width: 1% !important;">
       </div>
-    </header>
+      <div class="col-md">
+        <a href="<?=base_url()?>submit">
+          <div class="second-header-text">Make New Proposal</div>
+        </a>
+      </div>     
+      <div class="col-md">
+        <div class="second-header-text">Reports</div>
+      </div>   
+      <div class="col-md">
+        <div class="second-header-text">Downloadable Forms</div>
+      </div> 
+      <div class="col-md-7"></div>     
+    </div>
   </div>
 
-    <!-- Right Container -->
+  <!-- SECOND HEADER END -->
+  <!-- HEADER-TABLE GAP START -->
 
-  <div class="nav-right-container-index">
-    <div class="nav-right-container-margin-index">
-    <!-- N/A means Not An org -->
-    <?php if ($this->session->userdata('org_type') == 'N/A'): ?>
-      
-      <input type="button" id="btn_pending" class="nav-button-right" value="Pending">
-      <input type="button" id="btn_approved" class="nav-button-right" value="Approved">
-      <input type="button" id="btn_revisions" class="nav-button-right" value="Revisions">
+  <div class="container-fluid">
+    <div class="row no-gutters">
+      <div class="col-md-12 header-table-gap"></div>
+    </div>
+  </div>
+
+  <!-- HEADER-TABLE GAP END -->
+  <!-- MAIN START -->
+
+  <div class="container-fluid">
+    <div class="row no-gutters">
+      <div class="col-md-2 main" style="margin-left: 3vw !important; border: 0px;">
+        <?php if ($this->session->userdata('org_type') == 'N/A'): ?>
+
+          <div class="table-header button" id="btn_pending">
+            Pending
+          </div>
+          <div class="table-header button" id="btn_approved">
+            Approved
+          </div>
+          <div class="table-header button" id="btn_revisions">
+            Revisions
+          </div>
+
+        <?php else: ?>
+
+          <div class="table-header button" id="btn_pending">
+            Pending
+          </div>
+          <div class="table-header button" id="btn_approved">
+            Approved
+          </div>
+          <div class="table-header button" id="btn_revisions">
+            Revisions
+          </div>
+          <div class="table-header button" id="btn_drafts">
+            Drafts
+          </div>
+
+      <?php endif ?>
+
+      </div>
+      <div class="col-md-2 main">
+        <div class="table-header linear-gradient main-header-text">Proposal List</div>
+        <?php if (is_array($records) || is_object($records)): ?>
+          <?php
+            foreach($records as $record) {
+              $counter++;
+              echo '<div class="table-tae button" id="view_btn/'.$record->Proposal_ID.'">'. $record->ActivityName . '</div>';
+            } 
+          ?>
+        <?php else: ?>
+          <h1 id="nav-left-container-no-records">No Records</h1>
+        <?php endif ?>
+      </div>
+      <div class="col-md-6 main" > 
+        <div class="table-header linear-gradient main-header-text">Proposal Overview</div>
+        <div id="table-container" >
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN END -->
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script type="text/javascript">
+    var BASE_URL = "<?= base_url();?>";
+    </script>
+    <script src="<?= base_url();?>assets/js/jquery-3.3.1.js"></script>
+  <script src="<?= base_url();?>assets/js/core.js"></script>
+  <script src="<?= base_url();?>assets/js/progress.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
   
-    <?php else: ?>
-
-      <input type="button" id="btn_pending" class="nav-button-right" value="Pending">
-      <input type="button" id="btn_approved" class="nav-button-right" value="Approved">
-      <input type="button" id="btn_revisions" class="nav-button-right" value="Revisions">
-      <input type="button" id="btn_drafts" class="nav-button-right" value="Drafts">  
-      <!-- <input type="button" id="btn_forms" class="nav-button-right" value="Forms">   -->
-      <a href="<?=base_url()?>submit">
-        <input type="button" id="btn_new" class="nav-button-right" value="Submit">  
-      </a>
-    <?php endif ?>
-    
-    </div>
-  </div>
-
-  <!-- Left Container-->
-
-  <div class="nav-left-container-index">
-    <div class="nav-left-container-header-index">
-      <h2 id="table-title" class="header-texts"><?php echo $title ?></h2>
-    </div>
-    <?php if (is_array($records) || is_object($records)): ?>
-      <?php
-        foreach($records as $record) {
-          $counter++;
-          echo '<input type="button" id="view_btn/'.$record->Proposal_ID.'" class="nav-button-left" value="'. $record->ActivityName . '"/>';
-        } 
-      ?>
-    <?php else: ?>
-    <h1 id="nav-left-container-no-records">No Records</h1>
-    <?php endif ?>
-  </div>
-
-  <!-- Table -->
-<div class="container-index" id="table-container">
-  <div class="nav-container-header-index">
-    <h2 id="table-title" class="header-texts">Proposal Overview</h2>
-  </div>
-  <!-- Add Proposal Name, Organization Name, Organization Representative, Nature of Activity, Date Of Activity, Date Of Submission, Contact Number -->
-</div>
-
-
+  
   <?php else: ?>
   <?php 
   $this->load->view('users/login_view');
   ?>
   <?php endif ?>
 
-
-
 </body>
 </html>
-
-
