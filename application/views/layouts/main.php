@@ -9,6 +9,7 @@
   $organization = $this->session->userdata('organization');
   $full_name = $this->session->userdata('full_name');
   $position = $this->session->userdata('position');
+  $org_type = $this->session->userdata('org_type');
   ?>
   <title><?= strtoupper($prefix) . " - Index" ?></title>
   <!-- Required meta tags -->
@@ -25,51 +26,67 @@
     
   <!-- MAIN HEADER START -->
 
-  <div class="container-fluid">
-    <div class="row linear-gradient header-height">
-      <!-- <div style="width: 2.5vw !important;"> 
-          header spacing 
-      </div> -->
-        <div class="col-md-4 col-xs-4">          
-          <!-- <div class="javanese-header col-md" style="height: 5.2vw;">OAPPS</div>
-          <div class="calibri-sub-header col-xl-0" style="margin-left:-2%;">Online Activity Proposal Processing System</div> -->
-          <div class="javanese-header" style="height: 5.2vw;">OAPPS</div>
-          <div class="calibri-sub-header" style="margin-left:-2%;">Online Activity Proposal Processing System</div>
+  <div class="container-fluid linear-gradient header-height">
+    <div class="row" style="width: 100%;">
+      <div class="col-xl-4 col-md-4 col-xs-4">          
+        <div class="javanese-header">
+          OAPPS
         </div>
-        <div class="col-md-8 col-xs-8">
-          <!-- <div class="row justify-content-end align-items-center" style="height: 100%; margin-right:-6%;">
-            <div class="display-picture row"></div>
-          </div> -->
-          <div class="row display-picture-holder">
-            <div class="display-picture row">
-              <img class="dropbtn" src="<?=base_url()?>assets/img/logo/<?=$prefix?>_logo.png">
+      </div>
+      <div class="col-xl-8 col-md-8 col-xs-8">
+        <div class="dropdown">
+            <div class="img">
+            <div class="display-picture-holder">
+              <div class="display-picture">
+                <img class="dropbtn" src="<?=base_url()?>assets/img/logo/<?=$prefix?>_logo.png">
+                
+              </div>
+            </div>
+            </div>
+            <div id="myDropdown" class="dropdown-content">
+              <div class="dropdown-details">
+                Org: <?=strtoupper($prefix)?>
+              </div>
+              <div class="dropdown-details">
+                <?=$position . ': ' . $full_name?>
+              </div>
+              <div>
+                <a href="<?=base_url()?>accounts/logout">Log Out</a>
+              </div>
             </div>
           </div>
-        </div>
+        
+        
+      </div>
+      <div class="row col-md-12 col-xs-12 calibri-sub-header">
+        Online Activity Proposal Processing System
+      </div>
     </div>
   </div>
 
   <!-- MAIN HEADER END -->
   <!-- SECOND HEADER START -->
 
-  <div class="container-fluid">
-    <div class="row second-header-color second-header-height align-items-center">
-      <div style="width: 1% !important;">
+  <?php if ($org_type != 'N/A') :?>
+    <div class="container-fluid">
+      <div class="row second-header-color second-header-height align-items-center" >
+        <div style="width: 1% !important;">
+        </div>
+        <div class="col-md col-xs">
+          <a href="<?=base_url()?>submit">
+            <div class="second-header-text">Make New Proposal</div>
+          </a>
+        </div>     
+        <div class="col-md col-xs">
+          <div class="second-header-text">Reports</div>
+        </div>   
+        <div class="col-md col-xs">
+          <div class="second-header-text">Downloadable Forms</div>
+        </div> 
+        <div class="col-md-7"></div>   
       </div>
-      <div class="col-md">
-        <a href="<?=base_url()?>submit">
-          <div class="second-header-text">Make New Proposal</div>
-        </a>
-      </div>     
-      <div class="col-md">
-        <div class="second-header-text">Reports</div>
-      </div>   
-      <div class="col-md">
-        <div class="second-header-text">Downloadable Forms</div>
-      </div> 
-      <div class="col-md-7"></div>     
     </div>
-  </div>
+  <?php endif ?>
 
   <!-- SECOND HEADER END -->
   <!-- HEADER-TABLE GAP START -->
@@ -112,9 +129,7 @@
           <div class="table-header button" id="btn_drafts">
             Drafts
           </div>
-
       <?php endif ?>
-
       </div>
       <div class="col-md-2 main">
         <div class="table-header linear-gradient main-header-text">Proposal List</div>
@@ -122,17 +137,16 @@
           <?php
             foreach($records as $record) {
               $counter++;
-              echo '<div class="table-tae button" id="view_btn/'.$record->Proposal_ID.'">'. $record->ActivityName . '</div>';
+              echo '<div class="table-tae proposal-list-item" id="view_btn/'.$record->Proposal_ID.'">'. $record->ActivityName . '</div>';
             } 
           ?>
         <?php else: ?>
-          <h1 id="nav-left-container-no-records">No Records</h1>
+          <h1 id="nav-left-container-no-records" class="proposal-list-empty">No Records</h1>
         <?php endif ?>
       </div>
-      <div class="col-md-6 main" > 
+      <div class="col-md-6 main"> 
         <div class="table-header linear-gradient main-header-text">Proposal Overview</div>
-        <div id="table-container" >
-
+        <div id="table-container" class="main-text" style="overflow-y: scroll;">
         </div>
       </div>
     </div>
@@ -144,7 +158,7 @@
   <script type="text/javascript">
     var BASE_URL = "<?= base_url();?>";
     </script>
-    <script src="<?= base_url();?>assets/js/jquery-3.3.1.js"></script>
+    <script src="<?= base_url();?>assets/js/jquery-3.3.1.js"></script>`
   <script src="<?= base_url();?>assets/js/core.js"></script>
   <script src="<?= base_url();?>assets/js/progress.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
