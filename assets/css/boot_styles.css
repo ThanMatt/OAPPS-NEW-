@@ -121,6 +121,7 @@ img {
 /* display picture circle */
 
 .display-picture-holder{
+    margin-top:10px;
     width: 100%;
     height: 100%;
     display: flex;
@@ -206,8 +207,30 @@ img {
     min-height: 64vh;
     max-height: 68vh;
     margin-right: 4vw !important;
-    margin-bottom: 10vh !important;
+    /* margin-bottom: 10vh !important; */
     border: .1px #707070 solid;
+}
+
+.main-form{
+    min-height: 64vh;
+    max-height: 68vh;
+    margin-right: 4vw !important;
+    margin-left: 4vw !important;
+    /* margin-bottom: 10vh !important; */
+    border: .1px #707070 solid;
+}
+
+.main-form-buttons{ 
+    min-height: 64vh;
+    max-height: 68vh;
+    margin-right: 4vw !important;
+    margin-left: 4vw !important;
+    /* margin-bottom: 10vh !important; */
+    border: .1px #707070 solid;
+}
+
+.main-divider{
+    margin-bottom: 5vw;
 }
 
 

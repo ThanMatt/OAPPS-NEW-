@@ -25,7 +25,7 @@
     
   <!-- MAIN HEADER START -->
 
-  <div class="container-fluid linear-gradient header-height sticky-top">
+  <div class="container-fluid linear-gradient header-height">
     <div class="row" style="width: 100%;">
       <div class="col-xl-4 col-md-4 col-xs-4">          
         <div class="javanese-header">
