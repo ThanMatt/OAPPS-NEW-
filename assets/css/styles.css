@@ -221,7 +221,7 @@ td {
   background-color: white;
 } */
 
-.button {
+/* .button {
   border: none;
   color: white;
   background-color: rgb(192, 48, 52);
@@ -229,7 +229,7 @@ td {
   width: auto;
   border-radius: 3px;
   cursor: pointer;
-}
+} */
 
 #btn_pending{
   margin-top: 0px !important; /*removes margin of top button*/

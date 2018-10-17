@@ -38,7 +38,7 @@ border-radius: 50%;
 /* custom fonts end */
 
 /* main header */
-
+ 
 /* *{
   border:.03vh #333 solid;
 } */
@@ -86,12 +86,12 @@ margin: 5%;
 }
 
 .header-height{ 
-  /* min-height: 140px;  */
-  min-height: 12vh;
-  width: 100%;
-  border: .1px #707070 solid;
-  display: flex;
-  flex-wrap: nowrap;
+    /* min-height: 140px;  */
+    min-height: 12vh;
+    width: 100%;
+    border: .1px #707070 solid;
+    display: flex;
+    flex-wrap: nowrap;
 }
 
 
@@ -121,132 +121,177 @@ margin: 5%;
 /* display picture circle */
 
 .display-picture-holder{
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+    margin-top:10px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .display-picture{
-  background:white;
-  min-width: 90px;
-  height: 90px;
-  border-radius: 50%;
+    background:white;
+    min-width: 90px;
+    height: 90px;
+    border-radius: 50%;
 }
 
 /* javanese for header */
 
 .javanese-header{
-  font-family: javanese;
-  color: white;
-  font-size: 80px;
-  padding: 0 40px;
-  box-sizing: border-box;
-  text-shadow: 0px 3px 10px #00000075;
-  height: 5.2vw;
+    font-family: javanese;
+    color: white;
+    font-size: 80px;
+    padding: 0 40px;
+    box-sizing: border-box;
+    text-shadow: 0px 3px 10px #00000075;
+    height: 5.2vw;
 }
 
 /* calibri 20 sub header */
 
 .calibri-sub-header{
-  font-family: calibri;
-  color: white;
-  font-size: 21.5px;
-  /* font-size: 2.2vh; */
-  padding: 0 50px;
-  box-sizing: border-box;
-  text-shadow: 0px 3px 10px #00000075;
+    font-family: calibri;
+    color: white;
+    font-size: 21.5px;
+    /* font-size: 2.2vh; */
+    padding: 0 50px;
+    box-sizing: border-box;
+    text-shadow: 0px 3px 10px #00000075;
 }
 
 /* arial 20 second header */
 
 .second-header-text{
-  font-family: arial;
-  color: white;
-  font-size: 16px;
-  /* font-size: 1.67vh; */
-  height: 100%;
-  /* text-decoration: underline; */
-  cursor: pointer;
-  text-align: center;
+    font-family: arial;
+    color: white;
+    font-size: 16px;
+    /* font-size: 1.67vh; */
+    height: 100%;
+    /* text-decoration: underline; */
+    cursor: pointer;
+    text-align: center;
 }
 
 .second-header-text:hover{
-  font-family: arial;
-  color: #580B0B;
-  background-color: white;
-  font-size: 16px;
-  /* text-decoration: underline; */
-  cursor: pointer;
-  text-align: center;
-  transition: all .3s ease-in-out;
+    font-family: arial;
+    color: #580B0B;
+    background-color: white;
+    font-size: 16px;
+    /* text-decoration: underline; */
+    cursor: pointer;
+    text-align: center;
+    transition: all .3s ease-in-out;
 }
 
 .main-header-text{
-  font-family: times new roman;
-  color: #FFFFFF;
-  max-height: 7vh;
-  font-size: 25px;
-  text-align: center;
-  padding-top: 1.6vh;
+    font-family: times new roman;
+    color: #FFFFFF;
+    max-height: 7vh;
+    font-size: 25px;
+    text-align: center;
+    padding-top: 1.6vh;
 }
 
 .main-text{
-  font-family: times new roman;
-  padding: 40px;
-  color: black;
-  font-size: 25px;
-  padding-top: 1.6vh;
-  width: 100%;
-  height: 57vh;
+    font-family: times new roman;
+    padding: 40px;
+    color: black;
+    font-size: 25px;
+    padding-top: 1.6vh;
+    width: 100%;
+    height: 57vh;
 }
 
 .main{
-  min-height: 64vh;
-  max-height: 68vh;
-  margin-right: 4vw !important;
-  margin-bottom: 10vh !important;
-  border: .1px #707070 solid;
+    min-height: 64vh;
+    max-height: 68vh;
+    margin-right: 4vw !important;
+    /* margin-bottom: 10vh !important; */
+    border: .1px #707070 solid;
+}
+
+.main-form{
+    min-height: 64vh;
+    max-height: 68vh;
+    margin-right: 4vw !important;
+    margin-left: 4vw !important;
+    /* margin-bottom: 10vh !important; */
+    border: .1px #707070 solid;
+}
+
+.main-form-buttons{ 
+    min-height: 64vh;
+    max-height: 68vh;
+    margin-right: 4vw !important;
+    margin-left: 4vw !important;
+    /* margin-bottom: 10vh !important; */
+    border: .1px #707070 solid;
+}
+
+.main-divider{
+    margin-bottom: 5vw;
 }
 
 
 .button{
-  cursor: pointer;
-  font-family: calibri;
-  font-weight:bold;
-  color: #A8A8A8;
-  font-size: 22px;
-  text-align: center;
-  margin-bottom: 4vh;
-  padding-top: 18px;
-}
-
-.clicked {
-  background-color: #670000;
+    cursor: pointer;
+    font-family: calibri;
+    font-weight:bold;
+    color: #A8A8A8;
+    font-size: 22px;
+    text-align: center;
+    margin-bottom: 4vh;
+    padding-top: 18px;
+    background-color: white;
 }
 
 .button:hover{    
-  font-family: calibri;
-  font-weight:bold;
-  background-color:#670000;
-  color: rgb(255, 255, 255);
-  font-size: 22px;
-  text-align: center;
-  margin-bottom: 4vh;
-  padding-top: 18px;
-  box-sizing: border-box;
-  transition: all .3s ease-in-out;
+    font-family: calibri;
+    font-weight:bold;
+    background-color:#670000;
+    color: rgb(255, 255, 255);
+    font-size: 22px;
+    text-align: center;
+    margin-bottom: 4vh;
+    padding-top: 18px;
+    box-sizing: border-box;
+    transition: all .3s ease-in-out;
+}
+
+.button-ap{
+    width:5vw;
 }
 
 .proposal-list-item{
-  cursor: pointer;
-  font-family: calibri;
-  font-weight:bold;
-  color: black;
-  font-size: 22px;
-  text-align: center;
-  padding: 18px;
+    cursor: pointer;
+    font-family: calibri;
+    font-weight:bold;
+    color: black;
+    font-size: 22px;
+    text-align: center;
+    padding: 18px;
+}
+
+.proposal-list-item:hover{    
+    font-family: calibri;
+    font-weight:bold;
+    background-color:#A8A8A8;
+    color: rgb(255, 255, 255);
+    font-size: 22px;
+    text-align: center;
+    padding: 18px;
+    box-sizing: border-box;
+    transition: all .3s ease-in-out;
+}
+
+.proposal-list-empty{
+    font-family: calibri;
+    font-weight:bold;
+    color: black;
+    font-size: 22px;
+    text-align: center;
+    padding: 20px;
 }
 
 .proposal-list-item:hover{    
@@ -284,5 +329,61 @@ margin: 5%;
 
 .header-table-gap{
   height: 8vh;
+}
+
+.header-table-gap{
+    height: 8vh;
+}
+
+
+/* activity proposal */
+
+.ap-text{
+    margin: 50px;
+}
+
+.ap-activitytype{
+    margin: 50px;
+}
+
+.ap-longtext{
+    margin: 50px;
+}
+
+.form-control-sm{
+    background-color: transparent;
+    color: black;
+    outline: none;
+    outline-style: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: solid black 1px;
+    width: 25vw;
+}
+
+.medium-text-box{
+    width: 15vw !important;;
+}
+
+
+.small-text-box{
+    width: 5vw !important;
+    margin-left: 1vw;
+    margin-right: 1vw;
+}
+
+th{
+    font-family: calibri;
+    font-size: 20px;
+    color: #6F6F6F;
+    font-weight: normal;
+}
+
+td{
+    font-family: calibri;
+    font-size: 18px;
+    color: #6F6F6F;
+    font-weight: normal;
 }
 
