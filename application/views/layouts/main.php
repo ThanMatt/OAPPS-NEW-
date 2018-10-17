@@ -9,7 +9,6 @@
   $organization = $this->session->userdata('organization');
   $full_name = $this->session->userdata('full_name');
   $position = $this->session->userdata('position');
-  $org_type = $this->session->userdata('org_type');
   ?>
   <title><?= strtoupper($prefix) . " - Index" ?></title>
   <!-- Required meta tags -->
@@ -23,6 +22,7 @@
 
 </head>
 <body>
+
     
   <!-- MAIN HEADER START -->
 
@@ -34,29 +34,12 @@
         </div>
       </div>
       <div class="col-xl-8 col-md-8 col-xs-8">
-        <div class="dropdown">
-            <div class="img">
-            <div class="display-picture-holder">
-              <div class="display-picture">
-                <img class="dropbtn" src="<?=base_url()?>assets/img/logo/<?=$prefix?>_logo.png">
-                
-              </div>
-            </div>
-            </div>
-            <div id="myDropdown" class="dropdown-content">
-              <div class="dropdown-details">
-                Org: <?=strtoupper($prefix)?>
-              </div>
-              <div class="dropdown-details">
-                <?=$position . ': ' . $full_name?>
-              </div>
-              <div>
-                <a href="<?=base_url()?>accounts/logout">Log Out</a>
-              </div>
-            </div>
+        <div class="display-picture-holder">
+          <div class="display-picture">
+            <img class="dropbtn" src="<?=base_url()?>assets/img/logo/<?=$prefix?>_logo.png">
+
           </div>
-        
-        
+        </div>
       </div>
       <div class="row col-md-12 col-xs-12 calibri-sub-header">
         Online Activity Proposal Processing System
@@ -67,26 +50,27 @@
   <!-- MAIN HEADER END -->
   <!-- SECOND HEADER START -->
 
-  <?php if ($org_type != 'N/A') :?>
-    <div class="container-fluid">
-      <div class="row second-header-color second-header-height align-items-center" >
-        <div style="width: 1% !important;">
-        </div>
-        <div class="col-md col-xs">
-          <a href="<?=base_url()?>submit">
-            <div class="second-header-text">Make New Proposal</div>
-          </a>
-        </div>     
-        <div class="col-md col-xs">
-          <div class="second-header-text">Reports</div>
-        </div>   
-        <div class="col-md col-xs">
-          <div class="second-header-text">Downloadable Forms</div>
-        </div> 
-        <div class="col-md-7"></div>   
+
+  <div class="container-fluid">
+    <div class="row second-header-color second-header-height align-items-center" >
+      <div style="width: 1% !important;">
       </div>
+      <div class="col-md col-xs">
+        <a href="<?=base_url()?>submit">
+          <div class="second-header-text">Make New Proposal</div>
+        </a>
+      </div>     
+      <div class="col-md col-xs">
+        <div class="second-header-text">Reports</div>
+      </div>   
+      <div class="col-md col-xs">
+        <div class="second-header-text">Downloadable Forms</div>
+      </div> 
+      <a href="<?=base_url()?>layouts/profile.php">profile</a>
+      <div class="col-md-7"></div>   
+
     </div>
-  <?php endif ?>
+  </div>
 
   <!-- SECOND HEADER END -->
   <!-- HEADER-TABLE GAP START -->
@@ -158,7 +142,7 @@
   <script type="text/javascript">
     var BASE_URL = "<?= base_url();?>";
     </script>
-    <script src="<?= base_url();?>assets/js/jquery-3.3.1.js"></script>`
+    <script src="<?= base_url();?>assets/js/jquery-3.3.1.js"></script>
   <script src="<?= base_url();?>assets/js/core.js"></script>
   <script src="<?= base_url();?>assets/js/progress.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

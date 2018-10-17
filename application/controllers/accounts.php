@@ -15,6 +15,8 @@ class Accounts extends CI_Controller {
     if ($this->accounts_model->login_user($account_id, $password)) {
       $response['success'] = TRUE;
 
+      $this->accounts_model->logMyActivity($account_id, 1, 0);
+
 
       $account = $this->accounts_model->getMyRecords($account_id);
 
@@ -53,6 +55,10 @@ class Accounts extends CI_Controller {
 
   public function logout() {
 
+    $account_id = $this->session->userdata('account_id');
+
+    $this->accounts_model->logMyActivity($account_id, 0, 0);
+    
     $this->session->sess_destroy();
 
     redirect('home');

@@ -222,6 +222,10 @@ margin: 5%;
   padding-top: 18px;
 }
 
+.clicked {
+  background-color: #670000;
+}
+
 .button:hover{    
   font-family: calibri;
   font-weight:bold;
