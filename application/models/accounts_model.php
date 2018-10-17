@@ -49,6 +49,66 @@ class Accounts_Model extends CI_Model {
   public function checkOffice($account_id) {
 
   }
+
+  public function logMyActivity($account_id, $activity_type, $proposal_id) {
+    
+    $log_id = rand(1000,9999);
+    $date_time = date("Y-m-d h:i:sa");
+
+    if ($activity_type == 0) {
+      $activity = "User $account_id logged out";
+
+    } else if ($activity_type == 1) {
+      $activity = "User $account_id logged in";
+
+    } else if ($activity_type == 2) {
+      $activity = "User $account_id viewed the proposal $proposal_id";
+
+    } else if ($activity_type == 3) {
+      $activity = "User $account_id approved the proposal $proposal_id";
+
+    } else if ($activity_type == 4) {
+      $activity = "User $account_id asked for revision for the proposal $proposal_id";
+
+    } else if ($activity_type == 5) {
+      $activity = "User $account_id rejected the proposal $proposal_id";
+
+    } else if ($activity_type == 6) {
+      $activity = "User $account_id revised the proposal $proposal_id";
+
+    } else if ($activity_type == 7) {
+      $activity = "User $account_id saved a proposal draft";
+
+    } else if ($activity_type == 8) {
+      $activity = "User $account_id created the proposal $proposal_id";
+
+    } else if ($activity_type == 9) {
+      $activity = "User $account_id submitted the proposal $proposal_id";
+
+    } else if ($activity_type == 10) {
+      $activity = "User $account_id edited a proposal";
+
+    } else if ($activity_type == 11) {
+      $activity = "User $account_id deleted a draft proposal";
+
+    }
+    
+    $data = array(
+      'LogID' => $log_id,
+      'ProposalID' => $proposal_id,
+      'Activity' => $activity,
+      'ActivityType' => $activity_type,
+      'DateTime' => $date_time
+    );
+
+    $result = $this->db->insert('log', $data);
+
+    if (!$result) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 }
 
 ?>
