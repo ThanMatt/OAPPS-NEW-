@@ -6,6 +6,7 @@ class Proposal extends CI_Controller {
 
     if ($this->session->userdata('logged_in')) {
 
+
       $account_id = $this->session->userdata('account_id');
       $records = $this->proposals_model->viewAPRecord($proposal_id);
       $proposal_status = $records->ProposalStatus;
@@ -23,6 +24,13 @@ class Proposal extends CI_Controller {
         } else {
           $this->load->view('layouts/view_revision_office', $data);
         }
+
+    $data['record'] = $this->proposals_model->viewAPRecord($proposal_id);
+
+    if ($proposal_status == 'UNDER REVISION') {
+      $data['comments'] = $this->proposals_model->viewComments($proposal_id);
+      $data['office'] = $this->proposals_model->getTheirOfficeInfo($records->OfficeProposal);
+
 
       } else {
         $this->proposals_model->getDateTime($account_id, $proposal_id);
@@ -57,8 +65,6 @@ class Proposal extends CI_Controller {
 
     $this->proposals_model->forwardAP($next_office, $next_position, $proposal_id);
 
-    $this->accounts_model->logMyActivity($account_id, 3, $proposal_id);
-
     $this->proposals_model->approveTracker($account_id, $proposal_id);
     redirect(base_url() . "proposal/view/" . $proposal_id);
 
@@ -85,7 +91,6 @@ class Proposal extends CI_Controller {
         $this->proposals_model->createFAR($proposal_id, $account_id, $far_id);
       }
 
-      $this->accounts_model->logMyActivity($account_id, 8, $proposal_id);
       echo json_encode($response);
 
     } else {
@@ -96,7 +101,6 @@ class Proposal extends CI_Controller {
 
   public function edit($proposal_id) {
 
-    $account_id = $this->session->userdata('account_id');
     $data['ap_record'] = $this->proposals_model->viewAPRecord($proposal_id);
     $data['far_record'] = $this->proposals_model->viewFARRecord($proposal_id);
     $data['oe_record'] = $this->proposals_model->viewOERecord($proposal_id);
@@ -106,8 +110,6 @@ class Proposal extends CI_Controller {
   }
 
   public function delete($proposal_id) {
-    $account_id = $this->session->userdata('account_id');
-    $this->accounts_model->logMyActivity($account_id, 11, 0);
     $this->proposals_model->deleteThis($proposal_id);
     redirect(base_url() . "home");
   }
@@ -147,8 +149,6 @@ class Proposal extends CI_Controller {
       $activity_venue, $proposal_type1, $proposal_type2, $non_academic_type,
       $collab_partner, $specified);
 
-    $this->accounts_model->logMyActivity($account_id, 7, 0);
-
   }
 
   public function save_far() {
@@ -167,6 +167,7 @@ class Proposal extends CI_Controller {
 
     $this->accounts_model->logMyActivity($account_id, 7, 0);
 
+
   }
 
   public function save_oe() {
@@ -183,7 +184,6 @@ class Proposal extends CI_Controller {
     $this->proposals_model->saveOE($account_id, $proposal_id, $oe_item,
       $oe_quantity, $oe_unit, $oe_total_amount, $oe_source);
 
-    $this->accounts_model->logMyActivity($account_id, 7, 0);
   }
 
   public function submit($proposal_id) {
@@ -227,7 +227,7 @@ class Proposal extends CI_Controller {
       $collab_partner, $specified);
 
     $this->proposals_model->insertTracker($account_id, $proposal_id);
-    $this->accounts_model->logMyActivity($account_id, 9, 0);
+
   }
 
   public function tracker($proposal_id) {

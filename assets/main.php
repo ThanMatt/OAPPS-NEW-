@@ -40,7 +40,23 @@
           <h4 class="smaller-heady">
             Online Activity Proposal Processing System
           </h4>
+          <div class="dropdown">
+            <div class="img">
+              <img class="dropbtn" src="<?=base_url()?>assets/img/logo/<?=$prefix?>_logo.png">
+            </div>
+            <div id="myDropdown" class="dropdown-content">
+              <div class="dropdown-details">
+                Org: <?=strtoupper($prefix)?>
+              </div>
+              <div class="dropdown-details">
+                <?=$position . ': ' . $full_name?>
+              </div>
+            <div>
+              <a href="<?=base_url()?>accounts/logout">Log Out</a>
+              </div>
+            </div>
           </div>
+        </div>
       </div>
     </header>
   </div>
