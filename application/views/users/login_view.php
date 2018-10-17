@@ -6,13 +6,13 @@
 
   <meta charset="utf-8">
 
-  <title>Login Page</title>
+  <title>OAPPS</title>
   <link rel="stylesheet" href="<?= base_url();?>assets/css/styles.css">
   <script type="text/javascript">
     var BASE_URL = "<?= base_url();?>";
   </script>
   <script src="<?= base_url();?>assets/js/jquery-3.3.1.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="<?= base_url();?>assets/js/jquery-ui.js"></script>
   <script src="<?= base_url();?>assets/js/core.js"></script>
 </head>
 
@@ -57,7 +57,7 @@
           <legend>Password</legend>
           <?= form_password($data_pass); ?>
 
-          <a href="forgot.html">
+          <a href="forgot.html" id="forgot">
             <p id="forgot">Forgot password?</a>
           </p>
 

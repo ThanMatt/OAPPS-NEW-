@@ -9,12 +9,7 @@ class Accounts_Model extends CI_Model {
     $db_password = $result->row(1)->Pass;
     // $account_id = $result->row(0);
 
-    if (password_verify($password, $db_password)) {
-      return true;
-    } else {
-      return false;
-    }
-    return false;
+    return password_verify($password, $db_password);
   }
 
   public function getMyRecords($account_id) {
@@ -28,9 +23,6 @@ class Accounts_Model extends CI_Model {
     $batch = $result->row(6)->Batch;
     $org_type = $result->row(7)->Type;
     $position = $result->row(8)->Position;
-
-    // $account_prefix = substr($account_id, 0
-    //   , strrpos($account_id, "_"));
 
     $account_prefix = strstr($account_id, "_", true);
 
