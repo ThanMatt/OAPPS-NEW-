@@ -22,6 +22,7 @@
 
 </head>
 <body>
+
     
   <!-- MAIN HEADER START -->
 
@@ -36,6 +37,7 @@
         <div class="display-picture-holder">
           <div class="display-picture">
             <img class="dropbtn" src="<?=base_url()?>assets/img/logo/<?=$prefix?>_logo.png">
+
           </div>
         </div>
       </div>
@@ -47,6 +49,7 @@
 
   <!-- MAIN HEADER END -->
   <!-- SECOND HEADER START -->
+
 
   <div class="container-fluid">
     <div class="row second-header-color second-header-height align-items-center" >
@@ -65,6 +68,7 @@
       </div> 
       <a href="<?=base_url()?>layouts/profile.php">profile</a>
       <div class="col-md-7"></div>   
+
     </div>
   </div>
 
