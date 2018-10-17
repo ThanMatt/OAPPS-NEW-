@@ -29,6 +29,10 @@ a:link {
   text-decoration: none;
 }
 
+a:visited {
+  color: white;
+}
+
 img {
   min-width: 90px;
   height: 90px;

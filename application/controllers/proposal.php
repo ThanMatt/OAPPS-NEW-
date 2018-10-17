@@ -4,10 +4,26 @@ class Proposal extends CI_Controller {
 
   public function view($proposal_id) {
 
-    $account_id = $this->session->userdata('account_id');
-    $records = $this->proposals_model->viewAPRecord($proposal_id);
-    $proposal_status = $records->ProposalStatus;
-    $org_type = $this->session->userdata('org_type');
+    if ($this->session->userdata('logged_in')) {
+
+
+      $account_id = $this->session->userdata('account_id');
+      $records = $this->proposals_model->viewAPRecord($proposal_id);
+      $proposal_status = $records->ProposalStatus;
+      $org_type = $this->session->userdata('org_type');
+
+      $data['record'] = $this->proposals_model->viewAPRecord($proposal_id);
+
+      $this->accounts_model->logMyActivity($account_id, 2, $proposal_id);
+      if ($proposal_status == 'UNDER REVISION') {
+        $data['comments'] = $this->proposals_model->viewComments($proposal_id);
+        $data['office'] = $this->proposals_model->getTheirOfficeInfo($records->OfficeProposal);
+
+        if ($org_type != 'N/A') {
+          $this->load->view('layouts/view_comments', $data);
+        } else {
+          $this->load->view('layouts/view_revision_office', $data);
+        }
 
     $data['record'] = $this->proposals_model->viewAPRecord($proposal_id);
 
@@ -15,16 +31,16 @@ class Proposal extends CI_Controller {
       $data['comments'] = $this->proposals_model->viewComments($proposal_id);
       $data['office'] = $this->proposals_model->getTheirOfficeInfo($records->OfficeProposal);
 
-      if ($org_type != 'N/A') {
-        $this->load->view('layouts/view_comments', $data);
+
       } else {
-        $this->load->view('layouts/view_revision_office', $data);
+        $this->proposals_model->getDateTime($account_id, $proposal_id);
+        $this->load->view('layouts/view_ap', $data);
       }
 
     } else {
-      $this->proposals_model->getDateTime($account_id, $proposal_id);
-      $this->load->view('layouts/view_ap', $data);
+      redirect(base_url() . "home");
     }
+
   }
 
   public function ask($proposal_id) {
@@ -148,6 +164,9 @@ class Proposal extends CI_Controller {
 
     $this->proposals_model->saveFAR($account_id, $proposal_id, $far_item,
       $far_quantity, $far_unit, $far_total_amount, $far_source);
+
+    $this->accounts_model->logMyActivity($account_id, 7, 0);
+
 
   }
 

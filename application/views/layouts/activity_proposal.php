@@ -4,6 +4,10 @@
   <?php 
   $proposal_id = $ap_record->Proposal_ID; 
   $prefix = $this->session->userdata('prefix');
+  $account_id = $this->session->userdata('account_id'); 
+  $organization = $this->session->userdata('organization');
+  $full_name = $this->session->userdata('full_name');
+  $position = $this->session->userdata('position');
   ?>
   <?php if ($this->session->userdata('org_type') == 'N/A'): ?>
   <?php redirect('home')?>
@@ -36,18 +40,38 @@
     <div class="row" style="width: 100%;">
       <div class="col-xl-4 col-md-4 col-xs-4">          
         <div class="javanese-header">
-          OAPPS
+          <a href="<?=base_url()?>home">
+            OAPPS
+          </a>
         </div>
       </div>
       <div class="col-xl-8 col-md-8 col-xs-8">
-        <div class="display-picture-holder">
-          <div class="display-picture">
-            <img class="dropbtn" src="<?=base_url()?>assets/img/logo/<?=$prefix?>_logo.png">
+        <div class="dropdown">
+          <div class="img">
+            <div class="display-picture-holder">
+              <div class="display-picture">
+                <img class="dropbtn" src="<?=base_url()?>assets/img/logo/<?=$prefix?>_logo.png">
+
+              </div>
+            </div>
           </div>
+          <div id="myDropdown" class="dropdown-content">
+            <div class="dropdown-details">
+              Org: <?=strtoupper($prefix)?>
+            </div>
+            <div class="dropdown-details">
+              <?=$position . ': ' . $full_name?>
+            </div>
+            <div>
+              <a href="<?=base_url()?>accounts/logout">Log Out</a>
+            </div>
+          </div> 
         </div>
       </div>
       <div class="row col-md-12 col-xs-12 calibri-sub-header">
-        Online Activity Proposal Processing System
+        <a href="<?=base_url()?>home">
+          Online Activity Proposal Processing System
+        </a>
       </div>
     </div>
   </div>
