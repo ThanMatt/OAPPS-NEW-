@@ -63,6 +63,7 @@
       <div class="col-md col-xs">
         <div class="second-header-text">Downloadable Forms</div>
       </div> 
+      <a href="<?=base_url()?>layouts/profile.php">profile</a>
       <div class="col-md-7"></div>   
     </div>
   </div>

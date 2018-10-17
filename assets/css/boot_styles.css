@@ -243,6 +243,7 @@ img {
     text-align: center;
     margin-bottom: 4vh;
     padding-top: 18px;
+    background-color: white;
 }
 
 .button:hover{    
@@ -256,6 +257,10 @@ img {
     padding-top: 18px;
     box-sizing: border-box;
     transition: all .3s ease-in-out;
+}
+
+.button-ap{
+    width:5vw;
 }
 
 .proposal-list-item{
@@ -303,6 +308,58 @@ img {
 
 .header-table-gap{
     height: 8vh;
+}
+
+
+/* activity proposal */
+
+.ap-text{
+    margin: 50px;
+}
+
+.ap-activitytype{
+    margin: 50px;
+}
+
+.ap-longtext{
+    margin: 50px;
+}
+
+.form-control-sm{
+    background-color: transparent;
+    color: black;
+    outline: none;
+    outline-style: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: solid black 1px;
+    width: 25vw;
+}
+
+.medium-text-box{
+    width: 15vw !important;;
+}
+
+
+.small-text-box{
+    width: 5vw !important;
+    margin-left: 1vw;
+    margin-right: 1vw;
+}
+
+th{
+    font-family: calibri;
+    font-size: 20px;
+    color: #6F6F6F;
+    font-weight: normal;
+}
+
+td{
+    font-family: calibri;
+    font-size: 18px;
+    color: #6F6F6F;
+    font-weight: normal;
 }
 
 
