@@ -35,6 +35,7 @@ class Proposal extends CI_Controller {
 
   }
 
+
   public function ask($proposal_id) {
     $account_id = $this->session->userdata('account_id');
     $this->proposals_model->getDateTime($account_id, $proposal_id);

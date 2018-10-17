@@ -93,6 +93,7 @@ class Accounts_Model extends CI_Model {
     }
     
     $data = array(
+
       'Activity' => $activity,
       'ActivityType' => $activity_type,
       'DateTime' => $date_time
