@@ -52,7 +52,6 @@ class Accounts_Model extends CI_Model {
 
   public function logMyActivity($account_id, $activity_type, $proposal_id) {
     
-    $log_id = rand(1000,9999);
     $date_time = date("Y-m-d h:i:sa");
 
     if ($activity_type == 0) {
@@ -94,8 +93,6 @@ class Accounts_Model extends CI_Model {
     }
     
     $data = array(
-      'LogID' => $log_id,
-      'ProposalID' => $proposal_id,
       'Activity' => $activity,
       'ActivityType' => $activity_type,
       'DateTime' => $date_time
