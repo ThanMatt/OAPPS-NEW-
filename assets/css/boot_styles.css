@@ -1,38 +1,38 @@
 /* custom fonts start */
 
 @font-face {
-  font-family: 'Javanese';
-  src: 'fonts/javatext.ttf'
+    font-family: 'Javanese';
+    src: 'fonts/javatext.ttf'
 }
 
 @font-face {
-  font-family: 'OpenSans-Regular';
-  src: 'fonts/OpenSans-Regular.ttf'
+    font-family: 'OpenSans-Regular';
+    src: 'fonts/OpenSans-Regular.ttf'
 }
 
 @font-face {
-  font-family: 'OpenSans-Light';
-  src: 'fonts/OpenSans-Light.ttf'
+    font-family: 'OpenSans-Light';
+    src: 'fonts/OpenSans-Light.ttf'
 }
 
 @font-face {
-  font-family: 'OpenSans-Italic';
-  src: 'fonts/OpenSans-Italic.ttf'
+    font-family: 'OpenSans-Italic';
+    src: 'fonts/OpenSans-Italic.ttf'
 }
 
 @font-face {
-  font-family: 'OpenSans-LightItalic';
-  src: 'fonts/OpenSans-LightItalic.ttf'
+    font-family: 'OpenSans-LightItalic';
+    src: 'fonts/OpenSans-LightItalic.ttf'
 }
 
 a:link {
-text-decoration: none;
+  text-decoration: none;
 }
 
 img {
-min-width: 90px;
-height: 90px;
-border-radius: 50%;
+  min-width: 90px;
+  height: 90px;
+  border-radius: 50%;
 }
 
 /* custom fonts end */
@@ -40,49 +40,49 @@ border-radius: 50%;
 /* main header */
  
 /* *{
-  border:.03vh #333 solid;
+    border:.03vh #333 solid;
 } */
 
 /* Dropdown Button */
 .dropbtn {
-border: none;
-cursor: pointer;
+  border: none;
+  cursor: pointer;
 }
 
 /* Dropdown button on hover & focus */
 .dropbtn:hover, .dropbtn:focus {
--webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
-filter: grayscale(100%);
-transition: all .3s ease-in-out;
+  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+  transition: all .3s ease-in-out;
 }
 
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
-position: relative;
-display: block;
+  position: relative;
+  display: block;
 }
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
-display: none;
-position: absolute;
-background-color: #f1f1f1;
-top: 110px;
-right: -10px;
-min-width: 200px;
-box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-z-index: 1;
-text-align: 1000px;
-line-height: 30px;
-font-family: serif;
-font-size: 18px;
-border: gray;
-background-color: white;
-color: rgb(138, 138, 138);
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  top: 110px;
+  right: -10px;
+  min-width: 200px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  text-align: 1000px;
+  line-height: 30px;
+  font-family: serif;
+  font-size: 18px;
+  border: gray;
+  background-color: white;
+  color: rgb(138, 138, 138);
 }
 
 .dropdown-details {
-margin: 5%;
+  margin: 5%;
 }
 
 .header-height{ 
@@ -96,26 +96,26 @@ margin: 5%;
 
 
 .table-header{
-  min-height: 65px;
-  border: .1px #707070 solid;
+    min-height: 65px;
+    border: .1px #707070 solid;
 }
 
 
 /* second header */
 
 .second-header-height{
-  min-height: 40px;
+    min-height: 40px;
 }
 
 /* lying highlights */
 
 .height-5{
-  min-height: 5px;
+    min-height: 5px;
 }
 
 #b1{
-  display: flex;
-  flex-wrap: nowrap;
+    display: flex;
+    flex-wrap: nowrap;
 }
 
 /* display picture circle */
@@ -294,41 +294,16 @@ margin: 5%;
     padding: 20px;
 }
 
-.proposal-list-item:hover{    
-  font-family: calibri;
-  font-weight:bold;
-  background-color:#A8A8A8;
-  color: rgb(255, 255, 255);
-  font-size: 22px;
-  text-align: center;
-  padding: 18px;
-  box-sizing: border-box;
-  transition: all .3s ease-in-out;
-}
-
-.proposal-list-empty{
-  font-family: calibri;
-  font-weight:bold;
-  color: black;
-  font-size: 22px;
-  text-align: center;
-  padding: 20px;
-}
-
 /* linear gradient red */
 
 .linear-gradient{
-  background-image: linear-gradient(to bottom,#890303 , #670000);
-  
+    background-image: linear-gradient(to bottom,#890303 , #670000);
+    
 }
 
 .second-header-color{
-  background-color: #580B0B;
-  border: .1px #707070 solid;
-}
-
-.header-table-gap{
-  height: 8vh;
+    background-color: #580B0B;
+    border: .1px #707070 solid;
 }
 
 .header-table-gap{
@@ -386,4 +361,6 @@ td{
     color: #6F6F6F;
     font-weight: normal;
 }
+
+
 
