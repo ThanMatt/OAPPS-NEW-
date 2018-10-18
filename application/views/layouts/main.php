@@ -156,7 +156,6 @@
       <div class="col-md-6 main"> 
         <div class="table-header linear-gradient main-header-text">Proposal Overview</div>
         <div id="table-container" class="main-text" style="overflow-y: scroll;">
-        
         </div>
       </div>
     </div>
