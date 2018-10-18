@@ -63,7 +63,16 @@
               <?=$position . ': ' . $full_name?>
             </div>
             <div>
-              <a href="<?=base_url()?>accounts/logout">Log Out</a>
+              <a href="<?=base_url()?>home/profile">
+                <div class="table-header button" id="profile_btn">
+                  Profile
+                </div>
+              </a>
+              <a href="<?=base_url()?>accounts/logout">
+                <div class="table-header button" id="logout_btn">
+                  Log Out
+                </div>
+              </a>
             </div>
           </div> 
         </div>
