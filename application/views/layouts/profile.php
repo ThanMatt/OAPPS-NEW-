@@ -91,10 +91,100 @@
     </div>
   </div>
 
-<!-- SECOND HEADER END -->
+  <!-- SECOND HEADER END -->
+
+  <!-- MAIN START -->
+
+  <div class="container profile-main">
+    <div class="row">
+      <div class="col-xs-12 profile-main-header" style="margin-left: 45%; margin-top: 1%;">
+        Profile
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-3" style="margin-left: 50px;">
+        <div class="display-picture-holder">
+          <div class="display-picture">
+            <img src="<?=base_url()?>assets/img/logo/<?=$prefix?>_logo.png">
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-3 profile-main-header2" style="margin-top: 2.7vw; margin-left: 2%;">
+        Bedan Information Technology Society
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="profile-main-text col-xs-5" style="width: 40% !important;">
+        <div class="profile-main-header2">Organization Details: </div>
+        Organization Representative Name: Sino nga ba org rep ng BITS <br>
+        Organization Representative Contact Number: 09123456789 <br>
+
+        <hr>
+
+        Current Pending Proposal: Mister I'll Make a Man Out Of You (clicking will take them to pending proposal)<br> 
+        Total Approved Proposals: 10 <br>
+        Total Expenditure: P 50 <br>
+        Average Expenditure Per Proposal: P 4 <br>
+
+
+        
+
+
+      </div>
+      <div class="profile-main-text col-xs-5" style="margin-left: 10%; width: 40% !important; border: .5px #333 solid;">
+        <div class="profile-main-header2">Approved Proposal List: </div> <br>
+        <div class="profile-main-text" style="text-decoration: underline;">
+          Proposal Something 1 - dateapproved (clicking will take them to proposal overview)<br>
+          Proposal Something 2 - dateapproved (arranged from NEWEST)<br>
+          Proposal Something 3 - dateapproved<br>
+          Proposal Something 4 - dateapproved<br>
+          Proposal Something 5 - dateapproved<br>
+        </div>
+      </div>
+    </div>
+
+    <div style="height: 200px;">IF ADMIN LOOK BELOW</div>
 
 
 
+    <div class="row">
+      <div class="profile-main-text col-xs-5" style="width: 40% !important;">
+        <div class="profile-main-header2">Organization Details: </div>
+        Name: ARAPAT<br>
+        Position: Student Council - President <br>
+        Contact Number: 09123456789 <br>
+
+        <hr>
+
+        <div class="profile-main-text col-xs-5" style="width: 100% !important; border: .5px #333 solid;">
+          <div class="profile-main-header2">Pending Proposal List: </div> <br>
+          <div class="profile-main-text" style="text-decoration: underline;">
+            Proposal Something 1 - datesubmitted (clicking will take them to proposal overview)<br>
+            Proposal Something 2 - datesubmitted (arranged from OLDEST)<br>
+            Proposal Something 3 - datesubmitted<br>
+            Proposal Something 4 - datesubmitted<br>
+            Proposal Something 5 - datesubmitted<br>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-main-text col-xs-5" style="margin-left: 10%; width: 40% !important; border: .5px #333 solid;">
+        <div class="profile-main-header2">Approved Proposal List: </div> <br>
+        <div class="profile-main-text" style="text-decoration: underline;">
+          Proposal Something 1 - dateapproved (clicking will take them to proposal overview)<br>
+          Proposal Something 2 - dateapproved (arranged from NEWEST)<br>
+          Proposal Something 3 - dateapproved<br>
+          Proposal Something 4 - dateapproved<br>
+          Proposal Something 5 - dateapproved<br>
+        </div>
+        Total Approved Proposals: 10
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN END -->
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
