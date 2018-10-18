@@ -52,7 +52,16 @@
               <?=$position . ': ' . $full_name?>
             </div>
             <div>
-              <a href="<?=base_url()?>accounts/logout">Log Out</a>
+              <a href="<?=base_url()?>home/profile">
+                <div class="table-header button" id="profile_btn">
+                  Profile
+                </div>
+              </a>
+              <a href="<?=base_url()?>accounts/logout">
+                <div class="table-header button" id="logout_btn">
+                  Log Out
+                </div>
+              </a>
             </div>
           </div> 
         </div>
@@ -83,7 +92,7 @@
       <div class="col-md col-xs">
         <div class="second-header-text">Downloadable Forms</div>
       </div> 
-      <a href="<?=base_url()?>layouts/profile.php">profile</a>
+      
       <div class="col-md-7"></div>   
     </div>
   </div>
@@ -147,7 +156,7 @@
       <div class="col-md-6 main"> 
         <div class="table-header linear-gradient main-header-text">Proposal Overview</div>
         <div id="table-container" class="main-text" style="overflow-y: scroll;">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi minima, voluptatum, et veritatis molestiae eum nesciunt blanditiis amet repudiandae odit harum illum accusantium aspernatur unde asperiores necessitatibus eius ipsa rem doloribus aliquid atque. Laboriosam alias aut ipsam maxime recusandae quibusdam, magnam facere harum maiores quia quam blanditiis, consectetur dignissimos esse. Iure vel, rem incidunt eos accusamus excepturi dignissimos repellendus veritatis, recusandae perspiciatis deserunt commodi numquam tempora et repudiandae qui accusantium animi at error laboriosam sit ullam quasi? Obcaecati minus ad excepturi aperiam dolore, corrupti suscipit similique ipsam consequuntur eaque nesciunt rem pariatur. Quisquam commodi saepe, fugiat atque labore error dolor aliquid reprehenderit sit ducimus similique consectetur fuga reiciendis rerum magni animi modi placeat aut. Laboriosam, fuga modi? Maiores eius autem nobis laudantium pariatur, quasi molestias quas, mollitia vitae consequatur modi expedita optio necessitatibus quis earum sunt. Omnis sequi, a nihil provident dolorum doloremque totam veritatis animi, unde et numquam quam architecto optio perspiciatis eveniet? Id repellendus ad tenetur omnis, dicta atque. Dolores ducimus voluptatibus illo eveniet dolor quas facilis labore placeat possimus illum distinctio itaque animi natus ab earum sit sint ex, odit aliquid assumenda aperiam pariatur delectus. Saepe temporibus nobis iste deleniti quas et provident repudiandae, est numquam libero quaerat laudantium aliquid ipsa dolores quidem quae qui id nemo animi aperiam! Non dolor vitae deleniti debitis doloremque eveniet consequatur, vel magni modi natus est quo, beatae quaerat provident et saepe, dolore quam? Veritatis deserunt laudantium impedit quidem. Debitis, ratione ipsum totam quis maxime voluptates mollitia, itaque quibusdam, quasi corporis repellat aliquam sapiente. Quas voluptatum dignissimos neque sed architecto odio perspiciatis aut quidem reprehenderit iusto? Possimus ipsam dolor cumque explicabo impedit, omnis quas animi maxime, alias qui aliquid nam blanditiis ad nulla perspiciatis sint. Officia tempore architecto voluptates praesentium omnis consequuntur veritatis repellat quasi incidunt. Fugiat voluptatum optio molestias, repellendus alias error nisi sunt unde tempora laudantium consequuntur iusto dolorem labore minima libero obcaecati saepe blanditiis doloremque aliquam et! Voluptas, mollitia voluptatibus nemo nam nobis veritatis quis, vero culpa dignissimos delectus amet sunt. Sed debitis est minima blanditiis corrupti distinctio maxime molestiae fugiat vel. Mollitia sed consequuntur beatae hic accusamus facere minima quibusdam. Laboriosam ipsam impedit, nostrum ad similique illum temporibus eligendi assumenda rerum praesentium est facilis voluptatem quasi quaerat enim esse nam odit a placeat minus. Molestiae consequuntur ut blanditiis dolore debitis quisquam commodi? Corrupti adipisci eos voluptas ea placeat fugit error odio nemo eum ad cum animi fuga provident, saepe asperiores veniam quae sunt? Perspiciatis, tempore. Aperiam neque, repellendus magnam quia doloremque error exercitationem vel accusantium unde excepturi nam, esse porro magni a quasi maxime pariatur suscipit nesciunt mollitia officia totam. Inventore nihil nostrum recusandae dolorum dolores quo! Id molestiae nulla, alias accusantium doloremque consequatur beatae. Eligendi qui, earum praesentium tempora aut laborum magni fugiat impedit sed sapiente fugit expedita cupiditate ratione officia suscipit necessitatibus. Cum pariatur dolor, vero rem minus ipsa quo eligendi, perferendis harum ad assumenda, eius voluptatum aspernatur dicta porro nulla. Maxime quisquam rem fugit accusantium iste, perspiciatis, numquam enim sed, officiis quam eveniet id.
+        
         </div>
       </div>
     </div>
@@ -159,7 +168,7 @@
   <script type="text/javascript">
     var BASE_URL = "<?= base_url();?>";
     </script>
-    <script src="<?= base_url();?>assets/js/jquery-3.3.1.js"></script>
+  <script src="<?= base_url();?>assets/js/jquery-3.3.1.js"></script>
   <script src="<?= base_url();?>assets/js/core.js"></script>
   <script src="<?= base_url();?>assets/js/progress.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

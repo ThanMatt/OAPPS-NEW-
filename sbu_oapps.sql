@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 13, 2018 at 08:12 AM
+-- Generation Time: Oct 17, 2018 at 02:34 PM
 -- Server version: 5.6.37
 -- PHP Version: 5.6.31
 
@@ -91,8 +91,14 @@ CREATE TABLE IF NOT EXISTS `activity_proposal` (
   `Nature` text NOT NULL,
   `Rationale` text NOT NULL,
   `ActivityChair` text NOT NULL,
+  `ChairContactNumber` text NOT NULL,
   `Participants` text NOT NULL,
   `ActivityVenue` text NOT NULL,
+  `ProposalType1` text NOT NULL,
+  `Partners` text NOT NULL,
+  `ProposalType2` text NOT NULL,
+  `NonAcademicType` text NOT NULL,
+  `Specified` text NOT NULL,
   `ProposalStatus` text NOT NULL,
   `OfficeProposal` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -101,16 +107,19 @@ CREATE TABLE IF NOT EXISTS `activity_proposal` (
 -- Dumping data for table `activity_proposal`
 --
 
-INSERT INTO `activity_proposal` (`Proposal_ID`, `Account_ID`, `ActivityName`, `DateActivity`, `StartTime`, `EndTime`, `Nature`, `Rationale`, `ActivityChair`, `Participants`, `ActivityVenue`, `ProposalStatus`, `OfficeProposal`) VALUES
-('1591', 'JPIA', 'Accounting 101', '2018-11-21', '09:00', '12:00', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolor', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolor', 'Mei Cruz', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolor', 'Conference Hall', 'PENDING', 'Secretary-General'),
-('2071', 'BBSF', 'Business Management 101', '2018-10-12', '12:00', '17:00', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolor', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolor', 'Joseph Stalin', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolor', 'Conference Hall', 'PENDING', 'Secretary-General'),
-('2820', 'SC', 'Integration Week 2019', '2019-09-01', '00:00', '12:00', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolor', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolor', 'Arapat Mustapha', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolor', 'St Maurs', 'PENDING', 'Assistant Prefect (Professional)'),
-('3925', 'MANSOC', 'Entrepreneurship Workshop', '2018-10-05', '08:00', '12:00', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolor', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolor', 'Ronald Reagan', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolor', '34H', 'PENDING', 'Secretary-General'),
-('4727', 'BITS', 'Aptitude 2', '2018-09-12', '08:00', '16:00', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolor', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolor', 'Emman Cayabyab', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolor', 'LAB B', 'PENDING', 'Secretary-General'),
-('5298', 'BITS', 'Aptitude 1', '2018-09-15', '08:00', '16:00', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolor', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolor', 'Jefferson Marasigan', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolor', 'LAB A', 'PENDING', 'Secretary-General'),
-('5519', 'SBRL', 'General Assembly 2018 (SBRL)', '2018-09-15', '12:00', '17:00', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolor', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolor', 'Macxmil de Ramos', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolor', 'Conference Hall', 'PENDING', 'Secretary-General'),
-('8339', 'PSSBU', 'Psych 101', '2018-09-25', '12:00', '17:00', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolor', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolor', 'Angelika Corpuz', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolor', 'Abbot Lopez Hall', 'PENDING', 'Secretary-General'),
-('8966', 'BITS', 'IT FAIR', '1997-12-19', '00:00', '12:00', 'foo', 'bar', 'baz', 'qux', 'quux', 'APPROVED', 'Dean');
+INSERT INTO `activity_proposal` (`Proposal_ID`, `Account_ID`, `ActivityName`, `DateActivity`, `StartTime`, `EndTime`, `Nature`, `Rationale`, `ActivityChair`, `ChairContactNumber`, `Participants`, `ActivityVenue`, `ProposalType1`, `Partners`, `ProposalType2`, `NonAcademicType`, `Specified`, `ProposalStatus`, `OfficeProposal`) VALUES
+('1413', 'BITS', 'adsa', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'DRAFT', 'N/A'),
+('4585', 'BITS', 'fsdfsd', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'DRAFT', 'N/A'),
+('4769', 'BITS', 'dadas', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'DRAFT', 'N/A'),
+('4969', 'BITS', 'Trend Micro Conference', '2018-12-09', '13:00', '17:00', 'Trend Micro', 'foo', 'Emman Cayabyab', '+639055577298', 'San Beda University I.T. students', 'EDSA Shangri-la', 'Independent', '', 'Academic', '', '', 'PENDING', 'SC_SG'),
+('7927', 'BITS', 'yeee', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'DRAFT', 'N/A'),
+('8495', 'BITS', 'test', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'DRAFT', 'N/A'),
+('9074', 'BITS', 'Sample', '8888-12-06', '02:02', '07:07', 'jkhuhjkh', 'jhjk', ',jnjh', 'mnj,nnbm', 'nmbmn', 'nbmbmn', 'Independent', '', 'Academic', '', '', 'PENDING', 'OPSA_APP'),
+('9188', 'BITS', 'dlakdl;sk', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'DRAFT', 'N/A'),
+('9474', 'SBRL', 'Test', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'DRAFT', 'N/A'),
+('9545', 'SBRL', 'Test', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'DRAFT', 'N/A'),
+('9589', 'SBRL', 'dasdad', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'DRAFT', 'N/A'),
+('9901', 'PSSBU', 'Aethan’s Birthday Parties', '2018-10-12', '12:32', '01:33', 'Hardy', 'yee', 'Aethan', '0918619911', 'Aethan himself', 'Kids worl', 'Independent', '', 'Academic', '', '', 'UNDER REVISION', 'OPSA_APP');
 
 -- --------------------------------------------------------
 
@@ -125,6 +134,13 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `Field` text NOT NULL,
   `Comment` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`CommentID`, `Proposal_ID`, `Account_ID`, `Field`, `Comment`) VALUES
+('5426', '9901', 'OPSA_APP', 'Activity Name', 'Pakiayos naman ung title gago naman to');
 
 -- --------------------------------------------------------
 
@@ -150,13 +166,8 @@ CREATE TABLE IF NOT EXISTS `fixed_assets_requirements` (
 --
 
 INSERT INTO `fixed_assets_requirements` (`Far_ID`, `Proposal_ID`, `Account_ID`, `Item`, `Quantity`, `Unit_Price`, `Total_Amount`, `Source`, `ProposalStatus`, `OfficeProposal`) VALUES
-('10367', '2820', 'SC', 'Lasagna', 200, 300, 60000, 'Human Biology', 'PENDING', 'Assistant Prefect (Non-Professional)'),
-('1454', '8966', 'BITS', 'Foo', 1219, 123, 149937, 'Human Biology', 'APPROVED', 'Dean'),
-('4216', '2071', 'BBSF', 'Printer', 20, 50, 1000, 'Human Biology', 'PENDING', 'Treasurer'),
-('6402', '5519', 'SBRL', 'Camera Lens', 20, 10000, 200000, 'Human Biology', 'PENDING', 'Treasurer'),
-('7793', '5298', 'BITS', 'Printer', 12, 200, 2400, 'Human Biology', 'PENDING', 'Treasurer'),
-('9135', '1591', 'JPIA', 'Microphone', 12, 200, 2400, 'Human Biology', 'PENDING', 'Treasurer'),
-('9608', '4727', 'BITS', 'Printer', 12, 200, 2400, 'Human Biology', 'PENDING', 'Treasurer');
+('1007', '9589', 'SBRL', '', 0, 0, 0, '', '', ''),
+('2026', '1413', 'BITS', '', 0, 0, 0, '', '', '');
 
 -- --------------------------------------------------------
 
@@ -165,55 +176,22 @@ INSERT INTO `fixed_assets_requirements` (`Far_ID`, `Proposal_ID`, `Account_ID`, 
 --
 
 CREATE TABLE IF NOT EXISTS `log` (
-  `LogID` varchar(20) NOT NULL,
-  `ProposalID` varchar(20) NOT NULL,
-  `Activity` text NOT NULL,
-  `ActivityType` text NOT NULL,
+  `LogID` int(11) NOT NULL,
+  `Activity` varchar(100) NOT NULL,
+  `ActivityType` int(11) NOT NULL,
   `DateTime` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `log`
 --
 
-INSERT INTO `log` (`LogID`, `ProposalID`, `Activity`, `ActivityType`, `DateTime`) VALUES
-('1190', '8966', 'The Treasurer of Student Council viewed the proposal on September 1, 2018 5:56pm Saturday', 'VIEW', '2018-09-01 05:56:36'),
-('1496', '8966', 'The proposal was created on September 1, 2018 5:37pm Saturday', 'CREATE', '2018-09-01 05:37:16'),
-('2186', '8966', 'The President of Student Council viewed the proposal on September 1, 2018 6:05pm Saturday', 'VIEW', '2018-09-01 06:05:37'),
-('2385', '5298', 'The proposal was created on September 13, 2018 12:37pm Thursday', 'CREATE', '2018-09-13 12:37:28'),
-('2702', '8966', 'The Treasurer of Student Council viewed the proposal on September 1, 2018 5:53pm Saturday', 'VIEW', '2018-09-01 05:53:55'),
-('2845', '8966', 'The Secretary-General of Student Council approved the proposal on September 1, 2018 5:57pm Saturday', 'APPROVE', '2018-09-01 05:57:56'),
-('2977', '8966', 'The Treasurer of Student Council viewed the proposal on September 1, 2018 5:56pm Saturday', 'VIEW', '2018-09-01 05:56:33'),
-('3001', '8966', 'The Prefect of Office of the Prefect of Student Activities approved the proposal on September 1, 2018 6:12pm Saturday', 'APPROVE', '2018-09-01 06:12:04'),
-('3333', '8966', 'The Treasurer of Student Council viewed the proposal on September 1, 2018 5:56pm Saturday', 'VIEW', '2018-09-01 05:56:28'),
-('3458', '8966', 'The Assistant Prefect (Professional) of Office of the Prefect of Student Activities approved the proposal on September 1, 2018 6:09pm Saturday', 'APPROVE', '2018-09-01 06:09:18'),
-('3926', '8966', 'The Treasurer of Student Council viewed the proposal on September 1, 2018 5:56pm Saturday', 'VIEW', '2018-09-01 05:56:43'),
-('4109', '8966', 'The Treasurer of Student Council viewed the proposal on September 1, 2018 5:57pm Saturday', 'VIEW', '2018-09-01 05:57:05'),
-('4341', '8339', 'The proposal was created on September 13, 2018 12:40pm Thursday', 'CREATE', '2018-09-13 12:40:55'),
-('4406', '5519', 'The proposal was created on September 13, 2018 12:42pm Thursday', 'CREATE', '2018-09-13 12:42:38'),
-('4433', '8966', 'The Dean of Office of the Dean viewed the proposal on September 1, 2018 6:14pm Saturday', 'VIEW', '2018-09-01 06:14:01'),
-('4523', '8966', 'The Assistant Prefect (Professional) of Office of the Prefect of Student Activities viewed the proposal on September 1, 2018 6:09pm Saturday', 'VIEW', '2018-09-01 06:09:12'),
-('4867', '8966', 'The Treasurer of Student Council viewed the proposal on September 1, 2018 5:56pm Saturday', 'VIEW', '2018-09-01 05:56:30'),
-('5040', '8966', 'The Treasurer of Student Council viewed the proposal on September 1, 2018 5:56pm Saturday', 'VIEW', '2018-09-01 05:56:38'),
-('5282', '8966', 'The Prefect of Office of the Prefect of Student Activities viewed the proposal on September 1, 2018 6:11pm Saturday', 'VIEW', '2018-09-01 06:11:59'),
-('5364', '3925', 'The proposal was created on September 13, 2018 12:43pm Thursday', 'CREATE', '2018-09-13 12:43:41'),
-('5724', '2071', 'The proposal was created on September 13, 2018 12:48pm Thursday', 'CREATE', '2018-09-13 12:48:44'),
-('5976', '8966', 'The Treasurer of Student Council approved the proposal on September 1, 2018 5:56pm Saturday', 'APPROVE', '2018-09-01 05:56:39'),
-('6923', '8966', 'The Secretary-General of Student Council viewed the proposal on September 1, 2018 5:57pm Saturday', 'VIEW', '2018-09-01 05:57:50'),
-('6929', '8966', 'The Prefect of Office of the Prefect of Student Activities viewed the proposal on September 1, 2018 6:11pm Saturday', 'VIEW', '2018-09-01 06:11:56'),
-('6931', '8966', 'The Prefect of Office of the Prefect of Student Activities viewed the proposal on September 1, 2018 6:12pm Saturday', 'VIEW', '2018-09-01 06:12:02'),
-('7435', '8966', 'The Dean of Office of the Dean viewed the proposal on September 1, 2018 6:13pm Saturday', 'VIEW', '2018-09-01 06:13:59'),
-('7734', '1591', 'The proposal was created on September 13, 2018 12:39pm Thursday', 'CREATE', '2018-09-13 12:39:51'),
-('7741', '2820', 'The proposal was created on September 13, 2018 12:47pm Thursday', 'CREATE', '2018-09-13 12:47:03'),
-('7920', '8966', 'The President of Student Council viewed the proposal on September 1, 2018 6:05pm Saturday', 'VIEW', '2018-09-01 06:05:41'),
-('8114', '8966', 'The Treasurer of Student Council viewed the proposal on September 1, 2018 5:53pm Saturday', 'VIEW', '2018-09-01 05:53:58'),
-('8399', '8966', 'The President of Student Council approved the proposal on September 1, 2018 6:05pm Saturday', 'APPROVE', '2018-09-01 06:05:43'),
-('8528', '8966', 'The President of Student Council viewed the proposal on September 1, 2018 6:05pm Saturday', 'VIEW', '2018-09-01 06:05:34'),
-('8834', '8966', 'The President of Student Council viewed the proposal on September 1, 2018 6:05pm Saturday', 'VIEW', '2018-09-01 06:05:31'),
-('9433', '8966', 'The Dean of Office of the Dean approved the proposal on September 1, 2018 6:14pm Saturday', 'APPROVE', '2018-09-01 06:14:06'),
-('9643', '4727', 'The proposal was created on September 13, 2018 12:36pm Thursday', 'CREATE', '2018-09-13 12:36:31'),
-('9801', '8966', 'The Assistant Prefect (Professional) of Office of the Prefect of Student Activities viewed the proposal on September 1, 2018 6:09pm Saturday', 'VIEW', '2018-09-01 06:09:15'),
-('9850', '8966', 'The Dean of Office of the Dean viewed the proposal on September 1, 2018 6:14pm Saturday', 'VIEW', '2018-09-01 06:14:04');
+INSERT INTO `log` (`LogID`, `Activity`, `ActivityType`, `DateTime`) VALUES
+(9, 'User BITS logged in', 1, '2018-10-17 10:10:17'),
+(10, 'User SBRL created the proposal 9589', 8, '2018-10-17 10:19:46'),
+(11, 'User BITS logged out', 0, '2018-10-17 10:32:40'),
+(12, 'User SBRL logged in', 1, '2018-10-17 10:32:52'),
+(13, 'User SBRL logged out', 0, '2018-10-17 10:33:04');
 
 -- --------------------------------------------------------
 
@@ -239,10 +217,34 @@ CREATE TABLE IF NOT EXISTS `operating_expenses` (
 --
 
 INSERT INTO `operating_expenses` (`OE_ID`, `Proposal_ID`, `Account_ID`, `Item`, `Quantity`, `Unit_Price`, `Total_Amount`, `Source`, `ProposalStatus`, `OfficeProposal`) VALUES
-('2951', '4727', 'BITS', 'Projector', 15, 500, 7500, 'Human Biology', 'PENDING', 'Treasurer'),
-('4916', '8966', 'BITS', 'yee', 12, 123, 1476, 'Human Biology', 'APPROVED', 'Dean'),
-('6189', '3925', 'MANSOC', 'yeet', 12, 20, 240, 'Human Biology', 'PENDING', 'Treasurer'),
-('7217', '8339', 'PSSBU', 'Yee', 12, 19, 228, 'Human Biology', 'PENDING', 'Treasurer');
+('7459', '1413', 'BITS', '', 0, 0, 0, '', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `proposal_tracker`
+--
+
+CREATE TABLE IF NOT EXISTS `proposal_tracker` (
+  `Proposal_ID` varchar(30) NOT NULL,
+  `Account_ID` varchar(30) NOT NULL,
+  `SC_TR` text NOT NULL,
+  `SC_SG` text NOT NULL,
+  `SC_P` text NOT NULL,
+  `OPSA_APP` text NOT NULL,
+  `OPSA_APN` text NOT NULL,
+  `OPSA_P` text NOT NULL,
+  `OD` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `proposal_tracker`
+--
+
+INSERT INTO `proposal_tracker` (`Proposal_ID`, `Account_ID`, `SC_TR`, `SC_SG`, `SC_P`, `OPSA_APP`, `OPSA_APN`, `OPSA_P`, `OD`) VALUES
+('4969', 'BITS', '', 'PENDING', '', '', '', '', ''),
+('9901', 'PSSBU', '', 'APPROVED', 'APPROVED', 'UNDER REVISION', '', '', ''),
+('9074', 'BITS', '', 'APPROVED', 'APPROVED', 'PENDING', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -268,15 +270,18 @@ CREATE TABLE IF NOT EXISTS `timestamp` (
 --
 
 INSERT INTO `timestamp` (`Proposal_ID`, `DateProposed`, `SC_TR_TimeIn`, `SC_SG_TimeIn`, `SC_P_TimeIn`, `OPSA_APP_TimeIn`, `OPSA_APN_TimeIn`, `OPSA_P_TimeIn`, `OD_TimeIn`, `TimeApproved`) VALUES
-('8966', '09/01/2018', '09-01-2018 05:57:05pm', '09-01-2018 05:57:56pm', '09-01-2018 06:05:41pm', '09-01-2018 06:09:15pm', '', '09-01-2018 06:12:02pm', '09-01-2018 06:14:04pm', '09-01-2018 06:14:06pm'),
-('4727', '09/13/2018', '', '', '', '', '', '', '', ''),
-('5298', '09/13/2018', '', '', '', '', '', '', '', ''),
-('1591', '09/13/2018', '', '', '', '', '', '', '', ''),
-('8339', '09/13/2018', '', '', '', '', '', '', '', ''),
-('5519', '09/13/2018', '', '', '', '', '', '', '', ''),
-('3925', '09/13/2018', '', '', '', '', '', '', '', ''),
-('2820', '09/13/2018', '', '', '', '', '', '', '', ''),
-('2071', '09/13/2018', '', '', '', '', '', '', '', '');
+('4969', '2018-10-12', '', '2018-10-12 03:54:24pm', '', '', '', '', '', ''),
+('9901', '2018-10-12', '', '2018-10-12 03:53:58pm', '2018-10-12 03:57:11pm', '2018-10-12 03:57:54pm', '', '', '', ''),
+('9074', '2018-10-12', '', '2018-10-12 03:45:29pm', '2018-10-12 01:04:07pm', '2018-10-12 03:59:49pm', '', '', '', ''),
+('9545', '2018-10-12', '', '', '', '', '', '', '', ''),
+('9474', '2018-10-12', '', '', '', '', '', '', '', ''),
+('9188', '2018-10-12', '', '', '', '', '', '', '', ''),
+('8495', '2018-10-17', '', '', '', '', '', '', '', ''),
+('4585', '2018-10-17', '', '', '', '', '', '', '', ''),
+('7927', '2018-10-17', '', '', '', '', '', '', '', ''),
+('4769', '2018-10-17', '', '', '', '', '', '', '', ''),
+('1413', '2018-10-17', '', '', '', '', '', '', '', ''),
+('9589', '2018-10-17', '', '', '', '', '', '', '', '');
 
 --
 -- Indexes for dumped tables
@@ -316,8 +321,7 @@ ALTER TABLE `fixed_assets_requirements`
 -- Indexes for table `log`
 --
 ALTER TABLE `log`
-  ADD PRIMARY KEY (`LogID`),
-  ADD KEY `ProposalID` (`ProposalID`);
+  ADD PRIMARY KEY (`LogID`);
 
 --
 -- Indexes for table `operating_expenses`
@@ -328,11 +332,26 @@ ALTER TABLE `operating_expenses`
   ADD KEY `Account_ID` (`Account_ID`);
 
 --
+-- Indexes for table `proposal_tracker`
+--
+ALTER TABLE `proposal_tracker`
+  ADD KEY `Proposal_ID` (`Proposal_ID`);
+
+--
 -- Indexes for table `timestamp`
 --
 ALTER TABLE `timestamp`
   ADD KEY `Proposal_ID` (`Proposal_ID`);
 
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `log`
+--
+ALTER TABLE `log`
+  MODIFY `LogID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- Constraints for dumped tables
 --
@@ -358,17 +377,17 @@ ALTER TABLE `fixed_assets_requirements`
   ADD CONSTRAINT `fixed_assets_requirements_ibfk_2` FOREIGN KEY (`Proposal_ID`) REFERENCES `activity_proposal` (`Proposal_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `log`
---
-ALTER TABLE `log`
-  ADD CONSTRAINT `log_ibfk_1` FOREIGN KEY (`ProposalID`) REFERENCES `activity_proposal` (`Proposal_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Constraints for table `operating_expenses`
 --
 ALTER TABLE `operating_expenses`
   ADD CONSTRAINT `operating_expenses_ibfk_1` FOREIGN KEY (`Account_ID`) REFERENCES `accounts` (`Account_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `operating_expenses_ibfk_2` FOREIGN KEY (`Proposal_ID`) REFERENCES `activity_proposal` (`Proposal_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `proposal_tracker`
+--
+ALTER TABLE `proposal_tracker`
+  ADD CONSTRAINT `proposal_tracker_ibfk_1` FOREIGN KEY (`Proposal_ID`) REFERENCES `activity_proposal` (`Proposal_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `timestamp`
