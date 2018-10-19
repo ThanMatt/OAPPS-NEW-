@@ -104,8 +104,6 @@
       </div>
     </div>
 
-    <!-- For ORGS -->
-    <?php if ($org_type != 'N/A'): ?>
     <div class="row">
       <div class="col-xs-3" style="margin-left: 50px;">
         <div class="display-picture-holder">
@@ -132,8 +130,8 @@
           <div class="profile-main-text" style="text-decoration: underline;">
           <?php if (is_array($pending_records) || is_object($pending_records)): ?>
           <?php
-            foreach($pending_records as $record) {
-              echo '<a href='. base_url() .'proposal/view/'. $record->Proposal_ID .'><div class="table-tae proposal-list-item" id="view_btn/'.$record->Proposal_ID.'">'. $record->ActivityName . '</div></a>';
+            foreach($pending_records as $pending_record) {
+              echo '<a href='. base_url() .'proposal/view/'. $pending_record->Proposal_ID .'><div class="table-tae proposal-list-item" id="view_btn/'.$pending_record->Proposal_ID.'">'. $pending_record->ActivityName . ' - ' . $this->proposals_model->getSubmitDate($pending_record->Proposal_ID) .'</div></a>';
             } 
           ?>
         <?php else: ?>
@@ -141,14 +139,11 @@
         <?php endif ?>
           </div>
         </div>
-        Total Approved Proposals: <?=$this->accounts_model->orgApprovedProposals($account_id)?> <br>
+        Total Approved Proposals: <?=$this->proposals_model->countApprovedProposals($account_id, $org_type)?> <br>
+        <?php if ($org_type != 'N/A'): ?>
         Total Expenditure: P 50 <br>
         Average Expenditure Per Proposal: P 4 <br>
-
-
-        
-
-
+        <?php endif ?>
       </div>
       
       <div class="profile-main-text col-xs-5" style="margin-left: 10%; width: 40% !important; border: .5px #333 solid;">
@@ -156,8 +151,8 @@
         <div class="profile-main-text" style="text-decoration: underline;">
         <?php if (is_array($approved_records) || is_object($approved_records)): ?>
           <?php
-            foreach($approved_records as $record) {
-              echo '<a href='. base_url() .'proposal/view/'. $record->Proposal_ID .'><div class="table-tae proposal-list-item" id="view_btn/'.$record->Proposal_ID.'">'. $record->ActivityName . ' - ' . $this->proposals_model->getApprovedDate($record->Proposal_ID) . '</div></a>';
+            foreach($approved_records as $approved_record) {
+              echo '<a href='. base_url() .'proposal/view/'. $approved_record->Proposal_ID .'><div class="table-tae proposal-list-item" id="view_btn/'.$approved_record->Proposal_ID.'">'. $approved_record->ActivityName . ' - ' . $this->proposals_model->getApprovedDate($approved_record->Proposal_ID, $account_id, $org_type) . '</div></a>';
             } 
           ?>
         <?php else: ?>
@@ -167,46 +162,6 @@
       </div>
     </div>
 
-    <div style="height: 200px;"></div>
-
-    <!-- For OFFICES -->
-    <?php else: ?>
-
-    <div class="row">
-      <div class="profile-main-text col-xs-5" style="width: 40% !important;">
-        <div class="profile-main-header2">Organization Details: </div>
-        Name: <?=$full_name?><br>
-        Position: <?=$position?> <br>
-        Contact Number: <?=$contact_number?> <br>
-
-        <hr>
-
-        <div class="profile-main-text col-xs-5" style="width: 100% !important; border: .5px #333 solid;">
-          <div class="profile-main-header2">Pending Proposal List: </div> <br>
-          <div class="profile-main-text" style="text-decoration: underline;">
-            Proposal Something 1 - datesubmitted (clicking will take them to proposal overview)<br>
-            Proposal Something 2 - datesubmitted (arranged from OLDEST)<br>
-            Proposal Something 3 - datesubmitted<br>
-            Proposal Something 4 - datesubmitted<br>
-            Proposal Something 5 - datesubmitted<br>
-          </div>
-        </div>
-      </div>
-
-      <div class="profile-main-text col-xs-5" style="margin-left: 10%; width: 40% !important; border: .5px #333 solid;">
-        <div class="profile-main-header2">Approved Proposal List: </div> <br>
-        <div class="profile-main-text" style="text-decoration: underline;">
-          Proposal Something 1 - dateapproved (clicking will take them to proposal overview)<br>
-          Proposal Something 2 - dateapproved (arranged from NEWEST)<br>
-          Proposal Something 3 - dateapproved<br>
-          Proposal Something 4 - dateapproved<br>
-          Proposal Something 5 - dateapproved<br>
-        </div>
-        Total Approved Proposals: 10
-      </div>
-    </div>
-  </div>
-  <?php endif ?>
 
   <!-- MAIN END -->
 
@@ -216,8 +171,7 @@
     var BASE_URL = "<?= base_url();?>";
   </script>
   <script src="<?= base_url();?>assets/js/jquery-3.3.1.js"></script>
-  <script src="<?= base_url();?>assets/js/core.js"></script>
-  <script src="<?= base_url();?>assets/js/progress.js"></script>
+  <script src="<?= base_url();?>assets/js/dropdown.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
   <?php else: ?>

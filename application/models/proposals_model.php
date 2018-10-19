@@ -63,7 +63,6 @@ class Proposals_Model extends CI_Model {
   public function getDraftRecords($account_id) {
     $response = array();
 
-
     $this->db->select('activity_proposal.Proposal_ID, ActivityName, OfficeProposal,
     `TimeStamp`.DateProposed, activity_proposal.Account_ID');
     $this->db->from('activity_proposal');
@@ -110,7 +109,34 @@ class Proposals_Model extends CI_Model {
 
   }
 
-  public function getApprovedDate($proposal_id) {
+  public function getApprovedDate($proposal_id, $account_id, $org_type) {
+
+    if ($org_type != 'N/A') {
+
+      $this->db->from('activity_proposal');
+      $this->db->join('timestamp', 'timestamp.Proposal_ID = activity_proposal.Proposal_ID');
+      $this->db->where('activity_proposal.Proposal_ID', $proposal_id);
+
+      $result = $this->db->get();
+      $row = $result->row();
+
+      return strstr($row->TimeApproved, " ", true);
+
+    } else {
+      $timein = $account_id . '_TimeIn';
+      $this->db->from('activity_proposal');
+      $this->db->join('timestamp', 'timestamp.Proposal_ID = activity_proposal.Proposal_ID');
+      $this->db->where('activity_proposal.Proposal_ID', $proposal_id);
+
+      $result = $this->db->get();
+      $row = $result->row();
+
+      return strstr($row->$timein, " ", true);
+    }
+
+  }
+
+  public function getSubmitDate($proposal_id) {
     $this->db->from('activity_proposal');
     $this->db->join('timestamp', 'timestamp.Proposal_ID = activity_proposal.Proposal_ID');
     $this->db->where('activity_proposal.Proposal_ID', $proposal_id);
@@ -119,7 +145,8 @@ class Proposals_Model extends CI_Model {
 
     $row = $result->row();
 
-    return strstr($row->TimeApproved, " ", true);
+    return $row->DateProposed;
+
   }
 
   public function checkCollaborative($proposal_id) {
@@ -977,6 +1004,32 @@ class Proposals_Model extends CI_Model {
     if (!$result) {
       $response['success'] = false;
       echo json_encode($response);
+    }
+  }
+
+  public function countApprovedProposals($account_id, $type) {
+
+    $this->db->from('activity_proposal');
+    $this->db->join('`TimeStamp`', 'activity_proposal.Proposal_ID = `TimeStamp`.Proposal_ID');
+    $this->db->join('accounts', 'accounts.Account_ID = activity_proposal.Account_ID');
+    $this->db->join('proposal_tracker', 'proposal_tracker.Proposal_ID = activity_proposal.Proposal_ID');
+
+    if ($type != 'N/A') {
+
+      $this->db->where('ProposalStatus', 'APPROVED');
+      $this->db->where('activity_proposal.Account_ID', $account_id);
+
+    } else {
+      $this->db->where($account_id, 'APPROVED');
+    }
+
+    $this->db->order_by('DateProposed', 'asc');
+    $result = $this->db->get();
+
+    if (!$result) {
+      return false;
+    } else {
+      return $result->num_rows();
     }
   }
 

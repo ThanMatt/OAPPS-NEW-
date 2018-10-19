@@ -25,7 +25,12 @@ class Proposal extends CI_Controller {
         }
 
       } else {
-        $this->proposals_model->getDateTime($account_id, $proposal_id);
+
+        if ($org_type == 'N/A') {
+          if ($this->proposals_model->didIApproveThis($account_id, $proposal_id)) {
+            $this->proposals_model->getDateTime($account_id, $proposal_id);
+          }
+        }
         $this->load->view('layouts/view_ap', $data);
       }
 
