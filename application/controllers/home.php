@@ -64,16 +64,18 @@ class Home extends CI_Controller {
     $approved_records = $this->proposals_model->getApprovedRecords($account_id, $type);
     $pending_records = $this->proposals_model->getPendingRecords($account_id, $type);
 
+
     $data['approved_records'] = 'No Records';
     $data['pending_records'] = 'No Records';
     
 
     if ($approved_records || $pending_records) {
+
       $data['approved_records'] = $approved_records;
       $data['pending_records'] = $pending_records;
     }
-
     $this->load->view('layouts/profile', $data);
+
 
   }
 

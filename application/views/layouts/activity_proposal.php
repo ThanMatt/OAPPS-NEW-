@@ -64,12 +64,13 @@
             </div>
             <div>
               <a href="<?=base_url()?>home/profile">
-                <div class="table-header button" id="profile_btn">
+
+                <div class="table-header button" id="profile_btn" style="border:0px;">
                   Profile
                 </div>
               </a>
               <a href="<?=base_url()?>accounts/logout">
-                <div class="table-header button" id="logout_btn">
+                <div class="table-header button" id="logout_btn" style="border:0px;">
                   Log Out
                 </div>
               </a>
@@ -128,20 +129,22 @@
 
 
   <div class="col-md-2 main-form-buttons"style="margin-left: 3vw !important; margin-bottom: 15vw; border: 0px;">
-  <div class="table-header button" id="btn_ap" href="ap">
+    <div class="table-header button" id="btn_ap" href="ap">
       Activity Proposal
     </div>
-    <div class="table-header button" id="btn_far" href="far">
-      Fixed Asset Req.
-    </div>
+    <a href="#far">
+      <div class="table-header button" id="btn_far" href="far">
+        Fixed Asset Req.
+      </div>
+    </a>
     <div class="table-header button" id="btn_oe" href="oe">
       Operating Expenses
     </div>
   </div>  
-  <div class="col-md-8 main-form" id="#ap" style="overflow-y: scroll;"> 
-    <div class="table-header linear-gradient main-header-text">Proposal Overview</div>
-    
-    <div id="table-container" class="row no-gutters"> <!-- row start -->
+
+  <div class="col-md-8 main-form" > 
+    <div class="table-header linear-gradient main-header-text">Activity Proposal</div>
+    <div id="table-container" class="row no-gutters main-text" style="overflow-y: scroll;"> <!-- row start -->
 
   <!-- This serves as a buffer. Do not delete this. It's hidden anyway -->
       <input type="text" class="" name="proposal_id" id="proposal_id" value="<?=$ap_record->Proposal_ID?>" hidden readonly>
@@ -242,22 +245,16 @@
         <textarea rows="3" class="form-control form-control-sm" id="participants_textarea" name="participants" required><?=$ap_record->Participants?></textarea>
 
         <br>
+
+        <input type="reset" class="table-header button button-ap" id="button" value="Clear">
+        <input type="button" class="table-header button button-ap" name="save_btn" id="btn_save_ap" value="Save">
       </div>
     </div>
   </div>
 
-
   <!-- FAR form -->
   <div class="col-md-2 main-form-buttons" style="margin-left: 3vw !important; margin-bottom: 15vw; border: 0px;">
-    <div class="table-header button" id="btn_ap" href="ap">
-      Activity Proposal
-    </div>
-    <div class="table-header button" id="btn_far" href="far">
-      Fixed Asset Req.
-    </div>
-    <div class="table-header button" id="btn_oe" href="oe">
-      Operating Expenses
-    </div>
+
   </div>  
   <div class="col-md-8 main-form" id="#ap"> 
     <div class="table-header linear-gradient main-header-text">Fixed Asset Requirements</div>
@@ -323,22 +320,6 @@
 
 
   <div class="col-md-2 main-form-buttons" style="margin-left: 3vw !important; margin-bottom: 15vw; border: 0px;">
-    <a href="ap">
-      <div class="table-header button" id="btn_ap">
-        Activity Proposal
-      </div>
-    </a>
-    <a href="far">
-      <div class="table-header button" id="btn_far">
-        Fixed Asset Req.
-      </div>
-    </a>
-    <a href="oe">
-      <div class="table-header button" id="btn_oe">
-        Operating Expenses
-      </div>    
-    </a>
-
   </div>  
     <div class="col-md-8 main-form">
       <div class="table-header linear-gradient main-header-text">Operating Expenses</div>
@@ -400,6 +381,8 @@
     </div>
   </div>
 
+    require submission of scanned documents (necessary forms for submission)
+
   <div class="button-container-proposal">
     <a href="<?=base_url()?>home">
       <input type="button" class="table-header button" name="next" id="button" value="Go Back">
@@ -412,8 +395,6 @@
   </div>
 
   <!-- NEW FORM END -->
-
-
 
   </form>
 

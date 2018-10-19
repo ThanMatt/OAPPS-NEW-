@@ -50,6 +50,21 @@ class Accounts_Model extends CI_Model {
 
   }
 
+  public function orgApprovedProposals($account_id) {
+
+    $this->db->from('activity_proposal');
+    $this->db->where('Account_ID', $account_id);
+    $this->db->where('ProposalStatus', 'APPROVED');
+    $result = $this->db->get();
+
+    if (!$result) {
+      return false;
+    }
+
+    return $result->num_rows();
+  }
+  
+
   public function logMyActivity($account_id, $activity_type, $proposal_id) {
     
     $date_time = date("Y-m-d h:i:sa");
