@@ -53,12 +53,12 @@
             </div>
             <div>
               <a href="<?=base_url()?>home/profile">
-                <div class="table-header button" id="profile_btn">
+                <div class="table-header button" id="profile_btn" style="border:0px;">
                   Profile
                 </div>
               </a>
               <a href="<?=base_url()?>accounts/logout">
-                <div class="table-header button" id="logout_btn">
+                <div class="table-header button" id="logout_btn" style="border:0px;">
                   Log Out
                 </div>
               </a>
@@ -142,16 +142,18 @@
       </div>
       <div class="col-md-2 main">
         <div class="table-header linear-gradient main-header-text">Proposal List</div>
-        <?php if (is_array($records) || is_object($records)): ?>
-          <?php
-            foreach($records as $record) {
-              $counter++;
-              echo '<div class="table-tae proposal-list-item" id="view_btn/'.$record->Proposal_ID.'">'. $record->ActivityName . '</div>';
-            } 
-          ?>
-        <?php else: ?>
-          <h1 id="nav-left-container-no-records" class="proposal-list-empty">No Records</h1>
-        <?php endif ?>
+        <div class="main-text" style="overflow-y: scroll;">
+          <?php if (is_array($records) || is_object($records)): ?>
+            <?php
+              foreach($records as $record) {
+                $counter++;
+                echo '<div class="proposal-view button second-header-height" style="margin: 0 !important; border-left: 0px; border-right: 0px; border-bottom: 0px; border-top: 0px;" id="view_btn/'.$record->Proposal_ID.'">'. $record->ActivityName . '</div>';
+              } 
+            ?>
+          <?php else: ?>
+            <h1 id="nav-left-container-no-records" class="button-no-record">No Records</h1>
+          <?php endif ?>
+        </div>
       </div>
       <div class="col-md-6 main"> 
         <div class="table-header linear-gradient main-header-text">Proposal Overview</div>
