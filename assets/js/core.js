@@ -110,7 +110,7 @@ $(function () {
   });
 
   //:: View clicked proposals
-  $('body').on('click', '.table-tae', function () {
+  $('body').on('click', '.proposal-view', function () {
     var view_buttonID = $(this).attr('id');
     var proposal_id = view_buttonID.split("/")[1];
 

@@ -3,11 +3,13 @@
 <head>
   <?php if ($this->session->userdata('logged_in')): ?>
   <?php 
+  $org_type = $this->session->userdata('org_type');
   $prefix = $this->session->userdata('prefix'); 
   $account_id = $this->session->userdata('account_id'); 
   $organization = $this->session->userdata('organization');
   $full_name = $this->session->userdata('full_name');
   $position = $this->session->userdata('position');
+  $contact_number = $this->session->userdata('contact_number');
   ?>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,12 +50,12 @@
             </div>
             <div>
               <a href="<?=base_url()?>home/profile">
-                <div class="table-header button" id="profile_btn">
+                <div class="table-header button" id="profile_btn" style="border:0px;">
                   Profile
                 </div>
               </a>
               <a href="<?=base_url()?>accounts/logout">
-                <div class="table-header button" id="logout_btn">
+                <div class="table-header button" id="logout_btn" style="border:0px;">
                   Log Out
                 </div>
               </a>
@@ -102,6 +104,8 @@
       </div>
     </div>
 
+    <!-- For ORGS -->
+    <?php if ($org_type != 'N/A'): ?>
     <div class="row">
       <div class="col-xs-3" style="margin-left: 50px;">
         <div class="display-picture-holder">
@@ -111,20 +115,33 @@
         </div>
       </div>
       <div class="col-xs-3 profile-main-header2" style="margin-top: 2.7vw; margin-left: 2%;">
-        Bedan Information Technology Society
+        <?=$organization?>
       </div>
     </div>
 
     <div class="row">
       <div class="profile-main-text col-xs-5" style="width: 40% !important;">
         <div class="profile-main-header2">Organization Details: </div>
-        Organization Representative Name: Sino nga ba org rep ng BITS <br>
-        Organization Representative Contact Number: 09123456789 <br>
+        Organization Representative Name: <?=$full_name?> <br>
+        Organization Representative Contact Number: <?=$contact_number?> <br>
 
         <hr>
 
-        Current Pending Proposal: Mister I'll Make a Man Out Of You (clicking will take them to pending proposal)<br> 
-        Total Approved Proposals: 10 <br>
+        <div class="profile-main-text col-xs-5" style="width: 100% !important; border: .5px #333 solid;">
+          <div class="profile-main-header2">Pending Proposal List: </div> <br>
+          <div class="profile-main-text" style="text-decoration: underline;">
+          <?php if (is_array($pending_records) || is_object($pending_records)): ?>
+          <?php
+            foreach($pending_records as $record) {
+              echo '<a href='. base_url() .'proposal/view/'. $record->Proposal_ID .'><div class="table-tae proposal-list-item" id="view_btn/'.$record->Proposal_ID.'">'. $record->ActivityName . '</div></a>';
+            } 
+          ?>
+        <?php else: ?>
+          <h1 id="nav-left-container-no-records" class="proposal-list-empty">No Records</h1>
+        <?php endif ?>
+          </div>
+        </div>
+        Total Approved Proposals: <?=$this->accounts_model->orgApprovedProposals($account_id)?> <br>
         Total Expenditure: P 50 <br>
         Average Expenditure Per Proposal: P 4 <br>
 
@@ -133,28 +150,34 @@
 
 
       </div>
+      
       <div class="profile-main-text col-xs-5" style="margin-left: 10%; width: 40% !important; border: .5px #333 solid;">
         <div class="profile-main-header2">Approved Proposal List: </div> <br>
         <div class="profile-main-text" style="text-decoration: underline;">
-          Proposal Something 1 - dateapproved (clicking will take them to proposal overview)<br>
-          Proposal Something 2 - dateapproved (arranged from NEWEST)<br>
-          Proposal Something 3 - dateapproved<br>
-          Proposal Something 4 - dateapproved<br>
-          Proposal Something 5 - dateapproved<br>
+        <?php if (is_array($approved_records) || is_object($approved_records)): ?>
+          <?php
+            foreach($approved_records as $record) {
+              echo '<a href='. base_url() .'proposal/view/'. $record->Proposal_ID .'><div class="table-tae proposal-list-item" id="view_btn/'.$record->Proposal_ID.'">'. $record->ActivityName . ' - ' . $this->proposals_model->getApprovedDate($record->Proposal_ID) . '</div></a>';
+            } 
+          ?>
+        <?php else: ?>
+          <h1 id="nav-left-container-no-records" class="proposal-list-empty">No Records</h1>
+        <?php endif ?>
         </div>
       </div>
     </div>
 
-    <div style="height: 200px;">IF ADMIN LOOK BELOW</div>
+    <div style="height: 200px;"></div>
 
-
+    <!-- For OFFICES -->
+    <?php else: ?>
 
     <div class="row">
       <div class="profile-main-text col-xs-5" style="width: 40% !important;">
         <div class="profile-main-header2">Organization Details: </div>
-        Name: ARAPAT<br>
-        Position: Student Council - President <br>
-        Contact Number: 09123456789 <br>
+        Name: <?=$full_name?><br>
+        Position: <?=$position?> <br>
+        Contact Number: <?=$contact_number?> <br>
 
         <hr>
 
@@ -183,6 +206,7 @@
       </div>
     </div>
   </div>
+  <?php endif ?>
 
   <!-- MAIN END -->
 
@@ -192,8 +216,6 @@
     var BASE_URL = "<?= base_url();?>";
   </script>
   <script src="<?= base_url();?>assets/js/jquery-3.3.1.js"></script>
-  <script src="<?= base_url();?>assets/js/core.js"></script>
-  <script src="<?= base_url();?>assets/js/progress.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
   <?php else: ?>

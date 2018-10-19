@@ -2,11 +2,8 @@
 
 class Proposals_Model extends CI_Model {
 
-  public function getPendingRecords() {
+  public function getPendingRecords($account_id, $type) {
     $response = array();
-
-    $account_id = $this->session->userdata('account_id');
-    $type = $this->session->userdata('org_type');
 
     $this->db->from('activity_proposal');
     $this->db->join('`TimeStamp`', 'activity_proposal.Proposal_ID = `TimeStamp`.Proposal_ID');
@@ -35,11 +32,8 @@ class Proposals_Model extends CI_Model {
 
   }
 
-  public function getApprovedRecords() {
+  public function getApprovedRecords($account_id, $type) {
     $response = array();
-
-    $account_id = $this->session->userdata('account_id');
-    $type = $this->session->userdata('org_type');
 
     $this->db->from('activity_proposal');
     $this->db->join('`TimeStamp`', 'activity_proposal.Proposal_ID = `TimeStamp`.Proposal_ID');
@@ -66,10 +60,9 @@ class Proposals_Model extends CI_Model {
 
   }
 
-  public function getDraftRecords() {
+  public function getDraftRecords($account_id) {
     $response = array();
 
-    $account_id = $this->session->userdata('account_id');
 
     $this->db->select('activity_proposal.Proposal_ID, ActivityName, OfficeProposal,
     `TimeStamp`.DateProposed, activity_proposal.Account_ID');
@@ -89,12 +82,9 @@ class Proposals_Model extends CI_Model {
 
   }
 
-  public function getRevisionRecords() {
+  public function getRevisionRecords($account_id, $type, $position) {
     $response = array();
 
-    $account_id = $this->session->userdata('account_id');
-    $type = $this->session->userdata('org_type');
-    $position = $this->session->userdata('position');
     $this->db->from('activity_proposal');
     $this->db->join('`TimeStamp`', 'activity_proposal.Proposal_ID = `TimeStamp`.Proposal_ID');
     $this->db->join('accounts', 'accounts.Account_ID = activity_proposal.Account_ID');
@@ -118,6 +108,18 @@ class Proposals_Model extends CI_Model {
       return $result->result();
     }
 
+  }
+
+  public function getApprovedDate($proposal_id) {
+    $this->db->from('activity_proposal');
+    $this->db->join('timestamp', 'timestamp.Proposal_ID = activity_proposal.Proposal_ID');
+    $this->db->where('activity_proposal.Proposal_ID', $proposal_id);
+
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    return strstr($row->TimeApproved, " ", true);
   }
 
   public function checkCollaborative($proposal_id) {

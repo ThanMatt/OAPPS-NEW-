@@ -25,6 +25,10 @@
   src: 'fonts/OpenSans-LightItalic.ttf'
 }
 
+html{
+    scroll-behavior: smooth;
+}
+
 a:link {
 text-decoration: none;
 }
@@ -73,7 +77,7 @@ position: absolute;
 background-color: #f1f1f1;
 top: 110px;
 right: -10px;
-min-width: 200px;
+min-width: 300px;
 box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 z-index: 1;
 text-align: 1000px;
@@ -198,10 +202,10 @@ margin: 5%;
 }
 
 .main-text{
-    font-family: times new roman;
-    padding: 40px;
-    color: black;
-    font-size: 25px;
+    font-family: calibri;
+    padding: 20px;
+    color: #707070;
+    font-size: 18px;
     padding-top: 1.6vh;
     width: 100%;
     height: 57vh;
@@ -231,6 +235,8 @@ margin: 5%;
     margin-left: 4vw !important;
     /* margin-bottom: 10vh !important; */
     border: .1px #707070 solid;
+    position: sticky;
+    top: 70px;
 }
 
 .main-divider{
@@ -240,6 +246,17 @@ margin: 5%;
 
 .button{
     cursor: pointer;
+    font-family: calibri;
+    font-weight:bold;
+    color: #A8A8A8;
+    font-size: 22px;
+    text-align: center;
+    margin-bottom: 4vh;
+    padding-top: 18px;
+    background-color: white;
+}
+
+.button-no-record{
     font-family: calibri;
     font-weight:bold;
     color: #A8A8A8;
@@ -384,7 +401,8 @@ margin: 5%;
     margin: 40px;
     max-width: 90vw;
     width: auto;
-    height: 70vh;
+    height: auto;
+    padding-bottom: 7vh;
     border: .5px #333 solid;
 }
 
