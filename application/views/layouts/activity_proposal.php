@@ -64,6 +64,7 @@
             </div>
             <div>
               <a href="<?=base_url()?>home/profile">
+
                 <div class="table-header button" id="profile_btn" style="border:0px;">
                   Profile
                 </div>
