@@ -4,12 +4,12 @@ $(function () {
   if ($('#rd_ind').prop('checked')) {
     $("#partner_collab").prop('disabled', true);
     $("#partner_collab").val('');
-    $("#collab-container").hide();
+
   }
 
   if ($('#rd_col').prop('checked')) {
     $("#partner_collab").prop('disabled', false);
-    $("#collab-container").show();
+
   }
 
   if ($('#rd_acad').prop('checked')) {
@@ -20,39 +20,30 @@ $(function () {
     $("#rd_comm").prop('checked', false);
     $("#rd_cocur").prop('checked', false);
     $("#rd_excur").prop('checked', false);
-    $(".rd-non-academic-container").hide();
-    $("#extra-curricular").hide();
-    $("#co-curricular").hide();
+
   }
 
   if ($('#rd_nacad').prop('checked')) {
     $(".non_acad_rd").prop('disabled', false);
-    $(".rd-non-academic-container").show();
   }
 
   if ($('#rd_comm').prop('checked')) {
-    $("#extra-curricular").hide();
     $("#specified_ex").prop('disabled', true);
     $("#specified_ex").val('');
-    $("#co-curricular").hide();
     $("#specified_co").prop('disabled', true);
     $("#specified_co").val('');
   }
 
   if ($('#rd_cocur').prop('checked')) {
     $("#specified_co").prop('disabled', false);
-    $("#co-curricular").show();
 
-    $("#extra-curricular").hide();
     $("#specified_ex").prop('disabled', true);
     $("#specified_ex").val('');
   }
 
   if ($('#rd_excur').prop('checked')) {
     $("#specified_ex").prop('disabled', false);
-    $("#extra-curricular").show();
 
-    $("#co-curricular").hide();
     $("#specified_co").prop('disabled', true);
     $("#specified_co").val('');
   }
@@ -62,12 +53,10 @@ $(function () {
   });
 
   $("#rd_yes").click(function () {
-    $('.check_group').show();
     $('.check_bp').prop('disabled', false);
   });
 
   $("#rd_no").click(function () {
-    $(".check_group").hide();
     $('.check_bp').prop('disabled', true);
   });
 
@@ -75,13 +64,12 @@ $(function () {
   $("#rd_ind").click(function () {
     $("#partner_collab").prop('disabled', true);
     $("#partner_collab").val('');
-    $("#collab-container").hide();
+
   });
 
   //:: Proposal Type - 1 Collaborative radio button
   $("#rd_col").click(function () {
     $("#partner_collab").prop('disabled', false);
-    $("#collab-container").show();
   });
 
   //:: Proposal Type - 2 Academic radio button
@@ -93,22 +81,16 @@ $(function () {
     $("#rd_comm").prop('checked', false);
     $("#rd_cocur").prop('checked', false);
     $("#rd_excur").prop('checked', false);
-    $(".rd-non-academic-container").hide();
-    $("#extra-curricular").hide();
-    $("#co-curricular").hide();
   });
 
   //:: Proposal Type - 2 Non-Academic radio button
   $("#rd_nacad").click(function () {
     $(".non_acad_rd").prop('disabled', false);
-    $(".rd-non-academic-container").show();
   });
 
   $("#rd_comm").click(function () {
-    $("#extra-curricular").hide();
     $("#specified_ex").prop('disabled', true);
     $("#specified_ex").val('');
-    $("#co-curricular").hide();
     $("#specified_co").prop('disabled', true);
     $("#specified_co").val('');
 
@@ -117,9 +99,6 @@ $(function () {
   //:: Non-Academic co-curricular radio button
   $("#rd_cocur").click(function () {
     $("#specified_co").prop('disabled', false);
-    $("#co-curricular").show();
-
-    $("#extra-curricular").hide();
     $("#specified_ex").prop('disabled', true);
     $("#specified_ex").val('');
   });
@@ -127,9 +106,7 @@ $(function () {
   //:: Non-Academic extra-curricular radio button
   $("#rd_excur").click(function () {
     $("#specified_ex").prop('disabled', false);
-    $("#extra-curricular").show();
 
-    $("#co-curricular").hide();
     $("#specified_co").prop('disabled', true);
     $("#specified_co").val('');
   });

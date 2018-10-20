@@ -29,7 +29,6 @@
     var BASE_URL = "<?=base_url();?>";
   </script>
   <script src="<?=base_url();?>assets/js/jquery-3.3.1.js"></script>
-  <script src="<?=base_url();?>assets/js/plugin.js"></script>
 </head>
 
 <body>
@@ -196,16 +195,16 @@
             <label id="label_radiobutton">NON-ACADEMIC</label>
             <div class="rd-non-academic-container">
 
-            <input type="radio" name="non_academic_rd" class="form-check-input" id="rd_comm" value="Community Involvement" <?=$this->proposals_model->checkCommunity($proposal_id)?> disabled>Community Involvement
+            <input type="radio" name="non_academic_rd" class="form-check-input non_acad_rd" id="rd_comm" value="Community Involvement" <?=$this->proposals_model->checkCommunity($proposal_id)?> disabled>Community Involvement
             <br>
             
-            <input type="radio" name="non_academic_rd" class="form-check-input" id="rd_cocur" value="Co-Curricular" <?=$this->proposals_model->checkCoCurricular($proposal_id)?> disabled>Co-Curricular
+            <input type="radio" name="non_academic_rd" class="form-check-input non_acad_rd" id="rd_cocur" value="Co-Curricular" <?=$this->proposals_model->checkCoCurricular($proposal_id)?> disabled>Co-Curricular
             <br>
             <div id="co-curricular">
               Specified: <input type="text" name="specified_co_curric" class="form-check-input" id="specified_co" value="<?=$ap_record->Specified?>" disabled>
             </div>
             
-            <input type="radio" name="non_academic_rd" class="form-check-input" id="rd_excur" value="Extra-Curricular"  <?=$this->proposals_model->checkExtraCurricular($proposal_id)?> disabled>Extra-Curricular
+            <input type="radio" name="non_academic_rd" class="form-check-input non_acad_rd" id="rd_excur" value="Extra-Curricular"  <?=$this->proposals_model->checkExtraCurricular($proposal_id)?> disabled>Extra-Curricular
 
             <div id="extra-curricular">
               Specified: <input type="text" name="specified_ex_curric" class="form-check-input" id="specified_ex" value="<?=$ap_record->Specified?>" disabled>
@@ -405,8 +404,8 @@
     var BASE_URL = "<?= base_url();?>";
     </script>
     <script src="<?= base_url();?>assets/js/jquery-3.3.1.js"></script>
-  <script src="<?= base_url();?>assets/js/core.js"></script>
-  <script src="<?= base_url();?>assets/js/progress.js"></script>
+  <script src="<?= base_url();?>assets/js/dropdown.js"></script>
+  <script src="<?= base_url();?>assets/js/plugin.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
   
