@@ -37,7 +37,7 @@
       <div class="col-xs-3" style="margin-left: 50px;">
         <div class="display-picture-holder">
           <div class="display-picture">
-            <img src="<?=base_url()?>assets/img/logo/<?=$prefix?>_logo.png">
+            <img src="<?=base_url()?>assets/img/logo/<?=$prefix?>_logo.jpg">
           </div>
         </div>
       </div>
