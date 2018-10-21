@@ -51,11 +51,17 @@ $org_type = $this->session->userdata('org_type');
                 Profile
               </div>
             </a>
-            <a href="<?=base_url()?>accounts/logout">
+            <?php if ($this->session->userdata('user_type') == 0):?>
+              <a href="<?=base_url()?>accounts/logout">
+            <?php else: ?>
+            
+              <a href="<?=base_url()?>accounts_admin/logout">
+            <?php endif ?>
               <div class="table-header button" id="logout_btn" style="border:0px;">
                 Log Out
               </div>
             </a>
+            
           </div>
         </div> 
       </div>

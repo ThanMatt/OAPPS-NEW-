@@ -47,10 +47,14 @@
     </div>
 
     <div class="row">
-      <div class="profile-main-text col-xs-5" style="width: 40% !important;">
+
+      <!-- first half -->
+
+      <div class="profile-main-text col-xs-5" style="width: 40% !important; margin-left: 50px;">
         <div class="profile-main-header2">Organization Details: </div>
         Organization Representative Name: <?=$full_name?> <br>
         Organization Representative Contact Number: <?=$contact_number?> <br>
+        <br>
 
         <hr>
 
@@ -60,7 +64,7 @@
           <?php if (is_array($pending_records) || is_object($pending_records)): ?>
           <?php
             foreach($pending_records as $pending_record) {
-              echo '<a href='. base_url() .'proposal/view/'. $pending_record->Proposal_ID .'><div class="table-tae proposal-list-item" id="view_btn/'.$pending_record->Proposal_ID.'">'. $pending_record->ActivityName . ' - ' . $this->proposals_model->getSubmitDate($pending_record->Proposal_ID) .'</div></a>';
+              echo '<a href='. base_url() .'proposal/view/'. $pending_record->Proposal_ID .'><div class="table-tae proposal-list-item"  style="width: 100% !important;" id="view_btn/'.$pending_record->Proposal_ID.'">'. $pending_record->ActivityName . ' - ' . $this->proposals_model->getSubmitDate($pending_record->Proposal_ID) .'</div></a>';
             } 
           ?>
         <?php else: ?>
@@ -68,25 +72,33 @@
         <?php endif ?>
           </div>
         </div>
+      </div>
+
+      <!-- second half -->
+
+      <div class="profile-main-text col-xs-5" style="width: 40% !important; margin-left: 70px;">
+        <div class="profile-main-header2">Proposal Details: </div>
         Total Approved Proposals: <?=$this->proposals_model->countApprovedProposals($account_id, $org_type)?> <br>
         <?php if ($org_type != 'N/A'): ?>
         Total Expenditure: P 50 <br>
         Average Expenditure Per Proposal: P 4 <br>
         <?php endif ?>
-      </div>
-      
-      <div class="profile-main-text col-xs-5" style="margin-left: 10%; width: 40% !important; border: .5px #333 solid;">
+
+        <hr>
+
+        <div class="profile-main-text col-xs-5" style="width: 100% !important; border: .5px #333 solid;">
         <div class="profile-main-header2">Approved Proposal List: </div> <br>
-        <div class="profile-main-text" style="text-decoration: underline;">
-        <?php if (is_array($approved_records) || is_object($approved_records)): ?>
-          <?php
-            foreach($approved_records as $approved_record) {
-              echo '<a href='. base_url() .'proposal/view/'. $approved_record->Proposal_ID .'><div class="table-tae proposal-list-item" id="view_btn/'.$approved_record->Proposal_ID.'">'. $approved_record->ActivityName . ' - ' . $this->proposals_model->getApprovedDate($approved_record->Proposal_ID, $account_id, $org_type) . '</div></a>';
-            } 
-          ?>
-        <?php else: ?>
-          <h1 id="nav-left-container-no-records" class="proposal-list-empty">No Records</h1>
-        <?php endif ?>
+          <div class="profile-main-text" style="text-decoration: underline;">
+          <?php if (is_array($approved_records) || is_object($approved_records)): ?>
+            <?php
+              foreach($approved_records as $approved_record) {
+                echo '<a href='. base_url() .'proposal/view/'. $approved_record->Proposal_ID .'><div class="table-tae proposal-list-item" style="width: 100% !important;" id="view_btn/'.$approved_record->Proposal_ID.'">'. $approved_record->ActivityName . ' - ' . $this->proposals_model->getApprovedDate($approved_record->Proposal_ID, $account_id, $org_type) . '</div></a>';
+              } 
+            ?>
+          <?php else: ?>
+            <h1 id="nav-left-container-no-records" class="proposal-list-empty">No Records</h1>
+          <?php endif ?>
+          </div>
         </div>
       </div>
     </div>

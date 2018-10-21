@@ -228,6 +228,17 @@ margin: 5%;
     border: .1px #707070 solid;
 }
 
+.main-form-text{
+    font-family: calibri;
+    padding: 20px;
+    color: #707070;
+    font-size: 18px;
+    padding-top: 1.6vh;
+    width: 100%;
+    height: 62vh;
+}
+
+
 .main-form-buttons{ 
     min-height: 64vh;
     max-height: 68vh;
@@ -401,7 +412,8 @@ margin: 5%;
     margin: 40px;
     max-width: 90vw;
     width: auto;
-    height: auto;
+    min-height: 900px;
+    max-height: 40vw;
     padding-bottom: 7vh;
     border: .5px #333 solid;
 }
@@ -443,5 +455,5 @@ td{
     color:black;
     font-size: 18px;
     text-align: left;
-    height: 40vh;
+    height: 20vw;
 }
