@@ -1,0 +1,447 @@
+/* custom fonts start */
+
+@font-face {
+  font-family: 'Javanese';
+  src: 'fonts/javatext.ttf'
+}
+
+@font-face {
+  font-family: 'OpenSans-Regular';
+  src: 'fonts/OpenSans-Regular.ttf'
+}
+
+@font-face {
+  font-family: 'OpenSans-Light';
+  src: 'fonts/OpenSans-Light.ttf'
+}
+
+@font-face {
+  font-family: 'OpenSans-Italic';
+  src: 'fonts/OpenSans-Italic.ttf'
+}
+
+@font-face {
+  font-family: 'OpenSans-LightItalic';
+  src: 'fonts/OpenSans-LightItalic.ttf'
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+a:link {
+text-decoration: none;
+}
+
+a:visited {
+  color: white;
+}
+
+img {
+min-width: 90px;
+height: 90px;
+border-radius: 50%;
+}
+
+/* custom fonts end */
+
+/* main header */
+ 
+/* *{
+  border:.03vh #333 solid;
+} */
+
+/* Dropdown Button */
+.dropbtn {
+border: none;
+cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+filter: grayscale(100%);
+transition: all .3s ease-in-out;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+position: relative;
+display: block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+display: none;
+position: absolute;
+background-color: #f1f1f1;
+top: 110px;
+right: -10px;
+min-width: 300px;
+box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+z-index: 1;
+text-align: 1000px;
+line-height: 30px;
+font-family: serif;
+font-size: 18px;
+border: gray;
+background-color: white;
+color: rgb(138, 138, 138);
+}
+
+.dropdown-details {
+margin: 5%;
+}
+
+.header-height{ 
+    /* min-height: 140px;  */
+    min-height: 12vh;
+    width: 100%;
+    border: .1px #707070 solid;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+
+.table-header{
+  min-height: 65px;
+  border: .1px #707070 solid;
+}
+
+
+/* second header */
+
+.second-header-height{
+  min-height: 40px;
+}
+
+/* lying highlights */
+
+.height-5{
+  min-height: 5px;
+}
+
+#b1{
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+/* display picture circle */
+
+.display-picture-holder{
+    margin-top:10px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.display-picture{
+    background:white;
+    min-width: 90px;
+    height: 90px;
+    border-radius: 50%;
+}
+
+/* javanese for header */
+
+.javanese-header{
+    font-family: javanese;
+    color: white;
+    font-size: 80px;
+    padding: 0 40px;
+    box-sizing: border-box;
+    text-shadow: 0px 3px 10px #00000075;
+    height: 5.2vw;
+}
+
+/* calibri 20 sub header */
+
+.calibri-sub-header{
+    font-family: calibri;
+    color: white;
+    font-size: 21.5px;
+    /* font-size: 2.2vh; */
+    padding: 0 50px;
+    box-sizing: border-box;
+    text-shadow: 0px 3px 10px #00000075;
+}
+
+/* arial 20 second header */
+
+.second-header-text{
+    font-family: arial;
+    color: white;
+    font-size: 16px;
+    /* font-size: 1.67vh; */
+    height: 100%;
+    /* text-decoration: underline; */
+    cursor: pointer;
+    text-align: center;
+}
+
+.second-header-text:hover{
+    font-family: arial;
+    color: #580B0B;
+    background-color: white;
+    font-size: 16px;
+    /* text-decoration: underline; */
+    cursor: pointer;
+    text-align: center;
+    transition: all .3s ease-in-out;
+}
+
+.main-header-text{
+    font-family: times new roman;
+    color: #FFFFFF;
+    max-height: 7vh;
+    font-size: 25px;
+    text-align: center;
+    padding-top: 1.6vh;
+}
+
+.main-text{
+    font-family: calibri;
+    padding: 20px;
+    color: #707070;
+    font-size: 18px;
+    padding-top: 1.6vh;
+    width: 100%;
+    height: 57vh;
+}
+
+.main{
+    min-height: 64vh;
+    max-height: 68vh;
+    margin-right: 4vw !important;
+    /* margin-bottom: 10vh !important; */
+    border: .1px #707070 solid;
+}
+
+.main-form{
+    min-height: 64vh;
+    max-height: 68vh;
+    margin-right: 4vw !important;
+    margin-left: 4vw !important;
+    /* margin-bottom: 10vh !important; */
+    border: .1px #707070 solid;
+}
+
+.main-form-buttons{ 
+    min-height: 64vh;
+    max-height: 68vh;
+    margin-right: 4vw !important;
+    margin-left: 4vw !important;
+    /* margin-bottom: 10vh !important; */
+    border: .1px #707070 solid;
+    position: sticky;
+    top: 70px;
+}
+
+.main-divider{
+    margin-bottom: 5vw;
+}
+
+
+.button{
+    cursor: pointer;
+    font-family: calibri;
+    font-weight:bold;
+    color: #A8A8A8;
+    font-size: 22px;
+    text-align: center;
+    margin-bottom: 4vh;
+    padding-top: 18px;
+    background-color: white;
+}
+
+.button-no-record{
+    font-family: calibri;
+    font-weight:bold;
+    color: #A8A8A8;
+    font-size: 22px;
+    text-align: center;
+    margin-bottom: 4vh;
+    padding-top: 18px;
+    background-color: white;
+}
+
+.button:hover{    
+    font-family: calibri;
+    font-weight:bold;
+    background-color:#670000;
+    color: rgb(255, 255, 255);
+    font-size: 22px;
+    text-align: center;
+    margin-bottom: 4vh;
+    padding-top: 18px;
+    box-sizing: border-box;
+    transition: all .3s ease-in-out;
+}
+
+.button-ap{
+    width:5vw;
+}
+
+.proposal-list-item{
+    cursor: pointer;
+    font-family: calibri;
+    font-weight:bold;
+    color: black;
+    font-size: 22px;
+    text-align: center;
+    padding: 18px;
+}
+
+.proposal-list-item:hover{    
+    font-family: calibri;
+    font-weight:bold;
+    background-color:#A8A8A8;
+    color: rgb(255, 255, 255);
+    font-size: 22px;
+    text-align: center;
+    padding: 18px;
+    box-sizing: border-box;
+    transition: all .3s ease-in-out;
+}
+
+.proposal-list-empty{
+    font-family: calibri;
+    font-weight:bold;
+    color: black;
+    font-size: 22px;
+    text-align: center;
+    padding: 20px;
+}
+
+.proposal-list-item:hover{    
+  font-family: calibri;
+  font-weight:bold;
+  background-color:#A8A8A8;
+  color: rgb(255, 255, 255);
+  font-size: 22px;
+  text-align: center;
+  padding: 18px;
+  box-sizing: border-box;
+  transition: all .3s ease-in-out;
+}
+
+.proposal-list-empty{
+  font-family: calibri;
+  font-weight:bold;
+  color: black;
+  font-size: 22px;
+  text-align: center;
+  padding: 20px;
+}
+
+/* linear gradient red */
+
+.linear-gradient{
+  background-image: linear-gradient(to bottom,#890303 , #670000);
+  
+}
+
+.second-header-color{
+  background-color: #580B0B;
+  border: .1px #707070 solid;
+}
+
+.header-table-gap{
+  height: 8vh;
+}
+
+.header-table-gap{
+    height: 8vh;
+}
+
+
+/* activity proposal */
+
+.ap-text{
+    margin: 50px;
+}
+
+.ap-activitytype{
+    margin: 50px;
+}
+
+.ap-longtext{
+    margin: 50px;
+}
+
+.form-control-sm{
+    background-color: transparent;
+    color: black;
+    outline: none;
+    outline-style: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: solid black 1px;
+    width: 25vw;
+}
+
+.medium-text-box{
+    width: 15vw !important;;
+}
+
+
+.small-text-box{
+    width: 5vw !important;
+    margin-left: 1vw;
+    margin-right: 1vw;
+}
+
+/* profiles */
+
+.profile-main{
+    margin-top: 50px !important;
+    margin: 40px;
+    max-width: 90vw;
+    width: auto;
+    height: auto;
+    padding-bottom: 7vh;
+    border: .5px #333 solid;
+}
+
+th{
+    font-family: calibri;
+    font-size: 20px;
+    color: #6F6F6F;
+    font-weight: normal;
+}
+
+td{
+    font-family: calibri;
+    font-size: 18px;
+    color: #6F6F6F;
+    font-weight: normal;
+}
+
+.profile-main-header{
+    font-family: calibri;
+    font-weight:bold;
+    color:black;
+    font-size: 40px;
+    text-align: center;
+}
+
+.profile-main-header2{
+    margin-top: 1%;
+    font-family: calibri;
+    font-weight:bold;
+    color:black;
+    font-size: 27px;
+    text-decoration: underline;
+}
+
+.profile-main-text{
+    padding-left: 2%;
+    font-family: calibri;
+    color:black;
+    font-size: 18px;
+    text-align: left;
+    height: 40vh;
+}

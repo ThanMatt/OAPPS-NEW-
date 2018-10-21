@@ -1,9 +1,11 @@
 var account_id;
 var flag;
 
+//:: Variable `flag` is an indicator that tells
+//:: which type of proposal 
+
 $(function () {
 
-  
 
   $(".img").on("click", function () {
     $(".dropdown-content").toggle("dropdowntest");
@@ -12,7 +14,6 @@ $(function () {
   // $(document).on("click", function (){
   //   $(".dropdown-content").hide("dropdowntest");
   // });
-
 
   function queryTable(response) {
     account_id = response['account_id'];
@@ -32,21 +33,20 @@ $(function () {
     });
   }
 
+  //:: Check login credentials
   $("#ajax_form").submit(function (event) {
     event.preventDefault();
     var $form = $(this);
 
     $.ajax({
       type: 'POST',
-      url: BASE_URL + "/accounts/login",
+      url: BASE_URL + "accounts/login",
       data: $form.serialize(),
       dataType: 'json',
       success: function (response) {
         if (response.success) {
-          // alert("pasok");
-          window.location.replace("index");
+          window.location.replace(BASE_URL + "home");
         } else {
-          // alert("Hindi ka pasok");
           $("#button").effect("shake");
         }
       },
@@ -56,8 +56,10 @@ $(function () {
     });
   });
 
+  //:: View Pending/Approved/Revisions/Drafts Proposals
   $("#table-container").ready(function (event) {
 
+    //:: View Approved
     $('#btn_approved').click(function () {
 
       flag = 'Approved';
@@ -70,6 +72,7 @@ $(function () {
       });
     });
 
+    //:: View Pending
     $('#btn_pending').click(function () {
       flag = 'Pending';
       $.ajax({
@@ -81,6 +84,7 @@ $(function () {
       });
     });
 
+    //:: View Drafts
     $('#btn_drafts').click(function () {
       flag = 'Drafts';
       $.ajax({
@@ -92,6 +96,7 @@ $(function () {
       });
     });
 
+    //:: View Revisions
     $('#btn_revisions').click(function () {
       flag = 'Revisions';
       $.ajax({
@@ -104,25 +109,29 @@ $(function () {
     });
   });
 
-  $('#view_btn').click(function () {
-    var proposal_title = $('#view_btn').val();
+  //:: View clicked proposals
+  $('body').on('click', '.proposal-view', function () {
+    var view_buttonID = $(this).attr('id');
+    var proposal_id = view_buttonID.split("/")[1];
+
     flag = 'View';
 
-   $.ajax({
+    $.ajax({
       type: 'POST',
       url: BASE_URL + 'home/index',
       data: {
-        proposal_title: proposal_title,
+        proposal_id: proposal_id,
         flag: flag
       },
       success: function (response) {
         $('#table-container').html(response);
       },
       error: function (response) {
-        // $('#table-container').html(response);
+        alert("There was an error! " + response);
+        location.reload();
       },
     });
-    
+
   })
 
 });

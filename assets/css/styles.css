@@ -123,6 +123,8 @@
   width: auto;
 }
 
+
+
 body {
   background-color: rgb(233, 235, 238);
   font-family: Arial, Helvetica, sans-serif;
@@ -132,6 +134,12 @@ body {
 
 a {
   text-decoration: none;
+  color: white;
+}
+
+
+#forgot {
+  color: blue;
 }
 
 h1 {
@@ -213,7 +221,7 @@ td {
   background-color: white;
 } */
 
-.button {
+/* .button {
   border: none;
   color: white;
   background-color: rgb(192, 48, 52);
@@ -221,7 +229,7 @@ td {
   width: auto;
   border-radius: 3px;
   cursor: pointer;
-}
+} */
 
 #btn_pending{
   margin-top: 0px !important; /*removes margin of top button*/
@@ -745,3 +753,157 @@ transform: translateY(50px);
   border-radius: 10px;
   border-width: 1px;
 }
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+
+/* Progress Bar */
+
+.progress-container {
+  width: 500px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+
+
+.progress-meter {
+  padding: 0;
+}
+
+ol.progress-meter {
+  padding-bottom: 9.5px;
+  list-style-type: none;
+}
+ol.progress-meter li {
+  display: inline-block;
+  text-align: center;
+  text-indent: -19px;
+  height: 36px;
+  width: 13.99%;
+  font-size: 12px;
+  border-bottom-width: 4px;
+  border-bottom-style: solid;
+}
+ol.progress-meter li:before {
+  position: relative;
+  float: left;
+  text-indent: 0;
+  left: -webkit-calc(100% - 9.5px);
+  /* left: -moz-calc(50% - 9.5px); */
+  /* left: -ms-calc(50% - 9.5px); */
+  /* left: -o-calc(50% - 9.5px); */
+  /* left: calc(50% - 9.5px); */
+}
+
+ol.progress-meter li.done {
+  font-size: 8px;
+}
+
+ol.progress-meter li.done:before {
+  content: "\2713";
+  height: 19px;
+  width: 19px;
+  line-height: 21.85px;
+  bottom: -28.175px;
+  border: none;
+  border-radius: 19px;
+}
+
+ol.progress-meter li.pending {
+  font-size: 8px;
+}
+
+ol.progress-meter li.pending:before {
+  content: "\2B24";
+  height: 19px;
+  width: 19px;
+  line-height: 21.85px;
+  bottom: -28.175px;
+  border: none;
+  border-radius: 19px;
+}
+
+ol.progress-meter li.revise {
+  font-size: 8px;
+}
+
+ol.progress-meter li.revise:before {
+  content: "\2B24";
+  height: 19px;
+  width: 19px;
+  line-height: 21.85px;
+  bottom: -28.175px;
+  border: none;
+  border-radius: 19px;
+}
+
+ol.progress-meter li.todo {
+  font-size: 8px;
+}
+
+ol.progress-meter li.todo:before {
+  content: "\2B24";
+  font-size: 17.1px;
+  bottom: -28.95px;
+  line-height: 18.05px;
+}
+
+ol.progress-meter li.done {
+  color: black;
+  border-bottom-color: rgb(0, 255, 55);
+}
+ol.progress-meter li.done:before {
+  color: white;
+  background-color: rgb(0, 255, 55);
+}
+
+ol.progress-meter li.pending {
+  color: black;
+  border-bottom-color: rgb(0, 255, 55);
+}
+
+ol.progress-meter li.pending:before {
+  color: rgb(255, 221, 25);
+  background-color: rgb(255, 221, 25);
+}
+
+ol.progress-meter li.revise {
+  color: black;
+  border-bottom-color: rgb(0, 255, 55);
+}
+ol.progress-meter li.revise:before {
+  color: rgb(255, 55, 0);
+  background-color: rgb(255, 55, 0);
+}
+
+
+ol.progress-meter li.todo {
+  color: silver;
+  border-bottom-color: silver;
+}
+ol.progress-meter li.todo:before {
+  color: silver;
+}
+

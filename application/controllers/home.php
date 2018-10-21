@@ -5,6 +5,9 @@ class Home extends CI_Controller {
   //:: sub-sites
   public function index() {
     $response = array();
+    $account_id = $this->session->userdata('account_id');
+    $type = $this->session->userdata('org_type');
+    $position = $this->session->userdata('position');
 
     if (!isset($_POST['flag'])) {
       $flag = 'Pending';
@@ -15,9 +18,9 @@ class Home extends CI_Controller {
     $record = false;
 
     if ($flag == 'View') {
-      $proposal_title = $this->input->post('proposal_title');
+      $proposal_id = $this->input->post('proposal_id');
 
-      $record = $this->proposals_model->viewRecord($proposal_title);
+      $record = $this->proposals_model->viewAPRecord($proposal_id);
 
       $data['records'] = null;
 
@@ -29,13 +32,13 @@ class Home extends CI_Controller {
     } else {
 
       if ($flag == 'Pending') {
-        $record = $this->proposals_model->getPendingRecords();
+        $record = $this->proposals_model->getPendingRecords($account_id, $type);
       } else if ($flag == 'Approved') {
-        $record = $this->proposals_model->getApprovedRecords();
+        $record = $this->proposals_model->getApprovedRecords($account_id, $type);
       } else if ($flag == 'Revisions') {
-        $record = $this->proposals_model->getRevisionRecords();
+        $record = $this->proposals_model->getRevisionRecords($account_id, $type, $position);
       } else if ($flag == 'Drafts') {
-        $record = $this->proposals_model->getDraftRecords();
+        $record = $this->proposals_model->getDraftRecords($account_id);
       }
 
       $data['records'] = null;
@@ -44,15 +47,38 @@ class Home extends CI_Controller {
       if ($record) {
 
         $data['records'] = $record;
-        $response = $this->load->view('layouts/main', $data);
+        $response = $this->load->view('main', $data);
 
       } else {
-        $this->load->view('layouts/main', $data);
+        $this->load->view('main', $data);
       }
 
     }
 
   }
+
+  public function profile() {
+    $account_id = $this->session->userdata('account_id');
+    $type = $this->session->userdata('org_type');
+
+    $approved_records = $this->proposals_model->getApprovedRecords($account_id, $type);
+    $pending_records = $this->proposals_model->getPendingRecords($account_id, $type);
+
+
+    $data['approved_records'] = 'No Records';
+    $data['pending_records'] = 'No Records';
+    
+
+    if ($approved_records || $pending_records) {
+
+      $data['approved_records'] = $approved_records;
+      $data['pending_records'] = $pending_records;
+    }
+    $this->load->view('users/profile', $data);
+
+
+  }
+
 
 }
 

@@ -9,12 +9,7 @@ class Accounts_Model extends CI_Model {
     $db_password = $result->row(1)->Pass;
     // $account_id = $result->row(0);
 
-    if (password_verify($password, $db_password)) {
-      return true;
-    } else {
-      return false;
-    }
-    return false;
+    return password_verify($password, $db_password);
   }
 
   public function getMyRecords($account_id) {
@@ -28,9 +23,6 @@ class Accounts_Model extends CI_Model {
     $batch = $result->row(6)->Batch;
     $org_type = $result->row(7)->Type;
     $position = $result->row(8)->Position;
-
-    // $account_prefix = substr($account_id, 0
-    //   , strrpos($account_id, "_"));
 
     $account_prefix = strstr($account_id, "_", true);
 
@@ -56,6 +48,79 @@ class Accounts_Model extends CI_Model {
   //:: which are for orgs
   public function checkOffice($account_id) {
 
+  }
+
+  public function orgApprovedProposals($account_id) {
+
+    $this->db->from('activity_proposal');
+    $this->db->where('Account_ID', $account_id);
+    $this->db->where('ProposalStatus', 'APPROVED');
+    $result = $this->db->get();
+
+    if (!$result) {
+      return false;
+    }
+
+    return $result->num_rows();
+  }
+  
+
+  public function logMyActivity($account_id, $activity_type, $proposal_id) {
+    
+    $date_time = date("Y-m-d h:i:sa");
+
+    if ($activity_type == 0) {
+      $activity = "User $account_id logged out";
+
+    } else if ($activity_type == 1) {
+      $activity = "User $account_id logged in";
+
+    } else if ($activity_type == 2) {
+      $activity = "User $account_id viewed the proposal $proposal_id";
+
+    } else if ($activity_type == 3) {
+      $activity = "User $account_id approved the proposal $proposal_id";
+
+    } else if ($activity_type == 4) {
+      $activity = "User $account_id asked for revision for the proposal $proposal_id";
+
+    } else if ($activity_type == 5) {
+      $activity = "User $account_id rejected the proposal $proposal_id";
+
+    } else if ($activity_type == 6) {
+      $activity = "User $account_id revised the proposal $proposal_id";
+
+    } else if ($activity_type == 7) {
+      $activity = "User $account_id saved a proposal draft";
+
+    } else if ($activity_type == 8) {
+      $activity = "User $account_id created the proposal $proposal_id";
+
+    } else if ($activity_type == 9) {
+      $activity = "User $account_id submitted the proposal $proposal_id";
+
+    } else if ($activity_type == 10) {
+      $activity = "User $account_id edited a proposal";
+
+    } else if ($activity_type == 11) {
+      $activity = "User $account_id deleted a draft proposal";
+
+    }
+    
+    $data = array(
+
+      'Activity' => $activity,
+      'ActivityType' => $activity_type,
+      'DateTime' => $date_time
+    );
+
+    $result = $this->db->insert('log', $data);
+
+    if (!$result) {
+      return false;
+    } else {
+      return true;
+    }
   }
 }
 
