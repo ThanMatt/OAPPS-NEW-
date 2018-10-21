@@ -143,7 +143,7 @@
 
   <div class="col-md-8 main-form" > 
     <div class="table-header linear-gradient main-header-text">Activity Proposal</div>
-    <div id="table-container" class="row no-gutters main-text" style="overflow-y: scroll;"> <!-- row start -->
+    <div id="table-container" class="row no-gutters main-form-text" style="overflow-y: scroll;"> <!-- row start -->
 
   <!-- This serves as a buffer. Do not delete this. It's hidden anyway -->
       <input type="text" class="" name="proposal_id" id="proposal_id" value="<?=$ap_record->Proposal_ID?>" hidden readonly>
@@ -195,22 +195,25 @@
             <label id="label_radiobutton">NON-ACADEMIC</label>
             <div class="rd-non-academic-container">
 
-            <input type="radio" name="non_academic_rd" class="form-check-input non_acad_rd" id="rd_comm" value="Community Involvement" <?=$this->proposals_model->checkCommunity($proposal_id)?> disabled>Community Involvement
-            <br>
-            
-            <input type="radio" name="non_academic_rd" class="form-check-input non_acad_rd" id="rd_cocur" value="Co-Curricular" <?=$this->proposals_model->checkCoCurricular($proposal_id)?> disabled>Co-Curricular
-            <br>
-            <div id="co-curricular">
-              Specified: <input type="text" name="specified_co_curric" class="form-check-input" id="specified_co" value="<?=$ap_record->Specified?>" disabled>
-            </div>
-            
-            <input type="radio" name="non_academic_rd" class="form-check-input non_acad_rd" id="rd_excur" value="Extra-Curricular"  <?=$this->proposals_model->checkExtraCurricular($proposal_id)?> disabled>Extra-Curricular
+            <div style="position: relative; left: 30px">            
 
-            <div id="extra-curricular">
-              Specified: <input type="text" name="specified_ex_curric" class="form-check-input" id="specified_ex" value="<?=$ap_record->Specified?>" disabled>
-            </div>
+              <input type="radio" name="non_academic_rd" class="form-check-input non_acad_rd" id="rd_comm" value="Community Involvement" <?=$this->proposals_model->checkCommunity($proposal_id)?> disabled>Community Involvement
+              <br>
+              
+              <input type="radio" name="non_academic_rd" class="form-check-input non_acad_rd" id="rd_cocur" value="Co-Curricular" <?=$this->proposals_model->checkCoCurricular($proposal_id)?> disabled>Co-Curricular
+              <br>
+              <div id="co-curricular">
+                Specified: <input type="text" name="specified_co_curric" class="form-control" id="specified_co" value="<?=$ap_record->Specified?>" disabled>
+              </div>
+              
+              <input type="radio" name="non_academic_rd" class="form-check-input non_acad_rd" id="rd_excur" value="Extra-Curricular"  <?=$this->proposals_model->checkExtraCurricular($proposal_id)?> disabled>Extra-Curricular
+              <br>
+              <div id="extra-curricular">
+                Specified: <input type="text" name="specified_ex_curric" class="form-control" id="specified_ex" value="<?=$ap_record->Specified?>" disabled>
+              </div>
 
-            <hr>
+              <hr>
+            </div>
 
             <input type="radio" name="radio_activity_type_1" class="rd_proposal_type1" id="rd_ind" value="Independent" <?=$this->proposals_model->checkIndependent($proposal_id)?> required>
             <label id="label_radiobutton">INDEPENDENT</label>
@@ -219,9 +222,8 @@
             <label id="label_radiobutton">COLLABORATIVE</label>
             
             <div id="collab-container">
-              Partner/s: <input type="text" class="field_ap" name="specified_co_curric" id="partner_collab" value="<?=$ap_record->Partners?>" disabled>
+              Partner/s: <input type="text" class="field_ap form-control" name="specified_co_curric" id="partner_collab" value="<?=$ap_record->Partners?>" disabled>
             </div>
-
           </div>
       </div>
 
