@@ -31,6 +31,7 @@ class Accounts extends CI_Controller {
         'position' => $account['Position'],
         'prefix' => $account['Prefix'],
         'logged_in' => true,
+        'user_type' => 0,
       );
 
       $this->session->set_userdata($account_data);

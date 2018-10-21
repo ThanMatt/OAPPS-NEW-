@@ -12,6 +12,8 @@ class Accounts_Model extends CI_Model {
     return password_verify($password, $db_password);
   }
 
+
+
   public function getMyRecords($account_id) {
     $this->db->where('Account_ID', $account_id);
     $result = $this->db->get('accounts');
@@ -42,6 +44,8 @@ class Accounts_Model extends CI_Model {
     );
 
   }
+
+  
 
   //:: Used for body.php and other else
   //:: to determine which are for offices and
