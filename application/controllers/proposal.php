@@ -19,9 +19,9 @@ class Proposal extends CI_Controller {
         $data['office'] = $this->proposals_model->getTheirOfficeInfo($records->OfficeProposal);
 
         if ($org_type != 'N/A') {
-          $this->load->view('layouts/view_comments', $data);
+          $this->load->view('proposals/view_comments', $data);
         } else {
-          $this->load->view('layouts/view_revision_office', $data);
+          $this->load->view('proposals/view_revision_office', $data);
         }
 
       } else {
@@ -31,7 +31,7 @@ class Proposal extends CI_Controller {
             $this->proposals_model->getDateTime($account_id, $proposal_id);
           }
         }
-        $this->load->view('layouts/view_ap', $data);
+        $this->load->view('proposals/view_ap', $data);
       }
 
     } else {
@@ -40,13 +40,12 @@ class Proposal extends CI_Controller {
 
   }
 
-
   public function ask($proposal_id) {
     $account_id = $this->session->userdata('account_id');
     $this->proposals_model->getDateTime($account_id, $proposal_id);
 
     $data['record'] = $this->proposals_model->viewAPRecord($proposal_id);
-    $this->load->view('layouts/submit_comments', $data);
+    $this->load->view('proposals/submit_comments', $data);
   }
 
   public function approve($proposal_id) {
@@ -107,7 +106,7 @@ class Proposal extends CI_Controller {
     $data['far_record'] = $this->proposals_model->viewFARRecord($proposal_id);
     $data['oe_record'] = $this->proposals_model->viewOERecord($proposal_id);
 
-    $this->load->view('layouts/activity_proposal', $data);
+    $this->load->view('proposals/activity_proposal', $data);
 
   }
 

@@ -47,10 +47,10 @@ class Home extends CI_Controller {
       if ($record) {
 
         $data['records'] = $record;
-        $response = $this->load->view('layouts/main', $data);
+        $response = $this->load->view('main', $data);
 
       } else {
-        $this->load->view('layouts/main', $data);
+        $this->load->view('main', $data);
       }
 
     }
@@ -74,7 +74,7 @@ class Home extends CI_Controller {
       $data['approved_records'] = $approved_records;
       $data['pending_records'] = $pending_records;
     }
-    $this->load->view('layouts/profile', $data);
+    $this->load->view('users/profile', $data);
 
 
   }
