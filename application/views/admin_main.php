@@ -24,6 +24,68 @@
   ?>
   <!-- MAIN START -->
 
+  <div class="container-fluid">
+    <div class="row no-gutters h-100">
+     
+      <div class="col-md-2 main" style="margin-left: 3vw !important; border: 0px;">
+        <div class="table-header button" id="btn_revisions">
+          Add New Org
+        </div>
+        <div class="table-header button" id="btn_approved">
+          Edit User Info.
+        </div>
+        <div class="activity-log">
+          <div class="table-header linear-gradient main-header-text">Activity Logs</div>
+          <div class="activity-log-text">
+            dump activity logs here
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+      <div class="col-md-6 main" style="margin-left: 3vw;"> 
+        <div class="table-header linear-gradient main-header-text">Add New Org/Edit User Info</div>
+        <div id="table-container" class="main-text" style="overflow-y: scroll;">
+          <div class="ap-text form-group col-xs-5">
+
+            Username: (BITS and other orgs. Can also be used to change office names if they change name)
+            <input type="text" class="form-control form-control-sm" name="" id="" value="">
+
+            <br>
+
+            Organization Name: (If orgs or offices decide to change their name.) 
+            <input type="text" class="form-control form-control-sm" name="" id="" value="">
+
+            <br>
+
+            Password: 
+            <input type="text" class="form-control form-control-sm" name="" id="" value="">
+
+            <br>
+
+            Representative Name: (When the representative changes.)
+            <input type="text" class="form-control form-control-sm" name="" id="" value="">
+
+            <br>    
+            
+            Logo: <br>
+            Upload Box Here
+
+            <br>
+            <br>
+
+            Signature: <br>
+            Upload Box Here
+
+            <br>      
+            <br>
+            <input type="submit" class="table-header button" name="submit" id="submit_btn" value="Submit">
+
+          </div>
+        </div>
+      </div>
+    </div>  
+  </div>
+
   <!-- MAIN END -->
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->

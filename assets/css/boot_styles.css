@@ -457,3 +457,20 @@ td{
     text-align: left;
     height: 20vw;
 }
+
+.activity-log{
+
+    min-height: 42.5vh;
+    min-width: 70vh;
+    border: .1px #707070 solid;
+    background-color: white;
+}
+
+.activity-log-text{
+    font-family: calibri;
+    padding: 20px;
+    color: #707070;
+    font-size: 18px;
+    padding-top: 1.6vh;
+    width: 100%;
+}
