@@ -22,10 +22,12 @@
 
 </head>
 <body>
+  
   <?php 
   $this->load->view('layouts/header');
   ?>
   <!-- MAIN START -->
+
   <div class="container-fluid">
     <div class="row no-gutters">
       <div class="col-md-2 main" style="margin-left: 3vw !important; border: 0px;">
@@ -64,7 +66,7 @@
             <?php
               foreach($records as $record) {
                 $counter++;
-                echo '<div class="proposal-view button second-header-height" style="margin: 0 !important; border-left: 0px; border-right: 0px; border-bottom: 0px; border-top: 0px;" id="view_btn/'.$record->Proposal_ID.'">'. $record->ActivityName . '</div>';
+                echo '<div class="proposal-view button table-header" style="margin: 0 !important; border-left: 0px; border-right: 0px; border-bottom: 0px; border-top: 0px;" id="view_btn/'.$record->Proposal_ID.'">'. $record->ActivityName . '</div>';
               } 
             ?>
           <?php else: ?>
