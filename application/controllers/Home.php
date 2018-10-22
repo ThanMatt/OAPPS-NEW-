@@ -1,23 +1,8 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Home extends CI_Controller {
 
-  /**
-   * Index Page for this controller.
-   *
-   * Maps to the following URL
-   *     http://example.com/index.php/welcome
-   *  - or -
-   *     http://example.com/index.php/welcome/index
-   *  - or -
-   * Since this controller is set as the default controller in
-   * config/routes.php, it's displayed at http://example.com/
-   *
-   * So any other public methods not prefixed with an underscore will
-   * map to /index.php/welcome/<method_name>
-   * @see https://codeigniter.com/user_guide/general/urls.html
-   */
+  //:: sub-sites
   public function index() {
     $response = array();
     $account_id = $this->session->userdata('account_id');
@@ -42,7 +27,7 @@ class Welcome extends CI_Controller {
       if ($record) {
         $data['records'] = $record;
         $response = $this->load->view('layouts/display', $data);
-      }
+      } 
 
     } else {
 
@@ -69,6 +54,32 @@ class Welcome extends CI_Controller {
       }
 
     }
+
   }
 
+  public function profile() {
+    $account_id = $this->session->userdata('account_id');
+    $type = $this->session->userdata('org_type');
+
+    $approved_records = $this->proposals_model->getApprovedRecords($account_id, $type);
+    $pending_records = $this->proposals_model->getPendingRecords($account_id, $type);
+
+
+    $data['approved_records'] = 'No Records';
+    $data['pending_records'] = 'No Records';
+    
+
+    if ($approved_records || $pending_records) {
+
+      $data['approved_records'] = $approved_records;
+      $data['pending_records'] = $pending_records;
+    }
+    $this->load->view('users/profile', $data);
+
+
+  }
+
+
 }
+
+?>
