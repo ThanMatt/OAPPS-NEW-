@@ -1,6 +1,7 @@
 <?php 
-$account_id = $this->session->userdata('account_id'); 
-if ($account_id == 'TS_BITS') {
+$account_id = $this->session->userdata('account_id');
+$admin_id = $this->session->userdata('admin_id'); 
+if ($admin_id == 'TS_BITS') {
   $prefix = 'BITS';
 } else {
   $prefix = $this->session->userdata('prefix'); 

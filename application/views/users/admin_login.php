@@ -24,7 +24,7 @@
       <div class="sub-container-login">
 
         <div class="image-container-login">
-          <img src="<?= base_url();?>assets/img/BITS logo.png">
+          <img src="<?= base_url();?>assets/img/logo/BITS_logo.jpg">
           <h3>San Beda Online Activity Proposal Processing System</h3>
         </div>
 
