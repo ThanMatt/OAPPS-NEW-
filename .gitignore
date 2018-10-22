@@ -1,0 +1,6 @@
+application/config/*
+application/logs/*
+!application/logs/index.html
+!application/logs/.htaccess
+/vendor/
+readme.txt
