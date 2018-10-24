@@ -53,6 +53,7 @@ $(function () {
   });
 
   $("#rd_yes").click(function () {
+    $('.check_group').show();
     $('.check_bp').prop('disabled', false);
   });
 
@@ -131,9 +132,6 @@ $(function () {
           oe: oe,
         },
         success: function (response) {
-          alert(radio);
-          alert(far);
-          alert(oe);
           $('body').html(response);
         },
         error: function (response) {
