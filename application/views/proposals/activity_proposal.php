@@ -106,10 +106,10 @@
 
                 <hr>
 
-                <input type="radio" name="radio_activity_type_2" class="form-check-input" id="rd_acad" value="Academic" <?=$this->proposals_model->checkAcademic($proposal_id)?> required>
+                <input type="radio" name="radio_activity_type_2" class="form-check-input rd_proposal_type2" id="rd_acad" value="Academic" <?=$this->proposals_model->checkAcademic($proposal_id)?> required>
                 <label id="label_radiobutton">ACADEMIC</label>
                 <br>
-                <input type="radio" name="radio_activity_type_2" class="form-check-input" id="rd_nacad" value="Non-Academic" <?=$this->proposals_model->checkNonAcademic($proposal_id)?> required>
+                <input type="radio" name="radio_activity_type_2" class="form-check-input rd_proposal_type2" id="rd_nacad" value="Non-Academic" <?=$this->proposals_model->checkNonAcademic($proposal_id)?> required>
                 <label id="label_radiobutton">NON-ACADEMIC</label>
                 <div class="rd-non-academic-container">
 
