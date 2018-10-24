@@ -1,5 +1,6 @@
 .htaccess
 application/config/*
+application/config
 application/logs/*
 !application/logs/index.html
 /vendor/
