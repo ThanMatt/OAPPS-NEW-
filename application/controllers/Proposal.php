@@ -13,7 +13,7 @@ class Proposal extends CI_Controller {
 
       $data['record'] = $this->proposals_model->viewAPRecord($proposal_id);
 
-      $this->accounts_model->logMyActivity($account_id, 2, $proposal_id);
+      
       if ($proposal_status == 'UNDER REVISION') {
         $data['comments'] = $this->proposals_model->viewComments($proposal_id);
         $data['office'] = $this->proposals_model->getTheirOfficeInfo($records->OfficeProposal);
@@ -32,11 +32,15 @@ class Proposal extends CI_Controller {
           }
         }
         $this->load->view('proposals/view_ap', $data);
+        $this->accounts_model->logMyActivity($account_id, 2, $proposal_id);
+        
       }
 
     } else {
       redirect(base_url() . "home");
     }
+
+    
 
   }
 
