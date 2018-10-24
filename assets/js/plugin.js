@@ -53,6 +53,7 @@ $(function () {
   });
 
   $("#rd_yes").click(function () {
+    $('.check_group').show();
     $('.check_bp').prop('disabled', false);
   });
 
@@ -131,9 +132,6 @@ $(function () {
           oe: oe,
         },
         success: function (response) {
-          alert(radio);
-          alert(far);
-          alert(oe);
           $('body').html(response);
         },
         error: function (response) {
@@ -212,7 +210,6 @@ $(function () {
       dataType: 'json',
       success: function (response) {
         if (response.success) {
-          alert(specified_ex);
           alert("Save successful!");
         } else {
           alert("There was an error");
@@ -252,7 +249,7 @@ $(function () {
       dataType: 'json',
       success: function (response) {
         if (response.success) {
-          alert("Save FAR successful!");
+          alert("Save successful!");
         }
       },
       error: function (response) {
@@ -289,7 +286,7 @@ $(function () {
       dataType: 'json',
       success: function (response) {
         if (response.success) {
-          alert("Save OE successful!");
+          alert("Save successful!");
         }
       },
       error: function (response) {
