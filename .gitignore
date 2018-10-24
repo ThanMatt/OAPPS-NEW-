@@ -5,6 +5,6 @@ application/config/*
 application/config
 application/logs/*
 !application/logs/index.html
-/vendor/
+vendor/
 !application/.htaccess
 !system/.htaccess
