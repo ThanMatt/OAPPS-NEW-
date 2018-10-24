@@ -39,8 +39,6 @@ class Proposal extends CI_Controller {
       redirect(base_url() . "home");
     }
 
-    
-
   }
 
   public function ask($proposal_id) {

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 24, 2018 at 03:52 AM
+-- Generation Time: Oct 21, 2018 at 06:26 AM
 -- Server version: 5.6.37
 -- PHP Version: 5.6.31
 
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `accounts` (
 
 INSERT INTO `accounts` (`Account_ID`, `Pass`, `Organization`, `EmailAddress`, `ContactNumber`, `FullName`, `Batch`, `Type`, `Position`) VALUES
 ('BACES', '$2y$12$ciJ9IYWYxjHdDxeYHd.jZ.8Irk3iN.cEV/XM1IT2HwV2VMvq74ba6', 'Bedan Advocacy and Consciousness Enhancement Socie', 'baces@sanbeda.edu.ph', '639186758493', 'Don Pedro Fernando', '2018-2019', 'NonPro', 'Representative'),
-('BBS', '$2y$12$g41bvQ2v9OUcQApDNX/2OOKvKnORWD.7HnADufZfDA58NDICCOM0i', 'Bedan Business Spectrum', 'bbsf@sanbeda.edu.ph', '639186054395', 'Joseph Howard Stalin', '2018-2019', 'NonPro', 'Representative'),
+('BBSF', '$2y$12$g41bvQ2v9OUcQApDNX/2OOKvKnORWD.7HnADufZfDA58NDICCOM0i', 'Bedan Business Spectrum Federation', 'bbsf@sanbeda.edu.ph', '639186054395', 'Joseph Howard Stalin', '2018-2019', 'NonPro', 'Representative'),
 ('BDT', '$2y$12$1X0PJ7r/CG7eoEMEWEvLIOcov1VxKqWn8kxnsujdCqlv8F03/0Cpm', 'Bedan Dance Theatre', 'bdt@sanbeda.edu.ph', '+639055356312', 'Juan Gabriel Pedro', '2018-2019', 'NonPro', 'Representative'),
 ('BITS', '$2y$12$.Nvxa0xvWjqajbKiXbLYCut2wj7QIpI2IG87SXFfb6Fa90wtvOPH6', 'Bedan Information Technology Society', 'bits@sanbeda.edu.ph', '+639055577298', 'Aethan Matthew Ilagan', '2018-2019', 'Pro', 'Representative'),
 ('BMC', '$2y$12$Q5s1X64bPp5uNUUS9oqqhuD1sjXmQvzW7wcvoCcFCTUySBps2DFP.', 'Bedan Mathematics Circle', 'bmc@sanbeda.edu.ph', '+639123456789', 'Don Diego Fernando', '2018-2019', 'NonPro', 'Representative'),
@@ -53,7 +53,7 @@ INSERT INTO `accounts` (`Account_ID`, `Pass`, `Organization`, `EmailAddress`, `C
 ('BV', '$2y$12$Xp9pfmPBteAq3fUBzsB1c./UaTfKDOOy9fJb2o6KtgqLu4Ls4ChAm', 'Bedan Volunteers', 'bv@sanbeda.edu.ph', '639176859403', 'Angelika Gabrielle Corpuz', '2018-2019', 'NonPro', 'Representative'),
 ('HRDMS', '$2y$12$4N6X0.K1JAVGyWtVXHZUse.NvvhZD7IWIc7L1Zi.FH6TpB8pw3tjy', 'Human Resource Development Management Society', 'hrdms@sanbeda.edu.ph', '6399867594123', 'Gabrielle Jonah Santos', '2018-2019', 'Pro', 'Representative'),
 ('JBLC', '$2y$12$VEun91RZA4zIkhyeroLpm.1M0dZj3Tonr3CIcpBWqHx/inbUJ.QM.', 'Junior Bedan Law Circle', 'jblc@sanbeda.edu.ph', '6391567891013', 'Nicole Jaime Gatchalian', '2018-2019', 'Pro', 'Representative'),
-('JFINMA', '$2y$12$m8jmHfsLScITt54BG5pWouIyJ1t8F1vSX1b1OP0C1FVzMbSHtkgPa', 'Junior Financial Management Association', 'jfm@sanbeda.edu.ph', '639762345610', 'Henry Harold Sy', '2018-2019', 'Pro', 'Representative'),
+('JFM', '$2y$12$m8jmHfsLScITt54BG5pWouIyJ1t8F1vSX1b1OP0C1FVzMbSHtkgPa', 'Junior Financial Management', 'jfm@sanbeda.edu.ph', '639762345610', 'Henry Harold Sy', '2018-2019', 'Pro', 'Representative'),
 ('JPIA', '$2y$12$25ZnYEy.4cCI18nh9YAXk.5fXaYms6vgZuTPvOD8u/68RqjbibV7a', 'Junior Philippine Institute of Accountants', 'jpia@sanbeda.edu.ph', '+639077298534', 'Mei Cruz', '2018-2019', 'Pro', 'Representative'),
 ('KASB', '$2y$12$e9jXjcxa3vTvRSXHC7VaLu4TIicCndQzD13uQhekXQHu1.TOfGbie', 'Kapisanang Agham ng San Beda', 'kasb@sanbeda.edu.ph', '639768654789', 'Don Juan Fernando', '2018-2019', 'Pro', 'Representative'),
 ('ManSoc', '$2y$12$Fw3UKBs3LdUCUG5012hBZesk6zKGzSCL414p0qqyUe2YQq/3ox.Ia', 'Management and Entrepreneurship Society', 'mansoc@sanbeda.edu.ph', '639156799102', 'Reagan James Ronald', '2018-2019', 'Pro', 'Representative'),
@@ -109,6 +109,7 @@ CREATE TABLE IF NOT EXISTS `activity_proposal` (
 
 INSERT INTO `activity_proposal` (`Proposal_ID`, `Account_ID`, `ActivityName`, `DateActivity`, `StartTime`, `EndTime`, `Nature`, `Rationale`, `ActivityChair`, `ChairContactNumber`, `Participants`, `ActivityVenue`, `ProposalType1`, `Partners`, `ProposalType2`, `NonAcademicType`, `Specified`, `ProposalStatus`, `OfficeProposal`) VALUES
 ('1413', 'BITS', 'adsa', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'DRAFT', 'N/A'),
+('3678', 'UNESCO', 'shet', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'DRAFT', 'N/A'),
 ('4585', 'BITS', 'fsdfsd', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'DRAFT', 'N/A'),
 ('4769', 'BITS', 'dadas', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'DRAFT', 'N/A'),
 ('4969', 'BITS', 'Trend Micro Conference', '2018-12-09', '13:00', '17:00', 'Trend Micro', 'foo', 'Emman Cayabyab', '+639055577298', 'San Beda University I.T. students', 'EDSA Shangri-la', 'Independent', '', 'Academic', '', '', 'PENDING', 'SC_P'),
@@ -118,9 +119,11 @@ INSERT INTO `activity_proposal` (`Proposal_ID`, `Account_ID`, `ActivityName`, `D
 ('7927', 'BITS', 'yeee', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'DRAFT', 'N/A'),
 ('8495', 'BITS', 'test', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'DRAFT', 'N/A'),
 ('9074', 'BITS', 'Sample', '8888-12-06', '02:02', '07:07', 'jkhuhjkh', 'jhjk', ',jnjh', 'mnj,nnbm', 'nmbmn', 'nbmbmn', 'Independent', '', 'Academic', '', '', 'APPROVED', 'OD'),
+('9188', 'BITS', 'dlakdl;sk', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'DRAFT', 'N/A'),
 ('9474', 'SBRL', 'Test', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'DRAFT', 'N/A'),
 ('9545', 'SBRL', 'Test', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'DRAFT', 'N/A'),
-('9589', 'SBRL', 'dasdad', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'DRAFT', 'N/A');
+('9589', 'SBRL', 'dasdad', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'DRAFT', 'N/A'),
+('9901', 'PSSBU', 'Aethan gwapo', '2018-10-12', '12:32', '01:33', 'Hardy', 'yee', 'Aethan', '0918619911', 'Aethan himself', 'Kids worl', 'Independent', '', 'Academic', '', '', 'PENDING', 'OPSA_APP');
 
 -- --------------------------------------------------------
 
@@ -193,7 +196,7 @@ CREATE TABLE IF NOT EXISTS `log` (
   `Activity` varchar(100) NOT NULL,
   `ActivityType` int(11) NOT NULL,
   `DateTime` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=386 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=347 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `log`
@@ -537,46 +540,7 @@ INSERT INTO `log` (`LogID`, `Activity`, `ActivityType`, `DateTime`) VALUES
 (343, 'User TS_BITS logged in', 1, '2018-10-21 02:24:53'),
 (344, 'User  logged out', 0, '2018-10-21 02:25:34'),
 (345, 'User BITS logged in', 1, '2018-10-21 02:26:12'),
-(346, 'User BITS logged out', 0, '2018-10-21 02:26:15'),
-(347, 'User tS_BITS logged in', 1, '2018-10-21 02:26:44'),
-(348, 'User  logged out', 0, '2018-10-21 02:26:53'),
-(349, 'User TS_BITS logged in', 1, '2018-10-21 02:27:26'),
-(350, 'User  logged out', 0, '2018-10-21 02:27:29'),
-(351, 'User BITS logged in', 1, '2018-10-21 02:29:42'),
-(352, 'User BITS logged out', 0, '2018-10-21 02:29:44'),
-(353, 'User TS_BITS logged in', 1, '2018-10-21 02:29:52'),
-(354, 'User TS_BITS logged out', 0, '2018-10-21 02:30:10'),
-(355, 'User TS_BITS logged in', 1, '2018-10-21 02:42:59'),
-(356, 'User TS_BITS logged out', 0, '2018-10-21 02:43:03'),
-(357, 'User BITS logged in', 1, '2018-10-21 05:00:00'),
-(358, 'User TS_BITS logged in', 1, '2018-10-21 05:00:12'),
-(359, 'User TS_BITS logged out', 0, '2018-10-21 05:00:22'),
-(360, 'User TS_BITS logged in', 1, '2018-10-21 05:00:27'),
-(361, 'User BITS logged out', 0, '2018-10-21 05:00:34'),
-(362, 'User OD logged in', 1, '2018-10-22 11:45:36'),
-(363, 'User OD viewed the proposal 9074', 2, '2018-10-22 11:45:47'),
-(364, 'User OD viewed the proposal 9074', 2, '2018-10-22 11:46:25'),
-(365, 'User unesco logged in', 1, '2018-10-22 03:50:52'),
-(366, 'User unesco logged out', 0, '2018-10-22 03:50:57'),
-(367, 'User BITS logged in', 1, '2018-10-22 09:32:38'),
-(368, 'User BITS logged out', 0, '2018-10-22 09:32:45'),
-(369, 'User TS_BITS logged in', 1, '2018-10-22 09:32:57'),
-(370, 'User TS_BITS logged out', 0, '2018-10-22 09:33:00'),
-(371, 'User BITS logged in', 1, '2018-10-22 10:37:05'),
-(372, 'User BITS logged out', 0, '2018-10-22 10:37:15'),
-(373, 'User TS_BITS logged in', 1, '2018-10-22 10:37:24'),
-(374, 'User TS_BITS logged out', 0, '2018-10-22 10:38:00'),
-(375, 'User TS_BITS logged in', 1, '2018-10-22 10:52:33'),
-(376, 'User TS_BITS logged in', 1, '2018-10-23 09:53:04'),
-(377, 'User TS_BITS logged out', 0, '2018-10-23 10:12:46'),
-(378, 'User TS_BITS logged in', 1, '2018-10-23 10:14:34'),
-(379, 'User TS_BITS logged out', 0, '2018-10-23 10:15:21'),
-(380, 'User BITS logged in', 1, '2018-10-23 03:41:16'),
-(381, 'User  logged out', 0, '2018-10-23 09:06:58'),
-(382, 'User BITS logged in', 1, '2018-10-23 09:33:38'),
-(383, 'User BITS logged out', 0, '2018-10-23 09:34:21'),
-(384, 'User SBRL logged in', 1, '2018-10-23 09:34:25'),
-(385, 'User SBRL viewed the proposal 9074', 2, '2018-10-23 09:35:12');
+(346, 'User BITS logged out', 0, '2018-10-21 02:26:15');
 
 -- --------------------------------------------------------
 
@@ -628,6 +592,7 @@ CREATE TABLE IF NOT EXISTS `proposal_tracker` (
 
 INSERT INTO `proposal_tracker` (`Proposal_ID`, `Account_ID`, `SC_TR`, `SC_SG`, `SC_P`, `OPSA_APP`, `OPSA_APN`, `OPSA_P`, `OD`) VALUES
 ('4969', 'BITS', '', 'APPROVED', 'PENDING', '', '', '', ''),
+('9901', 'PSSBU', '', 'APPROVED', 'APPROVED', 'PENDING', '', '', ''),
 ('9074', 'BITS', '', 'APPROVED', 'APPROVED', 'APPROVED', '', 'APPROVED', 'APPROVED');
 
 -- --------------------------------------------------------
@@ -655,15 +620,18 @@ CREATE TABLE IF NOT EXISTS `timestamp` (
 
 INSERT INTO `timestamp` (`Proposal_ID`, `DateProposed`, `SC_TR_TimeIn`, `SC_SG_TimeIn`, `SC_P_TimeIn`, `OPSA_APP_TimeIn`, `OPSA_APN_TimeIn`, `OPSA_P_TimeIn`, `OD_TimeIn`, `TimeApproved`) VALUES
 ('4969', '2018-10-12', '', '2018-10-19 12:16:47pm', '00-00-0000 00:00:00am', '', '', '', '', ''),
+('9901', '2018-10-19', '', '2018-10-12 03:53:58pm', '2018-10-12 03:57:11pm', '2018-10-19 12:46:16pm', '', '', '', ''),
 ('9074', '2018-10-12', '', '2018-10-19 12:08:21pm', '2018-10-12 01:04:07pm', '2018-10-18 07:54:12pm', '', '2018-10-18 07:54:34pm', '2018-10-18 07:55:04pm', '2018-10-18 07:55:03pm'),
 ('9545', '2018-10-12', '', '', '', '', '', '', '', ''),
 ('9474', '2018-10-12', '', '', '', '', '', '', '', ''),
+('9188', '2018-10-12', '', '', '', '', '', '', '', ''),
 ('8495', '2018-10-17', '', '', '', '', '', '', '', ''),
 ('4585', '2018-10-17', '', '', '', '', '', '', '', ''),
 ('7927', '2018-10-17', '', '', '', '', '', '', '', ''),
 ('4769', '2018-10-17', '', '', '', '', '', '', '', ''),
 ('1413', '2018-10-17', '', '', '', '', '', '', '', ''),
 ('9589', '2018-10-17', '', '', '', '', '', '', '', ''),
+('3678', '2018-10-17', '', '', '', '', '', '', '', ''),
 ('6127', '2018-10-18', '', '', '', '', '', '', '', ''),
 ('5137', '2018-10-18', '', '', '', '', '', '', '', ''),
 ('6112', '2018-10-21', '', '', '', '', '', '', '', '');
@@ -742,7 +710,7 @@ ALTER TABLE `timestamp`
 -- AUTO_INCREMENT for table `log`
 --
 ALTER TABLE `log`
-  MODIFY `LogID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=386;
+  MODIFY `LogID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=347;
 --
 -- Constraints for dumped tables
 --
