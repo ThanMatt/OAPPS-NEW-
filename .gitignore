@@ -5,4 +5,4 @@ application/logs/*
 !application/logs/index.html
 /vendor/
 !application/.htaccess
-!application/system/.htaccess
+!system/.htaccess
