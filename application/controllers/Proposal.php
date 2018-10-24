@@ -32,8 +32,7 @@ class Proposal extends CI_Controller {
           }
         }
         $this->load->view('proposals/view_ap', $data);
-        $this->accounts_model->logMyActivity($account_id, 2, $proposal_id);
-        
+				$this->accounts_model->logMyActivity($account_id, 2, $proposal_id);
       }
 
     } else {
