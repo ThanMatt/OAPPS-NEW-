@@ -70,7 +70,7 @@ INSERT INTO `accounts` (`Account_ID`, `Pass`, `Organization`, `EmailAddress`, `C
 ('SC', '$2y$12$Q5i25i7zpxND.k10BfIK9uUhgjq5EmBCWgiTzoK/a.Hu0usrBPUrC', 'Student Council', 'representative_sc@sanbeda.edu.ph', '+639155356312', 'Emman Cayabyab', '2018-2019', 'Pro', 'Representative'),
 ('SC_P', '$2y$12$8Rr4mvXZeDTYkhsfXuY7deb6y9Bnpv8HxNDsMnauFcpIqvM4W.zWS', 'Student Council', 'sc_pres@sanbeda.edu.ph', '+639876567890', 'Arapat Mustapha', '2018-2019', 'N/A', 'President'),
 ('SC_SG', '$2y$12$.YHBgu4wH20b9Mq5NXulVu/aKs0WjDpBXBZWpt41smt8.fIvzALZG', 'Student Council', 'sc_sec@sanbeda.edu.ph', '+639876567432', 'Chavi Levine Reyes', '2018-2019', 'N/A', 'Secretary-General'),
-('SC_TR', '$2y$12$3VenrxD2BQy0147s0WSA8O8e.cgC22bmPEc0Eb.e7H/zt287QMTge', 'Student Council', 'sc_tr@sanbeda.edu.ph', '+639156391022', 'Aaron Darnell Salonga', '2018-2019', 'N/A', 'Treasurer'),
+('SC_TR', '$2y$12$3VenrxD2BQy0147s0WSA8O8e.cgC22bmPEc0Eb.e7H/zt287QMTge', 'Student Council', 'sc_tr@sanbeda.edu.ph', '+639156391022', 'Bojo Pabalate', '2018-2019', 'N/A', 'Treasurer'),
 ('SOMS', '$2y$12$KdMYQjXr.S8nHQhUZil2AuGyG.SlYdDey69oC6.t7lOoZcPlJhFLm', 'Society of Operations Management Students', 'soms@sanbeda.edu.ph', '639156789012', 'Derrick Henry Rose', '2018-2019', 'Pro', 'Representative'),
 ('SSHA', '$2y$12$eCQoRm4JAEH6/bO2L0yzS.WMOZVmyFwch6lHW6abLgACqz9GvWYwq', 'Social Sciences and Humanities Association', 'ssha@sanbeda.edu.ph', '639102349123', 'Timothy James Buan', '2018-2019', 'NonPro', 'Representative'),
 ('UNESCO', '$2y$12$y1GdY9JleSg42CVeImV7IuSP6xldvUDafK6D21B0E6QKeg15wuF3W', 'UNESCO Youth Club of San Beda', 'josephgutierrez@sanbeda.edu.ph', '09178506008', 'Joseph Gutierrez', '2018-2019', 'NonPro', 'Representative');
