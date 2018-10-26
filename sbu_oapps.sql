@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 24, 2018 at 03:52 AM
+-- Generation Time: Oct 25, 2018 at 12:06 AM
 -- Server version: 5.6.37
 -- PHP Version: 5.6.31
 
@@ -108,19 +108,30 @@ CREATE TABLE IF NOT EXISTS `activity_proposal` (
 --
 
 INSERT INTO `activity_proposal` (`Proposal_ID`, `Account_ID`, `ActivityName`, `DateActivity`, `StartTime`, `EndTime`, `Nature`, `Rationale`, `ActivityChair`, `ChairContactNumber`, `Participants`, `ActivityVenue`, `ProposalType1`, `Partners`, `ProposalType2`, `NonAcademicType`, `Specified`, `ProposalStatus`, `OfficeProposal`) VALUES
+('1407', 'BITS', 'tae', '1201-12-09', '00:00', '12:00', 'bar', 'baz', 'foo', 'bar', 'bqx', 'foo', 'Independent', '', '', '', '', 'PENDING', 'SC_SG'),
 ('1413', 'BITS', 'adsa', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'DRAFT', 'N/A'),
+('1510', 'BITS', 'Hey I''m sorry', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'DRAFT', 'N/A'),
+('2202', 'BITS', 'fsadas', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'DRAFT', 'N/A'),
+('2259', 'BITS', 'test', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'DRAFT', 'N/A'),
+('3947', 'BITS', 'ugh', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'DRAFT', 'N/A'),
 ('4585', 'BITS', 'fsdfsd', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'DRAFT', 'N/A'),
 ('4769', 'BITS', 'dadas', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'DRAFT', 'N/A'),
 ('4969', 'BITS', 'Trend Micro Conference', '2018-12-09', '13:00', '17:00', 'Trend Micro', 'foo', 'Emman Cayabyab', '+639055577298', 'San Beda University I.T. students', 'EDSA Shangri-la', 'Independent', '', 'Academic', '', '', 'PENDING', 'SC_P'),
 ('5137', 'BITS', 'test', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'DRAFT', 'N/A'),
+('6090', 'BITS', 'test', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'DRAFT', 'N/A'),
 ('6112', 'BITS', 'test', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'DRAFT', 'N/A'),
 ('6127', 'BITS', 'Foo', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'DRAFT', 'N/A'),
 ('7927', 'BITS', 'yeee', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'DRAFT', 'N/A'),
+('8071', 'BITS', 'mistakes and tragedy', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'DRAFT', 'N/A'),
 ('8495', 'BITS', 'test', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'DRAFT', 'N/A'),
+('8891', 'BITS', 'teadd', '0199-12-12', '00:00', '12:00', '', 'dasd', 'foo', 'adsjdk', 'dasda', 'bar', 'Collaborative', 'test', 'Academic', '', '', 'DRAFT', 'N/A'),
 ('9074', 'BITS', 'Sample', '8888-12-06', '02:02', '07:07', 'jkhuhjkh', 'jhjk', ',jnjh', 'mnj,nnbm', 'nmbmn', 'nbmbmn', 'Independent', '', 'Academic', '', '', 'APPROVED', 'OD'),
 ('9474', 'SBRL', 'Test', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'DRAFT', 'N/A'),
+('9496', 'BITS', 'dasdas', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'DRAFT', 'N/A'),
 ('9545', 'SBRL', 'Test', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'DRAFT', 'N/A'),
-('9589', 'SBRL', 'dasdad', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'DRAFT', 'N/A');
+('9589', 'SBRL', 'dasdad', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'DRAFT', 'N/A'),
+('9761', 'BITS', 'tae', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'DRAFT', 'N/A'),
+('9876', 'BITS', 'h', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'DRAFT', 'N/A');
 
 -- --------------------------------------------------------
 
@@ -140,6 +151,26 @@ CREATE TABLE IF NOT EXISTS `admin` (
 
 INSERT INTO `admin` (`Admin_ID`, `FullName`, `Pass`) VALUES
 ('TS_BITS', 'Aethan Matthew Ilagan', '$2y$12$.Nvxa0xvWjqajbKiXbLYCut2wj7QIpI2IG87SXFfb6Fa90wtvOPH6');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ci_sessions`
+--
+
+CREATE TABLE IF NOT EXISTS `ci_sessions` (
+  `id` varchar(128) NOT NULL,
+  `ip_address` varchar(45) NOT NULL,
+  `timestamp` int(10) unsigned NOT NULL DEFAULT '0',
+  `data` blob NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `ci_sessions`
+--
+
+INSERT INTO `ci_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES
+('vijr15t1ojbb8p1u6f7cptr3qtl0vb18', '::1', 1540425792, 0x5f5f63695f6c6173745f726567656e65726174657c693a313534303432353739323b);
 
 -- --------------------------------------------------------
 
@@ -180,7 +211,13 @@ CREATE TABLE IF NOT EXISTS `fixed_assets_requirements` (
 
 INSERT INTO `fixed_assets_requirements` (`Far_ID`, `Proposal_ID`, `Account_ID`, `Item`, `Quantity`, `Unit_Price`, `Total_Amount`, `Source`, `ProposalStatus`, `OfficeProposal`) VALUES
 ('1007', '9589', 'SBRL', '', 0, 0, 0, '', '', ''),
-('2026', '1413', 'BITS', '', 0, 0, 0, '', '', '');
+('2026', '1413', 'BITS', '', 0, 0, 0, '', '', ''),
+('2663', '6090', 'BITS', '', 0, 0, 0, '', '', ''),
+('4498', '1510', 'BITS', '', 0, 0, 0, '', '', ''),
+('4566', '2202', 'BITS', '', 0, 0, 0, '', '', ''),
+('5520', '3947', 'BITS', '', 0, 0, 0, '', '', ''),
+('7022', '9761', 'BITS', 'tae', 4, 7, 28, 'Cultural Fund', 'DRAFT', 'N/A'),
+('9904', '2259', 'BITS', '', 0, 0, 0, '', '', '');
 
 -- --------------------------------------------------------
 
@@ -193,7 +230,7 @@ CREATE TABLE IF NOT EXISTS `log` (
   `Activity` varchar(100) NOT NULL,
   `ActivityType` int(11) NOT NULL,
   `DateTime` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=386 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=413 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `log`
@@ -576,7 +613,34 @@ INSERT INTO `log` (`LogID`, `Activity`, `ActivityType`, `DateTime`) VALUES
 (382, 'User BITS logged in', 1, '2018-10-23 09:33:38'),
 (383, 'User BITS logged out', 0, '2018-10-23 09:34:21'),
 (384, 'User SBRL logged in', 1, '2018-10-23 09:34:25'),
-(385, 'User SBRL viewed the proposal 9074', 2, '2018-10-23 09:35:12');
+(385, 'User SBRL viewed the proposal 9074', 2, '2018-10-23 09:35:12'),
+(386, 'User BITS logged in', 1, '2018-10-24 07:33:02'),
+(387, 'User BITS created the proposal 9761', 8, '2018-10-24 07:33:24'),
+(388, 'User BITS saved a proposal draft', 7, '2018-10-24 07:33:31'),
+(389, 'User BITS saved a proposal draft', 7, '2018-10-24 07:33:36'),
+(390, 'User BITS saved a proposal draft', 7, '2018-10-24 07:33:49'),
+(391, 'User BITS logged out', 0, '2018-10-24 07:34:48'),
+(392, 'User BITS logged in', 1, '2018-10-24 07:35:04'),
+(393, 'User BITS created the proposal 6090', 8, '2018-10-24 07:41:07'),
+(394, 'User BITS created the proposal 2259', 8, '2018-10-24 07:42:34'),
+(395, 'User BITS created the proposal 8071', 8, '2018-10-24 07:42:46'),
+(396, 'User BITS created the proposal 1510', 8, '2018-10-24 07:44:12'),
+(397, 'User BITS created the proposal 9876', 8, '2018-10-24 07:47:25'),
+(398, 'User BITS created the proposal 3947', 8, '2018-10-24 07:47:34'),
+(399, 'User BITS created the proposal 1407', 8, '2018-10-24 07:48:28'),
+(400, 'User BITS saved a proposal draft', 7, '2018-10-24 07:48:54'),
+(401, 'User BITS submitted the proposal 0', 9, '2018-10-24 07:52:56'),
+(402, 'User BITS viewed the proposal 1407', 2, '2018-10-24 07:53:01'),
+(403, 'User BITS created the proposal 9496', 8, '2018-10-24 07:53:08'),
+(404, 'User BITS created the proposal 8891', 8, '2018-10-24 08:58:50'),
+(405, 'User BITS saved a proposal draft', 7, '2018-10-24 08:59:16'),
+(406, 'User BITS saved a proposal draft', 7, '2018-10-24 08:59:31'),
+(407, 'User BITS saved a proposal draft', 7, '2018-10-24 09:01:48'),
+(408, 'User BITS saved a proposal draft', 7, '2018-10-24 09:03:14'),
+(409, 'User BITS saved a proposal draft', 7, '2018-10-24 09:05:54'),
+(410, 'User BITS saved a proposal draft', 7, '2018-10-24 09:06:12'),
+(411, 'User BITS created the proposal 2202', 8, '2018-10-24 10:39:06'),
+(412, 'User BITS logged in', 1, '2018-10-25 07:43:21');
 
 -- --------------------------------------------------------
 
@@ -602,7 +666,11 @@ CREATE TABLE IF NOT EXISTS `operating_expenses` (
 --
 
 INSERT INTO `operating_expenses` (`OE_ID`, `Proposal_ID`, `Account_ID`, `Item`, `Quantity`, `Unit_Price`, `Total_Amount`, `Source`, `ProposalStatus`, `OfficeProposal`) VALUES
-('7459', '1413', 'BITS', '', 0, 0, 0, '', '', '');
+('1000', '2259', 'BITS', '', 0, 0, 0, '', '', ''),
+('2915', '8071', 'BITS', '', 0, 0, 0, '', '', ''),
+('3938', '9761', 'BITS', '1231', 0, 0, 0, 'Student Activity Fund', 'DRAFT', 'N/A'),
+('7459', '1413', 'BITS', '', 0, 0, 0, '', '', ''),
+('8995', '3947', 'BITS', '', 0, 0, 0, '', '', '');
 
 -- --------------------------------------------------------
 
@@ -628,7 +696,8 @@ CREATE TABLE IF NOT EXISTS `proposal_tracker` (
 
 INSERT INTO `proposal_tracker` (`Proposal_ID`, `Account_ID`, `SC_TR`, `SC_SG`, `SC_P`, `OPSA_APP`, `OPSA_APN`, `OPSA_P`, `OD`) VALUES
 ('4969', 'BITS', '', 'APPROVED', 'PENDING', '', '', '', ''),
-('9074', 'BITS', '', 'APPROVED', 'APPROVED', 'APPROVED', '', 'APPROVED', 'APPROVED');
+('9074', 'BITS', '', 'APPROVED', 'APPROVED', 'APPROVED', '', 'APPROVED', 'APPROVED'),
+('1407', 'BITS', '', 'PENDING', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -666,7 +735,18 @@ INSERT INTO `timestamp` (`Proposal_ID`, `DateProposed`, `SC_TR_TimeIn`, `SC_SG_T
 ('9589', '2018-10-17', '', '', '', '', '', '', '', ''),
 ('6127', '2018-10-18', '', '', '', '', '', '', '', ''),
 ('5137', '2018-10-18', '', '', '', '', '', '', '', ''),
-('6112', '2018-10-21', '', '', '', '', '', '', '', '');
+('6112', '2018-10-21', '', '', '', '', '', '', '', ''),
+('9761', '2018-10-24', '', '', '', '', '', '', '', ''),
+('6090', '2018-10-24', '', '', '', '', '', '', '', ''),
+('2259', '2018-10-24', '', '', '', '', '', '', '', ''),
+('8071', '2018-10-24', '', '', '', '', '', '', '', ''),
+('1510', '2018-10-24', '', '', '', '', '', '', '', ''),
+('9876', '2018-10-24', '', '', '', '', '', '', '', ''),
+('3947', '2018-10-24', '', '', '', '', '', '', '', ''),
+('1407', '2018-10-24', '', '', '', '', '', '', '', ''),
+('9496', '2018-10-24', '', '', '', '', '', '', '', ''),
+('8891', '2018-10-24', '', '', '', '', '', '', '', ''),
+('2202', '2018-10-24', '', '', '', '', '', '', '', '');
 
 --
 -- Indexes for dumped tables
@@ -691,6 +771,12 @@ ALTER TABLE `activity_proposal`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`Admin_ID`);
+
+--
+-- Indexes for table `ci_sessions`
+--
+ALTER TABLE `ci_sessions`
+  ADD KEY `ci_sessions_timestamp` (`timestamp`);
 
 --
 -- Indexes for table `comments`
@@ -742,7 +828,7 @@ ALTER TABLE `timestamp`
 -- AUTO_INCREMENT for table `log`
 --
 ALTER TABLE `log`
-  MODIFY `LogID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=386;
+  MODIFY `LogID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=413;
 --
 -- Constraints for dumped tables
 --
