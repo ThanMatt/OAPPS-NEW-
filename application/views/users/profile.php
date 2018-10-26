@@ -63,9 +63,17 @@
           <div class="profile-main-text" style="text-decoration: underline;">
           <?php if (is_array($pending_records) || is_object($pending_records)): ?>
           <?php
-            foreach($pending_records as $pending_record) {
-              echo '<a href='. base_url() .'proposal/view/'. $pending_record->Proposal_ID .'><div class="table-tae proposal-list-item"  style="width: 100% !important;" id="view_btn/'.$pending_record->Proposal_ID.'">'. $pending_record->ActivityName . ' - ' . $this->proposals_model->getSubmitDate($pending_record->Proposal_ID) .'</div></a>';
-            } 
+           foreach($pending_records as $pending_record) {
+            if ($org_type == 'N/A') {
+              if ($this->proposals_model->checkDuplicationTitle($pending_record->ActivityName)) {
+                echo '<a href='. base_url() .'proposal/view/'. $pending_record->Proposal_ID .'><div class="table-tae proposal-list-item" style="width: 100% !important;" id="view_btn/'.$pending_record->Proposal_ID.'">'. $pending_record->ActivityName . ' (' . $pending_record->Account_ID . ') ' .' - ' . $this->proposals_model->getSubmitDate($pending_record->Proposal_ID, $account_id, $org_type) . '</div></a>';
+              } else {
+                echo '<a href='. base_url() .'proposal/view/'. $pending_record->Proposal_ID .'><div class="table-tae proposal-list-item" style="width: 100% !important;" id="view_btn/'.$pending_record->Proposal_ID.'">'. $pending_record->ActivityName . ' - ' . $this->proposals_model->getSubmitDate($pending_record->Proposal_ID, $account_id, $org_type) . '</div></a>';
+              }
+            } else {
+              echo '<a href='. base_url() .'proposal/view/'. $pending_record->Proposal_ID .'><div class="table-tae proposal-list-item" style="width: 100% !important;" id="view_btn/'.$pending_record->Proposal_ID.'">'. $pending_record->ActivityName . ' - ' . $this->proposals_model->getSubmitDate($pending_record->Proposal_ID, $account_id, $org_type) . '</div></a>';
+            }
+          } 
           ?>
         <?php else: ?>
           <h1 id="nav-left-container-no-records" class="proposal-list-empty">No Records</h1>
@@ -92,7 +100,15 @@
           <?php if (is_array($approved_records) || is_object($approved_records)): ?>
             <?php
               foreach($approved_records as $approved_record) {
-                echo '<a href='. base_url() .'proposal/view/'. $approved_record->Proposal_ID .'><div class="table-tae proposal-list-item" style="width: 100% !important;" id="view_btn/'.$approved_record->Proposal_ID.'">'. $approved_record->ActivityName . ' - ' . $this->proposals_model->getApprovedDate($approved_record->Proposal_ID, $account_id, $org_type) . '</div></a>';
+                if ($org_type == 'N/A') {
+                  if ($this->proposals_model->checkDuplicationTitle($approved_record->ActivityName)) {
+                    echo '<a href='. base_url() .'proposal/view/'. $approved_record->Proposal_ID .'><div class="table-tae proposal-list-item" style="width: 100% !important;" id="view_btn/'.$approved_record->Proposal_ID.'">'. $approved_record->ActivityName . ' (' . $approved_record->Account_ID . ') ' .' - ' . $this->proposals_model->getApprovedDate($approved_record->Proposal_ID, $account_id, $org_type) . '</div></a>';
+                  } else {
+                    echo '<a href='. base_url() .'proposal/view/'. $approved_record->Proposal_ID .'><div class="table-tae proposal-list-item" style="width: 100% !important;" id="view_btn/'.$approved_record->Proposal_ID.'">'. $approved_record->ActivityName . ' - ' . $this->proposals_model->getApprovedDate($approved_record->Proposal_ID, $account_id, $org_type) . '</div></a>';
+                  }
+                } else {
+                  echo '<a href='. base_url() .'proposal/view/'. $approved_record->Proposal_ID .'><div class="table-tae proposal-list-item" style="width: 100% !important;" id="view_btn/'.$approved_record->Proposal_ID.'">'. $approved_record->ActivityName . ' - ' . $this->proposals_model->getApprovedDate($approved_record->Proposal_ID, $account_id, $org_type) . '</div></a>';
+                }
               } 
             ?>
           <?php else: ?>
