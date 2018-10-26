@@ -109,6 +109,23 @@ class Proposals_Model extends CI_Model {
 
   }
 
+  public function checkDuplicationTitle($activity_name) {
+    $this->db->from('activity_proposal');
+    $this->db->join('`TimeStamp`', 'activity_proposal.Proposal_ID = `TimeStamp`.Proposal_ID');
+    $this->db->join('accounts', 'accounts.Account_ID = activity_proposal.Account_ID');
+    $this->db->join('proposal_tracker', 'proposal_tracker.Proposal_ID = activity_proposal.Proposal_ID');
+    $this->db->where ('ActivityName', $activity_name);
+    $result = $this->db->get();
+
+    $row = $result->num_rows();
+
+    if ($row > 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   public function getApprovedDate($proposal_id, $account_id, $org_type) {
 
     if ($org_type != 'N/A') {
