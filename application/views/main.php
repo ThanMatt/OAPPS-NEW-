@@ -9,6 +9,7 @@
   $organization = $this->session->userdata('organization');
   $full_name = $this->session->userdata('full_name');
   $position = $this->session->userdata('position');
+  $org_type = $this->session->userdata('org_type');
   ?>
   <title><?= strtoupper($prefix) . " - Index" ?></title>
   <!-- Required meta tags -->
@@ -66,7 +67,15 @@
             <?php
               foreach($records as $record) {
                 $counter++;
-                echo '<div class="proposal-view button table-header" style="margin: 0 !important; border-left: 0px; border-right: 0px; border-bottom: 0px; border-top: 0px;" id="view_btn/'.$record->Proposal_ID.'">'. $record->ActivityName . '</div>';
+                if ($org_type == 'N/A') {
+                  if ($this->proposals_model->checkDuplicationTitle($record->ActivityName)) {
+                    echo '<div class="proposal-view button table-header" style="margin: 0 !important; border-left: 0px; border-right: 0px; border-bottom: 0px; border-top: 0px;" id="view_btn/'.$record->Proposal_ID.'">'. $record->ActivityName . ' (' . $record->Account_ID . ') ' . '</div>';  
+                  } else {
+                    echo '<div class="proposal-view button table-header" style="margin: 0 !important; border-left: 0px; border-right: 0px; border-bottom: 0px; border-top: 0px;" id="view_btn/'.$record->Proposal_ID.'">'. $record->ActivityName . '</div>';
+                  }
+                } else {
+                  echo '<div class="proposal-view button table-header" style="margin: 0 !important; border-left: 0px; border-right: 0px; border-bottom: 0px; border-top: 0px;" id="view_btn/'.$record->Proposal_ID.'">'. $record->ActivityName . '</div>';
+                }
               } 
             ?>
           <?php else: ?>
