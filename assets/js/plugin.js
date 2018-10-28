@@ -1,5 +1,14 @@
 //:: `plugin.js` used for proposal submission
+var overall_total = 0;
+var txtbox_counter = 0;
 $(function () {
+
+  var text_counter_oe = 2; // for adding text id number for every add field
+  var text_counter_far = $('#fields_far tr').length; // for adding text id number for every add field
+  var field_counter_oe = 0;
+  var field_counter_far = 0;
+
+
 
   if ($('#rd_ind').prop('checked')) {
     $("#partner_collab").prop('disabled', true);
@@ -227,11 +236,24 @@ $(function () {
   $("#btn_save_far").click(function (event) {
     event.preventDefault();
     var proposal_id = $("#proposal_id").val();
-    var far_item = $("#far_txt_item1").val();
-    var far_quantity = $("#far_txt_quantity1").val();
-    var far_unit = $("#far_txt_unit1").val();
-    var far_total_amount = $("#far_txt_total1").val();
-    var far_source = $("#far_source_of_fund1").val();
+    // var far_item = $("#far_txt_item1").val();
+    // var far_quantity = $("#far_txt_quantity1").val();
+    // var far_unit = $("#far_txt_unit1").val();
+    // var far_total_amount = $("#far_txt_total1").val();
+    // var far_source = $("#far_source_of_fund1").val();
+
+    var far_item = $("input[name='far_item[]']")
+      .map(function () { return $(this).val(); }).get();
+    var far_quantity = $("input[name='far_quantity[]']")
+      .map(function () { return $(this).val(); }).get();
+    var far_unit = $("input[name='far_unit_price[]']")
+      .map(function () { return $(this).val(); }).get();
+    var far_total_amount = $("input[name='far_total_amount[]']")
+      .map(function () { return $(this).val(); }).get();
+    var far_source = $("select[name='far_source[]']")
+      .map(function () { return $(this).val(); }).get();
+    var far_id = $("input[name='far_id[]']")
+      .map(function () { return $(this).val(); }).get();
 
     var flag = true;
 
@@ -245,6 +267,7 @@ $(function () {
         far_unit: far_unit,
         far_total_amount: far_total_amount,
         far_source: far_source,
+        far_id: far_id,
       },
       dataType: 'json',
       success: function (response) {
@@ -254,7 +277,7 @@ $(function () {
       },
       error: function (response) {
         if (!response.success) {
-          alert("There was an error");
+          alert("There was an error saving FAR. Please try again");
         }
       },
     });
@@ -372,6 +395,97 @@ $(function () {
         }
       },
     });
+  });
+
+  //:: Add button for FAR
+  $('#button-add-far').click(function () {
+    var far_id = Math.floor((Math.random() * 9999) + 1000);
+    var txtbox = [
+      text_counter_far,
+      // "<input type='text' class='form-control form-control-sm medium-text-box far-item' name='far_item" + text_counter_far + "' id='far_txt_item" + text_counter_far + "' required>",
+      // "<input type='number' class='form-control form-control-sm small-text-box far-quantity' name='far_quantity" + text_counter_far + "' id='far_txt_quantity" + text_counter_far + "' min=0 value=0 oninput='calculate(this.id)' required>",
+      // "<input type='number' class='form-control form-control-sm small-text-box far-unit' name='far_unit_price" + text_counter_far + "' id='far_txt_unit" + text_counter_far + "' step='any' min=0 value=0 oninput='calculate(this.id)' required>",
+      // "<input type='number' class='form-control form-control-sm small-text-box far-total' name='far_total_amount" + text_counter_far + "' id='far_txt_total" + text_counter_far + "' value=0.00 readonly required>",
+      // "<select name='far_source_of_fund" + text_counter_far + "' class='form-control medium-text-box far-source'><option>Student Activity Fund</option><option>Cultural Fund</option><option>Organizational Fund</option><option>Batch Fund</option><option>Publication Fund</option><option>Athletics Fund</option></select>",
+      // "<input type='text' class='form-control form-control-sm far-id' name='far_id' " + text_counter_far + " id='far_txt_id' " + text_counter_far + " value= " + far_id + " required readonly />",
+      "<input type='text' class='form-control form-control-sm medium-text-box far-item' name='far_item[]' id='far_txt_item" + text_counter_far + "' required>",
+      "<input type='number' class='form-control form-control-sm small-text-box far-quantity' name='far_quantity[]' id='far_txt_quantity" + text_counter_far + "' min=0 value=0 oninput='calculate(this.id)' required>",
+      "<input type='number' class='form-control form-control-sm small-text-box far-unit' name='far_unit_price[]' id='far_txt_unit" + text_counter_far + "' step='any' min=0 value=0 oninput='calculate(this.id)' required>",
+      "<input type='number' class='form-control form-control-sm small-text-box far-total' name='far_total_amount[]' id='far_txt_total" + text_counter_far + "' value=0.00 readonly required>",
+      "<select name='far_source[]' class='form-control medium-text-box far-source'><option>Student Activity Fund</option><option>Cultural Fund</option><option>Organizational Fund</option><option>Batch Fund</option><option>Publication Fund</option><option>Athletics Fund</option></select>",
+      "<input type='text' class='form-control form-control-sm far-id' name='far_id[]' id='far_txt_id' " + text_counter_far + " value= " + far_id + " hidden required readonly />"
+
+
+    ];
+
+    var cell = new Array(7);
+    var table = document.getElementById("fields_far");
+    var row = table.insertRow(text_counter_far);
+    // field_counter_far++;
+
+    for (counter = 0; counter < cell.length; counter++) {
+      cell[counter] = row.insertCell(counter);
+    }
+
+    for (counter = 0; counter < txtbox.length; counter++) {
+      cell[counter].innerHTML = txtbox[counter];
+    }
+    text_counter_far++;
+  });
+
+  //:: Delete button for FAR
+  $('#button-delete-far').click(function () {
+    if (text_counter_far == 2) {
+      return 0;
+    } else {
+      var table = document.getElementById("fields_far");
+
+      table.deleteRow(text_counter_far - 1);
+
+      // field_counter_far--;
+      text_counter_far--;
+    }
+  });
+
+  //:: Add button for OE
+  $('#button-add-oe').click(function () {
+    var oe_id = Math.floor((Math.random() * 9999) + 1000);
+    var txtbox = [
+      text_counter_oe,
+      "<input type='text' class='form-control form-control-sm medium-text-box' name='oe_item" + text_counter_oe + "' id='far_txt_item" + text_counter_oe + "' required>",
+      "<input type='number' class='form-control form-control-sm small-text-box' name='oe_quantity" + text_counter_oe + "' id='far_txt_quantity" + text_counter_oe + "' min=0 value=0 oninput='calculate(this.id)' required>",
+      "<input type='number' class='form-control form-control-sm small-text-box' name='oe_unit_price" + text_counter_oe + "' id='far_txt_unit" + text_counter_oe + "' step='any' min=0 value=0 oninput='calculate(this.id)' required>",
+      "<input type='number' class='form-control form-control-sm small-text-box' name='oe_total_amount" + text_counter_oe + "' id='far_txt_total" + text_counter_oe + "' value=0.00 readonly required>",
+      "<select name='oe_source_of_fund" + text_counter_oe + "' class='form-control medium-text-box'><option>Student Activity Fund</option><option>Cultural Fund</option><option>Organizational Fund</option><option>Batch Fund</option><option>Publication Fund</option><option>Athletics Fund</option></select>",
+      "<input type='text' class='form-control form-control-sm oe-id' name='oe_id' " + text_counter_oe + " id='oe_txt_id' " + text_counter_oe + " value= " + oe_id + " hidden required readonly />"
+    ];
+
+    var cell = new Array(7);
+    var table = document.getElementById("fields_oe");
+    var row = table.insertRow(2 + field_counter_oe);
+    field_counter_oe++;
+
+    for (counter = 0; counter < cell.length; counter++) {
+      cell[counter] = row.insertCell(counter);
+    }
+
+    for (counter = 0; counter < txtbox.length; counter++) {
+      cell[counter].innerHTML = txtbox[counter];
+    }
+    text_counter_oe++;
+  });
+
+  $('#button-delete-oe').click(function () {
+    if (text_counter_oe == 2) {
+      return 0;
+    } else {
+      var table = document.getElementById("fields_oe");
+
+      table.deleteRow(field_counter_oe + 1);
+
+      field_counter_oe--;
+      text_counter_oe--;
+    }
   });
 });
 

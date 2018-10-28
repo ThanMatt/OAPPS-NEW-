@@ -107,7 +107,7 @@ class Proposal extends CI_Controller {
 
     $account_id = $this->session->userdata('account_id');
     $data['ap_record'] = $this->proposals_model->viewAPRecord($proposal_id);
-    $data['far_record'] = $this->proposals_model->viewFARRecord($proposal_id);
+    $data['far_records'] = $this->proposals_model->viewFARRecord($proposal_id);
     $data['oe_record'] = $this->proposals_model->viewOERecord($proposal_id);
 
     $this->load->view('proposals/activity_proposal', $data);
@@ -163,16 +163,51 @@ class Proposal extends CI_Controller {
   public function save_far() {
     $response = array();
 
-    $account_id = $this->session->userdata('account_id');
-    $proposal_id = $this->input->post('proposal_id', true);
-    $far_item = $this->input->post('far_item', true);
-    $far_quantity = $this->input->post('far_quantity', true);
-    $far_unit = $this->input->post('far_unit', true);
-    $far_total_amount = $this->input->post('far_total_amount', true);
-    $far_source = $this->input->post('far_source', true);
+    $far_count = count($this->input->post('far_id'));
 
-    $this->proposals_model->saveFAR($account_id, $proposal_id, $far_item,
-      $far_quantity, $far_unit, $far_total_amount, $far_source);
+    if ($far_count > 1) {
+
+      for ($counter = 0; $counter < $far_count; $counter++) {
+
+        $far_id = $this->input->post('far_id', true)[$counter];
+        $account_id = $this->session->userdata('account_id');
+        $proposal_id = $this->input->post('proposal_id', true);
+        $far_item = $this->input->post('far_item', true)[$counter];
+        $far_quantity = $this->input->post('far_quantity', true)[$counter];
+        $far_unit = $this->input->post('far_unit', true)[$counter];
+        $far_total_amount = $this->input->post('far_total_amount', true)[$counter];
+        $far_source = $this->input->post('far_source', true)[$counter];
+
+        if ($this->proposals_model->checkFAR($far_id)) {
+
+          $this->proposals_model->saveFAR($account_id, $proposal_id, $far_item,
+            $far_quantity, $far_unit, $far_total_amount, $far_source, $far_id);
+
+        } else {
+          $this->proposals_model->newFAR($account_id, $proposal_id, $far_item,
+            $far_quantity, $far_unit, $far_total_amount, $far_source, $far_id);
+
+        }
+      }
+    } else {
+
+      $account_id = $this->session->userdata('account_id');
+      $proposal_id = $this->input->post('proposal_id', true);
+      $far_item = $this->input->post('far_item', true)[0];
+      $far_quantity = $this->input->post('far_quantity', true)[0];
+      $far_unit = $this->input->post('far_unit', true)[0];
+      $far_total_amount = $this->input->post('far_total_amount', true)[0];
+      $far_source = $this->input->post('far_source', true)[0];
+      $far_id = $this->input->post('far_id', true)[0];
+  
+  
+      $this->proposals_model->saveFAR($account_id, $proposal_id, $far_item,
+        $far_quantity, $far_unit, $far_total_amount, $far_source, $far_id);
+    }
+
+    
+
+
 
     $this->accounts_model->logMyActivity($account_id, 7, 0);
 

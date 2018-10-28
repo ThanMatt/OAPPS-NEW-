@@ -178,8 +178,8 @@
       </div>  
       <div class="col-md-8 main-form" id="#ap"> 
         <div class="table-header linear-gradient main-header-text">Fixed Asset Requirements</div>
-        <div id="table-container" class="main-text" style="overflow-y: scroll;">
-
+        <div id='table-container-far' class="main-text" style="overflow-y: scroll;">
+      
           
             <div class="container-far">
               <hr id="proposal_hr">
@@ -190,25 +190,28 @@
                 <th>Unit Price</th>
                 <th>Total Amount</th>
                 <th>Source of Fund</th>
-                <tr>
 
-                  <td>1</td>
+                <?php if (is_array($far_records) || is_object($far_records)): ?>
+                <?php $counter = 1; ?>
+                <?php foreach ($far_records as $far_record): ?>
+                <tr value="<?=$counter?>">
+                  <td><?=$counter?></td>
                   <td>
-                    <input type="text" class="form-control form-control-sm medium-text-box" name="far_item1" id="far_txt_item1" value="<?=$far_record->Item?>" />
+                    <input type="text" class="form-control form-control-sm medium-text-box far-item" name="far_item[]" id="far_txt_item<?=$counter?>" value="<?=$far_record->Item?>" />
                   </td>
                   <td>
-                    <input type="number" class="form-control form-control-sm small-text-box" name="far_quantity1" id="far_txt_quantity1" oninput="calculate(this.id)" min=0 value="<?=$far_record->Quantity?>"
+                    <input type="number" class="form-control form-control-sm small-text-box far-quantity" name="far_quantity[]" id="far_txt_quantity<?=$counter?>" oninput="calculate(this.id)" min=0 value="<?=$far_record->Quantity?>"
                     />
                   </td>
                   <td>
-                    <input type="number" class="form-control form-control-sm small-text-box" name="far_unit_price1" id="far_txt_unit1" oninput="calculate(this.id)" step="any"
+                    <input type="number" class="form-control form-control-sm small-text-box far-unit" name="far_unit_price[]" id="far_txt_unit<?=$counter?>" oninput="calculate(this.id)" step="any"
                       min=0 value="<?=$far_record->Unit_Price?>" />
                   </td>
                   <td>
-                    <input type="number" class="form-control form-control-sm small-text-box" name="far_total_amount1" id="far_txt_total1" value="<?=$far_record->Total_Amount?>" readonly />
+                    <input type="number" class="form-control form-control-sm small-text-box far-total" name="far_total_amount[]" id="far_txt_total<?=$counter?>" value="<?=$far_record->Total_Amount?>" readonly />
                   </td>
                   <td>
-                    <select class="form-control medium-text-box" name="far_source_of_fund1" id="far_source_of_fund1" value="what">
+                    <select class="form-control medium-text-box far-source" name="far_source[]" id="far_source_of_fund<?=$counter?>" value="what">
                       <option>Student Activity Fund</option>
                       <option>Cultural Fund</option>
                       <option>Organizational Fund</option>
@@ -218,16 +221,20 @@
                     </select>
                   </td>
                   <td>
-                    <input type="text" class="form-control form-control-sm" hidden name="far_id1" id="far_txt_id1" value="<?=$far_record->Far_ID?>" required readonly />
+                    <input type="text" class="form-control form-control-sm far-id" name="far_id[]" id="far_txt_id<?=$counter?>" value="<?=$far_record->Far_ID?>" hidden required readonly />
+                    <input type="text" class="form-control form-control-sm far-proposal-id" name="proposal_id" id="far_txt_proposal_id<?=$counter?>" value="<?=$far_record->Proposal_ID?>" hidden required readonly />
                   </td>
                 </tr>
+                <?php $counter++;?>
+                <?php endforeach ?>
+                <?php endif ?>
               </table>
 
               Total:
               <input class="form-control form-control-sm medium-text-box" type="number" id="far_overall_amount" value=0 readonly> (not currently working)
               
-              <input type="button" class="table-header button button-ap" name="btn_add_far" id="button" onClick="addField()" value="Add">
-              <input type="button" class="table-header button button-ap" name="btn_delete_far" id="button" onClick="deleteField()" value="Delete">
+              <input type="button" class="table-header button button-ap" name="btn_add_far" id="button-add-far" value="Add">
+              <input type="button" class="table-header button button-ap" name="btn_delete_far" id="button-delete-far" value="Delete">
               <input type="reset" class="table-header button button-ap" id="button" value="Clear">
               <input type="button" class="table-header button button-ap" name="save_btn" id="btn_save_far" value="Save">
             </div>
@@ -243,7 +250,7 @@
       <?php if($this->proposals_model->checkIfOEExists($proposal_id)): ?>
         <div class="col-md-8 main-form">
           <div class="table-header linear-gradient main-header-text">Operating Expenses</div>
-          <div id="table-container" class="main-text" style="overflow-y: scroll;">
+          <div id="table-container-oe" class="main-text" style="overflow-y: scroll;">
             
               <div class="container-oe">
                 <hr id="proposal_hr">
@@ -290,8 +297,8 @@
                 Total:
                 <input type="number" class="form-control form-control-sm medium-text-box" id="oe_overall_amount" value=0 readonly> (not currently working)
                 
-                <input type="button" class="table-header button button-ap" name="btn_add_oe" id="button" onClick="addField2()" value="Add">
-                <input type="button" class="table-header button button-ap" name="btn_delete_oe" id="button" onClick="deleteField2()" value="Delete">
+                <input type="button" class="table-header button button-ap" name="btn_add_oe" id="button-add-oe" value="Add">
+                <input type="button" class="table-header button button-ap" name="btn_delete_oe" id="button-delete-oe" value="Delete">
                 <input type="reset" class="table-header button button-ap" id="button" value="Clear">
                 <input type="button" class="table-header button button-ap" name="save_btn" id="btn_save_oe" value="Save">
 

@@ -323,7 +323,7 @@ class Proposals_Model extends CI_Model {
     if (!$result) {
       return false;
     } else {
-      return $result->row();
+      return $result->result();
     }
 
   }
@@ -550,9 +550,43 @@ class Proposals_Model extends CI_Model {
     }
   }
 
-  public function saveFAR($account_id, $proposal_id, $far_item,
-    $far_quantity, $far_unit, $far_total_amount, $far_source) {
+  public function newFAR($account_id, $proposal_id, $far_item,
+  $far_quantity, $far_unit, $far_total_amount, $far_source, $far_id) {
+    $data = array(
+      'Far_ID' => $far_id,
+      'Proposal_ID' => $proposal_id,
+      'Account_ID' => $account_id,
+      'Item' => $far_item,
+      'Quantity' => $far_quantity,
+      'Unit_Price' => $far_unit,
+      'Total_Amount' => $far_total_amount,
+      'Source' => $far_source,
+      'ProposalStatus' => 'DRAFT',
+      'OfficeProposal' => 'N/A'
+    );
 
+    $result = $this->db->insert('fixed_assets_requirements', $data);
+    
+  }
+
+  public function checkFAR($far_id) {
+    $this->db->where('Far_ID', $far_id);
+    $this->db->from('fixed_assets_requirements');
+    $result = $this->db->get();
+
+    $row = $result->num_rows();
+
+    if ($row >= 1) {
+      return true;
+    } else {
+      return false;
+    }
+
+  }
+
+  public function saveFAR($account_id, $proposal_id, $far_item,
+    $far_quantity, $far_unit, $far_total_amount, $far_source, $far_id) {
+    
     $proposal_status = "DRAFT";
     $office_proposal = "N/A";
 
@@ -568,11 +602,13 @@ class Proposals_Model extends CI_Model {
     );
 
     $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->where('Far_ID', $far_id);
     $result = $this->db->update('fixed_assets_requirements', $data);
 
     if (!$result) {
       $response['success'] = false;
       echo json_encode($response);
+
     } else {
       $this->updateDate($proposal_id);
       $response['success'] = true;
