@@ -114,7 +114,7 @@ class Proposals_Model extends CI_Model {
     $this->db->join('`TimeStamp`', 'activity_proposal.Proposal_ID = `TimeStamp`.Proposal_ID');
     $this->db->join('accounts', 'accounts.Account_ID = activity_proposal.Account_ID');
     $this->db->join('proposal_tracker', 'proposal_tracker.Proposal_ID = activity_proposal.Proposal_ID');
-    $this->db->where ('ActivityName', $activity_name);
+    $this->db->where('ActivityName', $activity_name);
     $result = $this->db->get();
 
     $row = $result->num_rows();
@@ -352,7 +352,7 @@ class Proposals_Model extends CI_Model {
     if (!$result) {
       return false;
     } else {
-      return $result->row();
+      return $result->result();
     }
 
   }
@@ -449,17 +449,38 @@ class Proposals_Model extends CI_Model {
     return false;
   }
 
-  public function createActivityProposal($proposal_id, $account_id, $activity_name) {
+  public function createActivityProposal($account_id, $proposal_id, $contact_number, $activity_name, $date_activity,
+    $start_time, $end_time, $nature, $rationale, $activity_chair, $participants,
+    $activity_venue, $proposal_type1, $proposal_type2, $non_academic_type,
+    $collab_partner, $specified) {
 
     $office_proposal = "N/A";
     $proposal_status = "DRAFT";
+
+    if ($activity_name == '') {
+      $activity_name = 'untitled';
+    }
 
     $data = array(
       'Proposal_ID' => $proposal_id,
       'Account_ID' => $account_id,
       'ActivityName' => $activity_name,
-      'ProposalStatus' => $proposal_status,
-      'OfficeProposal' => $office_proposal,
+      'DateActivity' => $date_activity,
+      'StartTime' => $start_time,
+      'EndTime' => $end_time,
+      'Nature' => $nature,
+      'Rationale' => $rationale,
+      'ActivityChair' => $activity_chair,
+      'ChairContactNumber' => $contact_number,
+      'Participants' => $participants,
+      'ActivityVenue' => $activity_venue,
+      'ProposalType1' => $proposal_type1,
+      'Partners' => $collab_partner,
+      'ProposalType2' => $proposal_type2,
+      'NonAcademicType' => $non_academic_type,
+      'Specified' => $specified,
+      'ProposalStatus' => 'DRAFT',
+      'OfficeProposal' => 'N/A',
     );
 
     $result = $this->db->insert('activity_proposal', $data);
@@ -479,39 +500,39 @@ class Proposals_Model extends CI_Model {
 
   }
 
-  public function createOE($proposal_id, $account_id, $oe_id) {
-    $data = array(
-      'OE_ID' => $oe_id,
-      'Proposal_ID' => $proposal_id,
-      'Account_ID' => $account_id,
-    );
+  // public function createOE($proposal_id, $account_id, $oe_id) {
+  //   $data = array(
+  //     'OE_ID' => $oe_id,
+  //     'Proposal_ID' => $proposal_id,
+  //     'Account_ID' => $account_id,
+  //   );
 
-    $result = $this->db->insert('operating_expenses', $data);
+  //   $result = $this->db->insert('operating_expenses', $data);
 
-    if (!$result) {
-      return false;
-    } else {
-      return true;
-    }
+  //   if (!$result) {
+  //     return false;
+  //   } else {
+  //     return true;
+  //   }
 
-  }
+  // }
 
-  public function createFAR($proposal_id, $account_id, $far_id) {
-    $data = array(
-      'FAR_ID' => $far_id,
-      'Proposal_ID' => $proposal_id,
-      'Account_ID' => $account_id,
-    );
+  // public function createFAR($proposal_id, $account_id, $far_id) {
+  //   $data = array(
+  //     'FAR_ID' => $far_id,
+  //     'Proposal_ID' => $proposal_id,
+  //     'Account_ID' => $account_id,
+  //   );
 
-    $result = $this->db->insert('fixed_assets_requirements', $data);
+  //   $result = $this->db->insert('fixed_assets_requirements', $data);
 
-    if (!$result) {
-      return false;
-    } else {
-      return true;
-    }
+  //   if (!$result) {
+  //     return false;
+  //   } else {
+  //     return true;
+  //   }
 
-  }
+  // }
 
   public function saveActivityProposal($account_id, $proposal_id, $contact_number, $activity_name, $date_activity,
     $start_time, $end_time, $nature, $rationale, $activity_chair, $participants,
@@ -551,7 +572,7 @@ class Proposals_Model extends CI_Model {
   }
 
   public function newFAR($account_id, $proposal_id, $far_item,
-  $far_quantity, $far_unit, $far_total_amount, $far_source, $far_id) {
+    $far_quantity, $far_unit, $far_total_amount, $far_source, $far_id) {
     $data = array(
       'Far_ID' => $far_id,
       'Proposal_ID' => $proposal_id,
@@ -562,11 +583,11 @@ class Proposals_Model extends CI_Model {
       'Total_Amount' => $far_total_amount,
       'Source' => $far_source,
       'ProposalStatus' => 'DRAFT',
-      'OfficeProposal' => 'N/A'
+      'OfficeProposal' => 'N/A',
     );
 
     $result = $this->db->insert('fixed_assets_requirements', $data);
-    
+
   }
 
   public function checkFAR($far_id) {
@@ -586,7 +607,7 @@ class Proposals_Model extends CI_Model {
 
   public function saveFAR($account_id, $proposal_id, $far_item,
     $far_quantity, $far_unit, $far_total_amount, $far_source, $far_id) {
-    
+
     $proposal_status = "DRAFT";
     $office_proposal = "N/A";
 
@@ -611,13 +632,11 @@ class Proposals_Model extends CI_Model {
 
     } else {
       $this->updateDate($proposal_id);
-      $response['success'] = true;
-      echo json_encode($response);
     }
   }
 
   public function saveOE($account_id, $proposal_id, $oe_item,
-    $oe_quantity, $oe_unit, $oe_total_amount, $oe_source) {
+    $oe_quantity, $oe_unit, $oe_total_amount, $oe_source, $oe_id) {
 
     $proposal_status = "DRAFT";
     $office_proposal = "N/A";
@@ -634,16 +653,50 @@ class Proposals_Model extends CI_Model {
     );
 
     $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->where('OE_ID', $oe_id);
     $result = $this->db->update('operating_expenses', $data);
 
     if (!$result) {
       $response['success'] = false;
       echo json_encode($response);
+
     } else {
       $this->updateDate($proposal_id);
-      $response['success'] = true;
-      echo json_encode($response);
     }
+  }
+
+  public function newOE($account_id, $proposal_id, $oe_item,
+    $oe_quantity, $oe_unit, $oe_total_amount, $oe_source, $oe_id) {
+    $data = array(
+      'OE_ID' => $oe_id,
+      'Proposal_ID' => $proposal_id,
+      'Account_ID' => $account_id,
+      'Item' => $oe_item,
+      'Quantity' => $oe_quantity,
+      'Unit_Price' => $oe_unit,
+      'Total_Amount' => $oe_total_amount,
+      'Source' => $oe_source,
+      'ProposalStatus' => 'DRAFT',
+      'OfficeProposal' => 'N/A',
+    );
+
+    $result = $this->db->insert('operating_expenses', $data);
+
+  }
+
+  public function checkOE($oe_id) {
+    $this->db->where('OE_ID', $oe_id);
+    $this->db->from('operating_expenses');
+    $result = $this->db->get();
+
+    $row = $result->num_rows();
+
+    if ($row >= 1) {
+      return true;
+    } else {
+      return false;
+    }
+
   }
 
   public function submitActivityProposal($account_id, $proposal_id, $contact_number, $activity_name, $date_activity,
@@ -806,6 +859,24 @@ class Proposals_Model extends CI_Model {
     $position = $result->Position;
 
     return $position;
+  }
+
+  public function deleteRowFAR($far_id) {
+    $response = array();
+
+    $this->db->where('FAR_ID', $far_id);
+    $result = $this->db->delete('fixed_assets_requirements');
+
+    return $result;
+  }
+
+  public function deleteRowOE($oe_id) {
+    $response = array();
+
+    $this->db->where('OE_ID', $oe_id);
+    $result = $this->db->delete('operating_expenses');
+
+    return $result;
   }
 
   public function deleteThis($proposal_id) {

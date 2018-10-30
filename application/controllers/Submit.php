@@ -4,58 +4,60 @@ class Submit extends CI_Controller {
 
   public function index() {
 
-    $response = array();
+    $this->load->view('proposals/create_view');
 
-    $proposal_id = rand(1000, 9999);
+    // $response = array();
 
-    if (!isset($_POST['radio'])) {
-      $radio = "no_bp";
-      $foo = false;
-    } else {
-      $radio = $this->input->post('radio');
-      $foo = true;
-    }
+    // $proposal_id = rand(1000, 9999);
 
-    if ($radio == "yes_bp") {
-      $bp_check = true;
+    // if (!isset($_POST['radio'])) {
+    //   $radio = "no_bp";
+    //   $foo = false;
+    // } else {
+    //   $radio = $this->input->post('radio');
+    //   $foo = true;
+    // }
 
-      if (isset($_POST['oe'])) {
-        $oe_id = rand(1000, 9999);
-        // $oe = $this->input->post('oe');
-      } else {
-        $oe_id = false;
-      }
+    // if ($radio == "yes_bp") {
+    //   $bp_check = true;
 
-      if (isset($_POST['far'])) {
-        $far_id = rand(1000, 9999);
-      } else {
-        $far_id = false;
-      }
+    //   if (isset($_POST['oe'])) {
+    //     $oe_id = rand(1000, 9999);
+    //     // $oe = $this->input->post('oe');
+    //   } else {
+    //     $oe_id = false;
+    //   }
 
-    } else {
-      $bp_check = false;
-      $oe_id = false;
-      $far_id = false;
-    }
+    //   if (isset($_POST['far'])) {
+    //     $far_id = rand(1000, 9999);
+    //   } else {
+    //     $far_id = false;
+    //   }
 
-    $data['check'] = $bp_check;
-    $data['foo'] = $foo;
+    // } else {
+    //   $bp_check = false;
+    //   $oe_id = false;
+    //   $far_id = false;
+    // }
 
-    if ($foo) {
+    // $data['check'] = $bp_check;
+    // $data['foo'] = $foo;
 
-      $proposal_data = array(
-        'proposal_id' => $proposal_id,
-        'oe_id' => $oe_id,
-        'far_id' => $far_id,
-      );
+    // if ($foo) {
 
-      $this->session->set_flashdata($proposal_data);
+    //   $proposal_data = array(
+    //     'proposal_id' => $proposal_id,
+    //     'oe_id' => $oe_id,
+    //     'far_id' => $far_id,
+    //   );
 
-      $response = $this->load->view('create_view', $data);
+    //   $this->session->set_flashdata($proposal_data);
 
-    } else {
-      $this->load->view('create_view', $data);
-    }
+    //   $response = $this->load->view('create_view', $data);
+
+    // } else {
+    //   $this->load->view('create_view', $data);
+    // }
   }
 
   public function success($proposal_id) {
