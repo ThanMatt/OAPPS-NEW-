@@ -384,7 +384,7 @@ $(function () {
       },
       error: function (response) {
         if (!response.success) {
-          alert("There was an error saving FAR. Please try again");
+          alert("Cannot save when there are no rows");
         }
       },
     });
@@ -433,7 +433,7 @@ $(function () {
       },
       error: function (response) {
         if (!response.success) {
-          alert("There was an error");
+          alert("Cannot save when there are no rows");
         }
       },
     });

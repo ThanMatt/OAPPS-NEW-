@@ -217,6 +217,7 @@
                 <?php if (is_array($far_records) || is_object($far_records)): ?>
                 <?php $far_counter = 1;?>
                 <?php foreach ($far_records as $far_record): ?>
+                <?php $far_id = $far_record->Far_ID ?>
                 <tr id="far-row<?=$far_counter?>" value="<?=$far_counter?>">
                   <td>
                     <?=$far_counter?>
@@ -238,21 +239,20 @@
                       id="far_txt_total<?=$far_counter?>" value="<?=$far_record->Total_Amount?>" readonly />
                   </td>
                   <td>
-                    <select class="form-control medium-text-box far-source" name="far_source[]" id="far_source_of_fund<?=$far_counter?>"
-                      value="what">
-                      <option>Student Activity Fund</option>
-                      <option>Cultural Fund</option>
-                      <option>Organizational Fund</option>
-                      <option>Batch Fund</option>
-                      <option>Publication Fund</option>
-                      <option>Athletics Fund</option>
+                    <select class="form-control medium-text-box far-source" name="far_source[]" id="far_source_of_fund<?=$far_counter?>">
+                      <option <?=$this->proposals_model->selectSAF($far_id, 0)?> >Student Activity Fund</option>
+                      <option <?=$this->proposals_model->selectCF($far_id, 0)?> >Cultural Fund</option>
+                      <option <?=$this->proposals_model->selectOF($far_id, 0)?> >Organizational Fund</option>
+                      <option <?=$this->proposals_model->selectBF($far_id, 0)?> >Batch Fund</option>
+                      <option <?=$this->proposals_model->selectPF($far_id, 0)?> >Publication Fund</option>
+                      <option <?=$this->proposals_model->selectAF($far_id, 0)?> >Athletics Fund</option>
                     </select>
                   </td>
                   <td>
                     <input type='button' class='table-header button-delete-far' name='btn_delete_far' id='button-delete-far-<?=$far_counter?>' value='Delete'>
 
                     <input type="text" class="form-control form-control-sm far-id" name="far_id[]" id="far_txt_id<?=$far_counter?>"
-                      value="<?=$far_record->Far_ID?>" hidden required readonly />
+                      value="<?=$far_id?>" hidden required readonly />
                     <input type="text" class="form-control form-control-sm far-proposal-id" name="proposal_id" id="far_txt_proposal_id<?=$far_counter?>"
                       value="<?=$far_record->Proposal_ID?>" hidden required readonly />
 
@@ -298,6 +298,7 @@
                 <?php if (is_array($oe_records) || is_object($oe_records)): ?>
                 <?php $oe_counter = 1;?>
                 <?php foreach ($oe_records as $oe_record): ?>
+                <?php $oe_id = $oe_record->OE_ID ?>
                 <tr id="oe-row<?=$oe_counter?>">
                   <td>
                     <?=$oe_counter?>
@@ -320,12 +321,12 @@
                   </td>
                   <td>
                     <select class="form-control medium-text-box" name="oe_source[]" id="oe_source_of_fund<?=$oe_counter?>">
-                      <option>Student Activity Fund</option>
-                      <option>Cultural Fund</option>
-                      <option>Organizational Fund</option>
-                      <option>Batch Fund</option>
-                      <option>Publication Fund</option>
-                      <option>Athletics Fund</option>
+                      <option <?=$this->proposals_model->selectSAF(0, $oe_id)?> >Student Activity Fund</option>
+                      <option <?=$this->proposals_model->selectCF(0, $oe_id)?> >Cultural Fund</option>
+                      <option <?=$this->proposals_model->selectOF(0, $oe_id)?> >Organizational Fund</option>
+                      <option <?=$this->proposals_model->selectBF(0, $oe_id)?> >Batch Fund</option>
+                      <option <?=$this->proposals_model->selectPF(0, $oe_id)?> >Publication Fund</option>
+                      <option <?=$this->proposals_model->selectAF(0, $oe_id)?> >Athletics Fund</option>
                     </select>
                   </td>
                   <td>
@@ -333,7 +334,7 @@
                       id='button-delete-oe-<?=$oe_counter?>' value='Delete'>
 
                     <input type="text" class="form-control form-control-sm" hidden name="oe_id[]" id="oe_txt_id<?=$oe_counter?>"
-                     value="<?=$oe_record->OE_ID?>" hidden required readonly />
+                     value="<?=$oe_id?>" hidden required readonly />
                     <input type="text" class="form-control form-control-sm oe-proposal-id" name="proposal_id" id="oe_txt_proposal_id<?=$oe_counter?>"
                       value="<?=$oe_record->Proposal_ID?>" hidden required readonly />
                   </td>

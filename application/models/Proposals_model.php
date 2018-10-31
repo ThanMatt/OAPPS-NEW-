@@ -1157,6 +1157,127 @@ class Proposals_Model extends CI_Model {
     }
   }
 
+  public function selectSAF($far_id, $oe_id) {
+    if ($far_id != 0) {
+      $this->db->where('Far_ID', $far_id);
+      $this->db->from('fixed_assets_requirements');
+    } else if ($oe_id != 0) {
+      $this->db->where('OE_ID', $oe_id);
+      $this->db->from('operating_expenses');
+    }
+
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    $source = $row->Source;
+
+    if ($source == 'Student Activity Fund') {
+      return 'selected="selected"';
+    }
+  }
+
+  public function selectCF($far_id, $oe_id) {
+    if ($far_id != 0) {
+      $this->db->where('Far_ID', $far_id);
+      $this->db->from('fixed_assets_requirements');
+    } else if ($oe_id != 0) {
+      $this->db->where('OE_ID', $oe_id);
+      $this->db->from('operating_expenses');
+    }
+
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    $source = $row->Source;
+
+    if ($source == 'Cultural Fund') {
+      return 'selected="selected"';
+    }
+  }
+
+  public function selectOF($far_id, $oe_id) {
+    if ($far_id != 0) {
+      $this->db->where('Far_ID', $far_id);
+      $this->db->from('fixed_assets_requirements');
+    } else if ($oe_id != 0) {
+      $this->db->where('OE_ID', $oe_id);
+      $this->db->from('operating_expenses');
+    }
+
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    $source = $row->Source;
+
+    if ($source == 'Organizational Fund') {
+      return 'selected="selected"';
+    }
+  }
+
+  public function selectBF($far_id, $oe_id) {
+    if ($far_id != 0) {
+      $this->db->where('Far_ID', $far_id);
+      $this->db->from('fixed_assets_requirements');
+
+    } else if ($oe_id != 0) {
+      $this->db->where('OE_ID', $oe_id);
+      $this->db->from('operating_expenses');
+    }
+
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    $source = $row->Source;
+
+    if ($source == 'Batch Fund') {
+      return 'selected="selected"';
+    }
+  }
+
+  public function selectPF($far_id, $oe_id) {
+    if ($far_id != 0) {
+      $this->db->where('Far_ID', $far_id);
+      $this->db->from('fixed_assets_requirements');
+    } else if ($oe_id != 0) {
+      $this->db->where('OE_ID', $oe_id);
+      $this->db->from('operating_expenses');
+    }
+
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    $source = $row->Source;
+
+    if ($source == 'Publication Fund') {
+      return 'selected="selected"';
+    }
+  }
+
+  public function selectAF($far_id, $oe_id) {
+    if ($far_id != 0) {
+      $this->db->where('Far_ID', $far_id);
+      $this->db->from('fixed_assets_requirements');
+    } else if ($oe_id != 0) {
+      $this->db->where('OE_ID', $oe_id);
+      $this->db->from('operating_expenses');
+    }
+
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    $source = $row->Source;
+
+    if ($source == 'Athletics Fund') {
+      return 'selected="selected"';
+    }
+  }
+
 }
 
 ?>

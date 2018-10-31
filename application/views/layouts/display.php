@@ -54,7 +54,7 @@
         </a>
 
         <a href="proposal/delete/<?=$records->Proposal_ID?>">
-          <input type="button" value="Delete Proposal">
+          <input type="button" value="Delete Proposal" id="delete_btn">
         </a>
 
       <!-- For Pending/Approved/Revisions -->

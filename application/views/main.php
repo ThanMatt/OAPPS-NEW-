@@ -70,19 +70,19 @@
         <div class="main-text" style="overflow-y: scroll;">
           <?php if (is_array($records) || is_object($records)): ?>
           <?php
-  foreach ($records as $record) {
-    $counter++;
-    if ($org_type == 'N/A') {
-      if ($this->proposals_model->checkDuplicationTitle($record->ActivityName)) {
-        echo '<div class="proposal-view button table-header" style="margin: 0 !important; border-left: 0px; border-right: 0px; border-bottom: 0px; border-top: 0px;" id="view_btn/' . $record->Proposal_ID . '">' . $record->ActivityName . ' (' . $record->Account_ID . ') ' . '</div>';
-      } else {
-        echo '<div class="proposal-view button table-header" style="margin: 0 !important; border-left: 0px; border-right: 0px; border-bottom: 0px; border-top: 0px;" id="view_btn/' . $record->Proposal_ID . '">' . $record->ActivityName . '</div>';
-      }
-    } else {
-      echo '<div class="proposal-view button table-header" style="margin: 0 !important; border-left: 0px; border-right: 0px; border-bottom: 0px; border-top: 0px;" id="view_btn/' . $record->Proposal_ID . '">' . $record->ActivityName . '</div>';
-    }
-  }
-?>
+            foreach ($records as $record) {
+              $counter++;
+              if ($org_type == 'N/A') {
+                if ($this->proposals_model->checkDuplicationTitle($record->ActivityName)) {
+                  echo '<div class="proposal-view button table-header" style="margin: 0 !important; border-left: 0px; border-right: 0px; border-bottom: 0px; border-top: 0px;" id="view_btn/' . $record->Proposal_ID . '">' . $record->ActivityName . ' (' . $record->Account_ID . ') ' . '</div>';
+                } else {
+                  echo '<div class="proposal-view button table-header" style="margin: 0 !important; border-left: 0px; border-right: 0px; border-bottom: 0px; border-top: 0px;" id="view_btn/' . $record->Proposal_ID . '">' . $record->ActivityName . '</div>';
+                }
+              } else {
+                echo '<div class="proposal-view button table-header" style="margin: 0 !important; border-left: 0px; border-right: 0px; border-bottom: 0px; border-top: 0px;" id="view_btn/' . $record->Proposal_ID . '">' . $record->ActivityName . '</div>';
+              }
+            }
+          ?>
           <?php else: ?>
           <h1 id="nav-left-container-no-records" class="button-no-record">No Records</h1>
           <?php endif?>
@@ -119,7 +119,7 @@
   <?php else: ?>
   <?php
   $this->load->view('users/login_view');
-?>
+  ?>
   <?php endif?>
 
 </body>

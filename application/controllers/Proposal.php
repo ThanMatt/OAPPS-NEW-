@@ -165,6 +165,7 @@ class Proposal extends CI_Controller {
 
             $this->proposals_model->newOE($account_id, $proposal_id, $oe_item,
               $oe_quantity, $oe_unit, $oe_total_amount, $oe_source, $oe_id);
+
           }
         } else {
 
@@ -176,8 +177,9 @@ class Proposal extends CI_Controller {
           $oe_source = $this->input->post('oe_source', true)[0];
           $oe_id = $this->input->post('oe_id', true)[0];
 
-          $this->proposals_model->saveOE($account_id, $proposal_id, $oe_item,
-            $oe_quantity, $oe_unit, $oe_total_amount, $oe_source, $oe_id);
+          $this->proposals_model->newOE($account_id, $proposal_id, $oe_item,
+              $oe_quantity, $oe_unit, $oe_total_amount, $oe_source, $oe_id);
+              
         }
       }
 
