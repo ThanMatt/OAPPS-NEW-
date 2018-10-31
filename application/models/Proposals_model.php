@@ -499,41 +499,7 @@ class Proposals_Model extends CI_Model {
     $result = $this->db->get();
 
   }
-
-  // public function createOE($proposal_id, $account_id, $oe_id) {
-  //   $data = array(
-  //     'OE_ID' => $oe_id,
-  //     'Proposal_ID' => $proposal_id,
-  //     'Account_ID' => $account_id,
-  //   );
-
-  //   $result = $this->db->insert('operating_expenses', $data);
-
-  //   if (!$result) {
-  //     return false;
-  //   } else {
-  //     return true;
-  //   }
-
-  // }
-
-  // public function createFAR($proposal_id, $account_id, $far_id) {
-  //   $data = array(
-  //     'FAR_ID' => $far_id,
-  //     'Proposal_ID' => $proposal_id,
-  //     'Account_ID' => $account_id,
-  //   );
-
-  //   $result = $this->db->insert('fixed_assets_requirements', $data);
-
-  //   if (!$result) {
-  //     return false;
-  //   } else {
-  //     return true;
-  //   }
-
-  // }
-
+  
   public function saveActivityProposal($account_id, $proposal_id, $contact_number, $activity_name, $date_activity,
     $start_time, $end_time, $nature, $rationale, $activity_chair, $participants,
     $activity_venue, $proposal_type1, $proposal_type2, $non_academic_type,
