@@ -57,6 +57,10 @@ class Submit extends CI_Controller {
       $activity_venue, $proposal_type1, $proposal_type2, $non_academic_type,
       $collab_partner, $specified)) {
 
+
+
+      
+
       $this->accounts_model->logMyActivity($account_id, 6, $proposal_id);
 
       $records = $this->proposals_model->viewAPRecord($proposal_id);
@@ -64,6 +68,7 @@ class Submit extends CI_Controller {
       $office_id = $records->OfficeProposal;
 
       if ($this->proposals_model->deleteComments($proposal_id)) {
+        $this->notifications_model->sendNotification($proposal_id, $account_id, 2, $office_id);
         $this->proposals_model->updateTracker($office_id, $proposal_id);
         $this->success($proposal_id);
       }
@@ -113,8 +118,12 @@ class Submit extends CI_Controller {
 
     if ($this->proposals_model->submitComments($field_name, $values, $proposal_id)) {
       $account_id = $this->session->userdata('account_id');
+      $org_id = $this->proposals_model->whoseProposal($proposal_id);
+
+      $this->notifications_model->sendRevisionNotification($proposal_id, $org_id, $account_id);
       $this->accounts_model->logMyActivity($account_id, 4, $proposal_id);
       $this->proposals_model->reviseTracker($account_id, $proposal_id);
+      
       $this->success($proposal_id);
 
     } else {

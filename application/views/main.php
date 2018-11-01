@@ -23,6 +23,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
     crossorigin="anonymous">
   <link rel="stylesheet" href="<?=base_url();?>assets/css/boot_styles.css">
+  <link rel="stylesheet" href="<?=base_url();?>assets/css/progress.css">
 
 
 </head>
@@ -40,7 +41,11 @@
         <?php if ($this->session->userdata('org_type') == 'N/A'): ?>
 
         <div class="table-header button" id="btn_pending">
+        <?php if ($this->notifications_model->checkNotifications($account_id)): ?>
+          Pending*
+        <?php else: ?>
           Pending
+        <?php endif ?>
         </div>
         <div class="table-header button" id="btn_approved">
           Approved
@@ -52,13 +57,25 @@
         <?php else: ?>
 
         <div class="table-header button" id="btn_pending">
+        <?php if ($this->notifications_model->checkPendingNotifications($account_id)): ?>
+          Pending*
+        <?php else: ?>
           Pending
+        <?php endif ?>
         </div>
         <div class="table-header button" id="btn_approved">
+        <?php if ($this->notifications_model->checkApprovedNotifications($account_id)): ?>
+          Approved*
+        <?php else: ?>
           Approved
+        <?php endif ?>
         </div>
         <div class="table-header button" id="btn_revisions">
+        <?php if ($this->notifications_model->checkUnderRevNotifications($account_id)): ?>
+          Revisions*
+        <?php else: ?>
           Revisions
+        <?php endif ?>
         </div>
         <div class="table-header button" id="btn_drafts">
           Drafts
@@ -74,12 +91,25 @@
               $counter++;
               if ($org_type == 'N/A') {
                 if ($this->proposals_model->checkDuplicationTitle($record->ActivityName)) {
-                  echo '<div class="proposal-view button table-header" style="margin: 0 !important; border-left: 0px; border-right: 0px; border-bottom: 0px; border-top: 0px;" id="view_btn/' . $record->Proposal_ID . '">' . $record->ActivityName . ' (' . $record->Account_ID . ') ' . '</div>';
+                  if ($this->notifications_model->unreadNotification($record->Proposal_ID, $account_id)) {
+                    echo '<div class="proposal-view button table-header" style="margin: 0 !important; border-left: 0px; border-right: 0px; border-bottom: 0px; border-top: 0px;" id="view_btn/' . $record->Proposal_ID . '">' . $record->ActivityName . ' (' . $record->Account_ID . ')*' . '</div>';  
+                  } else {
+                    echo '<div class="proposal-view button table-header" style="margin: 0 !important; border-left: 0px; border-right: 0px; border-bottom: 0px; border-top: 0px;" id="view_btn/' . $record->Proposal_ID . '">' . $record->ActivityName . ' (' . $record->Account_ID . ') ' . '</div>';
+                  }
+
+                } else {
+                  if ($this->notifications_model->unreadNotification($record->Proposal_ID, $account_id)) {
+                    echo '<div class="proposal-view button table-header" style="margin: 0 !important; border-left: 0px; border-right: 0px; border-bottom: 0px; border-top: 0px;" id="view_btn/' . $record->Proposal_ID . '">' . $record->ActivityName . '*</div>';
+                  } else {
+                    echo '<div class="proposal-view button table-header" style="margin: 0 !important; border-left: 0px; border-right: 0px; border-bottom: 0px; border-top: 0px;" id="view_btn/' . $record->Proposal_ID . '">' . $record->ActivityName . '</div>';
+                  }
+                }
+              } else {
+                if ($this->notifications_model->unreadNotification($record->Proposal_ID, $account_id)) {
+                  echo '<div class="proposal-view button table-header" style="margin: 0 !important; border-left: 0px; border-right: 0px; border-bottom: 0px; border-top: 0px;" id="view_btn/' . $record->Proposal_ID . '">' . $record->ActivityName . '*</div>';
                 } else {
                   echo '<div class="proposal-view button table-header" style="margin: 0 !important; border-left: 0px; border-right: 0px; border-bottom: 0px; border-top: 0px;" id="view_btn/' . $record->Proposal_ID . '">' . $record->ActivityName . '</div>';
                 }
-              } else {
-                echo '<div class="proposal-view button table-header" style="margin: 0 !important; border-left: 0px; border-right: 0px; border-bottom: 0px; border-top: 0px;" id="view_btn/' . $record->Proposal_ID . '">' . $record->ActivityName . '</div>';
               }
             }
           ?>

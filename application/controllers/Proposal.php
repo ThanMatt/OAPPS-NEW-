@@ -66,6 +66,19 @@ class Proposal extends CI_Controller {
     $this->accounts_model->logMyActivity($account_id, 3, $proposal_id);
 
     $this->proposals_model->approveTracker($account_id, $proposal_id);
+
+    $org_id = $this->proposals_model->whoseProposal($proposal_id);
+    $next_office = $this->proposals_model->nextOffice($account_id, $proposal_id);
+
+
+    if ($account_id == 'OD') {
+      $next_office = '';
+      $this->notifications_model->sendNotification($proposal_id, $org_id, 1, $next_office);
+    } else {
+      $this->notifications_model->sendNotification($proposal_id, $org_id, 0, $next_office);
+    }
+
+
     redirect(base_url() . "proposal/view/" . $proposal_id);
 
   }
@@ -178,8 +191,8 @@ class Proposal extends CI_Controller {
           $oe_id = $this->input->post('oe_id', true)[0];
 
           $this->proposals_model->newOE($account_id, $proposal_id, $oe_item,
-              $oe_quantity, $oe_unit, $oe_total_amount, $oe_source, $oe_id);
-              
+            $oe_quantity, $oe_unit, $oe_total_amount, $oe_source, $oe_id);
+
         }
       }
 
@@ -395,6 +408,7 @@ class Proposal extends CI_Controller {
   }
 
   public function submit($proposal_id) {
+    $org_type = $this->session->userdata('org_type');
 
     if ($proposal_id == null) {
       redirect(base_url() . "home");
@@ -434,6 +448,13 @@ class Proposal extends CI_Controller {
       $activity_venue, $proposal_type1, $proposal_type2, $non_academic_type,
       $collab_partner, $specified);
 
+    if ($this->proposals_model->checkIfFARExists($proposal_id) || $this->proposals_model->checkIfOEExists($proposal_id)) {
+      $bp = true;
+    } else {
+      $bp = false;
+    }
+
+    $this->notifications_model->createNotifications($proposal_id, $account_id, $bp);
     $this->proposals_model->insertTracker($account_id, $proposal_id);
     $this->accounts_model->logMyActivity($account_id, 9, 0);
   }

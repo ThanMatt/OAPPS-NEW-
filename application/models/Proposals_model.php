@@ -270,6 +270,16 @@ class Proposals_Model extends CI_Model {
 
   }
 
+  public function whoseProposal($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('activity_proposal');
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    return $row->Account_ID;
+  }
+
   //:: Fetches activity proposal details
   public function viewAPRecord($proposal_id) {
     $response = array();
@@ -970,6 +980,8 @@ class Proposals_Model extends CI_Model {
 
       return true;
     } else {
+
+
       $this->db->where('Proposal_ID', $proposal_id);
       $this->db->set('ProposalStatus', "APPROVED");
       $result = $this->db->update('activity_proposal');
@@ -1243,6 +1255,7 @@ class Proposals_Model extends CI_Model {
       return 'selected="selected"';
     }
   }
+
 
 }
 
