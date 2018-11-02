@@ -129,15 +129,11 @@
   <!-- MAIN END -->
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script type="text/javascript">
-    var BASE_URL = "<?=base_url();?>";
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" 
+    crossorigin="anonymous">
   </script>
-  <script src="<?=base_url();?>assets/js/jquery-3.3.1.js">
-  </script>
-  <script src="<?=base_url();?>assets/js/core.js">
-  </script>
-  <script src="<?=base_url();?>assets/js/progress.js">
-  </script>
+  
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
     crossorigin="anonymous">
   </script>
@@ -145,6 +141,15 @@
     crossorigin="anonymous">
   </script>
 
+
+  <!-- Local files -->
+  <script type="text/javascript">
+    var BASE_URL = "<?=base_url();?>";
+  </script>
+  <script src="<?=base_url();?>assets/js/core.js">
+  </script>
+  <script src="<?=base_url();?>assets/js/progress.js">
+  </script>
 
   <?php else: ?>
   <?php
