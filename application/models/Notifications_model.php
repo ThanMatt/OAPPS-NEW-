@@ -51,6 +51,7 @@ class Notifications_model extends CI_Model {
       );
 
       $this->db->where('Account_ID', $org_id);
+      $this->db->where('Proposal_ID', $proposal_id);
       $this->db->update('notifications', $data);
 
     } else if ($notification_type == 2) {
@@ -61,6 +62,7 @@ class Notifications_model extends CI_Model {
       );
 
       $this->db->where('Account_ID', $office_id);
+      $this->db->where('Proposal_ID', $proposal_id);
       $this->db->update('notifications', $data);
 
       $data = array(
@@ -69,6 +71,7 @@ class Notifications_model extends CI_Model {
       );
 
       $this->db->where('Account_ID', $org_id);
+      $this->db->where('Proposal_ID', $proposal_id);
       $this->db->update('notifications', $data);
 
     } else if ($notification_type == 1) {
@@ -79,6 +82,7 @@ class Notifications_model extends CI_Model {
       );
 
       $this->db->where('Account_ID', $org_id);
+      $this->db->where('Proposal_ID', $proposal_id);
       $this->db->update('notifications', $data);
 
     }
@@ -92,6 +96,7 @@ class Notifications_model extends CI_Model {
     );
 
     $this->db->where('Account_ID', $org_id);
+    $this->db->where('Proposal_ID', $proposal_id);
     $this->db->update('notifications', $data);
   }
 
@@ -110,6 +115,54 @@ class Notifications_model extends CI_Model {
     } else {
       return false;
     }
+  }
+
+  //:: Used for offices
+  public function countNotifs($account_id) {
+
+    $this->db->where('Account_ID', $account_id);
+    $this->db->where('Notification', 1);
+    $this->db->from('notifications');
+
+    $result = $this->db->get();
+    return $result->num_rows();
+
+  }
+
+  public function countPendingNotifs($account_id) {
+
+    $this->db->where('Account_ID', $account_id);
+    $this->db->where('Notification', 1);
+    $this->db->where('NotificationType', 0);
+    $this->db->from('notifications');
+
+    $result = $this->db->get();
+    return $result->num_rows();
+
+  }
+
+  public function countApprovedNotifs($account_id) {
+
+    $this->db->where('Account_ID', $account_id);
+    $this->db->where('Notification', 1);
+    $this->db->where('NotificationType', 1);
+    $this->db->from('notifications');
+
+    $result = $this->db->get();
+    return $result->num_rows();
+
+  }
+
+  public function countUnderRevNotifs($account_id) {
+
+    $this->db->where('Account_ID', $account_id);
+    $this->db->where('Notification', 1);
+    $this->db->where('NotificationType', 2);
+    $this->db->from('notifications');
+
+    $result = $this->db->get();
+    return $result->num_rows();
+
   }
 
   public function checkPendingNotifications($account_id) {
@@ -170,6 +223,7 @@ class Notifications_model extends CI_Model {
     );
 
     $this->db->where('Account_ID', $account_id);
+    $this->db->where('Proposal_ID', $proposal_id);
     $this->db->update('notifications', $data);
   }
 
