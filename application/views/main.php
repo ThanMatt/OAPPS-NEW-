@@ -11,12 +11,10 @@
   $full_name = $this->session->userdata('full_name');
   $position = $this->session->userdata('position');
   $org_type = $this->session->userdata('org_type');
-
 ?>
   <title>
     <?=strtoupper($prefix) . " - Index"?>
   </title>
-
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -88,7 +86,6 @@
         <div class="table-header linear-gradient main-header-text">Proposal List</div>
         <div class="main-text" style="overflow-y: scroll;">
           <?php if (is_array($records) || is_object($records)): ?>
-          
           <?php
             foreach ($records as $record) {
               $counter++;
@@ -116,7 +113,6 @@
               }
             }
           ?>
-
           <?php else: ?>
           <h1 id="nav-left-container-no-records" class="button-no-record">No Records</h1>
           <?php endif?>
@@ -164,4 +160,3 @@
 </body>
 
 </html>
-

@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => getenv('OAPPS_MYSQL_HOST'),
-	'username' => getenv('OAPPS_MYSQL_USER'),
-	'password' => getenv('OAPPS_MYSQL_PASS'),
-	'database' => getenv('OAPPS_MYSQL_DB'),
+	'hostname' => 'localhost',
+	'username' => 'root',
+	'password' => 'mysql',
+	'database' => 'sbu_oapps',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
