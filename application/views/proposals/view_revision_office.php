@@ -25,11 +25,7 @@
   <title>Activity Proposal</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="<?=base_url();?>assets/css/styles.css">
-  <script type="text/javascript">
-    var BASE_URL = "<?=base_url();?>";
-  </script>
-  <script src="<?=base_url();?>assets/js/jquery-3.3.1.js"></script>
-  <script src="<?=base_url();?>assets/js/plugin.js"></script>
+
 </head>
 <body>
   <div class="main-container-proposal">
@@ -131,6 +127,16 @@
     </div>
 
   </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" 
+    crossorigin="anonymous">
+  </script>
+  
+  
+  <script type="text/javascript">
+    var BASE_URL = "<?=base_url();?>";
+  </script>
+  <script src="<?=base_url();?>assets/js/plugin.js"></script>
 
   <?php else: ?>
   <?php 
