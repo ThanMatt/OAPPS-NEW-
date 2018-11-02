@@ -3,7 +3,9 @@
 -- https://www.phpmyadmin.net
 --
 -- Host: localhost
+
 -- Generation Time: Nov 01, 2018 at 07:01 AM
+
 -- Server version: 5.6.37
 -- PHP Version: 5.6.31
 
@@ -70,7 +72,7 @@ INSERT INTO `accounts` (`Account_ID`, `Pass`, `Organization`, `EmailAddress`, `C
 ('SC', '$2y$12$Q5i25i7zpxND.k10BfIK9uUhgjq5EmBCWgiTzoK/a.Hu0usrBPUrC', 'Student Council', 'representative_sc@sanbeda.edu.ph', '+639155356312', 'Emman Cayabyab', '2018-2019', 'Pro', 'Representative'),
 ('SC_P', '$2y$12$8Rr4mvXZeDTYkhsfXuY7deb6y9Bnpv8HxNDsMnauFcpIqvM4W.zWS', 'Student Council', 'sc_pres@sanbeda.edu.ph', '+639876567890', 'Arapat Mustapha', '2018-2019', 'N/A', 'President'),
 ('SC_SG', '$2y$12$.YHBgu4wH20b9Mq5NXulVu/aKs0WjDpBXBZWpt41smt8.fIvzALZG', 'Student Council', 'sc_sec@sanbeda.edu.ph', '+639876567432', 'Chavi Levine Reyes', '2018-2019', 'N/A', 'Secretary-General'),
-('SC_TR', '$2y$12$3VenrxD2BQy0147s0WSA8O8e.cgC22bmPEc0Eb.e7H/zt287QMTge', 'Student Council', 'sc_tr@sanbeda.edu.ph', '+639156391022', 'Aaron Darnell Salonga', '2018-2019', 'N/A', 'Treasurer'),
+('SC_TR', '$2y$12$3VenrxD2BQy0147s0WSA8O8e.cgC22bmPEc0Eb.e7H/zt287QMTge', 'Student Council', 'sc_tr@sanbeda.edu.ph', '+639156391022', 'Bojo Pabalate', '2018-2019', 'N/A', 'Treasurer'),
 ('SOMS', '$2y$12$KdMYQjXr.S8nHQhUZil2AuGyG.SlYdDey69oC6.t7lOoZcPlJhFLm', 'Society of Operations Management Students', 'soms@sanbeda.edu.ph', '639156789012', 'Derrick Henry Rose', '2018-2019', 'Pro', 'Representative'),
 ('SSHA', '$2y$12$eCQoRm4JAEH6/bO2L0yzS.WMOZVmyFwch6lHW6abLgACqz9GvWYwq', 'Social Sciences and Humanities Association', 'ssha@sanbeda.edu.ph', '639102349123', 'Timothy James Buan', '2018-2019', 'NonPro', 'Representative'),
 ('UNESCO', '$2y$12$y1GdY9JleSg42CVeImV7IuSP6xldvUDafK6D21B0E6QKeg15wuF3W', 'UNESCO Youth Club of San Beda', 'josephgutierrez@sanbeda.edu.ph', '09178506008', 'Joseph Gutierrez', '2018-2019', 'NonPro', 'Representative');
@@ -111,6 +113,7 @@ INSERT INTO `activity_proposal` (`Proposal_ID`, `Account_ID`, `ActivityName`, `D
 ('4514', 'BITS', 'General Assembly', '2019-12-09', '05:00', '00:00', 'bar', 'baz', 'foo', 'bar', 'qux\r\n', 'foo', 'Independent', NULL, 'Academic', NULL, '', 'APPROVED', 'OD'),
 ('7750', 'BITS', 'untitled', '', '', '', '', '', '', '', '', '', NULL, '', NULL, NULL, '', 'DRAFT', 'N/A'),
 ('8773', 'PSSBU', 'Yoga', '2020-12-19', '00:00', '12:00', 'b', 'ar', 'foo', 'bar', 'baz', 'foo', 'Collaborative', 'San Beda Red Lens', 'Academic', NULL, '', 'PENDING', 'OPSA_APP');
+
 
 -- --------------------------------------------------------
 
@@ -224,6 +227,7 @@ INSERT INTO `ci_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES
 ('9rh4ts5e7g5070f4crcec1h429gfbvem', '::1', 1541054714, 0x5f5f63695f6c6173745f726567656e65726174657c693a313534313035333933383b6163636f756e745f69647c733a343a2242495453223b6f7267616e697a6174696f6e7c733a33363a22426564616e20496e666f726d6174696f6e20546563686e6f6c6f677920536f6369657479223b656d61696c5f616464726573737c733a31393a22626974734073616e626564612e6564752e7068223b636f6e746163745f6e756d6265727c733a31333a222b363339303535353737323938223b66756c6c5f6e616d657c733a32313a2241657468616e204d61747468657720496c6167616e223b62617463687c733a393a22323031382d32303139223b6f72675f747970657c733a333a2250726f223b706f736974696f6e7c733a31343a22526570726573656e746174697665223b7072656669787c733a343a2242495453223b6c6f676765645f696e7c623a313b757365725f747970657c693a303b),
 ('1vetbc68p081dcqgcju4s5tjdggd09js', '::1', 1541054817, 0x5f5f63695f6c6173745f726567656e65726174657c693a313534313035343831373b);
 
+
 -- --------------------------------------------------------
 
 --
@@ -257,6 +261,7 @@ CREATE TABLE IF NOT EXISTS `fixed_assets_requirements` (
   `OfficeProposal` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+
 -- --------------------------------------------------------
 
 --
@@ -269,6 +274,7 @@ CREATE TABLE IF NOT EXISTS `log` (
   `ActivityType` int(11) NOT NULL,
   `DateTime` datetime NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=1012 DEFAULT CHARSET=latin1;
+
 
 --
 -- Dumping data for table `log`
@@ -1314,6 +1320,7 @@ INSERT INTO `notifications` (`ID`, `Proposal_ID`, `Account_ID`, `NotificationTyp
 (24, '4514', 'OPSA_P', 0, 0),
 (25, '4514', 'OD', 0, 0);
 
+
 -- --------------------------------------------------------
 
 --
@@ -1332,6 +1339,7 @@ CREATE TABLE IF NOT EXISTS `operating_expenses` (
   `ProposalStatus` text NOT NULL,
   `OfficeProposal` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 
 -- --------------------------------------------------------
 
@@ -1356,8 +1364,10 @@ CREATE TABLE IF NOT EXISTS `proposal_tracker` (
 --
 
 INSERT INTO `proposal_tracker` (`Proposal_ID`, `Account_ID`, `SC_TR`, `SC_SG`, `SC_P`, `OPSA_APP`, `OPSA_APN`, `OPSA_P`, `OD`) VALUES
+
 ('8773', 'PSSBU', '', 'APPROVED', 'APPROVED', 'PENDING', '', '', ''),
 ('4514', 'BITS', '', 'APPROVED', 'APPROVED', 'APPROVED', '', 'APPROVED', 'APPROVED');
+
 
 -- --------------------------------------------------------
 
@@ -1383,9 +1393,11 @@ CREATE TABLE IF NOT EXISTS `timestamp` (
 --
 
 INSERT INTO `timestamp` (`Proposal_ID`, `DateProposed`, `SC_TR_TimeIn`, `SC_SG_TimeIn`, `SC_P_TimeIn`, `OPSA_APP_TimeIn`, `OPSA_APN_TimeIn`, `OPSA_P_TimeIn`, `OD_TimeIn`, `TimeApproved`) VALUES
+
 ('8773', '2018-11-01', '', '2018-11-01 01:43:41pm', '2018-11-01 02:26:43pm', '00-00-0000 00:00:00am', '', '', '', ''),
 ('4514', '2018-11-01', '', '2018-11-01 02:22:25pm', '2018-11-01 02:29:09pm', '2018-11-01 02:31:15pm', '', '2018-11-01 02:31:51pm', '2018-11-01 02:46:12pm', '2018-11-01 02:46:16pm'),
 ('7750', '2018-11-01', '', '', '', '', '', '', '', '');
+
 
 --
 -- Indexes for dumped tables
@@ -1473,12 +1485,14 @@ ALTER TABLE `timestamp`
 -- AUTO_INCREMENT for table `log`
 --
 ALTER TABLE `log`
+
   MODIFY `LogID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1012;
 --
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
+  
 --
 -- Constraints for dumped tables
 --

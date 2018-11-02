@@ -110,6 +110,7 @@ class Accounts_Model extends CI_Model {
       $activity = "User $account_id deleted a draft proposal";
 
     }
+    
     $data = array(
 
       'Activity' => $activity,

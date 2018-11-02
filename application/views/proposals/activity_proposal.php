@@ -363,6 +363,7 @@
           <input type="button" class="table-header button" name="back" id="button" value="Go Back">
         </a>
         <?php if (!$this->proposals_model->checkIfOEExists($proposal_id) || !$this->proposals_model->checkIfFARExists($proposal_id)): ?>
+
         <input type="submit" class="table-header button" name="submit" id="submit_btn" value="Submit">
         <?php endif?>
         <a href="delete/<?=$ap_record->Proposal_ID?>">
