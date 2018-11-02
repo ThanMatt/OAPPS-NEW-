@@ -42,7 +42,7 @@
 
         <div class="table-header button" id="btn_pending">
         <?php if ($this->notifications_model->checkNotifications($account_id)): ?>
-          Pending*
+          Pending <span class="badge badge-pill badge-danger"><?=$this->notifications_model->countNotifs($account_id) ?></span>
         <?php else: ?>
           Pending
         <?php endif ?>
@@ -58,21 +58,21 @@
 
         <div class="table-header button" id="btn_pending">
         <?php if ($this->notifications_model->checkPendingNotifications($account_id)): ?>
-          Pending*
+          Pending <span class="badge badge-pill badge-danger"><?=$this->notifications_model->countPendingNotifs($account_id) ?></span>
         <?php else: ?>
           Pending
         <?php endif ?>
         </div>
         <div class="table-header button" id="btn_approved">
         <?php if ($this->notifications_model->checkApprovedNotifications($account_id)): ?>
-          Approved*
+          Approved <span class="badge badge-pill badge-danger"><?=$this->notifications_model->countApprovedNotifs($account_id) ?></span>
         <?php else: ?>
           Approved
         <?php endif ?>
         </div>
         <div class="table-header button" id="btn_revisions">
         <?php if ($this->notifications_model->checkUnderRevNotifications($account_id)): ?>
-          Revisions*
+          Revisions <span class="badge badge-pill badge-danger"><?=$this->notifications_model->countUnderRevNotifs($account_id) ?></span>
         <?php else: ?>
           Revisions
         <?php endif ?>
