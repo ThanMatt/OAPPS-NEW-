@@ -4,58 +4,8 @@ class Submit extends CI_Controller {
 
   public function index() {
 
-    $response = array();
+    $this->load->view('proposals/create_view');
 
-    $proposal_id = rand(1000, 9999);
-
-    if (!isset($_POST['radio'])) {
-      $radio = "no_bp";
-      $foo = false;
-    } else {
-      $radio = $this->input->post('radio');
-      $foo = true;
-    }
-
-    if ($radio == "yes_bp") {
-      $bp_check = true;
-
-      if (isset($_POST['oe'])) {
-        $oe_id = rand(1000, 9999);
-        // $oe = $this->input->post('oe');
-      } else {
-        $oe_id = false;
-      }
-
-      if (isset($_POST['far'])) {
-        $far_id = rand(1000, 9999);
-      } else {
-        $far_id = false;
-      }
-
-    } else {
-      $bp_check = false;
-      $oe_id = false;
-      $far_id = false;
-    }
-
-    $data['check'] = $bp_check;
-    $data['foo'] = $foo;
-
-    if ($foo) {
-
-      $proposal_data = array(
-        'proposal_id' => $proposal_id,
-        'oe_id' => $oe_id,
-        'far_id' => $far_id,
-      );
-
-      $this->session->set_flashdata($proposal_data);
-
-      $response = $this->load->view('create_view', $data);
-
-    } else {
-      $this->load->view('create_view', $data);
-    }
   }
 
   public function success($proposal_id) {
@@ -107,6 +57,10 @@ class Submit extends CI_Controller {
       $activity_venue, $proposal_type1, $proposal_type2, $non_academic_type,
       $collab_partner, $specified)) {
 
+
+
+      
+
       $this->accounts_model->logMyActivity($account_id, 6, $proposal_id);
 
       $records = $this->proposals_model->viewAPRecord($proposal_id);
@@ -114,6 +68,7 @@ class Submit extends CI_Controller {
       $office_id = $records->OfficeProposal;
 
       if ($this->proposals_model->deleteComments($proposal_id)) {
+        $this->notifications_model->sendNotification($proposal_id, $account_id, 2, $office_id);
         $this->proposals_model->updateTracker($office_id, $proposal_id);
         $this->success($proposal_id);
       }
@@ -163,8 +118,12 @@ class Submit extends CI_Controller {
 
     if ($this->proposals_model->submitComments($field_name, $values, $proposal_id)) {
       $account_id = $this->session->userdata('account_id');
+      $org_id = $this->proposals_model->whoseProposal($proposal_id);
+
+      $this->notifications_model->sendRevisionNotification($proposal_id, $org_id, $account_id);
       $this->accounts_model->logMyActivity($account_id, 4, $proposal_id);
       $this->proposals_model->reviseTracker($account_id, $proposal_id);
+      
       $this->success($proposal_id);
 
     } else {

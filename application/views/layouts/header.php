@@ -1,6 +1,11 @@
 <?php 
-$account_id = $this->session->userdata('account_id'); 
-$prefix = $this->session->userdata('prefix'); 
+$account_id = $this->session->userdata('account_id');
+$admin_id = $this->session->userdata('admin_id'); 
+if ($admin_id == 'TS_BITS') {
+  $prefix = 'BITS';
+} else {
+  $prefix = $this->session->userdata('prefix'); 
+}
 $organization = $this->session->userdata('organization');
 $full_name = $this->session->userdata('full_name');
 $position = $this->session->userdata('position');
