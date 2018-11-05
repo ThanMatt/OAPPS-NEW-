@@ -8,6 +8,12 @@
 
   <title>OAPPS</title>
   <link rel="stylesheet" href="<?= base_url();?>assets/css/styles.css">
+  <script type="text/javascript">
+    var BASE_URL = "<?= base_url();?>";
+  </script>
+  <script src="<?= base_url();?>assets/js/jquery-3.3.1.js"></script>
+  <script src="<?= base_url();?>assets/js/jquery-ui.js"></script>
+  <script src="<?= base_url();?>assets/js/core.js"></script>
 </head>
 
 <body>
@@ -62,21 +68,6 @@
       </div>
     </div>
   <?php echo form_close(); ?>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" 
-    crossorigin="anonymous">
-  </script>
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js" integrity="sha384-JPbtLYL10d/Z1crlc6GGGGM3PavCzzoUJ1UxH0bXHOfguWHQ6XAWrIzW+MBGGXe5" 
-    crossorigin="anonymous">
-  </script>
-
-
-  <script type="text/javascript">
-    var BASE_URL = "<?= base_url();?>";
-  </script>
-  <script src="<?= base_url();?>assets/js/core.js"></script>
-
 </body>
 
 </html>

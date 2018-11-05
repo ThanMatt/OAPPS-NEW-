@@ -123,16 +123,13 @@
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    var BASE_URL = "<?= base_url();?>";
+  </script>
+  <script src="<?= base_url();?>assets/js/jquery-3.3.1.js"></script>
+  <script src="<?= base_url();?>assets/js/dropdown.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
-
-  <script type="text/javascript">
-  var BASE_URL = "<?= base_url();?>";
-  </script>
-  <script src="<?= base_url();?>assets/js/dropdown.js"></script>
-  
   <?php else: ?>
   <?php 
   $this->load->view('users/login_view');

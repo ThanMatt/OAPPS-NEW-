@@ -17,7 +17,11 @@ $proposal_id = $proposal->Proposal_ID;
   <title>Activity Proposal</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="<?=base_url();?>assets/css/styles.css">
-
+  <script type="text/javascript">
+    var BASE_URL = "<?=base_url();?>";
+  </script>
+  <script src="<?=base_url();?>assets/js/jquery-3.3.1.js"></script>
+  <script src="<?=base_url();?>assets/js/plugin.js"></script>
 </head>
 
 <body>
@@ -70,11 +74,5 @@ $proposal_id = $proposal->Proposal_ID;
   $this->load->view('users/login_view');
   ?>
   <?php endif ?>
-  <script type="text/javascript">
-  var BASE_URL = "<?=base_url();?>";
-  </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="<?=base_url();?>assets/js/plugin.js"></script>
 </body>
-
 </html>
