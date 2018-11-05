@@ -1,23 +1,58 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <title>Home</title>
-    <?php $counter = 0?>
-    <?php if ($this->session->userdata('logged_in')): ?>
-    <?php
-    $prefix = $this->session->userdata('prefix');
-    $account_id = $this->session->userdata('account_id');
-    $organization = $this->session->userdata('organization');
-    $full_name = $this->session->userdata('full_name');
-    $position = $this->session->userdata('position');
-    $org_type = $this->session->userdata('org_type');
-    ?>
-    <title>
+
+<head>
+  <?php $counter = 0?>
+  <?php if ($this->session->userdata('logged_in')): ?>
+  <?php
+  $prefix = $this->session->userdata('prefix');
+  $account_id = $this->session->userdata('account_id');
+  $organization = $this->session->userdata('organization');
+  $full_name = $this->session->userdata('full_name');
+  $position = $this->session->userdata('position');
+  $org_type = $this->session->userdata('org_type');
+?>
+  <title>
     <?=strtoupper($prefix) . " - Index"?>
-    </title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  </title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="<?=base_url();?>assets/css/boot_styles.css">
+  <link rel="stylesheet" href="<?=base_url();?>assets/css/progress.css">
+
+
+</head>
+
+<body>
+
+  <?php
+    $this->load->view('layouts/header');
+  ?>
+  <!-- MAIN START -->
+
+  <div class="container-fluid">
+    <div class="row no-gutters">
+      <div class="col-md-2 main" style="margin-left: 3vw !important; border: 0px;">
+        <?php if ($this->session->userdata('org_type') == 'N/A'): ?>
+
+        <div class="table-header button" id="btn_pending">
+        <?php if ($this->notifications_model->checkNotifications($account_id)): ?>
+          Pending*
+        <?php else: ?>
+          Pending
+        <?php endif ?>
+        </div>
+        <div class="table-header button" id="btn_approved">
+          Approved
+        </div>
+        <div class="table-header button" id="btn_revisions">
+          Revisions
+        </div>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
@@ -52,18 +87,31 @@
       <!-- secondary header start -->
       <div class="row oapps-sh oapps-bg-nav">
 
-      <?php if ($org_type != 'N/A'): ?>
-        <div class="col-lg-2" style="margin-left: 2.08333%">
-          <a href="<?=base_url()?>submit"><p class="oapps-nav-text-1">Make New Proposal</p></a>
+        <div class="table-header button" id="btn_pending">
+        <?php if ($this->notifications_model->checkPendingNotifications($account_id)): ?>
+          Pending*
+        <?php else: ?>
+          Pending
+        <?php endif ?>
         </div>
-      <?php endif ?>
-
-        <div class="col-lg-2" style="margin-left: 2.08333%">
-            <p class="oapps-nav-text-1">Reports</p>
+        <div class="table-header button" id="btn_approved">
+        <?php if ($this->notifications_model->checkApprovedNotifications($account_id)): ?>
+          Approved*
+        <?php else: ?>
+          Approved
+        <?php endif ?>
         </div>
-        <div class="col-lg-2" style="margin-left: 2.08333%">
-            <p class="oapps-nav-text-1">Downloadable Forms</p>
+        <div class="table-header button" id="btn_revisions">
+        <?php if ($this->notifications_model->checkUnderRevNotifications($account_id)): ?>
+          Revisions*
+        <?php else: ?>
+          Revisions
+        <?php endif ?>
         </div>
+        <div class="table-header button" id="btn_drafts">
+          Drafts
+        </div>
+        <?php endif?>
       </div>
       <!-- secondary header end -->
       
@@ -155,99 +203,74 @@
           <?php
             foreach ($records as $record) {
               $counter++;
-              //:: N/A = Office
-              //:: If it is N/A, then for offices...
               if ($org_type == 'N/A') {
-                //:: checkDuplicationTitle returns boolean values
                 if ($this->proposals_model->checkDuplicationTitle($record->ActivityName)) {
-                  //:: unreadNotification returns boolean values
                   if ($this->notifications_model->unreadNotification($record->Proposal_ID, $account_id)) {
-                    echo '<div class="oapps-hh oapps-btn col-12 mb-3 proposal-view" id="view_btn/' . $record->Proposal_ID . '"><p class="text-center oapps-bmb">' . $record->ActivityName . ' (' . $record->Account_ID . ')*' . '</p></div>';  
+                    echo '<div class="proposal-view button table-header" style="margin: 0 !important; border-left: 0px; border-right: 0px; border-bottom: 0px; border-top: 0px;" id="view_btn/' . $record->Proposal_ID . '">' . $record->ActivityName . ' (' . $record->Account_ID . ')*' . '</div>';  
                   } else {
-                    echo '<div class="oapps-hh oapps-btn col-12 mb-3 proposal-view" id="view_btn/' . $record->Proposal_ID . '"><p class="text-center oapps-bmb">' . $record->ActivityName . ' (' . $record->Account_ID . ') ' . '</p></div>';
+                    echo '<div class="proposal-view button table-header" style="margin: 0 !important; border-left: 0px; border-right: 0px; border-bottom: 0px; border-top: 0px;" id="view_btn/' . $record->Proposal_ID . '">' . $record->ActivityName . ' (' . $record->Account_ID . ') ' . '</div>';
                   }
 
                 } else {
                   if ($this->notifications_model->unreadNotification($record->Proposal_ID, $account_id)) {
-                    echo '<div class="oapps-hh oapps-btn col-12 mb-3 proposal-view" id="view_btn/' . $record->Proposal_ID . '"><p class="text-center oapps-bmb">' . $record->ActivityName . '*</p></div>';
+                    echo '<div class="proposal-view button table-header" style="margin: 0 !important; border-left: 0px; border-right: 0px; border-bottom: 0px; border-top: 0px;" id="view_btn/' . $record->Proposal_ID . '">' . $record->ActivityName . '*</div>';
                   } else {
-                    echo '<div class="oapps-hh oapps-btn col-12 mb-3 proposal-view" id="view_btn/' . $record->Proposal_ID . '"><p class="text-center oapps-bmb">' . $record->ActivityName . '</p></div>';
+                    echo '<div class="proposal-view button table-header" style="margin: 0 !important; border-left: 0px; border-right: 0px; border-bottom: 0px; border-top: 0px;" id="view_btn/' . $record->Proposal_ID . '">' . $record->ActivityName . '</div>';
                   }
                 }
-              //:: If not an office, then for orgs...
               } else {
                 if ($this->notifications_model->unreadNotification($record->Proposal_ID, $account_id)) {
-                  echo '<div class="oapps-hh oapps-btn col-12 mb-3 proposal-view" id="view_btn/' . $record->Proposal_ID . '"><p class="text-center oapps-bmb">' . $record->ActivityName . '*</p></div>';
+                  echo '<div class="proposal-view button table-header" style="margin: 0 !important; border-left: 0px; border-right: 0px; border-bottom: 0px; border-top: 0px;" id="view_btn/' . $record->Proposal_ID . '">' . $record->ActivityName . '*</div>';
                 } else {
-                  echo '<div class="oapps-hh oapps-btn col-12 mb-3 proposal-view" id="view_btn/' . $record->Proposal_ID . '"><p class="text-center oapps-bmb">' . $record->ActivityName . '</p></div>';
+                  echo '<div class="proposal-view button table-header" style="margin: 0 !important; border-left: 0px; border-right: 0px; border-bottom: 0px; border-top: 0px;" id="view_btn/' . $record->Proposal_ID . '">' . $record->ActivityName . '</div>';
                 }
               }
             }
           ?>
           <?php else: ?>
-          <h1 id="nav-left-container-no-records" class="oapps-hh oapps-btn-norec col-12 mb-3"><p class="text-center oapps-bmb">No Records</p></h1>
+          <h1 id="nav-left-container-no-records" class="button-no-record">No Records</h1>
           <?php endif?>
-          </div> <!-- PROPOSAL LIST ROW END -->
-        </div> <!-- PROPOSAL LIST COL END -->
-
-        <!-- PROPOSAL OVERVIEW -->
-
-        <div class="col-lg-6 offset-lg-1 mt-5 mb-2 oapps-rh h-100" style="border: 1px black solid"> <!-- PROPOSAL OVERVIEW COL START -->
-          <div class="row oapps-bg-head"> <!-- PROPOSAL OVERVIEW HEAD ROW START -->
-            <div class="oapps-hh col-12 oapps-head-text-1 text-white">
-              <p class="text-center oapps-bmb">Proposal Overview</p>
-            </div>
-          </div> <!-- PROPOSAL OVERVIEW HEAD ROW END -->
-          <div  id="table-container" class="row oapps-ch" style="overflow-y: auto;"> <!-- PROPOSAL OVERVIEW START -->
-            <p class="m-4"></p>
-          </div> <!-- PROPOSAL OVERVIEW END -->
-        </div> <!-- PROPOSAL OVERVIEW COL END -->
+        </div>
       </div>
+      <div class="col-md-6 main">
+        <div class="table-header linear-gradient main-header-text">Proposal Overview</div>
+        <div id="table-container" class="main-text" style="overflow-y: scroll;">
+        </div>
+      </div>
+    </div>
+  </div>
 
-    </div> <!-- MAIN END -->
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" 
-      crossorigin="anonymous">
-    </script>
-    
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-      crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
-      crossorigin="anonymous">
-    </script>
-
-
-    <!-- Local files -->
-    <script type="text/javascript">
-      var BASE_URL = "<?=base_url();?>";
-    </script>
-    <script src="<?=base_url();?>assets/js/core.js">
-    </script>
-    <script src="<?=base_url();?>assets/js/progress.js">
-    </script>
-
-    <?php else: ?>
-    <?php
-    $this->load->view('users/login_view');
-    ?>
-    <?php endif?>
-  </body>
+  <!-- MAIN END -->
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" 
+    crossorigin="anonymous">
+  </script>
+  
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
+    crossorigin="anonymous">
+  </script>
 
 
+  <!-- Local files -->
+  <script type="text/javascript">
+    var BASE_URL = "<?=base_url();?>";
+  </script>
+  <script src="<?=base_url();?>assets/js/core.js">
+  </script>
+  <script src="<?=base_url();?>assets/js/progress.js">
+  </script>
+
+  <?php else: ?>
+  <?php
+  $this->load->view('users/login_view');
+  ?>
+  <?php endif?>
+
+</body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
- 
