@@ -62,17 +62,17 @@
       <?php if(($records->ProposalStatus) == 'DRAFT'):  ?>
         
         <a href="proposal/edit/<?=$records->Proposal_ID?>">
-          <input type="button" value="Edit Proposal">
+          <input class="btn btn-light mr-3" type="button" value="Edit Proposal">
         </a>
 
         <a href="proposal/delete/<?=$records->Proposal_ID?>">
-          <input type="button" value="Delete Proposal" id="delete_btn">
+          <input class="btn btn-light" type="button" value="Delete Proposal" id="delete_btn">
         </a>
 
       <!-- For Pending/Approved/Revisions -->
       <?php else: ?>
         <a href="proposal/view/<?=$records->Proposal_ID?>">
-          <input class="table-header button" type="button" value="View Proposal">
+          <input class="table-header btn btn-light mx-5 mt-2" type="button" value="View Proposal">
         </a>
       <?php endif ?>
     </div>
