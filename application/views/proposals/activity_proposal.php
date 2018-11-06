@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="<?=base_url();?>assets/css/styles.css">
   </head>
   <body>
+		<form id="ajax_form_activity">
     <div class="container-fluid" style="height: 100vh; width: 100%;"> <!-- CONTAINER START -->
     <?php 
     $this->load->view('layouts/header');
@@ -395,6 +396,7 @@
       <?php endif?>
 
     </div> <!-- CONTAINER END -->
+</form>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
