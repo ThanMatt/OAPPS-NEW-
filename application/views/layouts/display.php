@@ -1,6 +1,6 @@
 <body id="display_proposal">
   <div class="row no-gutter">
-    <div class="col-xs-9">
+    <div class="col-6">
       <input type="text" id="proposal_id" value="<?=$records->Proposal_ID?>" hidden>
       <div class="main-text">
         <div class="container-content-body m-5">
@@ -57,12 +57,13 @@
     </div>
     
     
-    <div class="col-xs-3" style="padding-left: 15vw;">
+    <div class="col-3 mt-5">
       <!-- For Drafts -->
       <?php if(($records->ProposalStatus) == 'DRAFT'):  ?>
         
         <a href="proposal/edit/<?=$records->Proposal_ID?>">
-          <input class="btn btn-light mr-3" type="button" value="Edit Proposal">
+          <input class="btn btn-light mb-3 mr-3" type="button" value="Edit Proposal">
+
         </a>
 
         <a href="proposal/delete/<?=$records->Proposal_ID?>">

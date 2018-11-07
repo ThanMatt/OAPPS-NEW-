@@ -87,7 +87,6 @@ html, body {
 }
 
 /* Dropdown Button */
-
 .dropbtn {
   border: none;
   cursor: pointer;
@@ -146,6 +145,7 @@ a:link {
 a:visited {
   color: white;
 }
+
 
 .oapps-h {
   min-height: 18.5% !important;
@@ -287,6 +287,12 @@ a:hover {
 .oapps-head-text-1 {
   font-family: times new roman;
   font-size: 27px;
+}
+
+.oapps-login-text-1 {
+  font-family: times new roman;
+  color: rgb(192, 48, 52);
+  font-size: 24px;
 }
 
 /* COLORS */
