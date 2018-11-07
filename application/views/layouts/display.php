@@ -63,6 +63,7 @@
         
         <a href="proposal/edit/<?=$records->Proposal_ID?>">
           <input class="btn btn-light mb-3 mr-3" type="button" value="Edit Proposal">
+
         </a>
 
         <a href="proposal/delete/<?=$records->Proposal_ID?>">

@@ -87,7 +87,6 @@ html, body {
 }
 
 /* Dropdown Button */
-
 .dropbtn {
   border: none;
   cursor: pointer;
@@ -146,6 +145,7 @@ a:link {
 a:visited {
   color: white;
 }
+
 
 .oapps-h {
   min-height: 18.5% !important;

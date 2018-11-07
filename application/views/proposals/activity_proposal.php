@@ -388,6 +388,7 @@
           <input type="submit" class="table-header btn btn-light btn-lg" name="submit" id="submit_btn" value="Submit">
           <?php endif?>
         </div>
+      
       </div>
 
 
