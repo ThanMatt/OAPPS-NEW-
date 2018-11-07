@@ -39,7 +39,6 @@
           $this->load->view('layouts/display_logs');
           ?>
           <!-- ADMIN LOG CONTENT START -->
-
         </div>
       </div> <!-- ADMIN LOG COL END -->
       <div class="col-lg-8 offset-lg-1 oapps-rh" style="border: 1px solid black"> <!-- EDIT/ADD COL START -->

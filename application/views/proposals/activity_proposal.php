@@ -28,11 +28,32 @@
     <link rel="stylesheet" href="<?=base_url();?>assets/css/styles.css">
   </head>
   <body>
-    <form id="ajax_form_activity">
-      <div class="container-fluid" style="height: 100vh; width: 100%;"> <!-- CONTAINER START -->
-      <?php 
-      $this->load->view('layouts/header');
-      ?>
+		<form id="ajax_form_activity">
+    <div class="container-fluid" style="height: 100vh; max-width: 100%;"> <!-- CONTAINER START -->
+    <?php 
+    $this->load->view('layouts/header');
+    ?>
+      
+      <div class="row mx-5 oapps-mh oapps-proposal-m"> <!-- FIRST ROW START -->
+
+        <!-- BUTTONS -->
+
+        <div class="col-lg-2 mt-5 h-100"> <!-- BUTTONS COL START -->
+          <div class="row align-items-center oapps-button-pos"> <!-- BUTTONS ROW START-->
+            <!-- PENDING -->
+            <div class="oapps-btn oapps-hh col-12" style="border: 1px black solid">
+              <p class="text-center oapps-bmb">Activity Proposal</p>
+            </div>
+            <!-- APPROVED -->
+            <div class="oapps-btn oapps-hh col-12 mt-4" style="border: 1px black solid">
+              <p class="text-center oapps-bmb">Fixed Asset Req.</p>
+            </div>
+            <!-- REVISIONS -->
+            <div class="oapps-btn oapps-hh col-12 mt-4" style="border: 1px black solid">
+              <p class="text-center oapps-bmb">Operating Expenses</p>
+            </div>
+          </div> <!-- BUTTONS ROW END   -->
+        </div> <!-- BUTTON COL END -->
         
         <div class="row mx-5 oapps-mh oapps-proposal-m"> <!-- FIRST ROW START -->
 
@@ -178,214 +199,238 @@
                     placeholder="Goal or Aim in doing this activity in number form" required><?=$ap_record->Rationale?></textarea>
 
                   <br>
-
-
-                  <label>Participants</label>
-                  <textarea rows="3" class="form-control form-control-sm" id="participants_textarea" name="participants"
-                    required><?=$ap_record->Participants?></textarea>
-
-                  <br>
-
-                  <input type="reset" class="table-header btn btn-light" id="button" value="Clear">
-                  <input type="button" class="table-header btn btn-light" name="save_btn" id="btn_save_ap" value="Save">
-                </div><!-- ACTIVITY PROPOSAL FORM LONG TEXT SECTION END-->              
-                <!-- ACTIVITY PROPOSAL CONTENT END -->
-              </p>
-            </div> <!-- ACTIVITY PROPOSAL END -->
-          </div> <!-- ACTIVITY PROPOSAL COL END -->
-        </div><!-- FIRST ROW END -->
-
-        <!-- ACTIVITY PROPOSAL END -->
-
-        <div class="row mx-5 oapps-mh oapps-proposal-m2"> <!-- SECOND ROW START -->
-          <!-- FIXED ASSET REQ START-->
-
-          <div class="col-lg-8 offset-lg-3 oapps-rh h-100" style="border: 1px black solid"> <!-- FIXED ASSET COL START -->
-            <div class="row oapps-bg-head"> <!-- FIXED ASSET REQ HEAD ROW START -->
-              <div class="oapps-hh col-12 oapps-head-text-1 text-white">
-                <p class="text-center oapps-bmb">Fixed Asset Requirements</p>
-              </div>
-            </div> <!-- FIXED ASSET REQ HEAD ROW END -->
-            <div class="row oapps-ch" style="overflow-y: auto;"> <!-- FIXED ASSET REQ START -->
-              <p class="m-4">
-                <!-- FIXED ASSET REQ CONTENT START -->
-                <div class="container-far">
-                  <hr id="proposal_hr">
-                  <table id="fields_far">
-                    <th class="lead">#</th>
-                    <th class="lead">Item</th>
-                    <th class="lead">Quantity</th>
-                    <th class="lead">Unit Price</th>
-                    <th class="lead">Total Amount</th>
-                    <th class="lead">Source of Fund</th>
-
-                    <?php if (is_array($far_records) || is_object($far_records)): ?>
-                    <?php $far_counter = 1;?>
-                    <?php foreach ($far_records as $far_record): ?>
-                    <?php $far_id = $far_record->Far_ID ?>
-                    <tr id="far-row<?=$far_counter?>" value="<?=$far_counter?>">
-                      <td>
-                        <?=$far_counter?>
-                      </td>
-                      <td>
-                        <input type="text" class="form-control form-control-sm medium-text-box far-item" name="far_item[]"
-                          id="far_txt_item<?=$far_counter?>" value="<?=$far_record->Item?>" />
-                      </td>
-                      <td>
-                        <input type="number" class="form-control form-control-sm small-text-box far-quantity" name="far_quantity[]"
-                          id="far_txt_quantity<?=$far_counter?>" oninput="calculate(this.id)" min=0 value="<?=$far_record->Quantity?>" />
-                      </td>
-                      <td>
-                        <input type="number" class="form-control form-control-sm small-text-box far-unit" name="far_unit_price[]"
-                          id="far_txt_unit<?=$far_counter?>" oninput="calculate(this.id)" step="any" min=0 value="<?=$far_record->Unit_Price?>" />
-                      </td>
-                      <td>
-                        <input type="number" class="form-control form-control-sm small-text-box far-total" name="far_total_amount[]"
-                          id="far_txt_total<?=$far_counter?>" value="<?=$far_record->Total_Amount?>" readonly />
-                      </td>
-                      <td>
-                        <select class="form-control medium-text-box far-source" name="far_source[]" id="far_source_of_fund<?=$far_counter?>">
-                          <option <?=$this->proposals_model->selectSAF($far_id, 0)?> >Student Activity Fund</option>
-                          <option <?=$this->proposals_model->selectCF($far_id, 0)?> >Cultural Fund</option>
-                          <option <?=$this->proposals_model->selectOF($far_id, 0)?> >Organizational Fund</option>
-                          <option <?=$this->proposals_model->selectBF($far_id, 0)?> >Batch Fund</option>
-                          <option <?=$this->proposals_model->selectPF($far_id, 0)?> >Publication Fund</option>
-                          <option <?=$this->proposals_model->selectAF($far_id, 0)?> >Athletics Fund</option>
-                        </select>
-                      </td>
-                      <td>
-                        <input type='button' class='table-header button-delete-far' name='btn_delete_far' id='button-delete-far-<?=$far_counter?>' value='Delete'>
-
-                        <input type="text" class="form-control form-control-sm far-id" name="far_id[]" id="far_txt_id<?=$far_counter?>"
-                          value="<?=$far_id?>" hidden required readonly />
-                        <input type="text" class="form-control form-control-sm far-proposal-id" name="proposal_id" id="far_txt_proposal_id<?=$far_counter?>"
-                          value="<?=$far_record->Proposal_ID?>" hidden required readonly />
-
-                      </td>
-                    </tr>
-                    <?php $far_counter++;?>
-                    <?php endforeach?>
-                    <?php endif?>
-                  </table>
-
-                  Total:
-                  <input class="form-control form-control-sm medium-text-box" type="number" id="far_overall_amount" value=0
-                    readonly>
-
-                  <input type="button" class="table-header btn btn-light m-2" name="btn_add_far" id="button-add-far" value="Add">
-                  <!-- <input type="button" class="table-header btn btn-light m-2" name="btn_delete_far" id="button-delete-far" value="Delete"> -->
-                  <input type="reset" class="table-header btn btn-light m-2" id="button" value="Clear">
-                  <input type="button" class="table-header btn btn-light m-2" name="save_btn" id="btn_save_far" value="Save">
+                    <div id="collab-container">
+                      Partner/s: <input type="text" class="field_ap form-control" name="specified_co_curric" id="partner_collab"
+                        value="<?=$ap_record->Partners?>" disabled>
+                    </div>
+                  </div>
                 </div>
-                <!-- FIXED ASSET REQ CONTENT END -->
-              </p>
-            </div> <!-- FIXED ASSET REQ END -->
-          </div> <!-- FIXED ASSET REQ COL END -->
-        </div><!-- SECOND ROW END -->
+              </div><!-- ACTIVITY PROPOSAL FORM RADIO SECTION END-->
+              <div class="ap-longtext my-5 col-md-12"><!-- ACTIVITY PROPOSAL FORM LONG TEXT SECTION START-->
+                <label>Nature of the Activity</label>
+                <textarea rows="3" class="form-control form-control-sm" id="nature_textarea" name="nature" placeholder="What is the activity all about?"
+                  required><?=$ap_record->Nature?></textarea>
+
+                <br>
+
+                <label>Rationale</label>
+                <textarea rows="3" class="form-control form-control-sm" id="rationale_textarea" name="rationale"
+                  placeholder="Goal or Aim in doing this activity in number form" required><?=$ap_record->Rationale?></textarea>
+
+                <br>
 
 
-        <div class="row mx-5 oapps-mh"> <!-- THIRD ROW START -->
-          <!-- OPERATING EXPENSES START-->
+                <label>Participants</label>
+                <textarea rows="3" class="form-control form-control-sm" id="participants_textarea" name="participants"
+                  required><?=$ap_record->Participants?></textarea>
+
+                <br>
+
+                <input type="reset" class="table-header btn btn-light" id="button" value="Clear">
+                <input type="button" class="table-header btn btn-light" name="save_btn" id="btn_save_ap" value="Save">
+              </div><!-- ACTIVITY PROPOSAL FORM LONG TEXT SECTION END-->              
+              <!-- ACTIVITY PROPOSAL CONTENT END -->
+            </p>
+          </div> <!-- ACTIVITY PROPOSAL END -->
+        </div> <!-- ACTIVITY PROPOSAL COL END -->
+      </div><!-- FIRST ROW END -->
+
+      <!-- ACTIVITY PROPOSAL END -->
+
+      <div class="row mx-5 oapps-mh oapps-proposal-m2"> <!-- SECOND ROW START -->
+        <!-- FIXED ASSET REQ START-->
+
+        <div class="col-lg-8 offset-lg-3 oapps-rh h-100" style="border: 1px black solid"> <!-- FIXED ASSET COL START -->
+          <div class="row oapps-bg-head"> <!-- FIXED ASSET REQ HEAD ROW START -->
+            <div class="oapps-hh col-12 oapps-head-text-1 text-white">
+              <p class="text-center oapps-bmb">Fixed Asset Requirements</p>
+            </div>
+          </div> <!-- FIXED ASSET REQ HEAD ROW END -->
+          <div class="row oapps-ch" style="overflow-y: auto;"> <!-- FIXED ASSET REQ START -->
+            <p class="m-4">
+              <!-- FIXED ASSET REQ CONTENT START -->
+              <div class="container-far">
+                <hr id="proposal_hr">
+                <table id="fields_far">
+                  <th class="lead">#</th>
+                  <th class="lead">Items</th>
+                  <th class="lead">Quantity</th>
+                  <th class="lead">Unit Price</th>
+                  <th class="lead">Total Amount</th>
+                  <th class="lead">Source of Fund</th>
+
+                  <?php if (is_array($far_records) || is_object($far_records)): ?>
+                  <?php $far_counter = 1;?>
+                  <?php foreach ($far_records as $far_record): ?>
+                  <?php $far_id = $far_record->Far_ID ?>
+                  <tr id="far-row<?=$far_counter?>" value="<?=$far_counter?>">
+                    <td>
+                      <?=$far_counter?>
+                    </td>
+                    <td>
+                      <input type="text" class="form-control form-control-sm medium-text-box far-item" name="far_item[]"
+                        id="far_txt_item<?=$far_counter?>" value="<?=$far_record->Item?>" />
+                    </td>
+                    <td>
+                      <input type="number" class="form-control form-control-sm small-text-box far-quantity" name="far_quantity[]"
+                        id="far_txt_quantity<?=$far_counter?>" oninput="calculate(this.id)" min=0 value="<?=$far_record->Quantity?>" />
+                    </td>
+                    <td>
+                      <input type="number" class="form-control form-control-sm small-text-box far-unit" name="far_unit_price[]"
+                        id="far_txt_unit<?=$far_counter?>" oninput="calculate(this.id)" step="any" min=0 value="<?=$far_record->Unit_Price?>" />
+                    </td>
+                    <td>
+                      <input type="number" class="form-control form-control-sm small-text-box far-total" name="far_total_amount[]"
+                        id="far_txt_total<?=$far_counter?>" value="<?=$far_record->Total_Amount?>" readonly />
+                    </td>
+                    <td>
+                      <select class="form-control medium-text-box far-source" name="far_source[]" id="far_source_of_fund<?=$far_counter?>">
+                        <option <?=$this->proposals_model->selectSAF($far_id, 0)?> >Student Activity Fund</option>
+                        <option <?=$this->proposals_model->selectCF($far_id, 0)?> >Cultural Fund</option>
+                        <option <?=$this->proposals_model->selectOF($far_id, 0)?> >Organizational Fund</option>
+                        <option <?=$this->proposals_model->selectBF($far_id, 0)?> >Batch Fund</option>
+                        <option <?=$this->proposals_model->selectPF($far_id, 0)?> >Publication Fund</option>
+                        <option <?=$this->proposals_model->selectAF($far_id, 0)?> >Athletics Fund</option>
+                      </select>
+                    </td>
+                    <td>
+                      <input type='button' class='btn btn-light button-delete-far' name='btn_delete_far' id='button-delete-far-<?=$far_counter?>' value='Delete'>
+
+                      <input type="text" class="form-control form-control-sm far-id" name="far_id[]" id="far_txt_id<?=$far_counter?>"
+                        value="<?=$far_id?>" hidden required readonly />
+                      <input type="text" class="form-control form-control-sm far-proposal-id" name="proposal_id" id="far_txt_proposal_id<?=$far_counter?>"
+                        value="<?=$far_record->Proposal_ID?>" hidden required readonly />
+
+                    </td>
+                  </tr>
+                  <?php $far_counter++;?>
+                  <?php endforeach?>
+                  <?php endif?>
+                </table>
+
+                Total:
+                <input class="form-control form-control-sm medium-text-box" type="number" id="far_overall_amount" value=0
+                  readonly>
+
+                <input type="button" class="table-header btn btn-light m-2" name="btn_add_far" id="button-add-far" value="Add">
+                <!-- <input type="button" class="table-header btn btn-light m-2" name="btn_delete_far" id="button-delete-far" value="Delete"> -->
+                <input type="reset" class="table-header btn btn-light m-2" id="button" value="Clear">
+                <input type="button" class="table-header btn btn-light m-2" name="save_btn" id="btn_save_far" value="Save">
+              </div>
+              <!-- FIXED ASSET REQ CONTENT END -->
+            </p>
+          </div> <!-- FIXED ASSET REQ END -->
+        </div> <!-- FIXED ASSET REQ COL END -->
+      </div><!-- SECOND ROW END -->
+
+
+      <div class="row mx-5 oapps-mh mb-5"> <!-- THIRD ROW START -->
+        <!-- OPERATING EXPENSES START-->
+
+        <div class="col-lg-8 offset-lg-3 oapps-rh h-100" style="border: 1px black solid"> <!-- ACTIVITY PROPOSAL COL START -->
+          <div class="row oapps-bg-head"> <!-- OPERATING EXPENSES HEAD ROW START -->
+            <div class="oapps-hh col-12 oapps-head-text-1 text-white">
+              <p class="text-center oapps-bmb">Operating Expenses</p>
+            </div>
+          </div> <!-- OPERATING EXPENSES HEAD ROW END -->
+          <div class="row oapps-ch" style="overflow-y: auto;"> <!-- OPERATING EXPENSES START -->
+            <p class="m-4">
+              <!-- OPERATING EXPENSES CONTENT START -->
+              <div class="container-oe">
+                <hr id="proposal_hr">
+                <table id="fields_oe">
+                  <th class="lead">#</th>
+                  <th class="lead">Item</th>
+                  <th class="lead">Quantity</th>
+                  <th class="lead">Unit Price</th>
+                  <th class="lead">Total Amount</th>
+                  <th class="lead" class="lead">Source of Fund</th>
+                  <?php if (is_array($oe_records) || is_object($oe_records)): ?>
+                  <?php $oe_counter = 1;?>
+                  <?php foreach ($oe_records as $oe_record): ?>
+                  <?php $oe_id = $oe_record->OE_ID ?>
+                  <tr id="oe-row<?=$oe_counter?>">
+                    <td>
+                      <?=$oe_counter?>
+                    </td>
+                    <td>
+                      <input type="text" class="form-control form-control-sm medium-text-box" name="oe_item[]" id="oe_txt_item<?=$oe_counter?>"
+                        value="<?=$oe_record->Item?>" />
+                    </td>
+                    <td>
+                      <input type="number" class="form-control form-control-sm small-text-box" name="oe_quantity[]" id="oe_txt_quantity<?=$oe_counter?>"
+                        oninput="calculate2(this.id)" min=0 value="<?=$oe_record->Quantity?>" />
+                    </td>
+                    <td>
+                      <input type="number" class="form-control form-control-sm small-text-box" name="oe_unit_price[]" id="oe_txt_unit<?=$oe_counter?>"
+                        oninput="calculate2(this.id)" step="any" min=0 value="<?=$oe_record->Unit_Price?>" />
+                    </td>
+                    <td>
+                      <input type="number" class="form-control form-control-sm small-text-box" name="oe_total_amount[]" id="oe_txt_total<?=$oe_counter?>"
+                        value="<?=$oe_record->Total_Amount?>" readonly />
+                    </td>
+                    <td>
+                      <select class="form-control medium-text-box" name="oe_source[]" id="oe_source_of_fund<?=$oe_counter?>">
+                        <option <?=$this->proposals_model->selectSAF(0, $oe_id)?> >Student Activity Fund</option>
+                        <option <?=$this->proposals_model->selectCF(0, $oe_id)?> >Cultural Fund</option>
+                        <option <?=$this->proposals_model->selectOF(0, $oe_id)?> >Organizational Fund</option>
+                        <option <?=$this->proposals_model->selectBF(0, $oe_id)?> >Batch Fund</option>
+                        <option <?=$this->proposals_model->selectPF(0, $oe_id)?> >Publication Fund</option>
+                        <option <?=$this->proposals_model->selectAF(0, $oe_id)?> >Athletics Fund</option>
+                      </select>
+                    </td>
+                    <td>
+                      <input type='button' class='btn btn-light button-delete-oe' name='btn_delete_oe' 
+                        id='button-delete-oe-<?=$oe_counter?>' value='Delete'>
+
+                      <input type="text" class="form-control form-control-sm" hidden name="oe_id[]" id="oe_txt_id<?=$oe_counter?>"
+                      value="<?=$oe_id?>" hidden required readonly />
+                      <input type="text" class="form-control form-control-sm oe-proposal-id" name="proposal_id" id="oe_txt_proposal_id<?=$oe_counter?>"
+                        value="<?=$oe_record->Proposal_ID?>" hidden required readonly />
+                    </td>
+                  </tr>
+                  <?php $oe_counter++;?>
+                  <?php endforeach?>
+                  <?php endif?>
+                </table>
+
+                Total:
+                <input type="number" class="form-control form-control-sm medium-text-box" id="oe_overall_amount" value=0
+                  readonly>
+
+                <input type="button" class="table-header btn btn-light m-2" name="btn_add_oe" id="button-add-oe" value="Add">
+                <!-- <input type="button" class="table-header btn btn-light m-2" name="btn_delete_oe" id="button-delete-oe" value="Delete"> -->
+                <input type="reset" class="table-header btn btn-light m-2" id="button" value="Clear">
+                <input type="button" class="table-header btn btn-light m-2" name="save_btn" id="btn_save_oe" value="Save">
 
           <div class="col-lg-8 offset-lg-3 oapps-rh h-100" style="border: 1px black solid"> <!-- ACTIVITY PROPOSAL COL START -->
             <div class="row oapps-bg-head"> <!-- OPERATING EXPENSES HEAD ROW START -->
               <div class="oapps-hh col-12 oapps-head-text-1 text-white">
                 <p class="text-center oapps-bmb">Operating Expenses</p>
               </div>
-            </div> <!-- OPERATING EXPENSES HEAD ROW END -->
-            <div class="row oapps-ch" style="overflow-y: auto;"> <!-- OPERATING EXPENSES START -->
-              <p class="m-4">
-                <!-- OPERATING EXPENSES CONTENT START -->
-                <div class="container-oe">
-                  <hr id="proposal_hr">
-                  <table id="fields_oe">
-                    <th class="lead">#</th>
-                    <th class="lead">Item</th>
-                    <th class="lead">Quantity</th>
-                    <th class="lead">Unit Price</th>
-                    <th class="lead">Total Amount</th>
-                    <th class="lead" class="lead">Source of Fund</th>
-                    <?php if (is_array($oe_records) || is_object($oe_records)): ?>
-                    <?php $oe_counter = 1;?>
-                    <?php foreach ($oe_records as $oe_record): ?>
-                    <?php $oe_id = $oe_record->OE_ID ?>
-                    <tr id="oe-row<?=$oe_counter?>">
-                      <td>
-                        <?=$oe_counter?>
-                      </td>
-                      <td>
-                        <input type="text" class="form-control form-control-sm medium-text-box" name="oe_item[]" id="oe_txt_item<?=$oe_counter?>"
-                          value="<?=$oe_record->Item?>" />
-                      </td>
-                      <td>
-                        <input type="number" class="form-control form-control-sm small-text-box" name="oe_quantity[]" id="oe_txt_quantity<?=$oe_counter?>"
-                          oninput="calculate2(this.id)" min=0 value="<?=$oe_record->Quantity?>" />
-                      </td>
-                      <td>
-                        <input type="number" class="form-control form-control-sm small-text-box" name="oe_unit_price[]" id="oe_txt_unit<?=$oe_counter?>"
-                          oninput="calculate2(this.id)" step="any" min=0 value="<?=$oe_record->Unit_Price?>" />
-                      </td>
-                      <td>
-                        <input type="number" class="form-control form-control-sm small-text-box" name="oe_total_amount[]" id="oe_txt_total<?=$oe_counter?>"
-                          value="<?=$oe_record->Total_Amount?>" readonly />
-                      </td>
-                      <td>
-                        <select class="form-control medium-text-box" name="oe_source[]" id="oe_source_of_fund<?=$oe_counter?>">
-                          <option <?=$this->proposals_model->selectSAF(0, $oe_id)?> >Student Activity Fund</option>
-                          <option <?=$this->proposals_model->selectCF(0, $oe_id)?> >Cultural Fund</option>
-                          <option <?=$this->proposals_model->selectOF(0, $oe_id)?> >Organizational Fund</option>
-                          <option <?=$this->proposals_model->selectBF(0, $oe_id)?> >Batch Fund</option>
-                          <option <?=$this->proposals_model->selectPF(0, $oe_id)?> >Publication Fund</option>
-                          <option <?=$this->proposals_model->selectAF(0, $oe_id)?> >Athletics Fund</option>
-                        </select>
-                      </td>
-                      <td>
-                        <input type='button' class='table-header button-delete-oe' name='btn_delete_oe' 
-                          id='button-delete-oe-<?=$oe_counter?>' value='Delete'>
+              <!-- OPERATING EXPENSES CONTENT END -->
+            </p>
+          </div> <!-- OPERATING EXPENSES END -->
+        </div> <!-- OPERATING EXPENSES COL END -->
+      </div><!-- THIRD ROW END -->
 
-                        <input type="text" class="form-control form-control-sm" hidden name="oe_id[]" id="oe_txt_id<?=$oe_counter?>"
-                        value="<?=$oe_id?>" hidden required readonly />
-                        <input type="text" class="form-control form-control-sm oe-proposal-id" name="proposal_id" id="oe_txt_proposal_id<?=$oe_counter?>"
-                          value="<?=$oe_record->Proposal_ID?>" hidden required readonly />
-                      </td>
-                    </tr>
-                    <?php $oe_counter++;?>
-                    <?php endforeach?>
-                    <?php endif?>
-                  </table>
+      <div class="row no-gutters mt-5"><!-- FOURTH ROW END -->
+        <div class="col-lg-10 ml-5 mt-5"> <!-- INSERT DOCUMENT SUBMISSION HERE -->
+          <p class="mt-5 text-monospace">Upload Document Here Upload Another Document Here Upload Another Document Here Upload Another Document Here</p>
+        </div>
 
-                  Total:
-                  <input type="number" class="form-control form-control-sm medium-text-box" id="oe_overall_amount" value=0
-                    readonly>
-
-                  <input type="button" class="table-header btn btn-light m-2" name="btn_add_oe" id="button-add-oe" value="Add">
-                  <!-- <input type="button" class="table-header btn btn-light m-2" name="btn_delete_oe" id="button-delete-oe" value="Delete"> -->
-                  <input type="reset" class="table-header btn btn-light m-2" id="button" value="Clear">
-                  <input type="button" class="table-header btn btn-light m-2" name="save_btn" id="btn_save_oe" value="Save">
-
-                </div>
-                <!-- OPERATING EXPENSES CONTENT END -->
-              </p>
-            </div> <!-- OPERATING EXPENSES END -->
-          </div> <!-- OPERATING EXPENSES COL END -->
-        </div><!-- THIRD ROW END -->
-
-        <div class="row no-gutters"><!-- FOURTH ROW END -->
-          <div class="col-lg-12 ml-5"> <!-- INSERT DOCUMENT SUBMISSION HERE -->
-            require submission of scanned documents (necessary forms for submission)
-          </div>
-          <div class="col-lg-12 p-5"> <!-- FINAL BUTTONS HERE -->
-            <a href="<?=base_url()?>home">
-              <input type="button" class="table-header btn btn-light btn-lg" name="back" id="button" value="Go Back">
-            </a>
-            <?php if (!$this->proposals_model->checkIfOEExists($proposal_id) || !$this->proposals_model->checkIfFARExists($proposal_id)): ?>
-            <input type="submit" class="table-header btn btn-light btn-lg" name="submit" id="submit_btn" value="Submit">
-            <?php endif?>
-            <a href="delete/<?=$ap_record->Proposal_ID?>">
-              <input type="button" class="table-header btn btn-light btn-lg" name="delete_btn" id="btn_delete" value="Delete Proposal">
-            </a>
-          </div>
-        
+      </div>
+      <div class="row d-flex">
+        <div class="col-lg-5 offset-lg-7 col-md-6 offset-md-6 col-sm-8 offset-sm-4 col-xs-8 offset-xs-4 my-5"> <!-- FINAL BUTTONS HERE -->
+          <a href="<?=base_url()?>home">
+            <input type="button" class="table-header btn btn-light btn-lg" name="back" id="button" value="Go Back">
+          </a>
+          <a href="delete/<?=$ap_record->Proposal_ID?>">
+            <input type="button" class="table-header btn btn-light btn-lg" name="delete_btn" id="btn_delete" value="Delete Proposal">
+          </a>
+          <?php if (!$this->proposals_model->checkIfOEExists($proposal_id) || !$this->proposals_model->checkIfFARExists($proposal_id)): ?>
+          <input type="submit" class="table-header btn btn-light btn-lg" name="submit" id="submit_btn" value="Submit">
+          <?php endif?>
         </div>
 
 
@@ -395,8 +440,8 @@
         ?>
         <?php endif?>
 
-      </div> <!-- CONTAINER END -->
-    </form>
+    </div> <!-- CONTAINER END -->
+</form>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
