@@ -55,110 +55,150 @@
           </div> <!-- BUTTONS ROW END   -->
         </div> <!-- BUTTON COL END -->
         
-        <!-- ACTIVITY PROPOSAL START-->
+        <div class="row mx-5 oapps-mh oapps-proposal-m"> <!-- FIRST ROW START -->
 
-        <div class="col-lg-8 offset-lg-1 mt-5 mb-2 oapps-rh h-100" style="border: 1px black solid;"> <!-- ACTIVITY PROPOSAL COL START -->
-          <div class="row oapps-bg-head"> <!-- ACTIVITY PROPOSAL HEAD ROW START -->
-            <div class="oapps-hh col-12 oapps-head-text-1 text-white">
-              <p class="text-center oapps-bmb">Activity Proposal</p>
-            </div>
-          </div> <!-- ACTIVITY PROPOSAL HEAD ROW END -->
-          <div id="table-container" class="row oapps-ch" style="overflow-y: auto;"> <!-- ACTIVITY PROPOSAL START -->
-            <p class="m-4">
-              <!-- This serves as a buffer. Do not delete this. It's hidden anyway -->
-              <input type="text" class="" name="proposal_id" id="proposal_id" value="<?=$ap_record->Proposal_ID?>" hidden
-              readonly>
-              <!-- ACTIVITY PROPOSAL CONTENT START -->
-              <div class="ap-text form-group col-md-5 mr-5 mt-5"><!-- ACTIVITY PROPOSAL FORM TEXT SECTION START-->
+          <!-- BUTTONS -->
 
-                Activity Name:
-                <input type="text" class="form-control form-control-sm" name="activity_name" id="activity_name" value="<?=$ap_record->ActivityName?>"
-                  required>
+          <div class="col-lg-2 mt-5 h-100"> <!-- BUTTONS COL START -->
+            <div class="row align-items-center oapps-button-pos"> <!-- BUTTONS ROW START-->
+              <!-- PENDING -->
+              <div class="oapps-btn oapps-hh col-12" style="border: 1px black solid">
+                <p class="text-center oapps-bmb">Activity Proposal</p>
+              </div>
+              <!-- APPROVED -->
+              <div class="oapps-btn oapps-hh col-12 mt-4" style="border: 1px black solid">
+                <p class="text-center oapps-bmb">Fixed Asset Req.</p>
+              </div>
+              <!-- REVISIONS -->
+              <div class="oapps-btn oapps-hh col-12 mt-4" style="border: 1px black solid">
+                <p class="text-center oapps-bmb">Operating Expenses</p>
+              </div>
+            </div> <!-- BUTTONS ROW END   -->
+          </div> <!-- BUTTON COL END -->
+          
+          <!-- ACTIVITY PROPOSAL START-->
 
-                <br>
+          <div class="col-lg-8 offset-lg-1 mt-5 mb-2 oapps-rh h-100" style="border: 1px black solid;"> <!-- ACTIVITY PROPOSAL COL START -->
+            <div class="row oapps-bg-head"> <!-- ACTIVITY PROPOSAL HEAD ROW START -->
+              <div class="oapps-hh col-12 oapps-head-text-1 text-white">
+                <p class="text-center oapps-bmb">Activity Proposal</p>
+              </div>
+            </div> <!-- ACTIVITY PROPOSAL HEAD ROW END -->
+            <div id="table-container" class="row oapps-ch" style="overflow-y: auto;"> <!-- ACTIVITY PROPOSAL START -->
+              <p class="m-4">
+                <!-- This serves as a buffer. Do not delete this. It's hidden anyway -->
+                <input type="text" class="" name="proposal_id" id="proposal_id" value="<?=$ap_record->Proposal_ID?>" hidden
+                readonly>
+                <!-- ACTIVITY PROPOSAL CONTENT START -->
+                <div class="ap-text form-group col-md-5 mr-5 mt-5"><!-- ACTIVITY PROPOSAL FORM TEXT SECTION START-->
 
-                Activity Chair:
-                <input type="text" class="form-control form-control-sm" name="activity_chair" id="activity_chair" value="<?=$ap_record->ActivityChair?>"
-                  required>
+                  Activity Name:
+                  <input type="text" class="form-control form-control-sm" name="activity_name" id="activity_name" value="<?=$ap_record->ActivityName?>"
+                    required>
 
-                <br>
-
-                Contact Number:
-                <input type="text" class="form-control form-control-sm" name="contact_number" id="contact_number" value="<?=$ap_record->ChairContactNumber?>"
-                  required>
-
-                <br>
-
-
-                Activity Date:
-                <input type="date" class="form-control form-control-sm" name="date_activity" id="date_activity" value="<?=$ap_record->DateActivity?>"
-                  required>
-
-                <br>
-
-                Activity Time:
-                <input type="time" class="form-control form-control-sm" name="start_time_activity" id="start_time_activity"
-                  value="<?=$ap_record->StartTime?>" required> <br> To <br>
-                <input type="time" class="form-control form-control-sm" name="end_time_activity" id="end_time_activity"
-                  value="<?=$ap_record->EndTime?>" required>
-
-                <br>
-
-                Activity Venue:
-                <input type="text" class="form-control form-control-sm" name="activity_venue" id="activity_venue" value="<?=$ap_record->ActivityVenue?>"
-                  required>
-
-              </div><!-- ACTIVITY PROPOSAL FORM TEXT SECTION END-->
-
-
-              <div class="ap-activitytype form-group col-md-5 ml-5 mt-5"><!-- ACTIVITY PROPOSAL FORM RADIO SECTION START-->
-                <div class="form-check row no-gutters">
-                  <label>Activity Type</label>
-
-                  <hr>
-
-                  <input type="radio" name="radio_activity_type_2" class="form-check-input rd_proposal_type2" id="rd_acad"
-                    value="Academic" <?=$this->proposals_model->checkAcademic($proposal_id)?> required>
-                  <label id="label_radiobutton">ACADEMIC</label>
                   <br>
-                  <input type="radio" name="radio_activity_type_2" class="form-check-input rd_proposal_type2" id="rd_nacad"
-                    value="Non-Academic" <?=$this->proposals_model->checkNonAcademic($proposal_id)?> required>
-                  <label id="label_radiobutton">NON-ACADEMIC</label>
-                  <div class="rd-non-academic-container">
 
-                    <div style="position: relative; left: 30px">
+                  Activity Chair:
+                  <input type="text" class="form-control form-control-sm" name="activity_chair" id="activity_chair" value="<?=$ap_record->ActivityChair?>"
+                    required>
 
-                      <input type="radio" name="non_academic_rd" class="form-check-input non_acad_rd" id="rd_comm" value="Community Involvement"
-                        <?=$this->proposals_model->checkCommunity($proposal_id)?> disabled>Community Involvement
-                      <br>
+                  <br>
 
-                      <input type="radio" name="non_academic_rd" class="form-check-input non_acad_rd" id="rd_cocur" value="Co-Curricular"
-                        <?=$this->proposals_model->checkCoCurricular($proposal_id)?> disabled>Co-Curricular
-                      <br>
-                      <div id="co-curricular">
-                        Specified: <input type="text" name="specified_co_curric" class="form-control" id="specified_co"
-                          value="<?=$ap_record->Specified?>" disabled>
-                      </div>
+                  Contact Number:
+                  <input type="text" class="form-control form-control-sm" name="contact_number" id="contact_number" value="<?=$ap_record->ChairContactNumber?>"
+                    required>
 
-                      <input type="radio" name="non_academic_rd" class="form-check-input non_acad_rd" id="rd_excur" value="Extra-Curricular"
-                        <?=$this->proposals_model->checkExtraCurricular($proposal_id)?> disabled>Extra-Curricular
-                      <br>
-                      <div id="extra-curricular">
-                        Specified: <input type="text" name="specified_ex_curric" class="form-control" id="specified_ex"
-                          value="<?=$ap_record->Specified?>" disabled>
-                      </div>
+                  <br>
 
-                      <hr>
-                    </div>
 
-                    <input type="radio" name="radio_activity_type_1" class="rd_proposal_type1" id="rd_ind" value="Independent"
-                      <?=$this->proposals_model->checkIndependent($proposal_id)?> required>
-                    <label id="label_radiobutton">INDEPENDENT</label>
+                  Activity Date:
+                  <input type="date" class="form-control form-control-sm" name="date_activity" id="date_activity" value="<?=$ap_record->DateActivity?>"
+                    required>
+
+                  <br>
+
+                  Activity Time:
+                  <input type="time" class="form-control form-control-sm" name="start_time_activity" id="start_time_activity"
+                    value="<?=$ap_record->StartTime?>" required> <br> To <br>
+                  <input type="time" class="form-control form-control-sm" name="end_time_activity" id="end_time_activity"
+                    value="<?=$ap_record->EndTime?>" required>
+
+                  <br>
+
+                  Activity Venue:
+                  <input type="text" class="form-control form-control-sm" name="activity_venue" id="activity_venue" value="<?=$ap_record->ActivityVenue?>"
+                    required>
+
+                </div><!-- ACTIVITY PROPOSAL FORM TEXT SECTION END-->
+
+
+                <div class="ap-activitytype form-group col-md-5 ml-5 mt-5"><!-- ACTIVITY PROPOSAL FORM RADIO SECTION START-->
+                  <div class="form-check row no-gutters">
+                    <label>Activity Type</label>
+
+                    <hr>
+
+                    <input type="radio" name="radio_activity_type_2" class="form-check-input rd_proposal_type2" id="rd_acad"
+                      value="Academic" <?=$this->proposals_model->checkAcademic($proposal_id)?> required>
+                    <label id="label_radiobutton">ACADEMIC</label>
                     <br>
-                    <input type="radio" name="radio_activity_type_1" class="rd_proposal_type1" id="rd_col" value="Collaborative"
-                      <?=$this->proposals_model->checkCollaborative($proposal_id)?> required>
-                    <label id="label_radiobutton">COLLABORATIVE</label>
+                    <input type="radio" name="radio_activity_type_2" class="form-check-input rd_proposal_type2" id="rd_nacad"
+                      value="Non-Academic" <?=$this->proposals_model->checkNonAcademic($proposal_id)?> required>
+                    <label id="label_radiobutton">NON-ACADEMIC</label>
+                    <div class="rd-non-academic-container">
 
+                      <div style="position: relative; left: 30px">
+
+                        <input type="radio" name="non_academic_rd" class="form-check-input non_acad_rd" id="rd_comm" value="Community Involvement"
+                          <?=$this->proposals_model->checkCommunity($proposal_id)?> disabled>Community Involvement
+                        <br>
+
+                        <input type="radio" name="non_academic_rd" class="form-check-input non_acad_rd" id="rd_cocur" value="Co-Curricular"
+                          <?=$this->proposals_model->checkCoCurricular($proposal_id)?> disabled>Co-Curricular
+                        <br>
+                        <div id="co-curricular">
+                          Specified: <input type="text" name="specified_co_curric" class="form-control" id="specified_co"
+                            value="<?=$ap_record->Specified?>" disabled>
+                        </div>
+
+                        <input type="radio" name="non_academic_rd" class="form-check-input non_acad_rd" id="rd_excur" value="Extra-Curricular"
+                          <?=$this->proposals_model->checkExtraCurricular($proposal_id)?> disabled>Extra-Curricular
+                        <br>
+                        <div id="extra-curricular">
+                          Specified: <input type="text" name="specified_ex_curric" class="form-control" id="specified_ex"
+                            value="<?=$ap_record->Specified?>" disabled>
+                        </div>
+
+                        <hr>
+                      </div>
+
+                      <input type="radio" name="radio_activity_type_1" class="rd_proposal_type1" id="rd_ind" value="Independent"
+                        <?=$this->proposals_model->checkIndependent($proposal_id)?> required>
+                      <label id="label_radiobutton">INDEPENDENT</label>
+                      <br>
+                      <input type="radio" name="radio_activity_type_1" class="rd_proposal_type1" id="rd_col" value="Collaborative"
+                        <?=$this->proposals_model->checkCollaborative($proposal_id)?> required>
+                      <label id="label_radiobutton">COLLABORATIVE</label>
+
+                      <div id="collab-container">
+                        Partner/s: <input type="text" class="field_ap form-control" name="specified_co_curric" id="partner_collab"
+                          value="<?=$ap_record->Partners?>" disabled>
+                      </div>
+                    </div>
+                  </div>
+                </div><!-- ACTIVITY PROPOSAL FORM RADIO SECTION END-->
+                <div class="ap-longtext my-5 col-md-12"><!-- ACTIVITY PROPOSAL FORM LONG TEXT SECTION START-->
+                  <label>Nature of the Activity</label>
+                  <textarea rows="3" class="form-control form-control-sm" id="nature_textarea" name="nature" placeholder="What is the activity all about?"
+                    required><?=$ap_record->Nature?></textarea>
+
+                  <br>
+
+                  <label>Rationale</label>
+                  <textarea rows="3" class="form-control form-control-sm" id="rationale_textarea" name="rationale"
+                    placeholder="Goal or Aim in doing this activity in number form" required><?=$ap_record->Rationale?></textarea>
+
+                  <br>
                     <div id="collab-container">
                       Partner/s: <input type="text" class="field_ap form-control" name="specified_co_curric" id="partner_collab"
                         value="<?=$ap_record->Partners?>" disabled>
@@ -363,6 +403,10 @@
                 <input type="reset" class="table-header btn btn-light m-2" id="button" value="Clear">
                 <input type="button" class="table-header btn btn-light m-2" name="save_btn" id="btn_save_oe" value="Save">
 
+          <div class="col-lg-8 offset-lg-3 oapps-rh h-100" style="border: 1px black solid"> <!-- ACTIVITY PROPOSAL COL START -->
+            <div class="row oapps-bg-head"> <!-- OPERATING EXPENSES HEAD ROW START -->
+              <div class="oapps-hh col-12 oapps-head-text-1 text-white">
+                <p class="text-center oapps-bmb">Operating Expenses</p>
               </div>
               <!-- OPERATING EXPENSES CONTENT END -->
             </p>
@@ -388,15 +432,13 @@
           <input type="submit" class="table-header btn btn-light btn-lg" name="submit" id="submit_btn" value="Submit">
           <?php endif?>
         </div>
-      
-      </div>
 
 
-        <?php else: ?>
-      <?php
-        $this->load->view('users/login_view');
-      ?>
-      <?php endif?>
+          <?php else: ?>
+        <?php
+          $this->load->view('users/login_view');
+        ?>
+        <?php endif?>
 
     </div> <!-- CONTAINER END -->
 </form>

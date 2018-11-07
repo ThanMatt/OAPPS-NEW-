@@ -8,7 +8,9 @@ class Admin extends CI_Controller {
     $admin_id = $this->session->userdata('admin_id');
     $full_name = $this->session->userdata('full_name');
 
-    $this->load->view('admin_main');
+
+    $data['logs'] = $this->logs_model->showLogs();
+    $this->load->view('admin_main', $data);
 
   }
 
@@ -29,6 +31,11 @@ class Admin extends CI_Controller {
     }
     $this->load->view('users/profile', $data);
 
+  }
+
+  public function displayLogs() {
+    $data['logs'] = $this->logs_model->showLogs();
+    $this->load->view('layouts/display_logs', $data);
   }
 
 }

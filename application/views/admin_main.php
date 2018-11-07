@@ -32,43 +32,12 @@
             <p class="text-center oapps-bmb">Admin logs</p>
           </div> 
         </div> <!-- ADMIN LOG HEAD ROW END -->
-        <div class="oapps-ch" style="overflow-y: auto; width: 100%; margin-left: .95rem !important">
+        <div class="oapps-ch" id="admin-log" style="overflow-y: auto; width: 100%; margin-left: .95rem !important">
+          
           <!-- ADMIN LOG CONTENT START -->
-          <hr class="mr-5">
-          <p class="text-monospace">Log 1: This is how logs will look like</p>
-          <hr class="mr-5">
-          <p class="text-monospace">Log 2: This is another log</p>
-          <hr class="mr-5">
-          <p class="text-monospace">Log 3: This is yet another log</p>
-          <hr class="mr-5">
-          <p class="text-monospace">Log 4: This is another log but really really really really long</p>
-          <hr class="mr-5">
-          <p class="text-monospace">Log 5: This is yet another log</p>
-          <hr class="mr-5">
-          <p class="text-monospace">Log 6: This is another log</p>
-          <hr class="mr-5">
-          <p class="text-monospace">Log 7: This is yet another log</p>
-          <hr class="mr-5">
-          <p class="text-monospace">Log 8: This is another log</p>
-          <hr class="mr-5">
-          <p class="text-monospace">Log 9: This is yet another log</p>
-          <hr class="mr-5">
-          <p class="text-monospace">Log 10: This is another log</p>
-          <hr class="mr-5">
-          <p class="text-monospace">Log 11: This is yet another log</p>
-          <hr class="mr-5">
-          <p class="text-monospace">Log 12: This is another log</p>
-          <hr class="mr-5">
-          <p class="text-monospace">Log 13: This is yet another log</p>
-          <hr class="mr-5">
-          <p class="text-monospace">Log 14: This is another log</p>
-          <hr class="mr-5">
-          <p class="text-monospace">Log 15: This is yet another log</p>
-          <hr class="mr-5">
-          <p class="text-monospace">Log 16: This is another log</p>
-          <hr class="mr-5">
-          <p class="text-monospace">Log 17: This is yet another log</p>
-          <hr>
+          <?php 
+          $this->load->view('layouts/display_logs');
+          ?>
           <!-- ADMIN LOG CONTENT START -->
         </div>
       </div> <!-- ADMIN LOG COL END -->
@@ -156,13 +125,18 @@
   <!-- MAIN END -->
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script type="text/javascript">
-    var BASE_URL = "<?= base_url();?>";
-    </script>
-  <script src="<?= base_url();?>assets/js/jquery-3.3.1.js"></script>
-  <script src="<?= base_url();?>assets/js/admin-core.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" 
+    crossorigin="anonymous">
+  </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+
+  <script type="text/javascript">
+    var BASE_URL = "<?= base_url();?>";
+  </script>
+
+  <script src="<?= base_url();?>assets/js/admin-core.js"></script>
+
   
   
   <?php else: ?>
