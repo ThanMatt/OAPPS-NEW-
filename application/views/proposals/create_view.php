@@ -22,7 +22,8 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
     crossorigin="anonymous">
-  <link rel="stylesheet" href="<?=base_url();?>assets/css/boot_styles.css">
+    <link rel="stylesheet" href="<?=base_url();?>assets/css/boot_styles.css">
+  <link rel="stylesheet" href="<?=base_url();?>assets/css/styles.css">
   <script type="text/javascript">
     var BASE_URL = "<?=base_url();?>";
   </script>

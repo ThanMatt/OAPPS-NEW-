@@ -26,48 +26,13 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
       crossorigin="anonymous">
     <link rel="stylesheet" href="<?=base_url();?>assets/css/styles.css">
-    <script type="text/javascript">
-      var BASE_URL = "<?=base_url();?>";
-    </script>
-    <script src="<?=base_url();?>assets/js/jquery-3.3.1.js"></script>
   </head>
   <body>
-    <div class="container-fluid" style="height: 100vh; width: 100%;"> <!-- CONTAINER START -->
-      <!-- primary header start -->
-      
-      <div class="row oapps-h oapps-bg-head"> <!-- HEADER ROW START -->
-        <div class="col-lg-10"> <!-- TEXT COL START -->
-          <div class="row"> <!-- TEXT ROW START -->
-            <div class="col-lg-12 bottom-align-text">
-              <p class="oapps-primaryhead-text-1" style="position: relative; top: 30px;">OAPPS</p>
-            </div>
-            <div class="col-lg-12">
-              <a href="index.html">
-                <p class="oapps-subhead-text-1">Online Activity Proposal Processing System</p>
-              </a>
-            </div>
-          </div> <!-- TEXT ROW START -->
-        </div> <!-- TEXT COL END -->
-        <div class="col-lg-2 d-flex justify-content-end p-4"> <!-- DISPLAY PIC COL START -->
-          <a href="profile.html">
-            <div class="oapps-profile"></div>
-          </a>
-        </div> <!-- DISPLAY PIC COL END -->
-      </div> <!-- HEADER END START -->
-      <!-- primary header end -->
-      <!-- secondary header start -->
-      <div class="row oapps-sh oapps-bg-nav">
-        <div class="col-lg-2" style="margin-left: 2.08333%">
-          <p class="oapps-nav-text-1">Make New Proposal</p>
-        </div>
-        <div class="col-lg-2" style="margin-left: 2.08333%">
-            <p class="oapps-nav-text-1">Reports</p>
-        </div>
-        <div class="col-lg-2" style="margin-left: 2.08333%">
-            <p class="oapps-nav-text-1">Downloadable Forms</p>
-        </div>
-      </div>
-      <!-- secondary header end -->
+		<form id="ajax_form_activity">
+    <div class="container-fluid" style="height: 100vh; max-width: 100%;"> <!-- CONTAINER START -->
+    <?php 
+    $this->load->view('layouts/header');
+    ?>
       
       <div class="row mx-5 oapps-mh oapps-proposal-m"> <!-- FIRST ROW START -->
 
@@ -100,6 +65,9 @@
           </div> <!-- ACTIVITY PROPOSAL HEAD ROW END -->
           <div id="table-container" class="row oapps-ch" style="overflow-y: auto;"> <!-- ACTIVITY PROPOSAL START -->
             <p class="m-4">
+              <!-- This serves as a buffer. Do not delete this. It's hidden anyway -->
+              <input type="text" class="" name="proposal_id" id="proposal_id" value="<?=$ap_record->Proposal_ID?>" hidden
+              readonly>
               <!-- ACTIVITY PROPOSAL CONTENT START -->
               <div class="ap-text form-group col-md-5 mr-5 mt-5"><!-- ACTIVITY PROPOSAL FORM TEXT SECTION START-->
 
@@ -245,7 +213,7 @@
                 <hr id="proposal_hr">
                 <table id="fields_far">
                   <th class="lead">#</th>
-                  <th class="lead">Item</th>
+                  <th class="lead">Items</th>
                   <th class="lead">Quantity</th>
                   <th class="lead">Unit Price</th>
                   <th class="lead">Total Amount</th>
@@ -286,7 +254,7 @@
                       </select>
                     </td>
                     <td>
-                      <input type='button' class='table-header button-delete-far' name='btn_delete_far' id='button-delete-far-<?=$far_counter?>' value='Delete'>
+                      <input type='button' class='btn btn-light button-delete-far' name='btn_delete_far' id='button-delete-far-<?=$far_counter?>' value='Delete'>
 
                       <input type="text" class="form-control form-control-sm far-id" name="far_id[]" id="far_txt_id<?=$far_counter?>"
                         value="<?=$far_id?>" hidden required readonly />
@@ -316,7 +284,7 @@
       </div><!-- SECOND ROW END -->
 
 
-      <div class="row mx-5 oapps-mh"> <!-- THIRD ROW START -->
+      <div class="row mx-5 oapps-mh mb-5"> <!-- THIRD ROW START -->
         <!-- OPERATING EXPENSES START-->
 
         <div class="col-lg-8 offset-lg-3 oapps-rh h-100" style="border: 1px black solid"> <!-- ACTIVITY PROPOSAL COL START -->
@@ -372,7 +340,7 @@
                       </select>
                     </td>
                     <td>
-                      <input type='button' class='table-header button-delete-oe' name='btn_delete_oe' 
+                      <input type='button' class='btn btn-light button-delete-oe' name='btn_delete_oe' 
                         id='button-delete-oe-<?=$oe_counter?>' value='Delete'>
 
                       <input type="text" class="form-control form-control-sm" hidden name="oe_id[]" id="oe_txt_id<?=$oe_counter?>"
@@ -402,20 +370,23 @@
         </div> <!-- OPERATING EXPENSES COL END -->
       </div><!-- THIRD ROW END -->
 
-      <div class="row no-gutters"><!-- FOURTH ROW END -->
-        <div class="col-lg-12 mt-5 pt-5 ml-5"> <!-- INSERT DOCUMENT SUBMISSION HERE -->
-          require submission of scanned documents (necessary forms for submission)
+      <div class="row no-gutters mt-5"><!-- FOURTH ROW END -->
+        <div class="col-lg-10 ml-5 mt-5"> <!-- INSERT DOCUMENT SUBMISSION HERE -->
+          <p class="mt-5 text-monospace">Upload Document Here Upload Another Document Here Upload Another Document Here Upload Another Document Here</p>
         </div>
-        <div class="col-lg-12 p-5"> <!-- FINAL BUTTONS HERE -->
+
+      </div>
+      <div class="row d-flex">
+        <div class="col-lg-5 offset-lg-7 col-md-6 offset-md-6 col-sm-8 offset-sm-4 col-xs-8 offset-xs-4 my-5"> <!-- FINAL BUTTONS HERE -->
           <a href="<?=base_url()?>home">
             <input type="button" class="table-header btn btn-light btn-lg" name="back" id="button" value="Go Back">
+          </a>
+          <a href="delete/<?=$ap_record->Proposal_ID?>">
+            <input type="button" class="table-header btn btn-light btn-lg" name="delete_btn" id="btn_delete" value="Delete Proposal">
           </a>
           <?php if (!$this->proposals_model->checkIfOEExists($proposal_id) || !$this->proposals_model->checkIfFARExists($proposal_id)): ?>
           <input type="submit" class="table-header btn btn-light btn-lg" name="submit" id="submit_btn" value="Submit">
           <?php endif?>
-          <a href="delete/<?=$ap_record->Proposal_ID?>">
-            <input type="button" class="table-header btn btn-light btn-lg" name="delete_btn" id="btn_delete" value="Delete Proposal">
-          </a>
         </div>
       </div>
 
@@ -427,12 +398,23 @@
       <?php endif?>
 
     </div> <!-- CONTAINER END -->
+</form>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" 
+      crossorigin="anonymous">
+    </script>
+  <script type="text/javascript">
+    var BASE_URL = "<?=base_url();?>";
+  </script>
+  <script src="<?=base_url();?>assets/js/dropdown.js">
+  </script>
+  <script src="<?=base_url();?>assets/js/plugin.js">
+  </script>
   </body>
 </html>
 

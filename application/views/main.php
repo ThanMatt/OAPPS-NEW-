@@ -27,45 +27,12 @@
   </head>
   <body>
     <div class="container-fluid" style="height: 100vh; width: 100%;">
-      <!-- primary header start -->
+
+      <?php 
       
-      <div class="row oapps-h oapps-bg-head"> <!-- HEADER ROW START -->
-        <div class="col-lg-10"> <!-- TEXT COL START -->
-          <div class="row"> <!-- TEXT ROW START -->
-            <div class="col-lg-12 bottom-align-text">
-              <p class="oapps-primaryhead-text-1" style="position: relative; top: 30px;">OAPPS</p>
-            </div>
-            <div class="col-lg-12">
-              <a href="index.html">
-                <p class="oapps-subhead-text-1">Online Activity Proposal Processing System</p>
-              </a>
-            </div>
-          </div> <!-- TEXT ROW START -->
-        </div> <!-- TEXT COL END -->
-        <div class="col-lg-2 d-flex justify-content-end p-4"> <!-- DISPLAY PIC COL START -->
-          <a href="profile.html">
-            <div class="oapps-profile"></div>
-          </a>
-        </div> <!-- DISPLAY PIC COL END -->
-      </div> <!-- HEADER END START -->
-      <!-- primary header end -->
-      <!-- secondary header start -->
-      <div class="row oapps-sh oapps-bg-nav">
+      $this->load->view('layouts/header');
 
-      <?php if ($org_type != 'N/A'): ?>
-        <div class="col-lg-2" style="margin-left: 2.08333%">
-          <a href="<?=base_url()?>submit"><p class="oapps-nav-text-1">Make New Proposal</p></a>
-        </div>
-      <?php endif ?>
-
-        <div class="col-lg-2" style="margin-left: 2.08333%">
-            <p class="oapps-nav-text-1">Reports</p>
-        </div>
-        <div class="col-lg-2" style="margin-left: 2.08333%">
-            <p class="oapps-nav-text-1">Downloadable Forms</p>
-        </div>
-      </div>
-      <!-- secondary header end -->
+      ?>
       
       <div class="row mx-5 oapps-mh"> 
       <!-- MAIN START -->
