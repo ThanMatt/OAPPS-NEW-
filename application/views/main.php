@@ -165,7 +165,7 @@
               <p class="text-center oapps-bmb">Proposal Overview</p>
             </div>
           </div> <!-- PROPOSAL OVERVIEW HEAD ROW END -->
-          <div  id="table-container" class="row oapps-ch" style="overflow-y: auto;"> <!-- PROPOSAL OVERVIEW START -->
+          <div  id="table-container" class="row oapps-ch" style="overflow-y: auto; overflow-x: hidden;"> <!-- PROPOSAL OVERVIEW START -->
             <p class="m-4"></p>
           </div> <!-- PROPOSAL OVERVIEW END -->
         </div> <!-- PROPOSAL OVERVIEW COL END -->
