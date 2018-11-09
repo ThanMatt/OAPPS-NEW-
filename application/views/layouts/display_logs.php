@@ -1,9 +1,13 @@
 <?php if (is_array($logs) || is_object($logs)): ?>
-<?php $counter = 0;?>
+<?php $counter = 0; ?>
 <?php foreach($logs as $log): ?>
-  <?php $counter++ ?>
+  <?php 
+  $counter++; 
+  $time = date("h:i A", strtotime($this->logs_model->splitDateTime($log->DateTime)));
+
+  ?>
   <hr class="mr-5">
-  <p class="text-monospace">Log <?=$counter?>: <?=$log->Activity?></p>
+  <span class="text-monospace"><?=$log->Activity?> <span class="text-muted oapps-text-small"><?=$time?></span> </p>
 <?php endforeach ?>
 
 <?php else: ?>

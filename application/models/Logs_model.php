@@ -12,6 +12,10 @@ class Logs_model extends CI_Model {
     return $result->result();
   }
 
+  public function splitDateTime($dateTime) {
+    return strstr($dateTime, " ", false);
+  }
+
 
 }
 
