@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <?php if ($this->session->userdata('logged_in')): ?>
+  <?php if ($this->session->userdata('admin_log')): ?>
   <?php 
   $admin_id = $this->session->userdata('admin_id'); 
   $full_name = $this->session->userdata('full_name');

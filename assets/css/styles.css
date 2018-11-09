@@ -295,6 +295,9 @@ a:hover {
   font-size: 24px;
 }
 
+.oapps-text-small {
+  font-size: 12px;
+}
 /* COLORS */
 
 .oapps-bg-head {
