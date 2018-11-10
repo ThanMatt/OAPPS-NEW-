@@ -23,6 +23,7 @@ class Accounts_Admin extends CI_Controller {
         'admin_id' => $admin_id,
         'full_name' => $account['Full_Name'],
         'admin_log' => true,
+        'user_type' => 1,
       );
 
       $this->session->set_userdata($account_data);

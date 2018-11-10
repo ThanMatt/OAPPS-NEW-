@@ -86,58 +86,6 @@ html, body {
   }
 }
 
-/* Dropdown Button */
-.dropbtn {
-  border: none;
-  cursor: pointer;
-}
-
-/* Dropdown button on hover & focus */
-
-.dropbtn:hover, .dropbtn:focus {
-  -webkit-filter: grayscale(100%);
-  /* Safari 6.0 - 9.0 */
-  filter: grayscale(100%);
-  transition: all .3s ease-in-out;
-}
-
-/* The container <div> - needed to position the dropdown content */
-
-.dropdown {
-  position: relative;
-  display: block;
-}
-
-/* Dropdown Content (Hidden by Default) */
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  top: 110px;
-  right: -10px;
-  min-width: 300px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-  text-align: 1000px;
-  line-height: 30px;
-  font-family: serif;
-  font-size: 18px;
-  border: gray;
-  background-color: white;
-  color: rgb(138, 138, 138);
-}
-
-.dropdown-details {
-  margin: 5%;
-}
-
-img {
-  border-radius: 50%;
-  width: 125px;
-  height: 125px;
-}
-
 a:link {
   text-decoration: none;
 }
@@ -146,6 +94,11 @@ a:visited {
   color: white;
 }
 
+img {
+  border-radius: 50%;
+  width: 125px;
+  height: 125px;
+}
 
 .oapps-h {
   min-height: 18.5% !important;
@@ -187,6 +140,10 @@ a:visited {
   /* if you figure out how to center vertically in a div, remove this */
 }
 
+/* button {
+  outline: 0 !important;
+} */
+
 .oapps-btn {
   cursor: pointer;
   font-family: calibri;
@@ -194,6 +151,14 @@ a:visited {
   color: #A8A8A8;
   font-size: 25px;
   height: 60px !important;
+}
+
+.oapps-btn-dropdown {
+  cursor: pointer;
+  font-size: 15px;
+  color: black;
+  height: 35px !important;
+  text-align: center;
 }
 
 .oapps-btn-norec {
@@ -210,6 +175,13 @@ a:visited {
   background-color: #670000;
   color: rgb(255, 255, 255);
   font-size: 25px;
+  transition: all .3s ease-in-out;
+}
+
+.oapps-btn-dropdown:hover {
+  background-color: #670000;
+  color: rgb(255, 255, 255);
+  font-size: 15px;
   transition: all .3s ease-in-out;
 }
 
@@ -242,10 +214,44 @@ a:visited {
   background: black;
 }
 
+.oapps-profile-img {
+  border-radius: 50%;
+  width: 125px;
+  height: 125px;
+  
+}
+
+.oapps-profile-img:focus, .oapps-profile-img:hover {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  transition: all .3s ease-in-out;
+}
+
+.oapps-profile-img-btn {
+  outline: none !important;
+  border-radius: 50%;
+  width: 125px;
+  height: 125px;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+
 /* TEXT */
 
 a:hover {
   text-decoration: none;
+}
+
+/* :: Dropdown content */
+
+.oapps-dropdown-details {
+  margin: 5%;
+}
+
+.oapps-content {
+  width: 250px !important;
 }
 
 .oapps-primaryhead-text-1 {
@@ -298,6 +304,7 @@ a:hover {
 .oapps-text-small {
   font-size: 12px;
 }
+
 /* COLORS */
 
 .oapps-bg-head {
