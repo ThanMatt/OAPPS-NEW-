@@ -38,17 +38,17 @@ $org_type = $this->session->userdata('org_type');
     <div class="col-lg-2 d-flex justify-content-end p-4"> <!-- DISPLAY PIC COL START -->
       <!-- <a href="profile.html"> -->
   
-        <div class="oapps-profile">
-          <img class="dropbtn" src="<?=base_url()?>assets/img/logo/<?=$prefix?>_logo.jpg" alt="<?=$prefix?> logo">   
-
-          <!-- :: Dropdown content -->
-          <div id="myDropdown" class="dropdown-content">
+      <div class="dropdown oapps-profile">
+        <button class="oapps-profile-img-btn" data-toggle="dropdown">
+          <img class="oapps-profile-img" src="<?=base_url()?>assets/img/logo/<?=$prefix?>_logo.jpg" alt="<?=$prefix?> logo">   
+        </button>
+        <div class="dropdown-menu dropdown-menu-right oapps-content" aria-labelledby="dropdownMenuButton">
           <?php if ($org_type != 'N/A'): ?>
-            <div class="dropdown-details">
-              Organization: <?=strtoupper($prefix)?>
+            <div class="oapps-dropdown-details">
+              <p>Organization: <?=strtoupper($prefix)?></p>
             </div>
-          <?php else: ?>
-            <div class="dropdown-details">
+            <?php else: ?>
+            <div class="oapps-dropdown-details">
               Office: 
               <?php if ($account_id != 'OD'):?>
                 <?=strtoupper($prefix)?>
@@ -57,13 +57,12 @@ $org_type = $this->session->userdata('org_type');
               <?php endif ?>
             </div>
           <?php endif ?>
-          
-          <div class="dropdown-details">
+          <div class="oapps-dropdown-details">
             <?=$position . ': ' . $full_name?>
           </div>
-          <div>
+           <div>
             <a href="<?=base_url()?>home/profile">
-              <div class="table-header button" id="profile_btn" style="border:0px;">
+              <div class="oapps-btn-dropdown" id="logout_btn">
                 Profile
               </div>
             </a>
@@ -73,16 +72,14 @@ $org_type = $this->session->userdata('org_type');
             
               <a href="<?=base_url()?>accounts_admin/logout">
             <?php endif ?>
-              <div class="table-header button" id="logout_btn" style="border:0px;">
+              <div class="oapps-btn-dropdown" id="logout_btn">
                 Log Out
               </div>
             </a>
-            
           </div>
-          <!-- :: End of dropdown content -->
-        </div> 
+        </div>
       </div>
-      <!-- </a> -->
+
     </div> <!-- DISPLAY PIC COL END -->
   </div> <!-- HEADER END START -->
   <!-- primary header end -->

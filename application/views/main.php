@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Home</title>
     <?php $counter = 0?>
     <?php if ($this->session->userdata('logged_in')): ?>
     <?php
@@ -12,9 +11,15 @@
     $position = $this->session->userdata('position');
     $org_type = $this->session->userdata('org_type');
     ?>
+
     <title>
-    <?=strtoupper($prefix) . " - Index"?>
+      <?php if ($prefix != 'OD'): ?>
+        <?=strtoupper($prefix) . " | Index"?>
+      <?php else: ?>
+        <?=$position . " | Index"?>
+      <?php endif ?>
     </title>
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -29,9 +34,7 @@
     <div class="container-fluid" style="height: 100vh; width: 100%;">
 
       <?php 
-      
       $this->load->view('layouts/header');
-
       ?>
       
       <div class="row mx-5 oapps-mh"> 
