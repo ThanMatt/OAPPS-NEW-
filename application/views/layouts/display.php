@@ -1,3 +1,10 @@
+<?php 
+
+$account_id = $this->session->userdata('account_id');
+$org_type = $this->session->userdata('org_type');
+
+?>
+
 <body id="display_proposal">
   <div class="row no-gutter">
     <div class="col-6">
@@ -38,17 +45,23 @@
           <!-- Progress Tracker -->
           <div id="progress" class="container-content progress-tracker">
           <?php if(($records->ProposalStatus) != 'DRAFT'):  ?>
-            <ul class="progressbar">
-              <li <?=$this->progress_model->progressSecGen($records->Proposal_ID)?> >Sec-Gen</li>
+            <ul class="progressbar"> 
+              <?php if ($records->Account_ID != 'SC'): ?>
+                <li <?=$this->progress_model->progressSecGen($records->Proposal_ID)?> >Sec-Gen</li>
 
-              <?php if($this->proposals_model->checkIfOEExists($records->Proposal_ID) || $this->proposals_model->checkIfFARExists($records->Proposal_ID)):?>
-                <li <?=$this->progress_model->progressTreasurer($records->Proposal_ID)?> >Treasurer</li>
+                <?php if($this->proposals_model->checkIfBPExists($records->Proposal_ID)):?>
+                  <li <?=$this->progress_model->progressTreasurer($records->Proposal_ID)?> >Treasurer</li>
+                <?php endif ?>
+
+                <li <?=$this->progress_model->progressPresident($records->Proposal_ID)?> >President</li>
+                <li <?=$this->progress_model->progressAsstPrefect($records->Proposal_ID)?> >Asst.Prefect</li>
+                <li <?=$this->progress_model->progressPrefect($records->Proposal_ID)?> >Prefect</li>
+                <li <?=$this->progress_model->progressDean($records->Proposal_ID)?> >Dean</li>
+              <?php else: ?>
+                <li <?=$this->progress_model->progressAsstPrefect($records->Proposal_ID)?> >Asst.Prefect</li>
+                <li <?=$this->progress_model->progressPrefect($records->Proposal_ID)?> >Prefect</li>
+                <li <?=$this->progress_model->progressDean($records->Proposal_ID)?> >Dean</li>
               <?php endif ?>
-
-              <li <?=$this->progress_model->progressPresident($records->Proposal_ID)?> >President</li>
-              <li <?=$this->progress_model->progressAsstPrefect($records->Proposal_ID)?> >Asst.Prefect</li>
-              <li <?=$this->progress_model->progressPrefect($records->Proposal_ID)?> >Prefect</li>
-              <li <?=$this->progress_model->progressDean($records->Proposal_ID)?> >Dean</li>
             </ul>
           <?php endif ?>
           </div> 

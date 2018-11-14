@@ -176,7 +176,6 @@
                 <br>
 
                 <input type="reset" class="table-header btn btn-light" id="button" value="Clear">
-                <input type="button" class="table-header btn btn-light" name="save_btn" id="btn_save_ap" value="Save">
               </div><!-- ACTIVITY PROPOSAL FORM LONG TEXT SECTION END-->              
               <!-- ACTIVITY PROPOSAL CONTENT END -->
             </p>
