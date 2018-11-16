@@ -480,6 +480,44 @@ $(function () {
     var collab_partner = $("#partner_collab").val();
     var specified_ex = $("#specified_ex").val();
     var specified_co = $("#specified_co").val();
+
+    var far_item = $("input[name='far_item[]']")
+      .map(function () { return $(this).val(); }).get();
+
+    var far_quantity = $("input[name='far_quantity[]']")
+      .map(function () { return $(this).val(); }).get();
+
+    var far_unit = $("input[name='far_unit_price[]']")
+      .map(function () { return $(this).val(); }).get();
+
+    var far_total_amount = $("input[name='far_total_amount[]']")
+      .map(function () { return $(this).val(); }).get();
+
+    var far_source = $("select[name='far_source[]']")
+      .map(function () { return $(this).val(); }).get();
+
+    var far_id = $("input[name='far_id[]']")
+      .map(function () { return $(this).val(); }).get();
+
+
+    var oe_item = $("input[name='oe_item[]']")
+      .map(function () { return $(this).val(); }).get();
+
+    var oe_quantity = $("input[name='oe_quantity[]']")
+      .map(function () { return $(this).val(); }).get();
+
+    var oe_unit = $("input[name='oe_unit_price[]']")
+      .map(function () { return $(this).val(); }).get();
+
+    var oe_total_amount = $("input[name='oe_total_amount[]']")
+      .map(function () { return $(this).val(); }).get();
+
+    var oe_source = $("select[name='oe_source[]']")
+      .map(function () { return $(this).val(); }).get();
+
+    var oe_id = $("input[name='oe_id[]']")
+      .map(function () { return $(this).val(); }).get();
+
     var flag = true;
 
     $.ajax({
@@ -504,13 +542,27 @@ $(function () {
         collab_partner: collab_partner,
         specified_ex: specified_ex,
         specified_co: specified_co,
+
+        far_item: far_item,
+        far_quantity: far_quantity,
+        far_unit: far_unit,
+        far_total_amount: far_total_amount,
+        far_source: far_source,
+        far_id: far_id,
+
+        oe_item: oe_item,
+        oe_quantity: oe_quantity,
+        oe_unit: oe_unit,
+        oe_total_amount: oe_total_amount,
+        oe_source: oe_source,
+        oe_id: oe_id
       },
       success: function (response) {
         window.location.replace(BASE_URL + "submit/success/" + proposal_id);
       },
       error: function (response) {
         if (!response.success) {
-          alert("There was an error" + response.success);
+          alert("There was an error");
         }
       },
     });

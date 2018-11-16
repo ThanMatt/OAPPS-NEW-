@@ -186,9 +186,8 @@
                   required><?=$ap_record->Participants?></textarea>
 
                 <br>
-
-                <input type="reset" class="table-header btn btn-light" id="button" value="Clear">
                 <input type="button" class="table-header btn btn-light" name="save_btn" id="btn_save_ap" value="Save">
+                <input type="reset" class="table-header btn btn-light" id="button" value="Clear">
               </div><!-- ACTIVITY PROPOSAL FORM LONG TEXT SECTION END-->              
               <!-- ACTIVITY PROPOSAL CONTENT END -->
             </p>
@@ -385,9 +384,7 @@
           <a href="delete/<?=$ap_record->Proposal_ID?>">
             <input type="button" class="table-header btn btn-light btn-lg" name="delete_btn" id="btn_delete" value="Delete Proposal">
           </a>
-          <?php if (!$this->proposals_model->checkIfOEExists($proposal_id) || !$this->proposals_model->checkIfFARExists($proposal_id)): ?>
           <input type="submit" class="table-header btn btn-light btn-lg" name="submit" id="submit_btn" value="Submit">
-          <?php endif?>
         </div>
       </div>
 
