@@ -1,130 +1,125 @@
 <?php
 
 //Cell(float w [, float h [, string txt [, mixed border [, int ln [, string align [, boolean fill [, mixed link]]]]]]])
-class PDF extends FPDF {
 
-  
-  // Page header
-  function Header() {
-    //Custom Fonts
-    $this->AddFont('century', '', 'Century Gothic.php');
-    // Logo
-    // Arial bold 15
-    $this->SetFont('Arial', '', 11);
-    //SBU Image
-    $this->Image(base_url() . 'assets/img/print/sbu.png', 20, 15);
-    //OPSA Image
-    $this->Image(base_url() . 'assets/img/print/opsa.png', 45, 15);
-    //ORG Image
-    $this->Image(base_url() . 'assets/img/print/bits.png', 70, 15);
+$org_info = $this->accounts_model->getMyInfo($records_ap->Account_ID);
+$date = date("F j, Y", strtotime($records_ap->DateActivity));
 
-    // Line break
-    $this->Ln(0);
-
-    //San Beda University - Header - SetFont
-    $this->SetFont('Times', '', 10);
-    $this->SetTextColor('255', '63', '63');
-    // San Beda University - Cell Text
-    $this->Cell(23, 0, ''); //Positioning Cell
-    $this->Cell(0, 65, 'SAN BEDA UNIVERSITY');
-
-    // Line break
-    $this->Ln(0);
-
-    // College Of Arts and Sciences - Header - SetFont
-    $this->SetFont('Arial', '', 8);
-    $this->SetTextColor('0', '0', '0');
-    // College Of Arts and Sciences - Cell Text
-    $this->Cell(19, 0, ''); //Positioning Cell
-    $this->Cell(0, 73, 'COLLEGE OF ARTS AND SCIENCES');
-
-    // Line break
-    $this->Ln(0);
-
-    // Office Of The Prefect Of Student Activities - Header - SetFont
-    $this->SetFont('Arial', 'B', 8);
-    $this->SetTextColor('0', '0', '0');
-    // Office Of The Prefect Of Student Activities - Cell Text
-    $this->Cell(8, 0, ''); //Positioning Cell
-    $this->Cell(0, 80, 'OFFICE OF THE PREFECT OF STUDENT ACTIVITIES');
-
-    // Line break
-    $this->Ln(0);
-
-    // OPSA Email - Header - SetFont
-    $this->SetFont('Times', 'U', 9);
-    $this->SetTextColor('48', '93', '255');
-    // OPSA Email - Cell Text
-    $this->Cell(30, 0, ''); //Positioning Cell
-    $this->Cell(0, 87, 'opsa@sanbeda.edu.ph');
-
-    // Line break
-    $this->Ln(0);
-
-    // Divider Line
-    $this->Cell(90, 0, '', 0); //Positioning Cell
-    $this->Cell(.0001, 50, '', 1); //Divider Line
-
-    // Line break
-    $this->Ln(4);
-
-    // Activity Number - Header - SetFont
-    $this->SetFont('century', '', 12);
-    $this->SetTextColor('0', '0', '0');
-    // Activity Number - Cell Text
-    $this->Cell(95, 0, ''); //Positioning Cell
-    $this->Cell(0, 10, 'CAS-BP-1819-(INSERT VALUES)', 1);
-
-    // Line break
-    $this->Ln(13);
-
-    // Org Name - Header - SetFont
-    $this->SetFont('times', '', 15);
-    $this->SetTextColor('0', '0', '0');
-    // Org Name - Cell Text
-    $this->Cell(95, 0, ''); //Positioning Cell
-    $this->MultiCell(0, 9, $this->session->userdata('organization'), 1, 'C');
-
-    // Line break
-    $this->Ln(0);
-
-    // Activity Title - Header - SetFont
-    $this->SetFont('Arial', 'B', 8);
-    $this->SetTextColor('0', '0', '0');
-    // Activity Title - Cell Text
-    $this->Cell(100, 0, ''); //Positioning Cell
-    $this->Cell(0, 10, 'oof', 0, 0, 'C');
-
-    // Line break
-    $this->Ln(0);
-
-    // Date and Venue - Header - SetFont
-    $this->SetFont('Arial', 'B', 8);
-    $this->SetTextColor('0', '0', '0');
-    // Date and Venue - Cell Text
-    $this->Cell(100, 0, ''); //Positioning Cell
-    $this->Cell(0, 17, 'Date and Venue: October 5, 2018', 0, 0, 'C'); //Insert Date Here
-    $this->Ln(0);
-    $this->Cell(100, 0, ''); //Positioning Cell
-    $this->Cell(0, 24, 'V. Mapa', 0, 0, 'C'); //Insert Venue Here
-
-    // Line break
-    $this->Ln(0);
-
-    // Contact Person and Number - Header - SetFont
-    $this->SetFont('Arial', 'B', 8);
-    $this->SetTextColor('0', '0', '0');
-    // Contact Person and Number - Cell Text
-    $this->Cell(100, 0, ''); //Positioning Cell
-    $this->Cell(0, 32, 'Contact Person and Number: Timothy James Buan - 09273406587', 0, 0, 'C'); //Insert Contact Person and Number Here
-
-  }
-}
-
-// Instanciation of inherited class
-$pdf = new PDF();
+$pdf = new FPDF();
 $pdf->AliasNbPages();
 $pdf->AddPage();
+
+//Custom Fonts
+$pdf->AddFont('century', '', 'Century Gothic.php');
+// Logo
+// Arial bold 15
+$pdf->SetFont('Arial', '', 11);
+//SBU Image
+$pdf->Image(base_url() . 'assets/img/print/sbu.png', 20, 15);
+//OPSA Image
+$pdf->Image(base_url() . 'assets/img/print/opsa.png', 45, 15);
+//ORG Image
+$pdf->Image(base_url() . 'assets/img/logo/'. $records_ap->Account_ID. '_logo.png', 70, 15, 21);
+
+// Line break
+$pdf->Ln(0);
+
+//San Beda University - Header - SetFont
+$pdf->SetFont('Times', '', 10);
+$pdf->SetTextColor('255', '63', '63');
+// San Beda University - Cell Text
+$pdf->Cell(23, 0, ''); //Positioning Cell
+$pdf->Cell(0, 65, 'SAN BEDA UNIVERSITY');
+
+// Line break
+$pdf->Ln(0);
+
+// College Of Arts and Sciences - Header - SetFont
+$pdf->SetFont('Arial', '', 8);
+$pdf->SetTextColor('0', '0', '0');
+// College Of Arts and Sciences - Cell Text
+$pdf->Cell(19, 0, ''); //Positioning Cell
+$pdf->Cell(0, 73, 'COLLEGE OF ARTS AND SCIENCES');
+
+// Line break
+$pdf->Ln(0);
+
+// Office Of The Prefect Of Student Activities - Header - SetFont
+$pdf->SetFont('Arial', 'B', 8);
+$pdf->SetTextColor('0', '0', '0');
+// Office Of The Prefect Of Student Activities - Cell Text
+$pdf->Cell(8, 0, ''); //Positioning Cell
+$pdf->Cell(0, 80, 'OFFICE OF THE PREFECT OF STUDENT ACTIVITIES');
+
+// Line break
+$pdf->Ln(0);
+
+// OPSA Email - Header - SetFont
+$pdf->SetFont('Times', 'U', 9);
+$pdf->SetTextColor('48', '93', '255');
+// OPSA Email - Cell Text
+$pdf->Cell(30, 0, ''); //Positioning Cell
+$pdf->Cell(0, 87, 'opsa@sanbeda.edu.ph');
+
+// Line break
+$pdf->Ln(0);
+
+// Divider Line
+$pdf->Cell(90, 0, '', 0); //Positioning Cell
+$pdf->Cell(.0001, 50, '', 1); //Divider Line
+
+// Line break
+$pdf->Ln(4);
+
+// Activity Number - Header - SetFont
+$pdf->SetFont('century', '', 12);
+$pdf->SetTextColor('0', '0', '0');
+// Activity Number - Cell Text
+$pdf->Cell(95, 0, ''); //Positioning Cell
+$pdf->Cell(0, 10, 'CAS-BP-1819-(INSERT VALUES)', 1);
+
+// Line break
+$pdf->Ln(13);
+
+// Org Name - Header - SetFont
+$pdf->SetFont('times', '', 15);
+$pdf->SetTextColor('0', '0', '0');
+// Org Name - Cell Text
+$pdf->Cell(95, 0, ''); //Positioning Cell
+$pdf->MultiCell(0, 9, strtoupper($org_info->Organization), 1, 'C');
+
+// Line break
+$pdf->Ln(0);
+
+// Activity Title - Header - SetFont
+$pdf->SetFont('Arial', 'B', 8);
+$pdf->SetTextColor('0', '0', '0');
+// Activity Title - Cell Text
+$pdf->Cell(100, 0, ''); //Positioning Cell
+$pdf->Cell(0, 10, 'Title: ' . $records_ap->ActivityName, 0, 0, 'C');
+
+// Line break
+$pdf->Ln(0);
+
+// Date and Venue - Header - SetFont
+$pdf->SetFont('Arial', 'B', 8);
+$pdf->SetTextColor('0', '0', '0');
+// Date and Venue - Cell Text
+$pdf->Cell(100, 0, ''); //Positioning Cell
+$pdf->Cell(0, 17, 'Date and Venue: ' . $date , 0, 0, 'C'); //Insert Date Here
+$pdf->Ln(0);
+$pdf->Cell(100, 0, ''); //Positioning Cell
+$pdf->Cell(0, 24, $records_ap->ActivityVenue, 0, 0, 'C'); //Insert Venue Here
+
+// Line break
+$pdf->Ln(0);
+
+// Contact Person and Number - Header - SetFont
+$pdf->SetFont('Arial', 'B', 8);
+$pdf->SetTextColor('0', '0', '0');
+// Contact Person and Number - Cell Text
+$pdf->Cell(100, 0, ''); //Positioning Cell
+$pdf->Cell(0, 32, 'Contact Person and Number: ' . $org_info->FullName . ' - ' . $org_info->ContactNumber , 0, 0, 'C'); //Insert Contact Person and Number Here
 
 //FAR TABLE START
 

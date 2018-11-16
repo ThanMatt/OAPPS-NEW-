@@ -87,6 +87,24 @@ $org_type = $this->session->userdata('org_type');
         <a href="proposal/view/<?=$records->Proposal_ID?>">
           <input class="table-header btn btn-light mx-5 mt-2" type="button" value="View Proposal">
         </a>
+
+        <?php if($this->session->userdata('org_type') == 'N/A'): ?>
+
+          <?php if($this->proposals_model->didIApproveThis($account_id, $records->Proposal_ID)): ?>
+            <a href="<?=base_url()?>proposal/approve/<?=$records->Proposal_ID?>">
+              <input class="table-header btn btn-light mx-5 mt-2" id="approve_btn" type="button" value="Approve">
+            </a>
+            
+            <a href="<?=base_url()?>proposal/ask/<?=$records->Proposal_ID?>">
+              <input class="table-header btn btn-light mx-5 mt-2" id="revise_btn" type="button" value="Ask for Revision">
+            </a>
+
+            <a href="#">
+              <input class="table-header btn btn-light mx-5 mt-2" type="button" value="Decline">
+            </a>
+          <?php endif ?>
+
+        <?php endif ?>
       <?php endif ?>
     </div>
     

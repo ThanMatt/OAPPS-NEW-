@@ -166,6 +166,126 @@ class Proposals_Model extends CI_Model {
 
   }
 
+  
+  public function shadeCollaborative($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('activity_proposal');
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    $proposal_type1 = $row->ProposalType1;
+
+    if ($proposal_type1 == "Collaborative") {
+      return 1;
+    } else {
+      return 0;
+    }
+  }
+
+  public function shadeIndependent($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('activity_proposal');
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    $proposal_type1 = $row->ProposalType1;
+
+    if ($proposal_type1 == "Independent") {
+      return 1;
+    } else {
+      return 0;
+    }
+
+  }
+
+  public function shadeAcademic($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('activity_proposal');
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    $proposal_type1 = $row->ProposalType2;
+
+    if ($proposal_type1 == "Academic") {
+      return 1;
+    } else {
+      return 0;
+    }
+
+  }
+
+  public function shadeNonAcademic($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('activity_proposal');
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    $proposal_type1 = $row->ProposalType2;
+
+    if ($proposal_type1 == "Non-Academic") {
+      return 1;
+    } else {
+      return 0;
+    }
+
+  }
+
+  public function shadeCommunity($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('activity_proposal');
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    $proposal_type1 = $row->NonAcademicType;
+
+    if ($proposal_type1 == "Community Involvement") {
+      return ' X ';
+    } else {
+      return '   ';
+    }
+
+  }
+
+  public function shadeCoCurricular($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('activity_proposal');
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    $proposal_type1 = $row->NonAcademicType;
+
+    if ($proposal_type1 == "Co-Curricular") {
+      return ' X ';
+    } else {
+      return '   ';
+    }
+
+  }
+
+  public function shadeExtraCurricular($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('activity_proposal');
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    $proposal_type1 = $row->NonAcademicType;
+
+    if ($proposal_type1 == "Extra-Curricular") {
+      return ' X ';
+    } else {
+      return '   ';
+    }
+
+  }
+  
+
   public function checkCollaborative($proposal_id) {
     $this->db->where('Proposal_ID', $proposal_id);
     $this->db->from('activity_proposal');
@@ -179,6 +299,7 @@ class Proposals_Model extends CI_Model {
       return "checked";
     }
   }
+
 
   public function checkIndependent($proposal_id) {
     $this->db->where('Proposal_ID', $proposal_id);
@@ -279,6 +400,7 @@ class Proposals_Model extends CI_Model {
 
     return $row->Account_ID;
   }
+
 
   //:: Fetches activity proposal details
   public function viewAPRecord($proposal_id) {

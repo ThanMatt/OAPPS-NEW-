@@ -15,7 +15,7 @@ class Proposal extends CI_Controller {
       $data['records_far'] = $records_far;
       $data['records_ap'] = $records_ap;
 
-      $this->load->view('print/bp', $data);
+      $this->load->view('print/proposal', $data);
       // $account_id = $this->session->userdata('account_id');
       // $records = $this->proposals_model->viewAPRecord($proposal_id);
       // $proposal_status = $records->ProposalStatus;
