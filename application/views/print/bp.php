@@ -2,6 +2,15 @@
 
 //Cell(float w [, float h [, string txt [, mixed border [, int ln [, string align [, boolean fill [, mixed link]]]]]]])
 
+if (!$this->session->userdata('logged_in')) {
+  redirect("home");
+}
+if ($org_type != 'N/A' && $this->session->userdata('account_id') != $record->Account_ID) {
+  redirect("home");
+}
+
+
+
 $org_info = $this->accounts_model->getMyInfo($records_ap->Account_ID);
 $date = date("F j, Y", strtotime($records_ap->DateActivity));
 

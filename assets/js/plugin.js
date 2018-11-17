@@ -85,6 +85,8 @@ $(function () {
   $("#rd_acad").click(function () {
     $(".non_acad").prop('disabled', true);
     $(".non_acad_rd").prop('disabled', true);
+    $("#specified_ex").prop('disabled', true);
+    $("#specified_co").prop('disabled', true);
     $("#specified_ex").val('');
     $("#specified_co").val('');
     $("#rd_comm").prop('checked', false);
@@ -176,6 +178,7 @@ $(function () {
     var end_time_activity = $("#end_time_activity").val();
     var contact_number = $("#contact_number").val();
     var nature = $("#nature_textarea").val();
+    var objectives = $("#objectives_textarea").val();
     var rationale = $("#rationale_textarea").val();
     var activity_chair = $("#activity_chair").val();
     var participants = $("#participants_textarea").val();
@@ -237,6 +240,7 @@ $(function () {
         end_time_activity: end_time_activity,
         contact_number: contact_number,
         nature: nature,
+        objectives: objectives,
         rationale: rationale,
         activity_chair: activity_chair,
         participants: participants,
@@ -289,6 +293,7 @@ $(function () {
     var end_time_activity = $("#end_time_activity").val();
     var contact_number = $("#contact_number").val();
     var nature = $("#nature_textarea").val();
+    var objectives = $("#objectives_textarea").val();
     var rationale = $("#rationale_textarea").val();
     var activity_chair = $("#activity_chair").val();
     var participants = $("#participants_textarea").val();
@@ -314,6 +319,7 @@ $(function () {
         end_time_activity: end_time_activity,
         contact_number: contact_number,
         nature: nature,
+        objectives: objectives,
         rationale: rationale,
         activity_chair: activity_chair,
         participants: participants,
@@ -469,6 +475,7 @@ $(function () {
     var start_time_activity = $("#start_time_activity").val();
     var end_time_activity = $("#end_time_activity").val();
     var nature = $("#nature_textarea").val();
+    var objectives = $("#objectives_textarea").val();
     var rationale = $("#rationale_textarea").val();
     var activity_chair = $("#activity_chair").val();
     var contact_number = $("#contact_number").val();
@@ -532,6 +539,7 @@ $(function () {
         start_time_activity: start_time_activity,
         end_time_activity: end_time_activity,
         nature: nature,
+        objectives: objectives,
         rationale: rationale,
         activity_chair: activity_chair,
         participants: participants,

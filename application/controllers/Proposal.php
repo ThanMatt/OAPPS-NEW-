@@ -125,6 +125,7 @@ class Proposal extends CI_Controller {
     $start_time = $this->input->post('start_time_activity', true);
     $end_time = $this->input->post('end_time_activity', true);
     $nature = $this->input->post('nature', true);
+    $objectives = $this->input->post('objectives', true);
     $rationale = $this->input->post('rationale', true);
     $activity_chair = $this->input->post('activity_chair', true);
     $participants = $this->input->post('participants', true);
@@ -150,7 +151,7 @@ class Proposal extends CI_Controller {
     $far_id = $this->input->post('far_id');
 
     if ($this->proposals_model->createActivityProposal($account_id, $proposal_id, $contact_number, $activity_name, $date_activity,
-      $start_time, $end_time, $nature, $rationale, $activity_chair, $participants,
+      $start_time, $end_time, $nature, $objectives, $rationale, $activity_chair, $participants,
       $activity_venue, $proposal_type1, $proposal_type2, $non_academic_type,
       $collab_partner, $specified)) {
 
@@ -291,6 +292,7 @@ class Proposal extends CI_Controller {
     $start_time = $this->input->post('start_time_activity', true);
     $end_time = $this->input->post('end_time_activity', true);
     $nature = $this->input->post('nature', true);
+    $objectives = $this->input->post('objectives', true);
     $rationale = $this->input->post('rationale', true);
     $activity_chair = $this->input->post('activity_chair', true);
     $participants = $this->input->post('participants', true);
@@ -311,7 +313,7 @@ class Proposal extends CI_Controller {
     }
 
     $this->proposals_model->saveActivityProposal($account_id, $proposal_id, $contact_number, $activity_name, $date_activity,
-      $start_time, $end_time, $nature, $rationale, $activity_chair, $participants,
+      $start_time, $end_time, $nature, $objectives, $rationale, $activity_chair, $participants,
       $activity_venue, $proposal_type1, $proposal_type2, $non_academic_type,
       $collab_partner, $specified);
 
@@ -454,6 +456,7 @@ class Proposal extends CI_Controller {
     $start_time = $this->input->post('start_time_activity', true);
     $end_time = $this->input->post('end_time_activity', true);
     $nature = $this->input->post('nature', true);
+    $objectives = $this->input->post('objectives', true);
     $rationale = $this->input->post('rationale', true);
     $activity_chair = $this->input->post('activity_chair', true);
     $participants = $this->input->post('participants', true);
@@ -477,7 +480,7 @@ class Proposal extends CI_Controller {
     $far_id = $this->input->post('far_id');
 
     if ($this->proposals_model->submitActivityProposal($account_id, $proposal_id, $contact_number, $activity_name, $date_activity,
-      $start_time, $end_time, $nature, $rationale, $activity_chair, $participants,
+      $start_time, $end_time, $nature, $objectives, $rationale, $activity_chair, $participants,
       $activity_venue, $proposal_type1, $proposal_type2, $non_academic_type,
       $collab_partner, $specified)) {
 

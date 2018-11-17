@@ -582,7 +582,7 @@ class Proposals_Model extends CI_Model {
   }
 
   public function createActivityProposal($account_id, $proposal_id, $contact_number, $activity_name, $date_activity,
-    $start_time, $end_time, $nature, $rationale, $activity_chair, $participants,
+    $start_time, $end_time, $nature, $objectives, $rationale, $activity_chair, $participants,
     $activity_venue, $proposal_type1, $proposal_type2, $non_academic_type,
     $collab_partner, $specified) {
 
@@ -601,6 +601,7 @@ class Proposals_Model extends CI_Model {
       'StartTime' => $start_time,
       'EndTime' => $end_time,
       'Nature' => $nature,
+      'Objectives' => $objectives,
       'Rationale' => $rationale,
       'ActivityChair' => $activity_chair,
       'ChairContactNumber' => $contact_number,
@@ -633,7 +634,7 @@ class Proposals_Model extends CI_Model {
   }
 
   public function saveActivityProposal($account_id, $proposal_id, $contact_number, $activity_name, $date_activity,
-    $start_time, $end_time, $nature, $rationale, $activity_chair, $participants,
+    $start_time, $end_time, $nature, $objectives, $rationale, $activity_chair, $participants,
     $activity_venue, $proposal_type1, $proposal_type2, $non_academic_type,
     $collab_partner, $specified) {
 
@@ -644,6 +645,7 @@ class Proposals_Model extends CI_Model {
       'StartTime' => $start_time,
       'EndTime' => $end_time,
       'Nature' => $nature,
+      'Objectives' => $objectives,
       'Rationale' => $rationale,
       'ActivityChair' => $activity_chair,
       'ChairContactNumber' => $contact_number,
@@ -882,7 +884,7 @@ class Proposals_Model extends CI_Model {
   }
 
   public function submitActivityProposal($account_id, $proposal_id, $contact_number, $activity_name, $date_activity,
-    $start_time, $end_time, $nature, $rationale, $activity_chair, $participants,
+    $start_time, $end_time, $nature, $objectives, $rationale, $activity_chair, $participants,
     $activity_venue, $proposal_type1, $proposal_type2, $non_academic_type,
     $collab_partner, $specified) {
 
@@ -896,6 +898,7 @@ class Proposals_Model extends CI_Model {
       'StartTime' => $start_time,
       'EndTime' => $end_time,
       'Nature' => $nature,
+      'Objectives' => $objectives,
       'Rationale' => $rationale,
       'ActivityChair' => $activity_chair,
       'ChairContactNumber' => $contact_number,
