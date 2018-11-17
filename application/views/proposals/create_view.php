@@ -162,6 +162,12 @@
 
                 <br>
 
+                <label>Objectives of the Activity</label>
+                <textarea rows="3" class="form-control form-control-sm" id="objectives_textarea" name="objectives" placeholder="Goal or Aim in doing this activity in number form"
+                  required></textarea>
+
+                <br>
+
                 <label>Rationale</label>
                 <textarea rows="3" class="form-control form-control-sm" id="rationale_textarea" name="rationale"
                   placeholder="Goal or Aim in doing this activity in number form" required></textarea>

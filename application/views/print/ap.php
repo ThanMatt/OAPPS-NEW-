@@ -1,4 +1,10 @@
 <?php
+if (!$this->session->userdata('logged_in')) {
+  redirect("home");
+}
+if ($org_type != 'N/A' && $this->session->userdata('account_id') != $record->Account_ID) {
+  redirect("home");
+}
 
 $org_info = $this->accounts_model->getMyInfo($records_ap->Account_ID);
 $date = date("F j, Y", strtotime($records_ap->DateActivity));
@@ -8,7 +14,6 @@ $proposal_id = $records_ap->Proposal_ID;
 $pdf = new FPDF();
 $pdf->AliasNbPages();
 $pdf->AddPage();
-
 
 //Cell(float w [, float h [, string txt [, mixed border [, int ln [, string align [, boolean fill [, mixed link]]]]]]])
 
@@ -24,7 +29,7 @@ $pdf->Image(base_url() . 'assets/img/print/sbu.png', 20, 15);
 //OPSA Image
 $pdf->Image(base_url() . 'assets/img/print/opsa.png', 45, 15);
 //ORG Image
-$pdf->Image(base_url() . 'assets/img/logo/'.$records_ap->Account_ID. '_logo.png', 70, 15, 21);
+$pdf->Image(base_url() . 'assets/img/logo/' . $records_ap->Account_ID . '_logo.png', 70, 15, 21);
 
 // Line break
 $pdf->Ln(0);
@@ -111,7 +116,7 @@ $pdf->SetFont('Arial', 'B', 8);
 $pdf->SetTextColor('0', '0', '0');
 // Date and Venue - Cell Text
 $pdf->Cell(100, 0, ''); //Positioning Cell
-$pdf->Cell(0, 17, 'Date and Venue: ' . $date , 0, 0, 'C'); //Insert Date Here
+$pdf->Cell(0, 17, 'Date and Venue: ' . $date, 0, 0, 'C'); //Insert Date Here
 $pdf->Ln(0);
 $pdf->Cell(100, 0, ''); //Positioning Cell
 $pdf->Cell(0, 24, $records_ap->ActivityVenue, 0, 0, 'C'); //Insert Venue Here
@@ -124,8 +129,7 @@ $pdf->SetFont('Arial', 'B', 8);
 $pdf->SetTextColor('0', '0', '0');
 // Contact Person and Number - Cell Text
 $pdf->Cell(100, 0, ''); //Positioning Cell
-$pdf->Cell(0, 32, 'Contact Person and Number: ' . $org_info->FullName . ' - ' . $org_info->ContactNumber , 0, 0, 'C'); //Insert Contact Person and Number Here
-
+$pdf->Cell(0, 32, 'Contact Person and Number: ' . $org_info->FullName . ' - ' . $org_info->ContactNumber, 0, 0, 'C'); //Insert Contact Person and Number Here
 
 //FAR TABLE START
 
@@ -346,7 +350,6 @@ $pdf->Cell(70, 145, $records_ap->ActivityChair, 0, 0, 'C');
 $pdf->SetY('73');
 $pdf->SetX('22');
 $pdf->Cell(70, 145, $records_ap->Participants, 0, 0, 'C');
-
 
 $pdf->SetY('86');
 $pdf->SetX('22');
@@ -571,7 +574,7 @@ $pdf->Cell(100, 34, '', 1, 0, 'J');
 
 $pdf->SetY('181');
 $pdf->SetX('94');
-$pdf->MultiCell(96, 5, "wala pa", 0, 'J'); //:: 230 characters maximum
+$pdf->MultiCell(96, 5, $records_ap->Objectives, 0, 'J'); //:: 230 characters maximum
 // RATIONALE BOX
 
 $pdf->SetY('221');
