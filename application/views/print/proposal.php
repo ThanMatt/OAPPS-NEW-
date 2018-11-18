@@ -804,9 +804,9 @@ if (is_array($records_far) || is_object($records_far)) {
 //FAR Sub Total
 
 $pdf->Cell(80, 0, ''); //Positioning Cell
-$pdf->SetY('90');
+$pdf->SetY(90 + ($counter * 5));
 $pdf->SetX('22');
-$pdf->Cell(176, 5, 'FAR SUB TOTAL: PHP ' . $sum_far, 1, 0, 'C');
+$pdf->Cell(176, 5, 'FAR SUB TOTAL: PHP ' . number_format($sum_far), 1, 0, 'C');
 
 //FAR TABLE END
 
@@ -820,7 +820,7 @@ $pdf->SetFont('arial', 'B', 12);
 $pdf->SetTextColor('0', '0', '0');
 // OPERATING EXPENSES - Header - Cell Text
 $pdf->Cell(80, 0, ''); //Positioning Cell
-$pdf->SetY('112');
+$pdf->SetY('117');
 $pdf->Cell(0, 0, 'OPERATING EXPENSES', 0, 0, 'C');
 
 // OPERATING EXPENSES - Header - SetFont
@@ -912,7 +912,7 @@ if (is_array($records_oe) || is_object($records_oe)) {
 $pdf->Cell(80, 0, ''); //Positioning Cell
 $pdf->SetY(134 + ($counter * 5));
 $pdf->SetX('22');
-$pdf->Cell(176, 5, 'OE SUB TOTAL: PHP ' . $sum_oe, 1, 0, 'C');
+$pdf->Cell(176, 5, 'OE SUB TOTAL: PHP ' . number_format($sum_oe), 1, 0, 'C');
 
 //FAR TABLE END
 
@@ -926,7 +926,7 @@ $pdf->Cell(80, 0, ''); //Positioning Cell
 $pdf->SetY(145 + ($counter * 5));
 $pdf->SetX('22');
 $sum = $sum_far + $sum_oe;
-$pdf->Cell(176, 8, 'TOTAL: PHP ' . $sum, 1, 0, 'C');
+$pdf->Cell(176, 8, 'TOTAL: PHP ' . number_format($sum), 1, 0, 'C');
 
 // BUDGET PROPOSAL TREASURER FORM
 
@@ -935,14 +935,14 @@ $pdf->SetFont('century', '', 7);
 $pdf->SetTextColor('0', '0', '0');
 
 $pdf->Cell(80, 0, ''); //Positioning Cell
-$pdf->SetY('165');
+$pdf->SetY(165 + ($counter * 5));
 $pdf->SetX('22');
 $pdf->Cell(80, 5, 'BUDGET PROPOSAL NUMBER: something something', 1, 0, 'C');
 
 //BOX DRAW
 
 $pdf->Cell(80, 0, ''); //Positioning Cell
-$pdf->SetY('173');
+$pdf->SetY(173 + ($counter * 5));
 $pdf->SetX('22');
 $pdf->Cell(80, 50, '', 1);
 
@@ -952,7 +952,7 @@ $pdf->SetFont('times', '', 12);
 $pdf->SetTextColor('0', '0', '0');
 
 $pdf->Cell(80, 0, ''); //Positioning Cell
-$pdf->SetY('175');
+$pdf->SetY(175 + ($counter * 5));
 $pdf->SetX('24');
 $pdf->Cell(76, 5, 'OFFICE OF THE TREASURER', 1, 0, 'C');
 
@@ -962,57 +962,57 @@ $pdf->SetFont('century', '', 6);
 $pdf->SetTextColor('0', '0', '0');
 
 $pdf->Cell(80, 0, ''); //Positioning Cell
-$pdf->SetY('180');
+$pdf->SetY(180 + ($counter * 5));
 $pdf->SetX('24');
 $pdf->Cell(70, 5, 'Number of Checks');
 
 $pdf->Cell(80, 0, ''); //Positioning Cell
-$pdf->SetY('185');
+$pdf->SetY(185 + ($counter * 5));
 $pdf->SetX('30');
 $pdf->Cell(23, 3, 'Direct to Supplier', 1, 'C');
 
 $pdf->Cell(80, 0, ''); //Positioning Cell
-$pdf->SetY('188');
+$pdf->SetY(188 + ($counter * 5));
 $pdf->SetX('30');
 $pdf->Cell(23, 6, 'Data here', 1, 'C'); //Direct to supplier input here
 
 $pdf->Cell(80, 0, ''); //Positioning Cell
-$pdf->SetY('185');
+$pdf->SetY(185 + ($counter * 5));
 $pdf->SetX('53');
 $pdf->Cell(23, 3, 'Student Named', 1, 'C');
 
 $pdf->Cell(80, 0, ''); //Positioning Cell
-$pdf->SetY('188');
+$pdf->SetY(188 + ($counter * 5));
 $pdf->SetX('53');
 $pdf->Cell(23, 6, 'Data here', 1, 'C'); //Direct to supplier input here
 
 $pdf->Cell(80, 0, ''); //Positioning Cell
-$pdf->SetY('197');
+$pdf->SetY(197 + ($counter * 5));
 $pdf->SetX('24');
 $pdf->Cell(23, 6, 'AMOUNT TO DIRECT TO SUPPLIER: PHP', 'C');
 
 $pdf->Cell(80, 0, ''); //Positioning Cell
-$pdf->SetY('200');
+$pdf->SetY(200 + ($counter * 5));
 $pdf->SetX('24');
 $pdf->Cell(23, 6, 'AMOUNT TO REPRESENTATIVE: PHP', 'C');
 
 $pdf->Cell(80, 0, ''); //Positioning Cell
-$pdf->SetY('203');
+$pdf->SetY(203 + ($counter * 5));
 $pdf->SetX('24');
 $pdf->Cell(23, 6, 'TOTAL AMOUNT REQUESTED: PHP', 'C');
 
 $pdf->Cell(80, 0, ''); //Positioning Cell
-$pdf->SetY('206');
+$pdf->SetY(206 + ($counter * 5));
 $pdf->SetX('24');
 $pdf->Cell(23, 6, 'OVERALL BUDGET REQUESTED: PHP                  as per:        ', 'C');
 
 $pdf->Cell(80, 0, ''); //Positioning Cell
-$pdf->SetY('209');
+$pdf->SetY(209 + ($counter * 5));
 $pdf->SetX('24');
 $pdf->Cell(23, 6, 'DATE: ', 'C');
 
 $pdf->Cell(80, 0, ''); //Positioning Cell
-$pdf->SetY('212');
+$pdf->SetY(212 + ($counter * 5));
 $pdf->SetX('24');
 $pdf->Cell(23, 6, 'SIGNATURE: ', 'C');
 
@@ -1024,14 +1024,14 @@ $pdf->SetFont('century', '', 10);
 $pdf->SetTextColor('0', '0', '0');
 
 $pdf->Cell(80, 0, ''); //Positioning Cell
-$pdf->SetY('240');
+$pdf->SetY(240 + ($counter * 5));
 $pdf->SetX('20');
 $pdf->Cell(70, 5, 'Jose Gerald E. Pabalate');
 
 $pdf->SetFont('century', '', 10);
 $pdf->SetTextColor('0', '0', '0');
 
-$pdf->SetY('245');
+$pdf->SetY(245 + ($counter * 5));
 $pdf->SetX('20');
 $pdf->Cell(70, 5, 'Student Council Treasurer');
 
@@ -1133,6 +1133,7 @@ $pdf->Cell(95, 7, 'Prepared by: ', 0, 0,'C');
 $pdf->SetY(103);
 $pdf->SetX(60);
 $pdf->Cell(95, 7, 'Representative', 0, 0,'C');
+
 $pdf->SetY(123);
 $pdf->SetX(60);
 $pdf->Cell(95, 7, 'Reviewed by: ', 0, 0,'C');
@@ -1206,7 +1207,6 @@ if ($this->proposals_model->checkApprovalPrefect($proposal_id)) {
 if ($this->proposals_model->checkApprovalDean($proposal_id)) {  
   $pdf->MemImage($this->proposals_model->getSignatureDean($proposal_id), 115, 195, 70, 25); //Dean Sig
 }
-
 
 $pdf->Output();
 
