@@ -166,6 +166,126 @@ class Proposals_Model extends CI_Model {
 
   }
 
+  
+  public function shadeCollaborative($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('activity_proposal');
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    $proposal_type1 = $row->ProposalType1;
+
+    if ($proposal_type1 == "Collaborative") {
+      return 1;
+    } else {
+      return 0;
+    }
+  }
+
+  public function shadeIndependent($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('activity_proposal');
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    $proposal_type1 = $row->ProposalType1;
+
+    if ($proposal_type1 == "Independent") {
+      return 1;
+    } else {
+      return 0;
+    }
+
+  }
+
+  public function shadeAcademic($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('activity_proposal');
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    $proposal_type1 = $row->ProposalType2;
+
+    if ($proposal_type1 == "Academic") {
+      return 1;
+    } else {
+      return 0;
+    }
+
+  }
+
+  public function shadeNonAcademic($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('activity_proposal');
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    $proposal_type1 = $row->ProposalType2;
+
+    if ($proposal_type1 == "Non-Academic") {
+      return 1;
+    } else {
+      return 0;
+    }
+
+  }
+
+  public function shadeCommunity($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('activity_proposal');
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    $proposal_type1 = $row->NonAcademicType;
+
+    if ($proposal_type1 == "Community Involvement") {
+      return ' X ';
+    } else {
+      return '   ';
+    }
+
+  }
+
+  public function shadeCoCurricular($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('activity_proposal');
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    $proposal_type1 = $row->NonAcademicType;
+
+    if ($proposal_type1 == "Co-Curricular") {
+      return ' X ';
+    } else {
+      return '   ';
+    }
+
+  }
+
+  public function shadeExtraCurricular($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('activity_proposal');
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    $proposal_type1 = $row->NonAcademicType;
+
+    if ($proposal_type1 == "Extra-Curricular") {
+      return ' X ';
+    } else {
+      return '   ';
+    }
+
+  }
+  
+
   public function checkCollaborative($proposal_id) {
     $this->db->where('Proposal_ID', $proposal_id);
     $this->db->from('activity_proposal');
@@ -179,6 +299,7 @@ class Proposals_Model extends CI_Model {
       return "checked";
     }
   }
+
 
   public function checkIndependent($proposal_id) {
     $this->db->where('Proposal_ID', $proposal_id);
@@ -279,6 +400,7 @@ class Proposals_Model extends CI_Model {
 
     return $row->Account_ID;
   }
+
 
   //:: Fetches activity proposal details
   public function viewAPRecord($proposal_id) {
@@ -389,14 +511,11 @@ class Proposals_Model extends CI_Model {
 
   }
 
-  public function checkIfFARExists($proposal_id) {
-
-    $account_id = $this->session->userdata('account_id');
-    $type = $this->session->userdata('org_type');
-    $position = $this->session->userdata('position');
+  public function checkIfFARExists($proposal_id, $account_id) {
 
     $this->db->from('fixed_assets_requirements');
     $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->where('Account_ID', $account_id);
     $result = $this->db->get();
 
     if (!$result) {
@@ -406,19 +525,16 @@ class Proposals_Model extends CI_Model {
     $row = $result->num_rows();
 
     if ($row != 0) {
-      return true;
+      return false;
     }
 
-    return false;
+    return true;
   }
 
-  public function checkIfOEExists($proposal_id) {
-
-    $account_id = $this->session->userdata('account_id');
-    $type = $this->session->userdata('org_type');
-    $position = $this->session->userdata('position');
+  public function checkIfOEExists($proposal_id, $account_id) {
 
     $this->db->from('operating_expenses');
+    $this->db->where('Account_ID', $account_id);
     $this->db->where('Proposal_ID', $proposal_id);
     $result = $this->db->get();
 
@@ -429,10 +545,10 @@ class Proposals_Model extends CI_Model {
     $row = $result->num_rows();
 
     if ($row != 0) {
-      return true;
+      return false;
     }
 
-    return false;
+    return true;
   }
 
   public function checkIfBPExists($proposal_id) {
@@ -446,21 +562,27 @@ class Proposals_Model extends CI_Model {
     $this->db->where('Proposal_ID', $proposal_id);
     $result = $this->db->get();
 
-    if (!$result) {
-      return false;
-    }
-
     $row = $result->num_rows();
 
     if ($row != 0) {
       return true;
+    } else {
+      $this->db->from('operating_expenses');
+      $this->db->where('Proposal_ID', $proposal_id);
+      $result = $this->db->get();
+
+      $row = $result->num_rows();
+
+      if ($row != 0) {
+        return true;
+      }
     }
 
     return false;
   }
 
   public function createActivityProposal($account_id, $proposal_id, $contact_number, $activity_name, $date_activity,
-    $start_time, $end_time, $nature, $rationale, $activity_chair, $participants,
+    $start_time, $end_time, $nature, $objectives, $rationale, $activity_chair, $participants,
     $activity_venue, $proposal_type1, $proposal_type2, $non_academic_type,
     $collab_partner, $specified) {
 
@@ -479,6 +601,7 @@ class Proposals_Model extends CI_Model {
       'StartTime' => $start_time,
       'EndTime' => $end_time,
       'Nature' => $nature,
+      'Objectives' => $objectives,
       'Rationale' => $rationale,
       'ActivityChair' => $activity_chair,
       'ChairContactNumber' => $contact_number,
@@ -509,9 +632,9 @@ class Proposals_Model extends CI_Model {
     $result = $this->db->get();
 
   }
-  
+
   public function saveActivityProposal($account_id, $proposal_id, $contact_number, $activity_name, $date_activity,
-    $start_time, $end_time, $nature, $rationale, $activity_chair, $participants,
+    $start_time, $end_time, $nature, $objectives, $rationale, $activity_chair, $participants,
     $activity_venue, $proposal_type1, $proposal_type2, $non_academic_type,
     $collab_partner, $specified) {
 
@@ -522,6 +645,7 @@ class Proposals_Model extends CI_Model {
       'StartTime' => $start_time,
       'EndTime' => $end_time,
       'Nature' => $nature,
+      'Objectives' => $objectives,
       'Rationale' => $rationale,
       'ActivityChair' => $activity_chair,
       'ChairContactNumber' => $contact_number,
@@ -611,6 +735,48 @@ class Proposals_Model extends CI_Model {
     }
   }
 
+  public function submitFAR($account_id, $proposal_id, $far_item,
+    $far_quantity, $far_unit, $far_total_amount, $far_source, $far_id) {
+
+    $proposal_status = "PENDING";
+    $office_proposal = "SC_TR";
+
+    $data = array(
+      'Far_ID' => $far_id,
+      'Proposal_ID' => $proposal_id,
+      'Account_ID' => $account_id,
+      'Item' => $far_item,
+      'Quantity' => $far_quantity,
+      'Unit_Price' => $far_unit,
+      'Total_Amount' => $far_total_amount,
+      'Source' => $far_source,
+      'ProposalStatus' => $proposal_status,
+      'OfficeProposal' => $office_proposal,
+    );
+
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->where('Far_ID', $far_id);
+    $this->db->from('fixed_assets_requirements');
+    $result = $this->db->get();
+
+    $rows = $result->num_rows();
+
+    if ($rows == 1) {
+      $this->db->where('Far_ID', $far_id);
+      $result = $this->db->update('fixed_assets_requirements', $data);
+    } else {
+      $result = $this->db->insert('fixed_assets_requirements', $data);
+    }
+
+    if (!$result) {
+      $response['success'] = false;
+      echo json_encode($response);
+
+    } else {
+      $this->updateDate($proposal_id);
+    }
+  }
+
   public function saveOE($account_id, $proposal_id, $oe_item,
     $oe_quantity, $oe_unit, $oe_total_amount, $oe_source, $oe_id) {
 
@@ -631,6 +797,48 @@ class Proposals_Model extends CI_Model {
     $this->db->where('Proposal_ID', $proposal_id);
     $this->db->where('OE_ID', $oe_id);
     $result = $this->db->update('operating_expenses', $data);
+
+    if (!$result) {
+      $response['success'] = false;
+      echo json_encode($response);
+
+    } else {
+      $this->updateDate($proposal_id);
+    }
+  }
+
+  public function submitOE($account_id, $proposal_id, $oe_item,
+    $oe_quantity, $oe_unit, $oe_total_amount, $oe_source, $oe_id) {
+
+    $proposal_status = "PENDING";
+    $office_proposal = "SC_TR";
+
+    $data = array(
+      'OE_ID' => $oe_id,
+      'Proposal_ID' => $proposal_id,
+      'Account_ID' => $account_id,
+      'Item' => $oe_item,
+      'Quantity' => $oe_quantity,
+      'Unit_Price' => $oe_unit,
+      'Total_Amount' => $oe_total_amount,
+      'Source' => $oe_source,
+      'ProposalStatus' => $proposal_status,
+      'OfficeProposal' => $office_proposal,
+    );
+
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->where('OE_ID', $oe_id);
+    $this->db->from('operating_expenses');
+    $result = $this->db->get();
+
+    $rows = $result->num_rows();
+
+    if ($rows == 1) {
+      $this->db->where('OE_ID', $oe_id);
+      $result = $this->db->update('operating_expenses', $data);
+    } else {
+      $result = $this->db->insert('operating_expenses', $data);
+    }
 
     if (!$result) {
       $response['success'] = false;
@@ -676,7 +884,7 @@ class Proposals_Model extends CI_Model {
   }
 
   public function submitActivityProposal($account_id, $proposal_id, $contact_number, $activity_name, $date_activity,
-    $start_time, $end_time, $nature, $rationale, $activity_chair, $participants,
+    $start_time, $end_time, $nature, $objectives, $rationale, $activity_chair, $participants,
     $activity_venue, $proposal_type1, $proposal_type2, $non_academic_type,
     $collab_partner, $specified) {
 
@@ -690,6 +898,7 @@ class Proposals_Model extends CI_Model {
       'StartTime' => $start_time,
       'EndTime' => $end_time,
       'Nature' => $nature,
+      'Objectives' => $objectives,
       'Rationale' => $rationale,
       'ActivityChair' => $activity_chair,
       'ChairContactNumber' => $contact_number,
@@ -840,7 +1049,7 @@ class Proposals_Model extends CI_Model {
   public function deleteRowFAR($far_id) {
     $response = array();
 
-    $this->db->where('FAR_ID', $far_id);
+    $this->db->where('Far_ID', $far_id);
     $result = $this->db->delete('fixed_assets_requirements');
 
     return $result;
@@ -955,13 +1164,30 @@ class Proposals_Model extends CI_Model {
     return true;
   }
 
-  public function forwardAP($next_office, $next_position, $proposal_id) {
+  public function forwardProposal($next_office, $next_position, $proposal_id, $account_id, $far, $oe) {
 
-    if ($this->session->userdata('account_id') != 'OD') {
+    if ($account_id != 'OD') {
 
       $this->db->where('Proposal_ID', $proposal_id);
       $this->db->set('OfficeProposal', $next_office);
       $result = $this->db->update('activity_proposal');
+
+      if ($account_id != 'SC_SG') {
+
+        if ($oe) {
+          
+          $this->db->where('Proposal_ID', $proposal_id);
+          $this->db->set('OfficeProposal', $next_office);
+          $this->db->update('operating_expenses');
+        }
+        
+        if ($far) {
+          
+          $this->db->where('Proposal_ID', $proposal_id);
+          $this->db->set('OfficeProposal', $next_office);
+          $this->db->update('fixed_assets_requirements');
+        }
+      }
 
       if (!$result) {
         return false;
@@ -980,7 +1206,6 @@ class Proposals_Model extends CI_Model {
 
       return true;
     } else {
-
 
       $this->db->where('Proposal_ID', $proposal_id);
       $this->db->set('ProposalStatus', "APPROVED");
@@ -1048,15 +1273,88 @@ class Proposals_Model extends CI_Model {
     }
   }
 
+  public function checkApprovals($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('proposal_tracker');
+    $result = $this->db->get();
+
+    $treasurer_status = $result->row(2)->SC_TR;
+    $secgen_status = $result->row(3)->SC_SG;
+
+    if ($treasurer_status == 'APPROVED' || $secgen_status == 'APPROVED') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public function checkOfficerApproval($proposal_id, $account_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('proposal_tracker');
+    $result = $this->db->get();
+
+    if ($account_id == 'SC_SG') {
+      $treasurer = $result->row(2)->SC_TR;
+
+      if ($treasurer == 'APPROVED') {
+        return true;
+      } else {
+        return false;
+      }
+
+    }
+
+    if ($account_id == 'SC_TR') {
+      $secgen = $result->row(3)->SC_SG;
+
+      if ($secgen == 'APPROVED') {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
+
   public function approveTracker($account_id, $proposal_id) {
 
     if ($account_id != 'OD') {
-      $next_office = $this->nextOffice($account_id, $proposal_id);
 
-      $data = array(
-        $account_id => "APPROVED",
-        $next_office => "PENDING",
-      );
+      $this->db->where('Proposal_ID', $proposal_id);
+      $this->db->from('proposal_tracker');
+      $result = $this->db->get();
+
+      //:: IF BP EXISTS
+      if ($this->checkIfBPExists($proposal_id)) {
+        if ($account_id == 'SC_SG' || $account_id == 'SC_TR') {
+          if ($this->checkApprovals($proposal_id)) {
+            $next_office = $this->nextOffice($account_id, $proposal_id);
+            $data = array(
+              $account_id => "APPROVED",
+              $next_office => "PENDING",
+            );
+
+          } else {
+            $data = array(
+              $account_id => "APPROVED",
+            );
+          }
+
+        } else {
+          $next_office = $this->nextOffice($account_id, $proposal_id);
+          $data = array(
+            $account_id => "APPROVED",
+            $next_office => "PENDING",
+          );
+        }
+
+        //:: IF NOT, only activity proposal
+      } else {
+        $next_office = $this->nextOffice($account_id, $proposal_id);
+        $data = array(
+          $account_id => "APPROVED",
+          $next_office => "PENDING",
+        );
+      }
 
     } else {
       $data = array(
@@ -1256,6 +1554,135 @@ class Proposals_Model extends CI_Model {
     }
   }
 
+  public function checkCoCurricularSpec($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('activity_proposal');
+
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    if ($row->NonAcademicType == 'Co-Curricular') {
+      return $row->Specified;
+    } else {
+      return ' ';
+    }
+
+  }
+
+  public function checkExCurricularSpec($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('activity_proposal');
+
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    if ($row->NonAcademicType == 'Extra-Curricular') {
+      return $row->Specified;
+    } else {
+      return ' ';
+    }
+
+  }
+
+  public function checkApprovalPresident($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('proposal_tracker');
+
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    if ($row->SC_P == 'APPROVED') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public function checkApprovalPrefect($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('proposal_tracker');
+
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    if ($row->OPSA_P == 'APPROVED') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public function checkApprovalDean($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('proposal_tracker');
+
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    if ($row->OD == 'APPROVED') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  public function getSignaturePresident($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('proposal_tracker');
+
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    if ($row->SC_P == 'APPROVED') {
+      $this->db->where('Account_ID', 'SC_P');
+      $this->db->from('accounts');
+      $result = $this->db->get();
+
+      $row = $result->row();
+      return $row->Signature;
+    }
+  }
+
+  public function getSignaturePrefect($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('proposal_tracker');
+
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    if ($row->OPSA_P == 'APPROVED') {
+      $this->db->where('Account_ID', 'OPSA_P');
+      $this->db->from('accounts');
+      $result = $this->db->get();
+
+      $row = $result->row();
+      return $row->Signature;
+    } 
+  }
+
+  public function getSignatureDean($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('proposal_tracker');
+
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    if ($row->OD == 'APPROVED') {
+      $this->db->where('Account_ID', 'OD');
+      $this->db->from('accounts');
+      $result = $this->db->get();
+
+      $row = $result->row();
+      return $row->Signature;
+    } 
+  }
 
 }
 

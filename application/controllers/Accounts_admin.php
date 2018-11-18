@@ -22,7 +22,7 @@ class Accounts_Admin extends CI_Controller {
       $account_data = array(
         'admin_id' => $admin_id,
         'full_name' => $account['Full_Name'],
-        'logged_in' => true,
+        'admin_log' => true,
         'user_type' => 1,
       );
 
