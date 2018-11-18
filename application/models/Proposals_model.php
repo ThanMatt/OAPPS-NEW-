@@ -1049,7 +1049,7 @@ class Proposals_Model extends CI_Model {
   public function deleteRowFAR($far_id) {
     $response = array();
 
-    $this->db->where('FAR_ID', $far_id);
+    $this->db->where('Far_ID', $far_id);
     $result = $this->db->delete('fixed_assets_requirements');
 
     return $result;
@@ -1552,6 +1552,38 @@ class Proposals_Model extends CI_Model {
     if ($source == 'Athletics Fund') {
       return 'selected="selected"';
     }
+  }
+
+  public function checkCoCurricularSpec($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('activity_proposal');
+
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    if ($row->NonAcademicType == 'Co-Curricular') {
+      return $row->Specified;
+    } else {
+      return ' ';
+    }
+
+  }
+
+  public function checkExCurricularSpec($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('activity_proposal');
+
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    if ($row->NonAcademicType == 'Extra-Curricular') {
+      return $row->Specified;
+    } else {
+      return ' ';
+    }
+
   }
 
 }

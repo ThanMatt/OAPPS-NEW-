@@ -7,6 +7,7 @@ class Proposal extends CI_Controller {
     if ($this->session->userdata('logged_in')) {
 
       $account_id = $this->session->userdata('account_id');
+      $org_type = $this->session->userdata('org_type');
 
       $record_oe = $this->proposals_model->viewOERecord($proposal_id);
       $records_far = $this->proposals_model->viewFARRecord($proposal_id);
@@ -15,7 +16,16 @@ class Proposal extends CI_Controller {
       $data['records_far'] = $records_far;
       $data['records_ap'] = $records_ap;
 
+      if ($org_type == 'N/A') {
+        if ($this->proposals_model->didIApproveThis($account_id, $proposal_id)) {
+          $this->proposals_model->getDateTime($account_id, $proposal_id);
+        }
+      }
+      $this->accounts_model->logMyActivity($account_id, 2, $proposal_id);
+
       $this->load->view('print/proposal', $data);
+
+      
       // $account_id = $this->session->userdata('account_id');
       // $records = $this->proposals_model->viewAPRecord($proposal_id);
       // $proposal_status = $records->ProposalStatus;
@@ -34,14 +44,6 @@ class Proposal extends CI_Controller {
       //   }
 
       // } else {
-
-      //   if ($org_type == 'N/A') {
-      //     if ($this->proposals_model->didIApproveThis($account_id, $proposal_id)) {
-      //       $this->proposals_model->getDateTime($account_id, $proposal_id);
-      //     }
-      //   }
-      //   $this->load->view('proposals/view_ap', $data);
-      //   $this->accounts_model->logMyActivity($account_id, 2, $proposal_id);
 
       // }
 
@@ -108,7 +110,7 @@ class Proposal extends CI_Controller {
 
     }
 
-    redirect(base_url() . "proposal/view/" . $proposal_id);
+    redirect("home");
 
   }
 

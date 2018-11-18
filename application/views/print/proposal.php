@@ -130,7 +130,7 @@ $pdf->SetFont('Arial', 'B', 8);
 $pdf->SetTextColor('0', '0', '0');
 // Contact Person and Number - Cell Text
 $pdf->Cell(100, 0, ''); //Positioning Cell
-$pdf->Cell(0, 32, 'Contact Person and Number: ' . $org_info->FullName . ' - ' . $org_info->ContactNumber, 0, 0, 'C'); //Insert Contact Person and Number Here
+$pdf->Cell(0, 32, 'Contact Person and Number: ' . $records_ap->ActivityChair . ' - ' . $records_ap->ChairContactNumber, 0, 0, 'C'); //Insert Contact Person and Number Here
 
 //FAR TABLE START
 
@@ -187,17 +187,18 @@ $pdf->Cell(0, 73, 'PARTNER/S:');
 $pdf->SetFont('Arial', 'U', 10);
 $pdf->SetTextColor('0', '0', '0');
 
-$pdf->SetY('55');
-$pdf->SetX('60');
-$pdf->Cell(0, 73, 'ORGANIZATION 1');
+$partners = explode(', ', $records_ap->Partners);
+$setY_collab = 55;
 
-$pdf->SetY('60');
-$pdf->SetX('60');
-$pdf->Cell(0, 73, 'ORGANIZATION 2');
+for ($counter = 0; $counter < count($partners); $counter++) {
+  $pdf->SetY($setY_collab);
+  $pdf->SetX('60');
+  $pdf->Cell(0, 73, $partners[$counter]);
 
-$pdf->SetY('65');
-$pdf->SetX('60');
-$pdf->Cell(0, 73, 'ORGANIZATION 3');
+  $setY_collab += 5;
+}
+
+
 
 //ACTIVITY TYPE BOX2!!!!!!!
 
@@ -287,11 +288,11 @@ $pdf->Cell(0, 73, 'EXTRA-CURRICULAR');
 
 $pdf->SetY('65');
 $pdf->SetX('130');
-$pdf->Cell(0, 73, 'SPECIFIED: ' . $records_ap->Specified); // INSERT CO CURRICULAR VALUES HERE
+$pdf->Cell(0, 73, 'SPECIFIED: ' . $this->proposals_model->checkCoCurricularSpec($proposal_id)); // INSERT CO CURRICULAR VALUES HERE
 
 $pdf->SetY('73');
 $pdf->SetX('130');
-$pdf->Cell(0, 73, 'SPECIFIED: ' . $records_ap->Specified); // INSERT EXTRA CURRICULAR VALUES HERE
+$pdf->Cell(0, 73, 'SPECIFIED: ' . $this->proposals_model->checkExCurricularSpec($proposal_id)); // INSERT EXTRA CURRICULAR VALUES HERE
 
 //MAIN BOX!!!!!!!
 
@@ -698,7 +699,7 @@ $pdf->SetFont('Arial', 'B', 8);
 $pdf->SetTextColor('0', '0', '0');
 // Contact Person and Number - Cell Text
 $pdf->Cell(100, 0, ''); //Positioning Cell
-$pdf->Cell(0, 32, 'Contact Person and Number: ' . $org_info->FullName . ' - ' . $org_info->ContactNumber, 0, 0, 'C'); //Insert Contact Person and Number Here
+$pdf->Cell(0, 32, 'Contact Person and Number: ' . $records_ap->ActivityChair . ' - ' . $records_ap->ChairContactNumber, 0, 0, 'C'); //Insert Contact Person and Number Here
 
 //FAR TABLE START
 
