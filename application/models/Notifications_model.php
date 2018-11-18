@@ -6,16 +6,26 @@ class Notifications_model extends CI_Model {
 
     $counter = 0;
 
-    if (!$bp) {
-      $account_ids = array(
-        $account_id,
-        'SC_SG',
-      );
+    if ($account_id != 'SC') {
+
+      if (!$bp) {
+        $account_ids = array(
+          $account_id,
+          'SC_SG',
+        );
+        
+      } else {
+        $account_ids = array(
+          $account_id,
+          'SC_SG',
+          'SC_TR',
+        );
+      }
+
     } else {
-      $account_ids = array(
+      $account_ids = array (
         $account_id,
-        'SC_SG',
-        'SC_TR',
+        'OPSA_APP',
       );
     }
 
@@ -36,15 +46,20 @@ class Notifications_model extends CI_Model {
   public function sendNotification($proposal_id, $org_id, $notification_type, $office_id) {
 
     if ($notification_type == 0) {
-      $data = array(
-        'Proposal_ID' => $proposal_id,
-        'Account_ID' => $office_id,
-        'NotificationType' => $notification_type,
-        'Notification' => 1,
-      );
 
-      $this->db->insert('notifications', $data);
+      //:: N/A for SC_SG & SC_TR
+      if ($office_id != 'N/A') {
 
+        $data = array(
+          'Proposal_ID' => $proposal_id,
+          'Account_ID' => $office_id,
+          'NotificationType' => $notification_type,
+          'Notification' => 1,
+        );
+        
+        $this->db->insert('notifications', $data);
+      }
+        
       $data = array(
         'NotificationType' => 0,
         'Notification' => 1,
