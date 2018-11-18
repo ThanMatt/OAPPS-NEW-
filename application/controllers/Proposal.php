@@ -8,7 +8,7 @@ class Proposal extends CI_Controller {
 
       $account_id = $this->session->userdata('account_id');
       $org_type = $this->session->userdata('org_type');
-
+      
       $record_oe = $this->proposals_model->viewOERecord($proposal_id);
       $records_far = $this->proposals_model->viewFARRecord($proposal_id);
       $records_ap = $this->proposals_model->viewAPRecord($proposal_id);
@@ -92,7 +92,6 @@ class Proposal extends CI_Controller {
 
       if ($this->proposals_model->checkIfBPExists($proposal_id)) {
         if ($account_id == 'SC_SG' || $account_id == 'SC_TR') {
-
           if ($this->proposals_model->checkOfficerApproval($proposal_id, $account_id)) {
             $this->notifications_model->sendNotification($proposal_id, $org_id, 0, $next_office);
           } else {
