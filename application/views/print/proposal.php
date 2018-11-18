@@ -1133,7 +1133,6 @@ $pdf->Cell(95, 7, 'Prepared by: ', 0, 0,'C');
 $pdf->SetY(103);
 $pdf->SetX(60);
 $pdf->Cell(95, 7, 'Representative', 0, 0,'C');
-
 $pdf->SetY(123);
 $pdf->SetX(60);
 $pdf->Cell(95, 7, 'Reviewed by: ', 0, 0,'C');
@@ -1207,6 +1206,7 @@ if ($this->proposals_model->checkApprovalPrefect($proposal_id)) {
 if ($this->proposals_model->checkApprovalDean($proposal_id)) {  
   $pdf->MemImage($this->proposals_model->getSignatureDean($proposal_id), 115, 195, 70, 25); //Dean Sig
 }
+
 
 $pdf->Output();
 

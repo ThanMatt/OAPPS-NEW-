@@ -268,6 +268,13 @@ CREATE TABLE IF NOT EXISTS `fixed_assets_requirements` (
   `OfficeProposal` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `fixed_assets_requirements`
+--
+
+INSERT INTO `fixed_assets_requirements` (`Far_ID`, `Proposal_ID`, `Account_ID`, `Item`, `Quantity`, `Unit_Price`, `Total_Amount`, `Source`, `ProposalStatus`, `OfficeProposal`) VALUES
+('2500', '9789', 'PSSBU', 'testing', 12, 25, 300, 'Student Activity Fund', 'DRAFT', 'N/A');
+
 -- --------------------------------------------------------
 
 --
@@ -2341,7 +2348,6 @@ INSERT INTO `log` (`LogID`, `Activity`, `ActivityType`, `DateTime`) VALUES
 (2059, 'User OPSA_P logged out', 0, '2018-11-18 05:10:09'),
 (2060, 'User BITS logged in', 1, '2018-11-18 05:36:15'),
 (2061, 'User BITS viewed the proposal 4489', 2, '2018-11-18 05:36:26');
-
 -- --------------------------------------------------------
 
 --
@@ -2355,7 +2361,6 @@ CREATE TABLE IF NOT EXISTS `notifications` (
   `NotificationType` int(11) NOT NULL,
   `Notification` int(11) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=latin1;
-
 --
 -- Dumping data for table `notifications`
 --
