@@ -45,6 +45,31 @@ class Accounts_Model extends CI_Model {
 
   }
 
+  public function getMyInfo($account_id) {
+    $this->db->where('Account_ID', $account_id);
+    $result = $this->db->get('accounts');
+
+    return $result->row();
+
+    // $account_prefix = strstr($account_id, "_", true);
+
+    // if ($account_prefix == '') {
+    //   $account_prefix = $account_id;
+    // }
+
+    // return array(
+    //   'Organization' => $organization,
+    //   'Email_Address' => $email_address,
+    //   'Contact_Number' => $contact_number,
+    //   'Full_Name' => $full_name,
+    //   'Batch' => $batch,
+    //   'Org_Type' => $org_type,
+    //   'Position' => $position,
+    //   'Prefix' => $account_prefix,
+    // );
+
+  }
+
   
 
   //:: Used for body.php and other else

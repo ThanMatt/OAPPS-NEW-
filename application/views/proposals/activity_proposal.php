@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
+  <?php if ($this->session->userdata('logged_in')): ?>
     <?php
       $proposal_id = $ap_record->Proposal_ID;
       $prefix = $this->session->userdata('prefix');
@@ -16,7 +17,7 @@
       <?php if ($this->session->userdata('account_id') != $ap_record->Account_ID): ?>
     <?php redirect('home')?>
     <?php endif?>
-    <?php if ($this->session->userdata('logged_in')): ?>
+    
 
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -173,6 +174,12 @@
 
                 <br>
 
+                <label>Objectives of the Activity</label>
+                <textarea rows="3" class="form-control form-control-sm" id="objectives_textarea" name="objectives" placeholder="Goal or Aim in doing this activity in number form"
+                  required><?=$ap_record->Objectives?></textarea>
+
+                <br>
+
                 <label>Rationale</label>
                 <textarea rows="3" class="form-control form-control-sm" id="rationale_textarea" name="rationale"
                   placeholder="Goal or Aim in doing this activity in number form" required><?=$ap_record->Rationale?></textarea>
@@ -185,9 +192,8 @@
                   required><?=$ap_record->Participants?></textarea>
 
                 <br>
-
-                <input type="reset" class="table-header btn btn-light" id="button" value="Clear">
                 <input type="button" class="table-header btn btn-light" name="save_btn" id="btn_save_ap" value="Save">
+                <input type="reset" class="table-header btn btn-light" id="button" value="Clear">
               </div><!-- ACTIVITY PROPOSAL FORM LONG TEXT SECTION END-->              
               <!-- ACTIVITY PROPOSAL CONTENT END -->
             </p>
@@ -384,9 +390,7 @@
           <a href="delete/<?=$ap_record->Proposal_ID?>">
             <input type="button" class="table-header btn btn-light btn-lg" name="delete_btn" id="btn_delete" value="Delete Proposal">
           </a>
-          <?php if (!$this->proposals_model->checkIfOEExists($proposal_id) || !$this->proposals_model->checkIfFARExists($proposal_id)): ?>
           <input type="submit" class="table-header btn btn-light btn-lg" name="submit" id="submit_btn" value="Submit">
-          <?php endif?>
         </div>
       </div>
 
