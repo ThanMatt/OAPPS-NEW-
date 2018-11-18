@@ -1,5 +1,7 @@
 <?php
 
+
+
 if (!$this->session->userdata('logged_in')) {
   redirect("home");
 }
@@ -12,7 +14,7 @@ $date = date("F j, Y", strtotime($records_ap->DateActivity));
 $proposal_id = $records_ap->Proposal_ID;
 
 // Instanciation of inherited class
-$pdf = new FPDF();
+$pdf = new PDF_MemImage();
 $pdf->AliasNbPages();
 $pdf->AddPage();
 
@@ -1130,8 +1132,7 @@ $pdf->Cell(95, 7, 'Prepared by: ', 0, 0,'C');
 
 $pdf->SetY(103);
 $pdf->SetX(60);
-$pdf->Cell(95, 7, 'Activity Chair', 0, 0,'C');
-
+$pdf->Cell(95, 7, 'Representative', 0, 0,'C');
 $pdf->SetY(123);
 $pdf->SetX(60);
 $pdf->Cell(95, 7, 'Reviewed by: ', 0, 0,'C');
@@ -1177,27 +1178,34 @@ $pdf->SetTextColor('0', '0', '0');
 
 $pdf->SetY(95);
 $pdf->SetX(60);
-$pdf->Cell(95, 7, 'JOSE EMMANUEL CAYABYAB', 0, 0,'C');
+$pdf->Cell(95, 7, strtoupper($records_ap->ActivityChair), 0, 0,'C');
 
 $pdf->SetY(155);
 $pdf->SetX(60);
-$pdf->Cell(95, 7, 'ARAPAT D. MUSTAPHA', 0, 0,'C');
+$pdf->Cell(95, 7, strtoupper($this->accounts_model->getOfficeInfo('SC_P')), 0, 0,'C');
 
 $pdf->SetY(215);
 $pdf->SetX(15);
-$pdf->Cell(95, 7, 'DR. MARVIN R. REYES', 0, 0,'C');
+$pdf->Cell(95, 7, strtoupper($this->accounts_model->getOfficeInfo('OPSA_P')), 0, 0,'C');
 
 $pdf->SetY(215);
 $pdf->SetX(100);
-$pdf->Cell(95, 7, 'DR. CHRISTIAN BRYAN S. BUSTAMANTE', 0, 0,'C');
+$pdf->Cell(95, 7, strtoupper($this->accounts_model->getOfficeInfo('OD')), 0, 0,'C');
+
 
 $pdf->Image(base_url() . 'assets/img/signature/signature.png', 80, 76, 70, 25); //Activity Chair Sig
 
-$pdf->Image(base_url() . 'assets/img/signature/signature.png', 80, 135, 70, 25); //SC Pres Sig
 
-$pdf->Image(base_url() . 'assets/img/signature/signature.png', 30, 195, 70, 25); //OPSA Sig
+if ($this->proposals_model->checkApprovalPresident($proposal_id)) { 
+  $pdf->MemImage($this->proposals_model->getSignaturePresident($proposal_id), 80, 135, 70, 25); //SC Pres Sig
+} 
 
-$pdf->Image(base_url() . 'assets/img/signature/signature.png', 115, 195, 70, 25); //Dean Sig
+if ($this->proposals_model->checkApprovalPrefect($proposal_id)) {  
+  $pdf->MemImage($this->proposals_model->getSignaturePrefect($proposal_id), 30, 195, 70, 25); //OPSA Sig
+}
+if ($this->proposals_model->checkApprovalDean($proposal_id)) {  
+  $pdf->MemImage($this->proposals_model->getSignatureDean($proposal_id), 115, 195, 70, 25); //Dean Sig
+}
 
 
 $pdf->Output();
