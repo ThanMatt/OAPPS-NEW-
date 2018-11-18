@@ -1,5 +1,7 @@
 <?php
 
+
+
 if (!$this->session->userdata('logged_in')) {
   redirect("home");
 }
@@ -12,7 +14,7 @@ $date = date("F j, Y", strtotime($records_ap->DateActivity));
 $proposal_id = $records_ap->Proposal_ID;
 
 // Instanciation of inherited class
-$pdf = new FPDF();
+$pdf = new PDF_MemImage();
 $pdf->AliasNbPages();
 $pdf->AddPage();
 
@@ -131,6 +133,7 @@ $pdf->SetTextColor('0', '0', '0');
 // Contact Person and Number - Cell Text
 $pdf->Cell(100, 0, ''); //Positioning Cell
 $pdf->Cell(0, 32, 'Contact Person and Number: ' . $records_ap->ActivityChair . ' - ' . $records_ap->ChairContactNumber, 0, 0, 'C'); //Insert Contact Person and Number Here
+
 
 //FAR TABLE START
 
@@ -587,6 +590,9 @@ $pdf->SetY('221');
 $pdf->SetX('94');
 $pdf->MultiCell(96, 5, $records_ap->Rationale, 0, 'J'); //:: 350 characters maximum
 
+
+//BP START
+
 $pdf->AddPage();
 
 //Custom Fonts
@@ -1034,7 +1040,174 @@ $pdf->Cell(70, 5, 'Student Council Treasurer');
 //SBU Image
 $pdf->Image(base_url() . 'assets/img/print/sbu.png', 153, 220, 45, 45);
 
+//APPROVAL SHEET
+
 $pdf->AddPage();
+
+//Custom Fonts
+$pdf->AddFont('century', '', 'Century Gothic.php');
+// Logo
+// Arial bold 15
+$pdf->SetFont('Arial', '', 11);
+//SBU Image
+$pdf->Image(base_url() . 'assets/img/print/sbu.png', 20, 15);
+//OPSA Image
+$pdf->Image(base_url() . 'assets/img/print/opsa.png', 45, 15);
+//ORG Image
+$pdf->Image(base_url() . 'assets/img/logo/sc_logo.png', 70, 15, 21);
+
+// Line break
+$pdf->Ln(0);
+
+//San Beda University - Header - SetFont
+$pdf->SetFont('Times', '', 10);
+$pdf->SetTextColor('255', '63', '63');
+// San Beda University - Cell Text
+$pdf->Cell(23, 0, ''); //Positioning Cell
+$pdf->Cell(0, 65, 'SAN BEDA UNIVERSITY');
+
+// Line break
+$pdf->Ln(0);
+
+// College Of Arts and Sciences - Header - SetFont
+$pdf->SetFont('Arial', '', 8);
+$pdf->SetTextColor('0', '0', '0');
+// College Of Arts and Sciences - Cell Text
+$pdf->Cell(19, 0, ''); //Positioning Cell
+$pdf->Cell(0, 73, 'COLLEGE OF ARTS AND SCIENCES');
+
+// Line break
+$pdf->Ln(0);
+
+// Office Of The Prefect Of Student Activities - Header - SetFont
+$pdf->SetFont('Arial', 'B', 8);
+$pdf->SetTextColor('0', '0', '0');
+// Office Of The Prefect Of Student Activities - Cell Text
+$pdf->Cell(8, 0, ''); //Positioning Cell
+$pdf->Cell(0, 80, 'OFFICE OF THE PREFECT OF STUDENT ACTIVITIES');
+
+// Line break
+$pdf->Ln(0);
+
+// OPSA Email - Header - SetFont
+$pdf->SetFont('Times', 'U', 9);
+$pdf->SetTextColor('48', '93', '255');
+// OPSA Email - Cell Text
+$pdf->Cell(30, 0, ''); //Positioning Cell
+$pdf->Cell(0, 87, 'opsa@sanbeda.edu.ph');
+
+// Line break
+$pdf->Ln(0);
+
+// Divider Line
+$pdf->Cell(90, 0, '', 0); //Positioning Cell
+$pdf->Cell(.0001, 50, '', 1); //Divider Line
+
+
+// Org Name - Header - SetFont
+$pdf->SetFont('times', '', 15);
+$pdf->SetTextColor('0', '0', '0');
+// Org Name - Cell Text
+$pdf->SetY(17);
+$pdf->SetX(113);
+$pdf->MultiCell(80, 9, strtoupper($org_info->Organization), 0, 'C');
+$pdf->SetFont('times', 'b', 25);
+$pdf->SetTextColor('0', '0', '0');
+$pdf->SetY(37);
+$pdf->SetX(105);
+$pdf->Cell(95, 7, 'Approval Sheet', 0, 0,'C');
+$pdf->SetY(15);
+$pdf->SetX(105);
+$pdf->Cell(95, 33, '', 1, 0,'C');
+
+// Line break
+$pdf->Ln(0);
+
+$pdf->SetFont('century', '', 12);
+$pdf->SetTextColor('0', '0', '0');
+
+$pdf->SetY(73);
+$pdf->SetX(60);
+$pdf->Cell(95, 7, 'Prepared by: ', 0, 0,'C');
+
+$pdf->SetY(103);
+$pdf->SetX(60);
+$pdf->Cell(95, 7, 'Representative', 0, 0,'C');
+
+$pdf->SetY(123);
+$pdf->SetX(60);
+$pdf->Cell(95, 7, 'Reviewed by: ', 0, 0,'C');
+
+$pdf->SetY(163);
+$pdf->SetX(60);
+$pdf->Cell(95, 7, 'Student Council President', 0, 0,'C');
+
+$pdf->SetY(178);
+$pdf->SetX(60);
+$pdf->Cell(95, 7, 'Approved by: ', 0, 0,'C');
+
+$pdf->SetY(223);
+$pdf->SetX(15);
+$pdf->Cell(95, 7, 'Prefect of Student Activities', 0, 0,'C');
+
+$pdf->SetY(223);
+$pdf->SetX(100);
+$pdf->Cell(95, 7, 'College Dean', 0, 0,'C');
+
+
+$pdf->SetFont('century', 'u', 12);
+$pdf->SetTextColor('0', '0', '0');
+
+$pdf->SetY(88);
+$pdf->SetX(60);
+$pdf->Cell(95, 7, '                                                             ', 0, 0,'C');
+
+$pdf->SetY(148);
+$pdf->SetX(60);
+$pdf->Cell(95, 7, '                                                             ', 0, 0,'C');
+
+$pdf->SetY(208);
+$pdf->SetX(15);
+$pdf->Cell(95, 7, '                                                             ', 0, 0,'C');
+
+$pdf->SetY(208);
+$pdf->SetX(100);
+$pdf->Cell(95, 7, '                                                             ', 0, 0,'C');
+
+$pdf->SetFont('arial', 'b', 12);
+$pdf->SetTextColor('0', '0', '0');
+
+$pdf->SetY(95);
+$pdf->SetX(60);
+$pdf->Cell(95, 7, strtoupper($records_ap->ActivityChair), 0, 0,'C');
+
+$pdf->SetY(155);
+$pdf->SetX(60);
+$pdf->Cell(95, 7, strtoupper($this->accounts_model->getOfficeInfo('SC_P')), 0, 0,'C');
+
+$pdf->SetY(215);
+$pdf->SetX(15);
+$pdf->Cell(95, 7, strtoupper($this->accounts_model->getOfficeInfo('OPSA_P')), 0, 0,'C');
+
+$pdf->SetY(215);
+$pdf->SetX(100);
+$pdf->Cell(95, 7, strtoupper($this->accounts_model->getOfficeInfo('OD')), 0, 0,'C');
+
+
+$pdf->Image(base_url() . 'assets/img/signature/signature.png', 80, 76, 70, 25); //Activity Chair Sig
+
+
+if ($this->proposals_model->checkApprovalPresident($proposal_id)) { 
+  $pdf->MemImage($this->proposals_model->getSignaturePresident($proposal_id), 80, 135, 70, 25); //SC Pres Sig
+} 
+
+if ($this->proposals_model->checkApprovalPrefect($proposal_id)) {  
+  $pdf->MemImage($this->proposals_model->getSignaturePrefect($proposal_id), 30, 195, 70, 25); //OPSA Sig
+}
+if ($this->proposals_model->checkApprovalDean($proposal_id)) {  
+  $pdf->MemImage($this->proposals_model->getSignatureDean($proposal_id), 115, 195, 70, 25); //Dean Sig
+}
+
 $pdf->Output();
 
 ?>

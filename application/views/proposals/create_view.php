@@ -166,6 +166,7 @@
                 <textarea rows="3" class="form-control form-control-sm" id="objectives_textarea" name="objectives" placeholder="Goal or Aim in doing this activity in number form"
                   maxlength="230" required></textarea>
 
+
                 <br>
 
                 <label>Rationale</label>
