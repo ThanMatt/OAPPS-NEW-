@@ -908,7 +908,6 @@ $pdf->SetY(134 + ($counter * 5));
 $pdf->SetX('22');
 $pdf->Cell(176, 5, 'OE SUB TOTAL: PHP ' . number_format($sum_oe), 1, 0, 'C');
 
-
 //FAR TABLE END
 
 //TOTAL
