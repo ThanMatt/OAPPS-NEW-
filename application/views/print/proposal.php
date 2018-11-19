@@ -12,7 +12,7 @@ $date = date("F j, Y", strtotime($records_ap->DateActivity));
 $proposal_id = $records_ap->Proposal_ID;
 
 // Instanciation of inherited class
-$pdf = new FPDF();
+$pdf = new PDF_MemImage();
 $pdf->AliasNbPages();
 $pdf->AddPage();
 
@@ -130,7 +130,7 @@ $pdf->SetFont('Arial', 'B', 8);
 $pdf->SetTextColor('0', '0', '0');
 // Contact Person and Number - Cell Text
 $pdf->Cell(100, 0, ''); //Positioning Cell
-$pdf->Cell(0, 32, 'Contact Person and Number: ' . $org_info->FullName . ' - ' . $org_info->ContactNumber, 0, 0, 'C'); //Insert Contact Person and Number Here
+$pdf->Cell(0, 32, 'Contact Person and Number: ' . $records_ap->ActivityChair . ' - ' . $records_ap->ChairContactNumber, 0, 0, 'C'); //Insert Contact Person and Number Here
 
 //FAR TABLE START
 
@@ -187,17 +187,16 @@ $pdf->Cell(0, 73, 'PARTNER/S:');
 $pdf->SetFont('Arial', 'U', 10);
 $pdf->SetTextColor('0', '0', '0');
 
-$pdf->SetY('55');
-$pdf->SetX('60');
-$pdf->Cell(0, 73, 'ORGANIZATION 1');
+$partners = explode(', ', $records_ap->Partners);
+$setY_collab = 55;
 
-$pdf->SetY('60');
-$pdf->SetX('60');
-$pdf->Cell(0, 73, 'ORGANIZATION 2');
+for ($counter = 0; $counter < count($partners); $counter++) {
+  $pdf->SetY($setY_collab);
+  $pdf->SetX('60');
+  $pdf->Cell(0, 73, $partners[$counter]);
 
-$pdf->SetY('65');
-$pdf->SetX('60');
-$pdf->Cell(0, 73, 'ORGANIZATION 3');
+  $setY_collab += 5;
+}
 
 //ACTIVITY TYPE BOX2!!!!!!!
 
@@ -287,11 +286,11 @@ $pdf->Cell(0, 73, 'EXTRA-CURRICULAR');
 
 $pdf->SetY('65');
 $pdf->SetX('130');
-$pdf->Cell(0, 73, 'SPECIFIED: ' . $records_ap->Specified); // INSERT CO CURRICULAR VALUES HERE
+$pdf->Cell(0, 73, 'SPECIFIED: ' . $this->proposals_model->checkCoCurricularSpec($proposal_id)); // INSERT CO CURRICULAR VALUES HERE
 
 $pdf->SetY('73');
 $pdf->SetX('130');
-$pdf->Cell(0, 73, 'SPECIFIED: ' . $records_ap->Specified); // INSERT EXTRA CURRICULAR VALUES HERE
+$pdf->Cell(0, 73, 'SPECIFIED: ' . $this->proposals_model->checkExCurricularSpec($proposal_id)); // INSERT EXTRA CURRICULAR VALUES HERE
 
 //MAIN BOX!!!!!!!
 
@@ -700,7 +699,7 @@ $pdf->SetFont('Arial', 'B', 8);
 $pdf->SetTextColor('0', '0', '0');
 // Contact Person and Number - Cell Text
 $pdf->Cell(100, 0, ''); //Positioning Cell
-$pdf->Cell(0, 32, 'Contact Person and Number: ' . $org_info->FullName . ' - ' . $org_info->ContactNumber, 0, 0, 'C'); //Insert Contact Person and Number Here
+$pdf->Cell(0, 32, 'Contact Person and Number: ' . $records_ap->ActivityChair . ' - ' . $records_ap->ChairContactNumber, 0, 0, 'C'); //Insert Contact Person and Number Here
 
 //FAR TABLE START
 
@@ -799,9 +798,9 @@ if (is_array($records_far) || is_object($records_far)) {
 //FAR Sub Total
 
 $pdf->Cell(80, 0, ''); //Positioning Cell
-$pdf->SetY('90');
+$pdf->SetY(90 + ($counter * 5));
 $pdf->SetX('22');
-$pdf->Cell(176, 5, 'FAR SUB TOTAL: PHP ' . $sum_far, 1, 0, 'C');
+$pdf->Cell(176, 5, 'FAR SUB TOTAL: PHP ' . number_format($sum_far), 1, 0, 'C');
 
 //FAR TABLE END
 
@@ -815,7 +814,7 @@ $pdf->SetFont('arial', 'B', 12);
 $pdf->SetTextColor('0', '0', '0');
 // OPERATING EXPENSES - Header - Cell Text
 $pdf->Cell(80, 0, ''); //Positioning Cell
-$pdf->SetY('112');
+$pdf->SetY('117');
 $pdf->Cell(0, 0, 'OPERATING EXPENSES', 0, 0, 'C');
 
 // OPERATING EXPENSES - Header - SetFont
@@ -907,7 +906,8 @@ if (is_array($records_oe) || is_object($records_oe)) {
 $pdf->Cell(80, 0, ''); //Positioning Cell
 $pdf->SetY(134 + ($counter * 5));
 $pdf->SetX('22');
-$pdf->Cell(176, 5, 'OE SUB TOTAL: PHP ' . $sum_oe, 1, 0, 'C');
+$pdf->Cell(176, 5, 'OE SUB TOTAL: PHP ' . number_format($sum_oe), 1, 0, 'C');
+
 
 //FAR TABLE END
 
@@ -921,7 +921,7 @@ $pdf->Cell(80, 0, ''); //Positioning Cell
 $pdf->SetY(145 + ($counter * 5));
 $pdf->SetX('22');
 $sum = $sum_far + $sum_oe;
-$pdf->Cell(176, 8, 'TOTAL: PHP ' . $sum, 1, 0, 'C');
+$pdf->Cell(176, 8, 'TOTAL: PHP ' . number_format($sum), 1, 0, 'C');
 
 // BUDGET PROPOSAL TREASURER FORM
 
@@ -930,14 +930,14 @@ $pdf->SetFont('century', '', 7);
 $pdf->SetTextColor('0', '0', '0');
 
 $pdf->Cell(80, 0, ''); //Positioning Cell
-$pdf->SetY('165');
+$pdf->SetY(165 + ($counter * 5));
 $pdf->SetX('22');
 $pdf->Cell(80, 5, 'BUDGET PROPOSAL NUMBER: something something', 1, 0, 'C');
 
 //BOX DRAW
 
 $pdf->Cell(80, 0, ''); //Positioning Cell
-$pdf->SetY('173');
+$pdf->SetY(173 + ($counter * 5));
 $pdf->SetX('22');
 $pdf->Cell(80, 50, '', 1);
 
@@ -947,7 +947,7 @@ $pdf->SetFont('times', '', 12);
 $pdf->SetTextColor('0', '0', '0');
 
 $pdf->Cell(80, 0, ''); //Positioning Cell
-$pdf->SetY('175');
+$pdf->SetY(175 + ($counter * 5));
 $pdf->SetX('24');
 $pdf->Cell(76, 5, 'OFFICE OF THE TREASURER', 1, 0, 'C');
 
@@ -957,57 +957,57 @@ $pdf->SetFont('century', '', 6);
 $pdf->SetTextColor('0', '0', '0');
 
 $pdf->Cell(80, 0, ''); //Positioning Cell
-$pdf->SetY('180');
+$pdf->SetY(180 + ($counter * 5));
 $pdf->SetX('24');
 $pdf->Cell(70, 5, 'Number of Checks');
 
 $pdf->Cell(80, 0, ''); //Positioning Cell
-$pdf->SetY('185');
+$pdf->SetY(185 + ($counter * 5));
 $pdf->SetX('30');
 $pdf->Cell(23, 3, 'Direct to Supplier', 1, 'C');
 
 $pdf->Cell(80, 0, ''); //Positioning Cell
-$pdf->SetY('188');
+$pdf->SetY(188 + ($counter * 5));
 $pdf->SetX('30');
 $pdf->Cell(23, 6, 'Data here', 1, 'C'); //Direct to supplier input here
 
 $pdf->Cell(80, 0, ''); //Positioning Cell
-$pdf->SetY('185');
+$pdf->SetY(185 + ($counter * 5));
 $pdf->SetX('53');
 $pdf->Cell(23, 3, 'Student Named', 1, 'C');
 
 $pdf->Cell(80, 0, ''); //Positioning Cell
-$pdf->SetY('188');
+$pdf->SetY(188 + ($counter * 5));
 $pdf->SetX('53');
 $pdf->Cell(23, 6, 'Data here', 1, 'C'); //Direct to supplier input here
 
 $pdf->Cell(80, 0, ''); //Positioning Cell
-$pdf->SetY('197');
+$pdf->SetY(197 + ($counter * 5));
 $pdf->SetX('24');
 $pdf->Cell(23, 6, 'AMOUNT TO DIRECT TO SUPPLIER: PHP', 'C');
 
 $pdf->Cell(80, 0, ''); //Positioning Cell
-$pdf->SetY('200');
+$pdf->SetY(200 + ($counter * 5));
 $pdf->SetX('24');
 $pdf->Cell(23, 6, 'AMOUNT TO REPRESENTATIVE: PHP', 'C');
 
 $pdf->Cell(80, 0, ''); //Positioning Cell
-$pdf->SetY('203');
+$pdf->SetY(203 + ($counter * 5));
 $pdf->SetX('24');
 $pdf->Cell(23, 6, 'TOTAL AMOUNT REQUESTED: PHP', 'C');
 
 $pdf->Cell(80, 0, ''); //Positioning Cell
-$pdf->SetY('206');
+$pdf->SetY(206 + ($counter * 5));
 $pdf->SetX('24');
 $pdf->Cell(23, 6, 'OVERALL BUDGET REQUESTED: PHP                  as per:        ', 'C');
 
 $pdf->Cell(80, 0, ''); //Positioning Cell
-$pdf->SetY('209');
+$pdf->SetY(209 + ($counter * 5));
 $pdf->SetX('24');
 $pdf->Cell(23, 6, 'DATE: ', 'C');
 
 $pdf->Cell(80, 0, ''); //Positioning Cell
-$pdf->SetY('212');
+$pdf->SetY(212 + ($counter * 5));
 $pdf->SetX('24');
 $pdf->Cell(23, 6, 'SIGNATURE: ', 'C');
 
@@ -1019,14 +1019,14 @@ $pdf->SetFont('century', '', 10);
 $pdf->SetTextColor('0', '0', '0');
 
 $pdf->Cell(80, 0, ''); //Positioning Cell
-$pdf->SetY('240');
+$pdf->SetY(240 + ($counter * 5));
 $pdf->SetX('20');
 $pdf->Cell(70, 5, 'Jose Gerald E. Pabalate');
 
 $pdf->SetFont('century', '', 10);
 $pdf->SetTextColor('0', '0', '0');
 
-$pdf->SetY('245');
+$pdf->SetY(245 + ($counter * 5));
 $pdf->SetX('20');
 $pdf->Cell(70, 5, 'Student Council Treasurer');
 
@@ -1127,7 +1127,7 @@ $pdf->Cell(95, 7, 'Prepared by: ', 0, 0,'C');
 
 $pdf->SetY(103);
 $pdf->SetX(60);
-$pdf->Cell(95, 7, 'Activity Chair', 0, 0,'C');
+$pdf->Cell(95, 7, 'Representative', 0, 0,'C');
 
 $pdf->SetY(123);
 $pdf->SetX(60);
@@ -1174,27 +1174,34 @@ $pdf->SetTextColor('0', '0', '0');
 
 $pdf->SetY(95);
 $pdf->SetX(60);
-$pdf->Cell(95, 7, 'JOSE EMMANUEL CAYABYAB', 0, 0,'C');
+$pdf->Cell(95, 7, strtoupper($records_ap->ActivityChair), 0, 0,'C');
 
 $pdf->SetY(155);
 $pdf->SetX(60);
-$pdf->Cell(95, 7, 'ARAPAT D. MUSTAPHA', 0, 0,'C');
+$pdf->Cell(95, 7, strtoupper($this->accounts_model->getOfficeInfo('SC_P')), 0, 0,'C');
 
 $pdf->SetY(215);
 $pdf->SetX(15);
-$pdf->Cell(95, 7, 'DR. MARVIN R. REYES', 0, 0,'C');
+$pdf->Cell(95, 7, strtoupper($this->accounts_model->getOfficeInfo('OPSA_P')), 0, 0,'C');
 
 $pdf->SetY(215);
 $pdf->SetX(100);
-$pdf->Cell(95, 7, 'DR. CHRISTIAN BRYAN S. BUSTAMANTE', 0, 0,'C');
+$pdf->Cell(95, 7, strtoupper($this->accounts_model->getOfficeInfo('OD')), 0, 0,'C');
+
 
 $pdf->Image(base_url() . 'assets/img/signature/signature.png', 80, 76, 70, 25); //Activity Chair Sig
 
-$pdf->Image(base_url() . 'assets/img/signature/signature.png', 80, 135, 70, 25); //SC Pres Sig
 
-$pdf->Image(base_url() . 'assets/img/signature/signature.png', 30, 195, 70, 25); //OPSA Sig
+if ($this->proposals_model->checkApprovalPresident($proposal_id)) { 
+  $pdf->MemImage($this->proposals_model->getSignaturePresident($proposal_id), 80, 135, 70, 25); //SC Pres Sig
+} 
 
-$pdf->Image(base_url() . 'assets/img/signature/signature.png', 115, 195, 70, 25); //Dean Sig
+if ($this->proposals_model->checkApprovalPrefect($proposal_id)) {  
+  $pdf->MemImage($this->proposals_model->getSignaturePrefect($proposal_id), 30, 195, 70, 25); //OPSA Sig
+}
+if ($this->proposals_model->checkApprovalDean($proposal_id)) {  
+  $pdf->MemImage($this->proposals_model->getSignatureDean($proposal_id), 115, 195, 70, 25); //Dean Sig
+}
 
 $pdf->Output();
 

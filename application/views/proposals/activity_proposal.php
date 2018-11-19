@@ -170,7 +170,19 @@
               <div class="ap-longtext my-5 col-md-12"><!-- ACTIVITY PROPOSAL FORM LONG TEXT SECTION START-->
                 <label>Nature of the Activity</label>
                 <textarea rows="3" class="form-control form-control-sm" id="nature_textarea" name="nature" placeholder="What is the activity all about?"
-                  required><?=$ap_record->Nature?></textarea>
+                  maxlength="230" required><?=$ap_record->Nature?></textarea>
+
+                <br>
+
+                <label>Objectives of the Activity</label>
+                <textarea rows="3" class="form-control form-control-sm" id="objectives_textarea" name="objectives" placeholder="Goal or Aim in doing this activity in number form"
+                  maxlength="230" required><?=$ap_record->Objectives?></textarea>
+
+                <br>
+
+                <label>Objectives of the Activity</label>
+                <textarea rows="3" class="form-control form-control-sm" id="objectives_textarea" name="objectives" placeholder="Goal or Aim in doing this activity in number form"
+                  required><?=$ap_record->Objectives?></textarea>
 
                 <br>
 
@@ -182,7 +194,7 @@
 
                 <label>Rationale</label>
                 <textarea rows="3" class="form-control form-control-sm" id="rationale_textarea" name="rationale"
-                  placeholder="Goal or Aim in doing this activity in number form" required><?=$ap_record->Rationale?></textarea>
+                  placeholder="Goal or Aim in doing this activity in number form" maxlength="350" required><?=$ap_record->Rationale?></textarea>
 
                 <br>
 
@@ -235,7 +247,7 @@
                     </td>
                     <td>
                       <input type="text" class="form-control form-control-sm medium-text-box far-item" name="far_item[]"
-                        id="far_txt_item<?=$far_counter?>" value="<?=$far_record->Item?>" />
+                        id="far_txt_item<?=$far_counter?>" value="<?=$far_record->Item?>" maxlength="15" />
                     </td>
                     <td>
                       <input type="number" class="form-control form-control-sm small-text-box far-quantity" name="far_quantity[]"
@@ -321,7 +333,7 @@
                     </td>
                     <td>
                       <input type="text" class="form-control form-control-sm medium-text-box" name="oe_item[]" id="oe_txt_item<?=$oe_counter?>"
-                        value="<?=$oe_record->Item?>" />
+                        value="<?=$oe_record->Item?>" maxlength="15" />
                     </td>
                     <td>
                       <input type="number" class="form-control form-control-sm small-text-box" name="oe_quantity[]" id="oe_txt_quantity<?=$oe_counter?>"

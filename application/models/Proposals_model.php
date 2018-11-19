@@ -1049,7 +1049,7 @@ class Proposals_Model extends CI_Model {
   public function deleteRowFAR($far_id) {
     $response = array();
 
-    $this->db->where('FAR_ID', $far_id);
+    $this->db->where('Far_ID', $far_id);
     $result = $this->db->delete('fixed_assets_requirements');
 
     return $result;
@@ -1554,6 +1554,135 @@ class Proposals_Model extends CI_Model {
     }
   }
 
+  public function checkCoCurricularSpec($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('activity_proposal');
+
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    if ($row->NonAcademicType == 'Co-Curricular') {
+      return $row->Specified;
+    } else {
+      return ' ';
+    }
+
+  }
+
+  public function checkExCurricularSpec($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('activity_proposal');
+
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    if ($row->NonAcademicType == 'Extra-Curricular') {
+      return $row->Specified;
+    } else {
+      return ' ';
+    }
+
+  }
+
+  public function checkApprovalPresident($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('proposal_tracker');
+
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    if ($row->SC_P == 'APPROVED') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public function checkApprovalPrefect($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('proposal_tracker');
+
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    if ($row->OPSA_P == 'APPROVED') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public function checkApprovalDean($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('proposal_tracker');
+
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    if ($row->OD == 'APPROVED') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  public function getSignaturePresident($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('proposal_tracker');
+
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    if ($row->SC_P == 'APPROVED') {
+      $this->db->where('Account_ID', 'SC_P');
+      $this->db->from('accounts');
+      $result = $this->db->get();
+
+      $row = $result->row();
+      return $row->Signature;
+    }
+  }
+
+  public function getSignaturePrefect($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('proposal_tracker');
+
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    if ($row->OPSA_P == 'APPROVED') {
+      $this->db->where('Account_ID', 'OPSA_P');
+      $this->db->from('accounts');
+      $result = $this->db->get();
+
+      $row = $result->row();
+      return $row->Signature;
+    } 
+  }
+
+  public function getSignatureDean($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('proposal_tracker');
+
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    if ($row->OD == 'APPROVED') {
+      $this->db->where('Account_ID', 'OD');
+      $this->db->from('accounts');
+      $result = $this->db->get();
+
+      $row = $result->row();
+      return $row->Signature;
+    } 
+  }
 }
 
 ?>

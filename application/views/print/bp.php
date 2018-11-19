@@ -128,7 +128,7 @@ $pdf->SetFont('Arial', 'B', 8);
 $pdf->SetTextColor('0', '0', '0');
 // Contact Person and Number - Cell Text
 $pdf->Cell(100, 0, ''); //Positioning Cell
-$pdf->Cell(0, 32, 'Contact Person and Number: ' . $org_info->FullName . ' - ' . $org_info->ContactNumber , 0, 0, 'C'); //Insert Contact Person and Number Here
+$pdf->Cell(0, 32, 'Contact Person and Number: ' . $records_ap->ActivityChair . ' - ' . $records_ap->ChairContactNumber , 0, 0, 'C'); //Insert Contact Person and Number Here
 
 //FAR TABLE START
 
