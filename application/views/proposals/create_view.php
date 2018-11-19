@@ -278,7 +278,7 @@
           <a href="<?=base_url()?>home">
             <input type="button" class="table-header btn btn-light btn-lg" name="back" id="button" value="Go Back">
           </a>
-          <input type="button" class="table-header btn btn-light btn-lg" name="save_btn" id="btn_save" value="Create">
+          <input type="button" class="table-header btn btn-light btn-lg" name="save_btn" id="btn_save" value="Save Proposal">
         </div>
       </div>
 
