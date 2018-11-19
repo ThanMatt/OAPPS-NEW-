@@ -7,12 +7,9 @@ class Accounts_Model extends CI_Model {
     $result = $this->db->get('accounts');
     
     $db_password = $result->row(1)->Pass;
-    // $account_id = $result->row(0);
 
     return password_verify($password, $db_password);
   }
-
-
 
   public function getMyRecords($account_id) {
     $this->db->where('Account_ID', $account_id);
@@ -45,14 +42,23 @@ class Accounts_Model extends CI_Model {
 
   }
 
-  
+  public function getOfficeInfo($account_id) {
+    $this->db->where('Account_ID', $account_id);
+    $this->db->from('accounts');
+    $result = $this->db->get();
 
-  //:: Used for body.php and other else
-  //:: to determine which are for offices and
-  //:: which are for orgs
-  public function checkOffice($account_id) {
+    $row = $result->row();
 
+    return $row->FullName;
   }
+
+  public function getMyInfo($account_id) {
+    $this->db->where('Account_ID', $account_id);
+    $result = $this->db->get('accounts');
+
+    return $result->row();
+  }
+
 
   public function orgApprovedProposals($account_id) {
 
@@ -110,7 +116,6 @@ class Accounts_Model extends CI_Model {
       $activity = "User $account_id deleted a draft proposal";
 
     }
-    
     $data = array(
 
       'Activity' => $activity,

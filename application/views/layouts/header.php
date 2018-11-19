@@ -12,32 +12,43 @@ $position = $this->session->userdata('position');
 $org_type = $this->session->userdata('org_type');
 ?>  
 
-<!-- MAIN HEADER START -->
-<div class="container-fluid linear-gradient header-height">
-  <div class="row" style="width: 100%;">
-    <div class="col-xl-4 col-md-4 col-xs-4">          
-      <div class="javanese-header">
-        <a href="<?=base_url()?>home">
-          OAPPS
-        </a>
-      </div>
-    </div>
-    <div class="col-xl-8 col-md-8 col-xs-8">
-      <div class="dropdown">
-        <div class="img">
-          <div class="display-picture-holder">
-            <div class="display-picture">
-              <img class="dropbtn" src="<?=base_url()?>assets/img/logo/<?=$prefix?>_logo.jpg" alt="<?=$prefix?> logo">
-            </div>
-          </div>
+  <!-- primary header start -->
+      
+  <div class="row oapps-h oapps-bg-head"> <!-- HEADER ROW START -->
+    <div class="col-lg-10"> <!-- TEXT COL START -->
+      <div class="row"> <!-- TEXT ROW START -->
+        <div class="col-lg-12 bottom-align-text">
+          <p class="oapps-primaryhead-text-1" style="position: relative; top: 30px;">
+            <a href="<?=base_url()?>home">
+              OAPPS
+            </a>
+          </p>
         </div>
-        <div id="myDropdown" class="dropdown-content">
+        <div class="col-lg-12">
+          <a href="index.html">
+            <p class="oapps-subhead-text-1">
+              <a href="<?=base_url()?>home">
+                Online Activity Proposal Processing System
+              </a>
+            </p>
+          </a>
+        </div>
+      </div> <!-- TEXT ROW START -->
+    </div> <!-- TEXT COL END -->
+    <div class="col-lg-2 d-flex justify-content-end p-4"> <!-- DISPLAY PIC COL START -->
+      <!-- <a href="profile.html"> -->
+  
+      <div class="dropdown oapps-profile">
+        <button class="oapps-profile-img-btn" data-toggle="dropdown">
+          <img class="oapps-profile-img" src="<?=base_url()?>assets/img/logo/<?=$prefix?>_logo.jpg" alt="<?=$prefix?> logo">   
+        </button>
+        <div class="dropdown-menu dropdown-menu-right oapps-content" aria-labelledby="dropdownMenuButton">
           <?php if ($org_type != 'N/A'): ?>
-            <div class="dropdown-details">
-              Organization: <?=strtoupper($prefix)?>
+            <div class="oapps-dropdown-details">
+              <p>Organization: <?=strtoupper($prefix)?></p>
             </div>
-          <?php else: ?>
-            <div class="dropdown-details">
+            <?php else: ?>
+            <div class="oapps-dropdown-details">
               Office: 
               <?php if ($account_id != 'OD'):?>
                 <?=strtoupper($prefix)?>
@@ -46,13 +57,12 @@ $org_type = $this->session->userdata('org_type');
               <?php endif ?>
             </div>
           <?php endif ?>
-          
-          <div class="dropdown-details">
+          <div class="oapps-dropdown-details">
             <?=$position . ': ' . $full_name?>
           </div>
-          <div>
+           <div>
             <a href="<?=base_url()?>home/profile">
-              <div class="table-header button" id="profile_btn" style="border:0px;">
+              <div class="oapps-btn-dropdown" id="logout_btn">
                 Profile
               </div>
             </a>
@@ -62,57 +72,31 @@ $org_type = $this->session->userdata('org_type');
             
               <a href="<?=base_url()?>accounts_admin/logout">
             <?php endif ?>
-              <div class="table-header button" id="logout_btn" style="border:0px;">
+              <div class="oapps-btn-dropdown" id="logout_btn">
                 Log Out
               </div>
             </a>
-            
           </div>
-        </div> 
+        </div>
       </div>
-    </div>
-    <div class="row col-md-12 col-xs-12 calibri-sub-header">
-      <a href="<?=base_url()?>home">
-        Online Activity Proposal Processing System
-      </a>
-    </div>
-  </div>
-</div>
 
-<!-- MAIN HEADER END -->
-<!-- SECOND HEADER START -->
-
-<div class="container-fluid">
-  <div class="row second-header-color second-header-height align-items-center" >
-    <div style="width: 1% !important;">
-    </div>
+    </div> <!-- DISPLAY PIC COL END -->
+  </div> <!-- HEADER END START -->
+  <!-- primary header end -->
+  <!-- secondary header start -->
+  <div class="row oapps-sh oapps-bg-nav">
 
     <?php if ($org_type != 'N/A'): ?>
-      <div class="col-md col-xs">
-        <a href="<?=base_url()?>submit">
-          <div class="second-header-text">Make New Proposal</div>
-        </a>
-      </div>     
+      <div class="col-lg-2" style="margin-left: 2.08333%">
+        <a href="<?=base_url()?>submit"><p class="oapps-nav-text-1">Make New Proposal</p></a>
+      </div>
     <?php endif ?>
 
-    <div class="col-md col-xs">
-      <div class="second-header-text">Reports</div>
-    </div>   
-    <div class="col-md col-xs">
-      <div class="second-header-text">Downloadable Forms</div>
-    </div> 
-    
-    <div class="col-md-7"></div>   
-  </div>
-</div>
-
-<!-- SECOND HEADER END -->
-<!-- HEADER-TABLE GAP START -->
-
-<div class="container-fluid">
-  <div class="row no-gutters">
-    <div class="col-md-12 header-table-gap"></div>
-  </div>
-</div>
-
-<!-- HEADER-TABLE GAP END -->
+      <div class="col-lg-2" style="margin-left: 2.08333%">
+          <p class="oapps-nav-text-1">Reports</p>
+      </div>
+      <div class="col-lg-2" style="margin-left: 2.08333%">
+          <p class="oapps-nav-text-1">Downloadable Forms</p>
+      </div>
+    </div>
+    <!-- secondary header end -->

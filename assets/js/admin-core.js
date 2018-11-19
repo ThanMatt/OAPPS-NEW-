@@ -5,6 +5,12 @@ var flag;
 //:: which type of proposal 
 
 $(function () {
+  setInterval(
+    function () {
+      $('#admin-log').load(BASE_URL + 'Admin/displayLogs').fadeIn("slow");
+    }, 5500); // refreshing after every 15000 milliseconds
+
+
 
 
   $(".img").on("click", function () {

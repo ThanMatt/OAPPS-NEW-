@@ -1,2 +1,2 @@
 OAPPS
-Powered by CI Frameworks
+Powered by CI Framework
