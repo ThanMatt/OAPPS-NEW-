@@ -1683,7 +1683,6 @@ class Proposals_Model extends CI_Model {
       return $row->Signature;
     } 
   }
-
 }
 
 ?>

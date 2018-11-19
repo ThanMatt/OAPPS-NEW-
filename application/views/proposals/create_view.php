@@ -175,6 +175,9 @@
 
                 <br>
 
+                <label>Participants</label>
+                <textarea rows="3" class="form-control form-control-sm" id="participants_textarea" name="participants"
+                  required></textarea>
 
                 <label>Participants</label>
                 <textarea rows="3" class="form-control form-control-sm" id="participants_textarea" name="participants"

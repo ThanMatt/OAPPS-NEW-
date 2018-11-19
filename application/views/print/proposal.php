@@ -1,7 +1,5 @@
 <?php
 
-
-
 if (!$this->session->userdata('logged_in')) {
   redirect("home");
 }
@@ -134,7 +132,6 @@ $pdf->SetTextColor('0', '0', '0');
 $pdf->Cell(100, 0, ''); //Positioning Cell
 $pdf->Cell(0, 32, 'Contact Person and Number: ' . $records_ap->ActivityChair . ' - ' . $records_ap->ChairContactNumber, 0, 0, 'C'); //Insert Contact Person and Number Here
 
-
 //FAR TABLE START
 
 // Line break
@@ -200,8 +197,6 @@ for ($counter = 0; $counter < count($partners); $counter++) {
 
   $setY_collab += 5;
 }
-
-
 
 //ACTIVITY TYPE BOX2!!!!!!!
 
@@ -590,7 +585,6 @@ $pdf->SetY('221');
 $pdf->SetX('94');
 $pdf->MultiCell(96, 5, $records_ap->Rationale, 0, 'J'); //:: 350 characters maximum
 
-
 //BP START
 
 $pdf->AddPage();
@@ -913,6 +907,7 @@ $pdf->Cell(80, 0, ''); //Positioning Cell
 $pdf->SetY(134 + ($counter * 5));
 $pdf->SetX('22');
 $pdf->Cell(176, 5, 'OE SUB TOTAL: PHP ' . number_format($sum_oe), 1, 0, 'C');
+
 
 //FAR TABLE END
 

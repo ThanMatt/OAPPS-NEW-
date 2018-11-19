@@ -24,8 +24,6 @@ class Proposal extends CI_Controller {
       $this->accounts_model->logMyActivity($account_id, 2, $proposal_id);
 
       $this->load->view('print/proposal', $data);
-
-      
       // $account_id = $this->session->userdata('account_id');
       // $records = $this->proposals_model->viewAPRecord($proposal_id);
       // $proposal_status = $records->ProposalStatus;
@@ -44,7 +42,6 @@ class Proposal extends CI_Controller {
       //   }
 
       // } else {
-
       // }
 
     } else {
