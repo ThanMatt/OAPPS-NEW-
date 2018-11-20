@@ -46,20 +46,23 @@
               <h4 class="card-title"><?=$org->Organization?></h4>
               <div class="row h-75">
                 <div class="col-6">
-                  <p class="card-text">Pending Proposals:</p>
-                  <p class="card-text">Proposal 1</p>
-                  <p class="card-text">Proposal 2</p>
-                  <p class="card-text">Proposal 3</p>
-                  <p class="card-text">Proposal 4</p>
-                  <p class="card-text">Proposal 5</p>
+                <p class="card-text">Pending Proposals:</p>
+                <?php for($counter = 0; $counter < $this->proposals_model->pendingCount($org->Account_ID); $counter++) :?>
+                    <p class="card-text"><?=$this->proposals_model->showPendingRecords($org->Account_ID)?></p>
+                <?php endfor ?>
+           
+                  <!-- <p class="card-text font-weight-bold">No Records</p> -->
+            
                 </div>
                 <div class="col-6">
                   <p class="card-text">Approved Proposals:</p>
-                  <p class="card-text">Proposal 1</p>
-                  <p class="card-text">Proposal 2</p>
-                  <p class="card-text">Proposal 3</p>
-                  <p class="card-text">Proposal 4</p>
-                  <p class="card-text">Proposal 5</p>
+                
+              
+                    <p class="card-text"></p>
+                
+                
+                  <!-- <p class="card-text font-weight-bold">No Records</p> -->
+                
                 </div>
               </div>
               <h4 class="card-title mt-3">General Info</h4>

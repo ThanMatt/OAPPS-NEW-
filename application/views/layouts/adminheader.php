@@ -40,7 +40,7 @@ $org_type = $this->session->userdata('org_type');
   
       <div class="dropdown oapps-profile">
         <button class="oapps-profile-img-btn" data-toggle="dropdown">
-          <img class="oapps-profile-img" src="<?=base_url()?>assets/image.php?id=<?=$account_id?>" alt="<?=$prefix?> logo">   
+          <img class="oapps-profile-img" src="<?=base_url()?>assets/img/logo/<?=$prefix?>_logo.jpg" alt="<?=$prefix?> logo">   
         </button>
         <div class="dropdown-menu dropdown-menu-right oapps-content" aria-labelledby="dropdownMenuButton">
           <?php if ($org_type != 'N/A'): ?>
@@ -88,17 +88,15 @@ $org_type = $this->session->userdata('org_type');
 
     <?php if ($org_type != 'N/A'): ?>
       <div class="col-lg-2" style="margin-left: 2.08333%">
-        <a href="<?=base_url()?>submit"><p class="oapps-nav-text-1">Make New Proposal</p></a>
+        <a href="<?=base_url()?>admin"><p class="oapps-nav-text-1">Logs</p></a>
       </div>
-
-          <div class="col-lg-2" style="margin-left: 2.08333%">
-        <p class="oapps-nav-text-1">Downloadable Forms</p>
-      </div>
-    <?php else: ?>
-    <div class="col-lg-2" style="margin-left: 2.08333%">
-      <a href="<?=base_url()?>home/org_statistics"><p class="oapps-nav-text-1">Org Statistics</p></a>
-    </div>
     <?php endif ?>
-  
+
+      <div class="col-lg-2" style="margin-left: 2.08333%">
+        <a href="<?=base_url()?>admin/add"><p class="oapps-nav-text-1">Add New Org</p></a>
+      </div>
+      <div class="col-lg-2" style="margin-left: 2.08333%">
+      <a href="<?=base_url()?>admin/edit"><p class="oapps-nav-text-1">Edit Org Data</p></a>
+      </div>
     </div>
     <!-- secondary header end -->

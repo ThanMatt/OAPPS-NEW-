@@ -29,36 +29,17 @@
     <link rel="stylesheet" href="<?=base_url();?>assets/css/styles.css">
   </head>
   <body>
-		<form id="ajax_form_review">
+		<form id="ajax_form_activity">
     <div class="container-fluid" style="height: 100vh; max-width: 100%;"> <!-- CONTAINER START -->
     <?php 
     $this->load->view('layouts/header');
     ?>
       
-      <div class="row mx-5 oapps-mh oapps-proposal-m"> <!-- FIRST ROW START -->
-
-        <!-- BUTTONS -->
-
-        <div class="col-lg-2 mt-5 h-100"> <!-- BUTTONS COL START -->
-          <div class="row align-items-center oapps-button-pos"> <!-- BUTTONS ROW START-->
-            <!-- PENDING -->
-            <div class="oapps-btn oapps-hh col-12" style="border: 1px black solid">
-              <p class="text-center oapps-bmb">Activity Proposal</p>
-            </div>
-            <!-- APPROVED -->
-            <div class="oapps-btn oapps-hh col-12 mt-4" style="border: 1px black solid">
-              <p class="text-center oapps-bmb">Fixed Asset Req.</p>
-            </div>
-            <!-- REVISIONS -->
-            <div class="oapps-btn oapps-hh col-12 mt-4" style="border: 1px black solid">
-              <p class="text-center oapps-bmb">Operating Expenses</p>
-            </div>
-          </div> <!-- BUTTONS ROW END   -->
-        </div> <!-- BUTTON COL END -->
+      <div class="row oapps-mh mb-5 oapps-proposal"> <!-- FIRST ROW START -->
         
         <!-- ACTIVITY PROPOSAL START-->
 
-        <div class="col-lg-8 offset-lg-1 mt-5 mb-2 oapps-rh h-100" style="border: 1px black solid;"> <!-- ACTIVITY PROPOSAL COL START -->
+        <div class="col-lg-8 offset-lg-2 mt-5 mb-2 oapps-rh h-100" style="border: 1px black solid;"> <!-- ACTIVITY PROPOSAL COL START -->
           <div class="row oapps-bg-head"> <!-- ACTIVITY PROPOSAL HEAD ROW START -->
             <div class="oapps-hh col-12 oapps-head-text-1 text-white">
               <p class="text-center oapps-bmb">Activity Proposal</p>
@@ -74,40 +55,40 @@
 
                 Activity Name:
                 <input type="text" class="form-control form-control-sm" name="activity_name" id="activity_name" value="<?=$ap_record->ActivityName?>"
-                  required>
+                  required disabled>
 
                 <br>
 
                 Activity Chair:
                 <input type="text" class="form-control form-control-sm" name="activity_chair" id="activity_chair" value="<?=$ap_record->ActivityChair?>"
-                  required>
+                  required disabled>
 
                 <br>
 
                 Contact Number:
                 <input type="text" class="form-control form-control-sm" name="contact_number" id="contact_number" value="<?=$ap_record->ChairContactNumber?>"
-                  required>
+                  required disabled>
 
                 <br>
 
 
                 Activity Date:
                 <input type="date" class="form-control form-control-sm" name="date_activity" id="date_activity" value="<?=$ap_record->DateActivity?>"
-                  required>
+                  required disabled>
 
                 <br>
 
                 Activity Time:
                 <input type="time" class="form-control form-control-sm" name="start_time_activity" id="start_time_activity"
-                  value="<?=$ap_record->StartTime?>" required> <br> To <br>
+                  value="<?=$ap_record->StartTime?>" required disabled> <br> To <br>
                 <input type="time" class="form-control form-control-sm" name="end_time_activity" id="end_time_activity"
-                  value="<?=$ap_record->EndTime?>" required>
+                  value="<?=$ap_record->EndTime?>" required disabled>
 
                 <br>
 
                 Activity Venue:
                 <input type="text" class="form-control form-control-sm" name="activity_venue" id="activity_venue" value="<?=$ap_record->ActivityVenue?>"
-                  required>
+                  required disabled>
 
               </div><!-- ACTIVITY PROPOSAL FORM TEXT SECTION END-->
 
@@ -119,11 +100,11 @@
                   <hr>
 
                   <input type="radio" name="radio_activity_type_2" class="form-check-input rd_proposal_type2" id="rd_acad"
-                    value="Academic" <?=$this->proposals_model->checkAcademic($proposal_id)?> required>
+                    value="Academic" <?=$this->proposals_model->checkAcademic($proposal_id)?> required disabled>
                   <label id="label_radiobutton">ACADEMIC</label>
                   <br>
                   <input type="radio" name="radio_activity_type_2" class="form-check-input rd_proposal_type2" id="rd_nacad"
-                    value="Non-Academic" <?=$this->proposals_model->checkNonAcademic($proposal_id)?> required>
+                    value="Non-Academic" <?=$this->proposals_model->checkNonAcademic($proposal_id)?> required disabled>
                   <label id="label_radiobutton">NON-ACADEMIC</label>
                   <div class="rd-non-academic-container">
 
@@ -153,16 +134,16 @@
                     </div>
 
                     <input type="radio" name="radio_activity_type_1" class="rd_proposal_type1" id="rd_ind" value="Independent"
-                      <?=$this->proposals_model->checkIndependent($proposal_id)?> required>
+                      <?=$this->proposals_model->checkIndependent($proposal_id)?> required disabled>
                     <label id="label_radiobutton">INDEPENDENT</label>
                     <br>
-                    <input type="radio" name="radio_activity_type_1" class="rd_proposal_type1" id="rd_col" value="Collaborative"
-                      <?=$this->proposals_model->checkCollaborative($proposal_id)?> required>
+                    <input type="radio" name="radio_activity_type_1" class="rd_proposal_type1" id="rd_col" value="Collaborative" 
+                      <?=$this->proposals_model->checkCollaborative($proposal_id)?> required disabled>
                     <label id="label_radiobutton">COLLABORATIVE</label>
 
                     <div id="collab-container">
                       Partner/s: <input type="text" class="field_ap form-control" name="specified_co_curric" id="partner_collab"
-                        value="<?=$ap_record->Partners?>" disabled>
+                        value="<?=$ap_record->Partners?>">
                     </div>
                   </div>
                 </div>
@@ -170,30 +151,28 @@
               <div class="ap-longtext my-5 col-md-12"><!-- ACTIVITY PROPOSAL FORM LONG TEXT SECTION START-->
                 <label>Nature of the Activity</label>
                 <textarea rows="3" class="form-control form-control-sm" id="nature_textarea" name="nature" placeholder="What is the activity all about?"
-                  maxlength="230" required><?=$ap_record->Nature?></textarea>
+                  maxlength="230" required disabled><?=$ap_record->Nature?></textarea>
 
                 <br>
 
                 <label>Objectives of the Activity</label>
                 <textarea rows="3" class="form-control form-control-sm" id="objectives_textarea" name="objectives" placeholder="Goal or Aim in doing this activity in number form"
-                  maxlength="230" required><?=$ap_record->Objectives?></textarea>
+                  maxlength="230" required disabled><?=$ap_record->Objectives?></textarea>
 
                 <br>
 
                 <label>Rationale</label>
                 <textarea rows="3" class="form-control form-control-sm" id="rationale_textarea" name="rationale"
-                  placeholder="Goal or Aim in doing this activity in number form" maxlength="350" required><?=$ap_record->Rationale?></textarea>
+                  placeholder="Goal or Aim in doing this activity in number form" maxlength="350" required disabled><?=$ap_record->Rationale?></textarea>
 
                 <br>
 
 
                 <label>Participants</label>
                 <textarea rows="3" class="form-control form-control-sm" id="participants_textarea" name="participants"
-                  required><?=$ap_record->Participants?></textarea>
+                  required disabled><?=$ap_record->Participants?></textarea>
 
                 <br>
-                <input type="button" class="table-header btn btn-light" name="save_btn" id="btn_save_ap" value="Save">
-                <input type="reset" class="table-header btn btn-light" id="button" value="Clear">
               </div><!-- ACTIVITY PROPOSAL FORM LONG TEXT SECTION END-->              
               <!-- ACTIVITY PROPOSAL CONTENT END -->
             </p>
@@ -203,16 +182,16 @@
 
       <!-- ACTIVITY PROPOSAL END -->
 
-      <div class="row mx-5 oapps-mh oapps-proposal-m2"> <!-- SECOND ROW START -->
+      <div class="row oapps-mh"> <!-- SECOND ROW START -->
         <!-- FIXED ASSET REQ START-->
 
-        <div class="col-lg-8 offset-lg-3 oapps-rh h-100" style="border: 1px black solid"> <!-- FIXED ASSET COL START -->
+        <div class="col-lg-8 offset-lg-2 oapps-rh h-100" style="border: 1px black solid"> <!-- FIXED ASSET COL START -->
           <div class="row oapps-bg-head"> <!-- FIXED ASSET REQ HEAD ROW START -->
             <div class="oapps-hh col-12 oapps-head-text-1 text-white">
               <p class="text-center oapps-bmb">Fixed Asset Requirements</p>
             </div>
           </div> <!-- FIXED ASSET REQ HEAD ROW END -->
-          <div class="row oapps-ch" style="overflow-y: auto;"> <!-- FIXED ASSET REQ START -->
+          <div class="row oapps-ch" style="overflow-y: auto;" disabled> <!-- FIXED ASSET REQ START -->
             <p class="m-4">
               <!-- FIXED ASSET REQ CONTENT START -->
               <div class="container-far">
@@ -278,10 +257,6 @@
                 <input class="form-control form-control-sm medium-text-box" type="number" id="far_overall_amount" value=0
                   readonly>
 
-                <input type="button" class="table-header btn btn-light m-2" name="btn_add_far" id="button-add-far" value="Add">
-                <!-- <input type="button" class="table-header btn btn-light m-2" name="btn_delete_far" id="button-delete-far" value="Delete"> -->
-                <input type="reset" class="table-header btn btn-light m-2" id="button" value="Clear">
-                <input type="button" class="table-header btn btn-light m-2" name="save_btn" id="btn_save_far" value="Save">
               </div>
               <!-- FIXED ASSET REQ CONTENT END -->
             </p>
@@ -290,10 +265,10 @@
       </div><!-- SECOND ROW END -->
 
 
-      <div class="row mx-5 oapps-mh mb-5"> <!-- THIRD ROW START -->
+      <div class="row oapps-mh mb-5"> <!-- THIRD ROW START -->
         <!-- OPERATING EXPENSES START-->
 
-        <div class="col-lg-8 offset-lg-3 oapps-rh h-100" style="border: 1px black solid"> <!-- ACTIVITY PROPOSAL COL START -->
+        <div class="col-lg-8 offset-lg-2 oapps-rh h-100" style="border: 1px black solid"> <!-- ACTIVITY PROPOSAL COL START -->
           <div class="row oapps-bg-head"> <!-- OPERATING EXPENSES HEAD ROW START -->
             <div class="oapps-hh col-12 oapps-head-text-1 text-white">
               <p class="text-center oapps-bmb">Operating Expenses</p>
@@ -321,22 +296,22 @@
                     </td>
                     <td>
                       <input type="text" class="form-control form-control-sm medium-text-box" name="oe_item[]" id="oe_txt_item<?=$oe_counter?>"
-                        value="<?=$oe_record->Item?>" maxlength="15" />
+                        value="<?=$oe_record->Item?>" maxlength="15" disabled/>
                     </td>
                     <td>
                       <input type="number" class="form-control form-control-sm small-text-box" name="oe_quantity[]" id="oe_txt_quantity<?=$oe_counter?>"
-                        oninput="calculate2(this.id)" min=0 value="<?=$oe_record->Quantity?>" />
+                        oninput="calculate2(this.id)" min=0 value="<?=$oe_record->Quantity?>" disabled/>
                     </td>
                     <td>
                       <input type="number" class="form-control form-control-sm small-text-box" name="oe_unit_price[]" id="oe_txt_unit<?=$oe_counter?>"
-                        oninput="calculate2(this.id)" step="any" min=0 value="<?=$oe_record->Unit_Price?>" />
+                        oninput="calculate2(this.id)" step="any" min=0 value="<?=$oe_record->Unit_Price?>" disabled/>
                     </td>
                     <td>
                       <input type="number" class="form-control form-control-sm small-text-box" name="oe_total_amount[]" id="oe_txt_total<?=$oe_counter?>"
                         value="<?=$oe_record->Total_Amount?>" readonly />
                     </td>
                     <td>
-                      <select class="form-control medium-text-box" name="oe_source[]" id="oe_source_of_fund<?=$oe_counter?>">
+                      <select class="form-control medium-text-box" name="oe_source[]" id="oe_source_of_fund<?=$oe_counter?>" disabled>
                         <option <?=$this->proposals_model->selectSAF(0, $oe_id)?> >Student Activity Fund</option>
                         <option <?=$this->proposals_model->selectCF(0, $oe_id)?> >Cultural Fund</option>
                         <option <?=$this->proposals_model->selectOF(0, $oe_id)?> >Organizational Fund</option>
@@ -346,9 +321,6 @@
                       </select>
                     </td>
                     <td>
-                      <input type='button' class='btn btn-light button-delete-oe' name='btn_delete_oe' 
-                        id='button-delete-oe-<?=$oe_counter?>' value='Delete'>
-
                       <input type="text" class="form-control form-control-sm" hidden name="oe_id[]" id="oe_txt_id<?=$oe_counter?>"
                       value="<?=$oe_id?>" hidden required readonly />
                       <input type="text" class="form-control form-control-sm oe-proposal-id" name="proposal_id" id="oe_txt_proposal_id<?=$oe_counter?>"
@@ -364,11 +336,6 @@
                 <input type="number" class="form-control form-control-sm medium-text-box" id="oe_overall_amount" value=0
                   readonly>
 
-                <input type="button" class="table-header btn btn-light m-2" name="btn_add_oe" id="button-add-oe" value="Add">
-                <!-- <input type="button" class="table-header btn btn-light m-2" name="btn_delete_oe" id="button-delete-oe" value="Delete"> -->
-                <input type="reset" class="table-header btn btn-light m-2" id="button" value="Clear">
-                <input type="button" class="table-header btn btn-light m-2" name="save_btn" id="btn_save_oe" value="Save">
-
               </div>
               <!-- OPERATING EXPENSES CONTENT END -->
             </p>
@@ -378,19 +345,16 @@
 
       <div class="row no-gutters mt-5"><!-- FOURTH ROW END -->
         <div class="col-lg-10 ml-5 mt-5"> <!-- INSERT DOCUMENT SUBMISSION HERE -->
-          <p class="mt-5 text-monospace">Upload Document Here</p>
+          <p class="mt-5 text-monospace">Show list of uploaded documents here</p>
         </div>
 
       </div>
       <div class="row d-flex">
         <div class="col-lg-5 offset-lg-7 col-md-6 offset-md-6 col-sm-8 offset-sm-4 col-xs-8 offset-xs-4 my-5"> <!-- FINAL BUTTONS HERE -->
-          <a href="<?=base_url()?>home">
+          <a href="<?=base_url()?>proposal/edit/<?=$ap_record->Proposal_ID?>">
             <input type="button" class="table-header btn btn-light btn-lg" name="back" id="button" value="Go Back">
           </a>
-          <a href="delete/<?=$ap_record->Proposal_ID?>">
-            <input type="button" class="table-header btn btn-light btn-lg" name="delete_btn" id="btn_delete" value="Delete Proposal">
-          </a>
-          <input type="submit" class="table-header btn btn-light btn-lg" name="submit" id="submit_btn" value="Submit">
+          <input type="submit" class="table-header btn btn-light btn-lg" name="submit" id="submit_btn" value="Confirm">
         </div>
       </div>
 
