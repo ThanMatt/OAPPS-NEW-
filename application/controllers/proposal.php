@@ -7,33 +7,42 @@ class Proposal extends CI_Controller {
     if ($this->session->userdata('logged_in')) {
 
       $account_id = $this->session->userdata('account_id');
-      $records = $this->proposals_model->viewAPRecord($proposal_id);
-      $proposal_status = $records->ProposalStatus;
       $org_type = $this->session->userdata('org_type');
+      
+      $record_oe = $this->proposals_model->viewOERecord($proposal_id);
+      $records_far = $this->proposals_model->viewFARRecord($proposal_id);
+      $records_ap = $this->proposals_model->viewAPRecord($proposal_id);
+      $data['records_oe'] = $record_oe;
+      $data['records_far'] = $records_far;
+      $data['records_ap'] = $records_ap;
 
-      $data['record'] = $this->proposals_model->viewAPRecord($proposal_id);
-
-      if ($proposal_status == 'UNDER REVISION') {
-        $data['comments'] = $this->proposals_model->viewComments($proposal_id);
-        $data['office'] = $this->proposals_model->getTheirOfficeInfo($records->OfficeProposal);
-
-        if ($org_type != 'N/A') {
-          $this->load->view('proposals/view_comments', $data);
-        } else {
-          $this->load->view('proposals/view_revision_office', $data);
+      if ($org_type == 'N/A') {
+        if ($this->proposals_model->didIApproveThis($account_id, $proposal_id)) {
+          $this->proposals_model->getDateTime($account_id, $proposal_id);
         }
-
-      } else {
-
-        if ($org_type == 'N/A') {
-          if ($this->proposals_model->didIApproveThis($account_id, $proposal_id)) {
-            $this->proposals_model->getDateTime($account_id, $proposal_id);
-          }
-        }
-        $this->load->view('proposals/view_ap', $data);
-        $this->accounts_model->logMyActivity($account_id, 2, $proposal_id);
-
       }
+      $this->accounts_model->logMyActivity($account_id, 2, $proposal_id);
+
+      $this->load->view('print/proposal', $data);
+      // $account_id = $this->session->userdata('account_id');
+      // $records = $this->proposals_model->viewAPRecord($proposal_id);
+      // $proposal_status = $records->ProposalStatus;
+      // $org_type = $this->session->userdata('org_type');
+
+      // $data['record'] = $this->proposals_model->viewAPRecord($proposal_id);
+
+      // if ($proposal_status == 'UNDER REVISION') {
+      //   $data['comments'] = $this->proposals_model->viewComments($proposal_id);
+      //   $data['office'] = $this->proposals_model->getTheirOfficeInfo($records->OfficeProposal);
+
+      //   if ($org_type != 'N/A') {
+      //     $this->load->view('proposals/view_comments', $data);
+      //   } else {
+      //     $this->load->view('proposals/view_revision_office', $data);
+      //   }
+
+      // } else {
+      // }
 
     } else {
       redirect(base_url() . "home");
@@ -60,8 +69,10 @@ class Proposal extends CI_Controller {
 
     $next_office = $this->proposals_model->nextOffice($account_id, $proposal_id);
     $next_position = $this->proposals_model->nextOfficePosition($next_office, $proposal_id);
+    $far = $this->proposals_model->checkIfFARExists($proposal_id, $account_id);
+    $oe = $this->proposals_model->checkIfOEExists($proposal_id, $account_id);
 
-    $this->proposals_model->forwardAP($next_office, $next_position, $proposal_id);
+    $this->proposals_model->forwardProposal($next_office, $next_position, $proposal_id, $account_id, $far, $oe);
 
     $this->accounts_model->logMyActivity($account_id, 3, $proposal_id);
 
@@ -70,16 +81,32 @@ class Proposal extends CI_Controller {
     $org_id = $this->proposals_model->whoseProposal($proposal_id);
     $next_office = $this->proposals_model->nextOffice($account_id, $proposal_id);
 
-
     if ($account_id == 'OD') {
       $next_office = '';
       $this->notifications_model->sendNotification($proposal_id, $org_id, 1, $next_office);
+
     } else {
-      $this->notifications_model->sendNotification($proposal_id, $org_id, 0, $next_office);
+
+      if ($this->proposals_model->checkIfBPExists($proposal_id)) {
+        if ($account_id == 'SC_SG' || $account_id == 'SC_TR') {
+          if ($this->proposals_model->checkOfficerApproval($proposal_id, $account_id)) {
+            $this->notifications_model->sendNotification($proposal_id, $org_id, 0, $next_office);
+          } else {
+            $this->notifications_model->sendNotification($proposal_id, $org_id, 0, 'N/A');
+          }
+        } else {
+          $this->notifications_model->sendNotification($proposal_id, $org_id, 0, $next_office);
+        }
+
+      } else {
+
+        $this->notifications_model->sendNotification($proposal_id, $org_id, 0, $next_office);
+
+      }
+
     }
 
-
-    redirect(base_url() . "proposal/view/" . $proposal_id);
+    redirect("home");
 
   }
 
@@ -96,6 +123,7 @@ class Proposal extends CI_Controller {
     $start_time = $this->input->post('start_time_activity', true);
     $end_time = $this->input->post('end_time_activity', true);
     $nature = $this->input->post('nature', true);
+    $objectives = $this->input->post('objectives', true);
     $rationale = $this->input->post('rationale', true);
     $activity_chair = $this->input->post('activity_chair', true);
     $participants = $this->input->post('participants', true);
@@ -121,7 +149,7 @@ class Proposal extends CI_Controller {
     $far_id = $this->input->post('far_id');
 
     if ($this->proposals_model->createActivityProposal($account_id, $proposal_id, $contact_number, $activity_name, $date_activity,
-      $start_time, $end_time, $nature, $rationale, $activity_chair, $participants,
+      $start_time, $end_time, $nature, $objectives, $rationale, $activity_chair, $participants,
       $activity_venue, $proposal_type1, $proposal_type2, $non_academic_type,
       $collab_partner, $specified)) {
 
@@ -262,6 +290,7 @@ class Proposal extends CI_Controller {
     $start_time = $this->input->post('start_time_activity', true);
     $end_time = $this->input->post('end_time_activity', true);
     $nature = $this->input->post('nature', true);
+    $objectives = $this->input->post('objectives', true);
     $rationale = $this->input->post('rationale', true);
     $activity_chair = $this->input->post('activity_chair', true);
     $participants = $this->input->post('participants', true);
@@ -282,7 +311,7 @@ class Proposal extends CI_Controller {
     }
 
     $this->proposals_model->saveActivityProposal($account_id, $proposal_id, $contact_number, $activity_name, $date_activity,
-      $start_time, $end_time, $nature, $rationale, $activity_chair, $participants,
+      $start_time, $end_time, $nature, $objectives, $rationale, $activity_chair, $participants,
       $activity_venue, $proposal_type1, $proposal_type2, $non_academic_type,
       $collab_partner, $specified);
 
@@ -409,19 +438,23 @@ class Proposal extends CI_Controller {
 
   public function submit($proposal_id) {
     $org_type = $this->session->userdata('org_type');
+    $bp = false;
 
     if ($proposal_id == null) {
       redirect(base_url() . "home");
     }
 
-    $proposal_id = $this->input->post('proposal_id');
     $account_id = $this->session->userdata('account_id');
-    $contact_number = $this->input->post('contact_number', true);
+    $activity_name = $this->input->post('activity_name', true);
+    $account_id = $this->session->userdata('account_id');
+    $proposal_id = $this->input->post('proposal_id', true);
     $activity_name = $this->input->post('activity_name', true);
     $date_activity = $this->input->post('date_activity', true);
+    $contact_number = $this->input->post('contact_number', true);
     $start_time = $this->input->post('start_time_activity', true);
     $end_time = $this->input->post('end_time_activity', true);
     $nature = $this->input->post('nature', true);
+    $objectives = $this->input->post('objectives', true);
     $rationale = $this->input->post('rationale', true);
     $activity_chair = $this->input->post('activity_chair', true);
     $participants = $this->input->post('participants', true);
@@ -435,28 +468,103 @@ class Proposal extends CI_Controller {
 
     if ($specified_ex == '' && $specified_co != '') {
       $specified = $specified_co;
-
     } else if ($specified_ex != '' && $specified_co == '') {
       $specified = $specified_ex;
-
     } else {
       $specified = "";
     }
 
-    $this->proposals_model->submitActivityProposal($account_id, $proposal_id, $contact_number, $activity_name, $date_activity,
-      $start_time, $end_time, $nature, $rationale, $activity_chair, $participants,
-      $activity_venue, $proposal_type1, $proposal_type2, $non_academic_type,
-      $collab_partner, $specified);
+    $oe_id = $this->input->post('oe_id');
+    $far_id = $this->input->post('far_id');
 
-    if ($this->proposals_model->checkIfFARExists($proposal_id) || $this->proposals_model->checkIfOEExists($proposal_id)) {
-      $bp = true;
+    if ($this->proposals_model->submitActivityProposal($account_id, $proposal_id, $contact_number, $activity_name, $date_activity,
+      $start_time, $end_time, $nature, $objectives, $rationale, $activity_chair, $participants,
+      $activity_venue, $proposal_type1, $proposal_type2, $non_academic_type,
+      $collab_partner, $specified)) {
+
+      $response['success'] = true;
+      $response['proposal_id'] = $proposal_id;
+
+      if ($far_id != null) {
+        $bp = true;
+        $far_count = count($far_id);
+
+        if ($far_count > 1) {
+
+          for ($counter = 0; $counter < $far_count; $counter++) {
+
+            $far_id = $this->input->post('far_id', true)[$counter];
+            $account_id = $this->session->userdata('account_id');
+            $far_item = $this->input->post('far_item', true)[$counter];
+            $far_quantity = $this->input->post('far_quantity', true)[$counter];
+            $far_unit = $this->input->post('far_unit', true)[$counter];
+            $far_total_amount = $this->input->post('far_total_amount', true)[$counter];
+            $far_source = $this->input->post('far_source', true)[$counter];
+
+            $this->proposals_model->submitFAR($account_id, $proposal_id, $far_item,
+              $far_quantity, $far_unit, $far_total_amount, $far_source, $far_id);
+          }
+        } else {
+
+          $account_id = $this->session->userdata('account_id');
+          $far_item = $this->input->post('far_item', true)[0];
+          $far_quantity = $this->input->post('far_quantity', true)[0];
+          $far_unit = $this->input->post('far_unit', true)[0];
+          $far_total_amount = $this->input->post('far_total_amount', true)[0];
+          $far_source = $this->input->post('far_source', true)[0];
+          $far_id = $this->input->post('far_id', true)[0];
+
+          $this->proposals_model->submitFAR($account_id, $proposal_id, $far_item,
+            $far_quantity, $far_unit, $far_total_amount, $far_source, $far_id);
+        }
+
+      }
+
+      if ($oe_id != null) {
+        $bp = true;
+        $oe_count = count($oe_id);
+
+        if ($oe_count > 1) {
+
+          for ($counter = 0; $counter < $oe_count; $counter++) {
+
+            $oe_id = $this->input->post('oe_id', true)[$counter];
+            $account_id = $this->session->userdata('account_id');
+            $oe_item = $this->input->post('oe_item', true)[$counter];
+            $oe_quantity = $this->input->post('oe_quantity', true)[$counter];
+            $oe_unit = $this->input->post('oe_unit', true)[$counter];
+            $oe_total_amount = $this->input->post('oe_total_amount', true)[$counter];
+            $oe_source = $this->input->post('oe_source', true)[$counter];
+
+            $this->proposals_model->submitOE($account_id, $proposal_id, $oe_item,
+              $oe_quantity, $oe_unit, $oe_total_amount, $oe_source, $oe_id);
+          }
+        } else {
+
+          $account_id = $this->session->userdata('account_id');
+          $oe_item = $this->input->post('oe_item', true)[0];
+          $oe_quantity = $this->input->post('oe_quantity', true)[0];
+          $oe_unit = $this->input->post('oe_unit', true)[0];
+          $oe_total_amount = $this->input->post('oe_total_amount', true)[0];
+          $oe_source = $this->input->post('oe_source', true)[0];
+          $oe_id = $this->input->post('oe_id', true)[0];
+
+          $this->proposals_model->submitOE($account_id, $proposal_id, $oe_item,
+            $oe_quantity, $oe_unit, $oe_total_amount, $oe_source, $oe_id);
+        }
+
+      }
+
+      $this->accounts_model->logMyActivity($account_id, 9, $proposal_id);
+      $this->notifications_model->createNotifications($proposal_id, $account_id, $bp);
+      $this->proposals_model->insertTracker($account_id, $proposal_id);
+      echo json_encode($response);
+
     } else {
-      $bp = false;
+      $response['success'] = false;
+      echo json_encode($response);
     }
 
-    $this->notifications_model->createNotifications($proposal_id, $account_id, $bp);
-    $this->proposals_model->insertTracker($account_id, $proposal_id);
-    $this->accounts_model->logMyActivity($account_id, 9, 0);
   }
 
   public function tracker($proposal_id) {
