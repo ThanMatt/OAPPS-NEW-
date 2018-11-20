@@ -23,6 +23,14 @@ class Admin_Model extends CI_Model {
 
   }
 
+  public function viewAccountInfo($account_id) {
+    $this->db->from('accounts');
+    $this->db->where('Account_ID', $account_id);
+
+    $result = $this->db->get();
+
+    return $result->row();
+  }
 
   public function logMyActivity($admin_id, $activity_type, $proposal_id) {
     
