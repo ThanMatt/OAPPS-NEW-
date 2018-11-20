@@ -74,6 +74,15 @@ class Accounts_Model extends CI_Model {
     return $result->num_rows();
   }
 
+  public function getOrgInfo($account_id) {
+    $this->db->from('accounts');
+    $this->db->where('Account_ID', $account_id);
+
+    $result = $this->db->get();
+
+    return $result->row();
+  }
+
   public function getOrgs() {
     $this->db->from('accounts');
     $this->db->where('Type !=', 'N/A');

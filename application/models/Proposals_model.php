@@ -513,6 +513,15 @@ class Proposals_Model extends CI_Model {
 
   }
 
+  public function getTimeTable($proposal_id) {
+    $this->db->from('timestamp');
+    $this->db->where('Proposal_ID', $proposal_id);
+
+    $result = $this->db->get();
+
+    return $result->row();
+  }
+
   public function viewComments($proposal_id) {
     $this->db->where('Proposal_ID', $proposal_id);
     $this->db->from('comments');

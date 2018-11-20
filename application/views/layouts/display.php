@@ -65,6 +65,38 @@ $org_type = $this->session->userdata('org_type');
             </ul>
           <?php endif ?>
           </div> 
+          <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Date Proposed</th>
+                  <th>Treasurer</th>
+                  <th>Sec-Gen</th>
+                  <th>President</th>
+                  <th>Asst. Prefect</th>
+                  <th>Prefect</th>
+                  <th>Dean</th>
+                  <th>Time Approved</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><?=$timetable->DateProposed?></td>
+                  <?php if ($this->proposals_model->checkIfBPExists($records->Proposal_ID)):?>
+                    <td><?=$timetable->SC_TR_TimeIn?></td>
+                  <?php endif ?>
+                  <td><?=$timetable->SC_SG_TimeIn?></td>
+                  <td><?=$timetable->SC_P_TimeIn?></td>
+                  <?php if ($org_info->Type == 'Pro'): ?>
+                    <td><?=$timetable->OPSA_APP_TimeIn?></td>
+                  <?php else: ?>
+                    <td><?=$timetable->OPSA_APN_TimeIn?></td>
+                  <?php endif ?>
+                  <td><?=$timetable->OPSA_P_TimeIn?></td>
+                  <td><?=$timetable->OD_TimeIn?></td>
+                  <td><?=$timetable->TimeApproved?></td>
+                </tr>
+              </tbody>
+            </table>
         </div>
       </div>
     </div>
