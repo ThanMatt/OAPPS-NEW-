@@ -40,7 +40,7 @@ $org_type = $this->session->userdata('org_type');
   
       <div class="dropdown oapps-profile">
         <button class="oapps-profile-img-btn" data-toggle="dropdown">
-          <img class="oapps-profile-img" src="<?=base_url()?>assets/img/logo/<?=$prefix?>_logo.jpg" alt="<?=$prefix?> logo">   
+          <img class="oapps-profile-img" src="assets/image.php?id=<?=$prefix?>" alt="<?=$prefix?> logo">   
         </button>
         <div class="dropdown-menu dropdown-menu-right oapps-content" aria-labelledby="dropdownMenuButton">
           <?php if ($org_type != 'N/A'): ?>
