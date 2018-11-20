@@ -39,7 +39,7 @@
             <div class="card-body">
               <div class="display-picture-holder">
                 <div class="display-picture">
-                  <img src="<?=base_url()?>assets/img/logo/<?=$prefix?>_logo.jpg">
+                  <img src="<?=base_url()?>assets/image.php?id=<?=$prefix?>">
                 </div>
               </div>
               <h4 class="card-title"><?=$organization?></h4>
