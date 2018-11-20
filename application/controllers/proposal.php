@@ -97,19 +97,11 @@ class Proposal extends CI_Controller {
         } else {
           $this->notifications_model->sendNotification($proposal_id, $org_id, 0, $next_office);
         }
-<<<<<<< HEAD:application/controllers/Proposal.php
 
       } else {
 
         $this->notifications_model->sendNotification($proposal_id, $org_id, 0, $next_office);
 
-=======
-
-      } else {
-
-        $this->notifications_model->sendNotification($proposal_id, $org_id, 0, $next_office);
-
->>>>>>> master:application/controllers/proposal.php
       }
 
     }
