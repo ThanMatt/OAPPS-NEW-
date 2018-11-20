@@ -119,7 +119,7 @@
               <p class="text-center oapps-bmb">Proposal List</p>
             </div>
           </div> <!-- PROPOSAL LIST HEAD ROW END -->
-          <div class="row oapps-ch" style="overflow-y: auto;"> <!-- PROPOSAL LIST ROW START -->
+          <div class="d-flex flex-column justify-content-start row oapps-ch" style="overflow-y: auto;"> <!-- PROPOSAL LIST ROW START -->
 
           <?php if (is_array($records) || is_object($records)): ?>
           <?php
@@ -132,30 +132,30 @@
                 if ($this->proposals_model->checkDuplicationTitle($record->ActivityName)) {
                   //:: unreadNotification returns boolean values
                   if ($this->notifications_model->unreadNotification($record->Proposal_ID, $account_id)) {
-                    echo '<div class="oapps-btn col-12 proposal-view" id="view_btn/' . $record->Proposal_ID . '"><p class="text-center oapps-bmb">' . $record->ActivityName . ' (' . $record->Account_ID . ')*' . '</p></div>';  
+                    echo '<div class="oapps-btn proposal-view" id="view_btn/' . $record->Proposal_ID . '"><p class="text-center oapps-bmb">' . $record->ActivityName . ' (' . $record->Account_ID . ')*' . '</p></div>';  
                   } else {
-                    echo '<div class="oapps-btn col-12 proposal-view" id="view_btn/' . $record->Proposal_ID . '"><p class="text-center oapps-bmb">' . $record->ActivityName . ' (' . $record->Account_ID . ') ' . '</p></div>';
+                    echo '<div class="oapps-btn proposal-view" id="view_btn/' . $record->Proposal_ID . '"><p class="text-center oapps-bmb">' . $record->ActivityName . ' (' . $record->Account_ID . ') ' . '</p></div>';
                   }
 
                 } else {
                   if ($this->notifications_model->unreadNotification($record->Proposal_ID, $account_id)) {
-                    echo '<div class="oapps-btn col-12 proposal-view" id="view_btn/' . $record->Proposal_ID . '"><p class="text-center oapps-bmb">' . $record->ActivityName . '*</p></div>';
+                    echo '<div class="oapps-btn proposal-view" id="view_btn/' . $record->Proposal_ID . '"><p class="text-center oapps-bmb">' . $record->ActivityName . '*</p></div>';
                   } else {
-                    echo '<div class="oapps-hh oapps-btn col-12 proposal-view" id="view_btn/' . $record->Proposal_ID . '"><p class="text-center oapps-bmb">' . $record->ActivityName . '</p></div>';
+                    echo '<div class="oapps-btn proposal-view" id="view_btn/' . $record->Proposal_ID . '"><p class="text-center oapps-bmb">' . $record->ActivityName . '</p></div>';
                   }
                 }
               //:: If not an office, then for orgs...
               } else {
                 if ($this->notifications_model->unreadNotification($record->Proposal_ID, $account_id)) {
-                  echo '<div style="border: solid 1px black;" class="oapps-btn col-12 proposal-view" id="view_btn/' . $record->Proposal_ID . '"><p class="text-center oapps-bmb">' . $record->ActivityName . '*</p></div>';
+                  echo '<div class="oapps-btn proposal-view" id="view_btn/' . $record->Proposal_ID . '"><p class="text-center oapps-bmb">' . $record->ActivityName . '*</p></div>';
                 } else {
-                  echo '<div style="border: solid 1px black;" class="oapps-btn col-12 proposal-view" id="view_btn/' . $record->Proposal_ID . '"><p class="text-center oapps-bmb">' . $record->ActivityName . '</p></div>';
+                  echo '<div class="oapps-btn proposal-view" id="view_btn/' . $record->Proposal_ID . '"><p class="text-center oapps-bmb">' . $record->ActivityName . '</p></div>';
                 }
               }
             }
           ?>
           <?php else: ?>
-          <h1 id="nav-left-container-no-records" class="oapps-btn-norec col-12 mb-3"><p class="text-center oapps-bmb">No Records</p></h1>
+          <h1 id="nav-left-container-no-records" class="oapps-btn-norec mb-3"><p class="text-center oapps-bmb">No Records</p></h1>
           <?php endif?>
           </div> <!-- PROPOSAL LIST ROW END -->
         </div> <!-- PROPOSAL LIST COL END -->
