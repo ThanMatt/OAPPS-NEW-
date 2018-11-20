@@ -93,10 +93,10 @@ $org_type = $this->session->userdata('org_type');
     <?php endif ?>
 
       <div class="col-lg-2" style="margin-left: 2.08333%">
-          <p class="oapps-nav-text-1">Reports</p>
+        <a href="<?=base_url()?>home/org_statistics"><p class="oapps-nav-text-1">Org Statistics</p></a>
       </div>
       <div class="col-lg-2" style="margin-left: 2.08333%">
-          <p class="oapps-nav-text-1">Downloadable Forms</p>
+        <p class="oapps-nav-text-1">Downloadable Forms</p>
       </div>
     </div>
     <!-- secondary header end -->

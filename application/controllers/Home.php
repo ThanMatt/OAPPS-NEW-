@@ -81,7 +81,13 @@ class Home extends CI_Controller {
 
   }
 
+  public function org_statistics() {
 
+    $this->load->view('stats');
+
+  }
+
+  
 }
 
 ?>

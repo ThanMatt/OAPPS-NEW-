@@ -22,11 +22,11 @@
   <!-- MAIN START -->
   <div class="container-fluid" style="height: 100vh; width: 100%;">
     <?php 
-    $this->load->view('layouts/header');
+    $this->load->view('layouts/adminheader');
     ?>
     <div class="row m-5 oapps-mh"> <!-- FIRST ROW START -->
 
-      <div class="col-lg-3 oapps-rh mb-5" style="border: 1px solid black"> <!-- ADMIN LOG COL START -->
+      <div class="col-lg-8 offset-lg-2 oapps-rh mb-5" style="border: 1px solid black"> <!-- ADMIN LOG COL START -->
         <div class="row oapps-bg-head "> <!-- ADMIN LOG HEAD ROW START -->
           <div class="oapps-hh col-12 oapps-head-text-1 text-white">
             <p class="text-center oapps-bmb">Admin logs</p>
@@ -41,84 +41,6 @@
           <!-- ADMIN LOG CONTENT START -->
         </div>
       </div> <!-- ADMIN LOG COL END -->
-      <div class="col-lg-8 offset-lg-1 oapps-rh" style="border: 1px solid black"> <!-- EDIT/ADD COL START -->
-        <div class="row oapps-bg-head "> <!-- EDIT/ADD HEAD ROW START -->
-          <div class="oapps-hh col-12 oapps-head-text-1 text-white">
-              <p class="text-center oapps-bmb">User Info</p>
-          </div> 
-        </div> <!-- EDIT/ADD HEAD ROW END -->
-        <div class="oapps-ch" style="overflow-y: auto; width: 100%; margin-left: .95rem !important">
-          <!-- ADD/EDIT FORM START -->
-          <div class="form-group mt-4 ml-5" style="width: 70%;">
-            <form>
-              <hr>
-              <fieldset>
-                <div class="row">
-                  <div class="col-lg-2 col-md-3">
-                    <input type="radio" id="add" name="add" value="add">
-                    <label for="add" class="lead">Add</label>
-                  </div>
-                  <div class="col-lg-2 col-md-8">
-                    <input type="radio" id="edit" name="edit" value="edit">
-                    <label for="edit" class="lead">Edit</label>
-                  </div>
-                </div>
-              </fieldset>
-              <hr>
-              <p class="lead">
-                Username: 
-                <!-- (BITS and other orgs. Can also be used to change office names if they change name) -->
-              </p>
-                
-              <input type="text" class="form-control form-control-sm" name="" id="" value="" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHklEQVQ4EaVTO26DQBD1ohQWaS2lg9JybZ+AK7hNwx2oIoVf4UPQ0Lj1FdKktevIpel8AKNUkDcWMxpgSaIEaTVv3sx7uztiTdu2s/98DywOw3Dued4Who/M2aIx5lZV1aEsy0+qiwHELyi+Ytl0PQ69SxAxkWIA4RMRTdNsKE59juMcuZd6xIAFeZ6fGCdJ8kY4y7KAuTRNGd7jyEBXsdOPE3a0QGPsniOnnYMO67LgSQN9T41F2QGrQRRFCwyzoIF2qyBuKKbcOgPXdVeY9rMWgNsjf9ccYesJhk3f5dYT1HX9gR0LLQR30TnjkUEcx2uIuS4RnI+aj6sJR0AM8AaumPaM/rRehyWhXqbFAA9kh3/8/NvHxAYGAsZ/il8IalkCLBfNVAAAAABJRU5ErkJggg==&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">
-
-              <br>
-
-              <p class="lead">
-                Organization Name: 
-                <!-- (If orgs or offices decide to change their name.)  -->
-              </p>
-              <input type="text" class="form-control form-control-sm" name="" id="" value="">
-
-              <br>
-
-              <p class="lead">
-                Password: 
-              </p>
-              <input type="text" class="form-control form-control-sm" name="" id="" value="">
-
-              <br>
-
-              <p class="lead">
-                Representative Name: 
-                <!-- (When the representative changes.) -->
-              </p>
-              <input type="text" class="form-control form-control-sm" name="" id="" value="">
-
-              <br>    
-              <p class="lead">
-                Logo: 
-              </p>
-              <br>
-              Upload Box Here
-
-              <br>
-              <br>
-
-              <p class="lead">
-                Signature: 
-              </p>
-              <br>
-              Upload Box Here
-
-              <br>      
-              <br>
-              <input type="submit" class="mt-5 btn btn-light btn-lg" name="submit" id="submit_btn" value="Submit">
-            </form>
-          </div>
-            <!-- ADD/EDIT FORM END -->
-        </div>
-      </div> <!-- EDIT/ADD COL START -->
     </div> <!-- FIRST ROW END -->
   </div> <!-- CONTAINER END -->
 
