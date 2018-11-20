@@ -28,12 +28,12 @@ class Home extends CI_Controller {
       if ($record) {
         $data['records'] = $record;
         $response = $this->load->view('layouts/display', $data);
-      } 
+      }
 
     } else {
 
       if ($flag == 'Pending') {
-        
+
         $record = $this->proposals_model->getPendingRecords($account_id, $type);
       } else if ($flag == 'Approved') {
         $record = $this->proposals_model->getApprovedRecords($account_id, $type);
@@ -66,10 +66,8 @@ class Home extends CI_Controller {
     $approved_records = $this->proposals_model->getApprovedRecords($account_id, $type);
     $pending_records = $this->proposals_model->getPendingRecords($account_id, $type);
 
-
     $data['approved_records'] = 'No Records';
     $data['pending_records'] = 'No Records';
-    
 
     if ($approved_records || $pending_records) {
 
@@ -78,9 +76,15 @@ class Home extends CI_Controller {
     }
     $this->load->view('users/profile', $data);
 
-
   }
 
+  public function org_statistics() {
+
+    $records['orgs'] = $this->accounts_model->getOrgs();
+
+    $this->load->view('stats', $records);
+
+  }
 
 }
 

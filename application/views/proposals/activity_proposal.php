@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
+  <?php if ($this->session->userdata('logged_in')): ?>
     <?php
       $proposal_id = $ap_record->Proposal_ID;
       $prefix = $this->session->userdata('prefix');
@@ -16,7 +17,7 @@
       <?php if ($this->session->userdata('account_id') != $ap_record->Account_ID): ?>
     <?php redirect('home')?>
     <?php endif?>
-    <?php if ($this->session->userdata('logged_in')): ?>
+    
 
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -169,13 +170,19 @@
               <div class="ap-longtext my-5 col-md-12"><!-- ACTIVITY PROPOSAL FORM LONG TEXT SECTION START-->
                 <label>Nature of the Activity</label>
                 <textarea rows="3" class="form-control form-control-sm" id="nature_textarea" name="nature" placeholder="What is the activity all about?"
-                  required><?=$ap_record->Nature?></textarea>
+                  maxlength="230" required><?=$ap_record->Nature?></textarea>
+
+                <br>
+
+                <label>Objectives of the Activity</label>
+                <textarea rows="3" class="form-control form-control-sm" id="objectives_textarea" name="objectives" placeholder="Goal or Aim in doing this activity in number form"
+                  maxlength="230" required><?=$ap_record->Objectives?></textarea>
 
                 <br>
 
                 <label>Rationale</label>
                 <textarea rows="3" class="form-control form-control-sm" id="rationale_textarea" name="rationale"
-                  placeholder="Goal or Aim in doing this activity in number form" required><?=$ap_record->Rationale?></textarea>
+                  placeholder="Goal or Aim in doing this activity in number form" maxlength="350" required><?=$ap_record->Rationale?></textarea>
 
                 <br>
 
@@ -185,9 +192,8 @@
                   required><?=$ap_record->Participants?></textarea>
 
                 <br>
-
-                <input type="reset" class="table-header btn btn-light" id="button" value="Clear">
                 <input type="button" class="table-header btn btn-light" name="save_btn" id="btn_save_ap" value="Save">
+                <input type="reset" class="table-header btn btn-light" id="button" value="Clear">
               </div><!-- ACTIVITY PROPOSAL FORM LONG TEXT SECTION END-->              
               <!-- ACTIVITY PROPOSAL CONTENT END -->
             </p>
@@ -229,7 +235,7 @@
                     </td>
                     <td>
                       <input type="text" class="form-control form-control-sm medium-text-box far-item" name="far_item[]"
-                        id="far_txt_item<?=$far_counter?>" value="<?=$far_record->Item?>" />
+                        id="far_txt_item<?=$far_counter?>" value="<?=$far_record->Item?>" maxlength="15" />
                     </td>
                     <td>
                       <input type="number" class="form-control form-control-sm small-text-box far-quantity" name="far_quantity[]"
@@ -315,7 +321,7 @@
                     </td>
                     <td>
                       <input type="text" class="form-control form-control-sm medium-text-box" name="oe_item[]" id="oe_txt_item<?=$oe_counter?>"
-                        value="<?=$oe_record->Item?>" />
+                        value="<?=$oe_record->Item?>" maxlength="15" />
                     </td>
                     <td>
                       <input type="number" class="form-control form-control-sm small-text-box" name="oe_quantity[]" id="oe_txt_quantity<?=$oe_counter?>"
@@ -372,7 +378,7 @@
 
       <div class="row no-gutters mt-5"><!-- FOURTH ROW END -->
         <div class="col-lg-10 ml-5 mt-5"> <!-- INSERT DOCUMENT SUBMISSION HERE -->
-          <p class="mt-5 text-monospace">Upload Document Here Upload Another Document Here Upload Another Document Here Upload Another Document Here</p>
+          <p class="mt-5 text-monospace">Upload Document Here</p>
         </div>
 
       </div>
@@ -384,9 +390,7 @@
           <a href="delete/<?=$ap_record->Proposal_ID?>">
             <input type="button" class="table-header btn btn-light btn-lg" name="delete_btn" id="btn_delete" value="Delete Proposal">
           </a>
-          <?php if (!$this->proposals_model->checkIfOEExists($proposal_id) || !$this->proposals_model->checkIfFARExists($proposal_id)): ?>
           <input type="submit" class="table-header btn btn-light btn-lg" name="submit" id="submit_btn" value="Submit">
-          <?php endif?>
         </div>
       </div>
 

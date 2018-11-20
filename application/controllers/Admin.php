@@ -38,6 +38,19 @@ class Admin extends CI_Controller {
     $this->load->view('layouts/display_logs', $data);
   }
 
+  public function add() {
+
+    $this->load->view('admin_add');
+
+  }
+
+  public function edit() {
+
+    $this->load->view('admin_edit');
+
+  }
+
+
 }
 
 ?>

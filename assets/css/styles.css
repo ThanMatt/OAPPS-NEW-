@@ -3,6 +3,7 @@
 html, body {
   max-width: 100%;
   overflow-x: hidden;
+  min-width: 800px;
 }
 
 /* CUSTOM FONTS */
@@ -134,12 +135,6 @@ img {
   /* if you figure out how to center vertically in a div, remove this */
 }
 
-.oapps-bmb {
-  /* CUSTOM INNER BUTTON MARGIN */
-  margin-top: .75rem !important;
-  /* if you figure out how to center vertically in a div, remove this */
-}
-
 /* button {
   outline: 0 !important;
 } */
@@ -150,7 +145,7 @@ img {
   font-weight: bold;
   color: #A8A8A8;
   font-size: 25px;
-  height: 60px !important;
+  min-height: 60px !important;
 }
 
 .oapps-btn-dropdown {
@@ -166,7 +161,7 @@ img {
   font-weight: bold;
   color: #A8A8A8;
   font-size: 25px;
-  height: 60px !important;
+  min-height: 60px !important;
 }
 
 .oapps-btn:hover {
@@ -175,6 +170,7 @@ img {
   background-color: #670000;
   color: rgb(255, 255, 255);
   font-size: 25px;
+  min-height: 60px !important;
   transition: all .3s ease-in-out;
 }
 
