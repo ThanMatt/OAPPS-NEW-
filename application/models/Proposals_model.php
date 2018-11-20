@@ -109,6 +109,35 @@ class Proposals_Model extends CI_Model {
 
   }
 
+  public function showPendingRecords($org_id) {
+    $this->db->from('activity_proposal');
+    $this->db->where('Account_ID', $org_id);
+    $this->db->where('ProposalStatus', 'PENDING');
+
+
+    $result = $this->db->get();
+    $rows = $result->num_rows();
+
+    if ($rows >= 1) {
+      $row = $result->row();
+      return $row->ActivityName;
+    } else {
+      return 'No Records';
+    }
+
+  }
+
+  public function pendingCount($org_id) {
+    $this->db->from('activity_proposal');
+    $this->db->where('Account_ID', $org_id);
+    $this->db->where('ProposalStatus', 'PENDING');
+
+    $result = $this->db->get();
+    
+    return $result->num_rows();
+
+  }
+
   public function checkDuplicationTitle($activity_name) {
     $this->db->from('activity_proposal');
     $this->db->join('`TimeStamp`', 'activity_proposal.Proposal_ID = `TimeStamp`.Proposal_ID');
