@@ -430,7 +430,6 @@ class Proposals_Model extends CI_Model {
     return $row->Account_ID;
   }
 
-
   //:: Fetches activity proposal details
   public function viewAPRecord($proposal_id) {
     $response = array();
@@ -661,7 +660,6 @@ class Proposals_Model extends CI_Model {
     $result = $this->db->get();
 
   }
-
   public function saveActivityProposal($account_id, $proposal_id, $contact_number, $activity_name, $date_activity,
     $start_time, $end_time, $nature, $objectives, $rationale, $activity_chair, $participants,
     $activity_venue, $proposal_type1, $proposal_type2, $non_academic_type,
@@ -911,6 +909,7 @@ class Proposals_Model extends CI_Model {
     }
 
   }
+
 
   public function submitActivityProposal($account_id, $proposal_id, $contact_number, $activity_name, $date_activity,
     $start_time, $end_time, $nature, $objectives, $rationale, $activity_chair, $participants,

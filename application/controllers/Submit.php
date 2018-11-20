@@ -57,6 +57,10 @@ class Submit extends CI_Controller {
       $activity_venue, $proposal_type1, $proposal_type2, $non_academic_type,
       $collab_partner, $specified)) {
 
+
+
+      
+
       $this->accounts_model->logMyActivity($account_id, 6, $proposal_id);
 
       $records = $this->proposals_model->viewAPRecord($proposal_id);
