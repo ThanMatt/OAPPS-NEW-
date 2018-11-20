@@ -10,7 +10,7 @@ class Admin extends CI_Controller {
 
 
     $data['logs'] = $this->logs_model->showLogs();
-    $this->load->view('admin_main', $data);
+    $this->load->view('admin/admin_main', $data);
 
   }
 
@@ -37,6 +37,33 @@ class Admin extends CI_Controller {
     $data['logs'] = $this->logs_model->showLogs();
     $this->load->view('layouts/display_logs', $data);
   }
+
+  public function add() {
+
+    $this->load->view('admin/admin_add');
+
+  }
+
+  public function edit() {
+
+    $data['accounts'] = $this->accounts_model->getAllAccounts();
+    $this->load->view('admin/admin_edit', $data);
+
+  }
+
+  public function showAccount() {
+
+    $account_id = $this->input->post('account_id', true);
+    $record = $this->admin_model->viewAccountInfo($account_id);
+
+    $data['records'] = null;
+
+    if ($record) {
+      $data['records'] = $record;
+      $response = $this->load->view('layouts/display_edit', $data);
+    }
+  }
+
 
 }
 
