@@ -25,12 +25,11 @@
     <link rel="stylesheet" href="<?=base_url();?>assets/css/styles.css">
   </head>
   <body>
-		<form id="ajax_form_activity">
+		<form id="ajax_form_review">
     <div class="container-fluid" style="height: 100vh; max-width: 100%;"> <!-- CONTAINER START -->
     <?php 
     $this->load->view('layouts/header');
     ?>
-      
       <div class="row mx-5 oapps-mh oapps-proposal-m"> <!-- FIRST ROW START -->
 
         <!-- BUTTONS -->
@@ -64,7 +63,8 @@
             <p class="m-4">
               <!-- ACTIVITY PROPOSAL CONTENT START -->
               <div class="ap-text form-group col-md-5 mr-5 mt-5"><!-- ACTIVITY PROPOSAL FORM TEXT SECTION START-->
-
+              <input type="text" name="proposal_id" id="proposal_id" value="" hidden
+        readonly>      
                 Activity Name:
                 <input type="text" class="form-control form-control-sm" name="activity_name" id="activity_name"
                   required>
@@ -180,7 +180,6 @@
                   required></textarea>
 
                 <br>
-
                 <input type="reset" class="table-header btn btn-light" id="button" value="Clear">
               </div><!-- ACTIVITY PROPOSAL FORM LONG TEXT SECTION END-->              
               <!-- ACTIVITY PROPOSAL CONTENT END -->
@@ -259,6 +258,7 @@
                 <input type="button" class="table-header btn btn-light m-2" name="btn_add_oe" id="button-add-oe" value="Add">
                 <!-- <input type="button" class="table-header btn btn-light m-2" name="btn_delete_oe" id="button-delete-oe" value="Delete"> -->
                 <input type="reset" class="table-header btn btn-light m-2" id="button" value="Clear">
+                
 
               </div>
               <!-- OPERATING EXPENSES CONTENT END -->
@@ -278,7 +278,8 @@
           <a href="<?=base_url()?>home">
             <input type="button" class="table-header btn btn-light btn-lg" name="back" id="button" value="Go Back">
           </a>
-          <input type="button" class="table-header btn btn-light btn-lg" name="save_btn" id="btn_save" value="Create">
+          <input type="button" class="table-header btn btn-light btn-lg save" name="submit" id="btn_save" value="Save">
+          <input type="submit" class="table-header btn btn-light btn-lg" name="submit" id="submit_btn" value="Review">
         </div>
       </div>
 

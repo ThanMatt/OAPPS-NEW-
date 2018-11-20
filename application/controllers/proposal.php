@@ -143,7 +143,9 @@ class Proposal extends CI_Controller {
       $specified = "";
     }
 
-    $proposal_id = rand(1000, 9999);
+    // if ($proposal_id == '') {  
+    //   $proposal_id = rand(1000, 9999);
+    // }
 
     $oe_id = $this->input->post('oe_id');
     $far_id = $this->input->post('far_id');
@@ -171,8 +173,16 @@ class Proposal extends CI_Controller {
             $far_total_amount = $this->input->post('far_total_amount', true)[$counter];
             $far_source = $this->input->post('far_source', true)[$counter];
 
-            $this->proposals_model->newFAR($account_id, $proposal_id, $far_item,
-              $far_quantity, $far_unit, $far_total_amount, $far_source, $far_id);
+            if ($this->proposals_model->checkFAR($far_id)) {
+
+              $this->proposals_model->saveFAR($account_id, $proposal_id, $far_item,
+                $far_quantity, $far_unit, $far_total_amount, $far_source, $far_id);
+    
+            } else {
+              $this->proposals_model->newFAR($account_id, $proposal_id, $far_item,
+                $far_quantity, $far_unit, $far_total_amount, $far_source, $far_id);
+    
+            }
           }
         } else {
 
@@ -184,8 +194,16 @@ class Proposal extends CI_Controller {
           $far_source = $this->input->post('far_source', true)[0];
           $far_id = $this->input->post('far_id', true)[0];
 
-          $this->proposals_model->newFAR($account_id, $proposal_id, $far_item,
-            $far_quantity, $far_unit, $far_total_amount, $far_source, $far_id);
+          if ($this->proposals_model->checkFAR($far_id)) {
+
+            $this->proposals_model->saveFAR($account_id, $proposal_id, $far_item,
+              $far_quantity, $far_unit, $far_total_amount, $far_source, $far_id);
+  
+          } else {
+            $this->proposals_model->newFAR($account_id, $proposal_id, $far_item,
+              $far_quantity, $far_unit, $far_total_amount, $far_source, $far_id);
+  
+          }
         }
 
       }
@@ -204,9 +222,16 @@ class Proposal extends CI_Controller {
             $oe_total_amount = $this->input->post('oe_total_amount', true)[$counter];
             $oe_source = $this->input->post('oe_source', true)[$counter];
 
-            $this->proposals_model->newOE($account_id, $proposal_id, $oe_item,
-              $oe_quantity, $oe_unit, $oe_total_amount, $oe_source, $oe_id);
+            if ($this->proposals_model->checkOE($oe_id)) {
 
+              $this->proposals_model->saveOE($account_id, $proposal_id, $oe_item,
+                $oe_quantity, $oe_unit, $oe_total_amount, $oe_source, $oe_id);
+    
+            } else {
+              $this->proposals_model->newOE($account_id, $proposal_id, $oe_item,
+                $oe_quantity, $oe_unit, $oe_total_amount, $oe_source, $oe_id);
+    
+            }
           }
         } else {
 
@@ -218,9 +243,16 @@ class Proposal extends CI_Controller {
           $oe_source = $this->input->post('oe_source', true)[0];
           $oe_id = $this->input->post('oe_id', true)[0];
 
-          $this->proposals_model->newOE($account_id, $proposal_id, $oe_item,
-            $oe_quantity, $oe_unit, $oe_total_amount, $oe_source, $oe_id);
+          if ($this->proposals_model->checkOE($oe_id)) {
 
+            $this->proposals_model->saveOE($account_id, $proposal_id, $oe_item,
+              $oe_quantity, $oe_unit, $oe_total_amount, $oe_source, $oe_id);
+  
+          } else {
+            $this->proposals_model->newOE($account_id, $proposal_id, $oe_item,
+              $oe_quantity, $oe_unit, $oe_total_amount, $oe_source, $oe_id);
+  
+          }
         }
       }
 

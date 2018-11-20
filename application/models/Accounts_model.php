@@ -83,6 +83,25 @@ class Accounts_Model extends CI_Model {
     return $result->result();
 
   }
+
+  public function getAllAccounts() {
+    $this->db->from('accounts');
+    $result = $this->db->get();
+
+    return $result->result();
+  }
+
+
+  public function getMyLogo($account_id) {
+    $this->db->where('Account_ID', $account_id);
+    $this->db->from('accounts');
+
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    return $row->Logo;
+  }
   
 
   public function logMyActivity($account_id, $activity_type, $proposal_id) {

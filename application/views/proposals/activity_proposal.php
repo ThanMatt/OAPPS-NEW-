@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="<?=base_url();?>assets/css/styles.css">
   </head>
   <body>
-		<form id="ajax_form_activity">
+		<form id="ajax_form_review">
     <div class="container-fluid" style="height: 100vh; max-width: 100%;"> <!-- CONTAINER START -->
     <?php 
     $this->load->view('layouts/header');

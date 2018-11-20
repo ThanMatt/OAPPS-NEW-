@@ -351,11 +351,8 @@
       </div>
       <div class="row d-flex">
         <div class="col-lg-5 offset-lg-7 col-md-6 offset-md-6 col-sm-8 offset-sm-4 col-xs-8 offset-xs-4 my-5"> <!-- FINAL BUTTONS HERE -->
-          <a href="<?=base_url()?>home">
+          <a href="<?=base_url()?>proposal/edit/<?=$ap_record->Proposal_ID?>">
             <input type="button" class="table-header btn btn-light btn-lg" name="back" id="button" value="Go Back">
-          </a>
-          <a href="delete/<?=$ap_record->Proposal_ID?>">
-            <input type="button" class="table-header btn btn-light btn-lg" name="delete_btn" id="btn_delete" value="Delete Proposal">
           </a>
           <input type="submit" class="table-header btn btn-light btn-lg" name="submit" id="submit_btn" value="Confirm">
         </div>

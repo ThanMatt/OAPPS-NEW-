@@ -30,7 +30,7 @@ $pdf->Image(base_url() . 'assets/img/print/sbu.png', 20, 15);
 //OPSA Image
 $pdf->Image(base_url() . 'assets/img/print/opsa.png', 45, 15);
 //ORG Image
-$pdf->Image(base_url() . 'assets/img/logo/' . $records_ap->Account_ID . '_logo.png', 70, 15, 21);
+$pdf->MemImage($this->accounts_model->getMyLogo($records_ap->Account_ID), 70, 15, 21);
 
 // Line break
 $pdf->Ln(0);
@@ -599,7 +599,7 @@ $pdf->Image(base_url() . 'assets/img/print/sbu.png', 20, 15);
 //OPSA Image
 $pdf->Image(base_url() . 'assets/img/print/opsa.png', 45, 15);
 //ORG Image
-$pdf->Image(base_url() . 'assets/img/logo/' . $records_ap->Account_ID . '_logo.png', 70, 15, 21);
+$pdf->MemImage($this->accounts_model->getMyLogo($records_ap->Account_ID), 70, 15, 21);
 
 // Line break
 $pdf->Ln(0);
