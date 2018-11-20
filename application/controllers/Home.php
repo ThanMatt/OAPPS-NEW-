@@ -81,6 +81,15 @@ class Home extends CI_Controller {
 
   }
 
+  public function org_statistics() {
+
+    $records['orgs'] = $this->accounts_model->getOrgs();
+
+
+    $this->load->view('stats', $records);
+
+  }
+
 
 }
 
