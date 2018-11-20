@@ -119,7 +119,7 @@
               <p class="text-center oapps-bmb">Proposal List</p>
             </div>
           </div> <!-- PROPOSAL LIST HEAD ROW END -->
-          <div class="d-flex flex-column justify-content-start row oapps-ch" style="overflow-y: auto;"> <!-- PROPOSAL LIST ROW START -->
+          <div class="d-flex flex-column oapps-ch" style="overflow-y: auto; overflow-x: hidden;"> <!-- PROPOSAL LIST ROW START -->
 
           <?php if (is_array($records) || is_object($records)): ?>
           <?php

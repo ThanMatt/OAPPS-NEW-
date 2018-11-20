@@ -32,7 +32,7 @@
               <p class="text-center oapps-bmb">Org List</p>
             </div>
           </div> <!-- PROPOSAL LIST HEAD ROW END -->
-          <div class="d-flex flex-column justify-content-start row oapps-ch" style="overflow-y: auto;"> <!-- PROPOSAL LIST ROW START -->
+          <div class="d-flex flex-column oapps-ch" style="overflow-y: auto; overflow-x: hidden;"> <!-- PROPOSAL LIST ROW START -->
             <div class="oapps-btn proposal-view" id=""><p class="text-center oapps-bmb">BITS</p></div> <!-- LOOP THIS FOR EACH ORG -->
           </div> <!-- PROPOSAL LIST ROW END -->
         </div> <!-- PROPOSAL LIST COL END -->

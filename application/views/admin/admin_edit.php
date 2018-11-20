@@ -32,7 +32,7 @@
               <p class="text-center oapps-bmb">Org List</p>
             </div>
           </div> <!-- PROPOSAL LIST HEAD ROW END -->
-          <div class="d-flex flex-column justify-content-start row oapps-ch" style="overflow-x: auto;"> <!-- PROPOSAL LIST ROW START -->
+          <div class="d-flex flex-column oapps-ch" style="overflow-y: auto; overflow-x: hidden;"> <!-- PROPOSAL LIST ROW START -->
           <?php if(is_object($accounts) || is_array($accounts)):?>
             <?php foreach($accounts as $account): ?>
               <div class="oapps-btn proposal-view" id="view_btn/<?=$account->Account_ID?>"><p class="text-center oapps-bmb"><?=$account->Account_ID?></p></div> <!-- LOOP THIS FOR EACH ORG -->
@@ -48,8 +48,8 @@
         </div> <!-- EDIT/ADD HEAD ROW END -->
         <div class="oapps-ch" style="overflow-y: auto; width: 100%; margin-left: .95rem !important">
           <!-- ADD/EDIT FORM START -->
-          <div class="form-group mt-4 ml-5" id="account-container" style="width: 70%;">
-            
+          <div class="form-group mt-4 ml-5" style="width: 70%;">
+          
           </div>
             <!-- ADD/EDIT FORM END -->
         </div>
@@ -69,8 +69,6 @@
   <script type="text/javascript">
     var BASE_URL = "<?= base_url();?>";
   </script>
-
-  <script src="<?= base_url();?>assets/js/admin-core.js"></script>
   
   <?php else: ?>
   <?php 

@@ -378,7 +378,7 @@
 
       <div class="row no-gutters mt-5"><!-- FOURTH ROW END -->
         <div class="col-lg-10 ml-5 mt-5"> <!-- INSERT DOCUMENT SUBMISSION HERE -->
-          <p class="mt-5 text-monospace">Upload Document Here Upload Another Document Here Upload Another Document Here Upload Another Document Here</p>
+          <p class="mt-5 text-monospace">Upload Document Here</p>
         </div>
 
       </div>
