@@ -73,6 +73,16 @@ class Accounts_Model extends CI_Model {
 
     return $result->num_rows();
   }
+
+  public function getOrgs() {
+    $this->db->from('accounts');
+    $this->db->where('Type !=', 'N/A');
+
+    $result = $this->db->get();
+
+    return $result->result();
+
+  }
   
 
   public function logMyActivity($account_id, $activity_type, $proposal_id) {
