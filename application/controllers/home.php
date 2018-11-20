@@ -20,6 +20,7 @@ class Home extends CI_Controller {
     if ($flag == 'View') {
       $proposal_id = $this->input->post('proposal_id');
 
+      $this->notifications_model->readNotification($proposal_id, $account_id);
       $record = $this->proposals_model->viewAPRecord($proposal_id);
 
       $data['records'] = null;
@@ -32,6 +33,7 @@ class Home extends CI_Controller {
     } else {
 
       if ($flag == 'Pending') {
+        
         $record = $this->proposals_model->getPendingRecords($account_id, $type);
       } else if ($flag == 'Approved') {
         $record = $this->proposals_model->getApprovedRecords($account_id, $type);
@@ -76,6 +78,15 @@ class Home extends CI_Controller {
     }
     $this->load->view('users/profile', $data);
 
+
+  }
+
+  public function org_statistics() {
+
+    $records['orgs'] = $this->accounts_model->getOrgs();
+
+
+    $this->load->view('stats', $records);
 
   }
 
