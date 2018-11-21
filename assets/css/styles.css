@@ -1,9 +1,14 @@
 /* PAGE INITIALS */
 
-html, body {
+html{
+  min-height: 1080px !important;
+}
+
+body {
   max-width: 100%;
   overflow-x: hidden;
   min-width: 800px;
+  min-height: 1080px !important;
 }
 
 /* CUSTOM FONTS */
