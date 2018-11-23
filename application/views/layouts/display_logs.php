@@ -3,7 +3,7 @@
 <?php foreach($logs as $log): ?>
   <?php 
   $counter++; 
-  $time = date("h:i A", strtotime($this->logs_model->splitDateTime($log->DateTime)));
+  $time = $log->DateTime;
 
   ?>
   <hr class="mr-5">

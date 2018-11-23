@@ -40,4 +40,27 @@ $(function () {
     });
   });
 
+  //:: View clicked proposals
+  $('body').on('click', '.proposal-view', function () {
+    var view_buttonID = $(this).attr('id');
+    var account_id = view_buttonID.split("/")[1];
+
+    flag = 'View';
+
+    $.ajax({
+      type: 'POST',
+      url: BASE_URL + 'admin/showAccount',
+      data: {
+        account_id: account_id,
+      },
+      success: function (response) {
+        $('#account-container').html(response);
+      },
+      error: function (response) {
+        alert("There was an error! " + response);
+        location.reload();
+      },
+    });
+  })
+
 });

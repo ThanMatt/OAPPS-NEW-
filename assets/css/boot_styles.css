@@ -29,12 +29,8 @@ html{
     scroll-behavior: smooth;
 }
 
-a:link {
-text-decoration: none;
-}
-
-a:visited {
-  color: white;
+a:visited{
+    color: black;
 }
 
 img {
