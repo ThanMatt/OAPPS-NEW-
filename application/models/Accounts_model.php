@@ -115,7 +115,7 @@ class Accounts_Model extends CI_Model {
 
   public function logMyActivity($account_id, $activity_type, $proposal_id) {
     
-    $date_time = date("Y-m-d h:i:sa");
+    $date_time = date("Y-m-d H:i:s");
 
     if ($activity_type == 0) {
       $activity = "User $account_id logged out";
