@@ -214,22 +214,22 @@
                     </td>
                     <td>
                       <input type="text" class="form-control form-control-sm medium-text-box far-item" name="far_item[]"
-                        id="far_txt_item<?=$far_counter?>" value="<?=$far_record->Item?>" maxlength="15" />
+                        id="far_txt_item<?=$far_counter?>" value="<?=$far_record->Item?>" maxlength="15" disabled />
                     </td>
                     <td>
                       <input type="number" class="form-control form-control-sm small-text-box far-quantity" name="far_quantity[]"
-                        id="far_txt_quantity<?=$far_counter?>" oninput="calculate(this.id)" min=0 value="<?=$far_record->Quantity?>" />
+                        id="far_txt_quantity<?=$far_counter?>" oninput="calculate(this.id)" min=0 value="<?=$far_record->Quantity?>" disabled />
                     </td>
                     <td>
                       <input type="number" class="form-control form-control-sm small-text-box far-unit" name="far_unit_price[]"
-                        id="far_txt_unit<?=$far_counter?>" oninput="calculate(this.id)" step="any" min=0 value="<?=$far_record->Unit_Price?>" />
+                        id="far_txt_unit<?=$far_counter?>" oninput="calculate(this.id)" step="any" min=0 value="<?=$far_record->Unit_Price?>" disabled/>
                     </td>
                     <td>
                       <input type="number" class="form-control form-control-sm small-text-box far-total" name="far_total_amount[]"
                         id="far_txt_total<?=$far_counter?>" value="<?=$far_record->Total_Amount?>" readonly />
                     </td>
                     <td>
-                      <select class="form-control medium-text-box far-source" name="far_source[]" id="far_source_of_fund<?=$far_counter?>">
+                      <select class="form-control medium-text-box far-source" name="far_source[]" id="far_source_of_fund<?=$far_counter?>" disabled>
                         <option <?=$this->proposals_model->selectSAF($far_id, 0)?> >Student Activity Fund</option>
                         <option <?=$this->proposals_model->selectCF($far_id, 0)?> >Cultural Fund</option>
                         <option <?=$this->proposals_model->selectOF($far_id, 0)?> >Organizational Fund</option>
@@ -239,7 +239,7 @@
                       </select>
                     </td>
                     <td>
-                      <input type='button' class='btn btn-light button-delete-far' name='btn_delete_far' id='button-delete-far-<?=$far_counter?>' value='Delete'>
+                      
 
                       <input type="text" class="form-control form-control-sm far-id" name="far_id[]" id="far_txt_id<?=$far_counter?>"
                         value="<?=$far_id?>" hidden required readonly />
