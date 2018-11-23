@@ -20,106 +20,101 @@
   <link rel="stylesheet" href="<?= base_url();?>assets/css/styles.css">
 </head>
 <body>
-  <?php 
-  $this->load->view('layouts/header');
-  ?>
-
-  <!-- MAIN START -->
-
-  <div class="container profile-main">
-    <div class="row">
-      <div class="col-xs-12 profile-main-header" style="margin-left: 45%; margin-top: 1%;">
-        Profile
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-xs-3" style="margin-left: 50px;">
-        <div class="display-picture-holder">
-          <div class="display-picture">
-            <img src="<?=base_url()?>assets/img/logo/<?=$prefix?>_logo.jpg">
+  <div class="container-fluid" style="height: 100vh; width: 100%;">
+    
+    <?php 
+    $this->load->view('layouts/header');
+    ?>
+  
+    <!-- MAIN START -->
+  
+    <div class="container profile-main">
+      <div class="row">
+        <div class="card mt-3 w-100">
+          <div class="card-body">
+            <h4 class="card-title">Profile</h4>
           </div>
         </div>
-      </div>
-      <div class="col-xs-3 profile-main-header2" style="margin-top: 2.7vw; margin-left: 2%;">
-        <?=$organization?>
-      </div>
-    </div>
-
-    <div class="row">
-
-      <!-- first half -->
-
-      <div class="profile-main-text col-xs-5" style="width: 40% !important; margin-left: 50px;">
-        <div class="profile-main-header2">Organization Details: </div>
-        Organization Representative Name: <?=$full_name?> <br>
-        Organization Representative Contact Number: <?=$contact_number?> <br>
-        <br>
-
-        <hr>
-
-        <div class="profile-main-text col-xs-5" style="width: 100% !important; border: .5px #333 solid;">
-          <div class="profile-main-header2">Pending Proposal List: </div> <br>
-          <div class="profile-main-text" style="text-decoration: underline;">
-          <?php if (is_array($pending_records) || is_object($pending_records)): ?>
-          <?php
-           foreach($pending_records as $pending_record) {
-            if ($org_type == 'N/A') {
-              if ($this->proposals_model->checkDuplicationTitle($pending_record->ActivityName)) {
-                echo '<a href='. base_url() .'proposal/view/'. $pending_record->Proposal_ID .'><div class="table-tae proposal-list-item" style="width: 100% !important;" id="view_btn/'.$pending_record->Proposal_ID.'">'. $pending_record->ActivityName . ' (' . $pending_record->Account_ID . ') ' .' - ' . $this->proposals_model->getSubmitDate($pending_record->Proposal_ID, $account_id, $org_type) . '</div></a>';
-              } else {
-                echo '<a href='. base_url() .'proposal/view/'. $pending_record->Proposal_ID .'><div class="table-tae proposal-list-item" style="width: 100% !important;" id="view_btn/'.$pending_record->Proposal_ID.'">'. $pending_record->ActivityName . ' - ' . $this->proposals_model->getSubmitDate($pending_record->Proposal_ID, $account_id, $org_type) . '</div></a>';
-              }
-            } else {
-              echo '<a href='. base_url() .'proposal/view/'. $pending_record->Proposal_ID .'><div class="table-tae proposal-list-item" style="width: 100% !important;" id="view_btn/'.$pending_record->Proposal_ID.'">'. $pending_record->ActivityName . ' - ' . $this->proposals_model->getSubmitDate($pending_record->Proposal_ID, $account_id, $org_type) . '</div></a>';
-            }
-          } 
-          ?>
-        <?php else: ?>
-          <h1 id="nav-left-container-no-records" class="proposal-list-empty">No Records</h1>
-        <?php endif ?>
+        <div class="card mb-3 w-100">
+            <div class="card-body">
+              <div class="display-picture-holder">
+                <div class="display-picture">
+                  <img src="<?=base_url()?>assets/image.php?id=<?=$prefix?>">
+                </div>
+              </div>
+              <h4 class="card-title"><?=$organization?></h4>
+            </div>
+        </div>
+  
+        <div class="card mt-3 w-50">
+          <div class="card-body">
+            <h4 class="card-title">Organization Details: </h4>
+            <p class="card-text">Organization Representative Name: <?=$full_name?> </p>
+            <p class="card-text">Organization Representative Contact Number: <?=$contact_number?> </p>
           </div>
         </div>
-      </div>
-
-      <!-- second half -->
-
-      <div class="profile-main-text col-xs-5" style="width: 40% !important; margin-left: 70px;">
-        <div class="profile-main-header2">Proposal Details: </div>
-        Total Approved Proposals: <?=$this->proposals_model->countApprovedProposals($account_id, $org_type)?> <br>
-        <?php if ($org_type != 'N/A'): ?>
-        Total Expenditure: P 50 <br>
-        Average Expenditure Per Proposal: P 4 <br>
-        <?php endif ?>
-
-        <hr>
-
-        <div class="profile-main-text col-xs-5" style="width: 100% !important; border: .5px #333 solid;">
-        <div class="profile-main-header2">Approved Proposal List: </div> <br>
-          <div class="profile-main-text" style="text-decoration: underline;">
-          <?php if (is_array($approved_records) || is_object($approved_records)): ?>
-            <?php
-              foreach($approved_records as $approved_record) {
+  
+        <div class="card mt-3 w-50">
+          <div class="card-body">
+            <h4 class="card-title">Proposal Details: </h4>
+            <p class="card-text">Total Approved Proposals: <?=$this->proposals_model->countApprovedProposals($account_id, $org_type)?> </p>
+            <?php if ($org_type != 'N/A'): ?>
+              <p class="card-text">Total Expenditure: P 50</p>
+              <p class="card-text">Average Expenditure Per Proposal: P 4 </p>
+            <?php endif ?>
+          </div>
+        </div>
+  
+        <div class="card mt-3 w-50">
+          <div class="card-body">
+            <h4 class="card-title">Pending Proposal List: </h4>
+  
+            <?php if (is_array($pending_records) || is_object($pending_records)): ?>
+              <?php
+                foreach($pending_records as $pending_record) {
                 if ($org_type == 'N/A') {
-                  if ($this->proposals_model->checkDuplicationTitle($approved_record->ActivityName)) {
-                    echo '<a href='. base_url() .'proposal/view/'. $approved_record->Proposal_ID .'><div class="table-tae proposal-list-item" style="width: 100% !important;" id="view_btn/'.$approved_record->Proposal_ID.'">'. $approved_record->ActivityName . ' (' . $approved_record->Account_ID . ') ' .' - ' . $this->proposals_model->getApprovedDate($approved_record->Proposal_ID, $account_id, $org_type) . '</div></a>';
+                  if ($this->proposals_model->checkDuplicationTitle($pending_record->ActivityName)) {
+                    echo '<p class="card-text"><a style="text-decoration: underline !important; color: grey !important;" href='. base_url() .'proposal/view/'. $pending_record->Proposal_ID .'><div class="table-tae proposal-list-item" style="width: 100% !important;" id="view_btn/'.$pending_record->Proposal_ID.'">'. $pending_record->ActivityName . ' (' . $pending_record->Account_ID . ') ' .' - ' . $this->proposals_model->getSubmitDate($pending_record->Proposal_ID, $account_id, $org_type) . '</div></a></p>';
                   } else {
-                    echo '<a href='. base_url() .'proposal/view/'. $approved_record->Proposal_ID .'><div class="table-tae proposal-list-item" style="width: 100% !important;" id="view_btn/'.$approved_record->Proposal_ID.'">'. $approved_record->ActivityName . ' - ' . $this->proposals_model->getApprovedDate($approved_record->Proposal_ID, $account_id, $org_type) . '</div></a>';
+                    echo '<p class="card-text text-primary"><a style="text-decoration: underline !important; color: grey !important;" href='. base_url() .'proposal/view/'. $pending_record->Proposal_ID .'><div class="table-tae proposal-list-item" style="width: 100% !important;" id="view_btn/'.$pending_record->Proposal_ID.'">'. $pending_record->ActivityName . ' - ' . $this->proposals_model->getSubmitDate($pending_record->Proposal_ID, $account_id, $org_type) . '</div></a></p>';
                   }
                 } else {
-                  echo '<a href='. base_url() .'proposal/view/'. $approved_record->Proposal_ID .'><div class="table-tae proposal-list-item" style="width: 100% !important;" id="view_btn/'.$approved_record->Proposal_ID.'">'. $approved_record->ActivityName . ' - ' . $this->proposals_model->getApprovedDate($approved_record->Proposal_ID, $account_id, $org_type) . '</div></a>';
-                }
-              } 
-            ?>
-          <?php else: ?>
-            <h1 id="nav-left-container-no-records" class="proposal-list-empty">No Records</h1>
-          <?php endif ?>
+                    echo '<p class="card-text text-primary"><a style="text-decoration: underline !important; color: grey !important;" href='. base_url() .'proposal/view/'. $pending_record->Proposal_ID .'><div class="table-tae proposal-list-item" style="width: 100% !important;" id="view_btn/'.$pending_record->Proposal_ID.'">'. $pending_record->ActivityName . ' - ' . $this->proposals_model->getSubmitDate($pending_record->Proposal_ID, $account_id, $org_type) . '</div></a></p>';
+                  }
+                } 
+              ?>
+              <?php else: ?>
+                <h1 id="nav-left-container-no-records" class="proposal-list-empty">No Records</h1>
+              <?php endif ?>
+          </div>
+        </div>
+  
+        <div class="card mt-3 w-50">
+          <div class="card-body">
+            <h4 class="card-title">Approved Proposal List: </h4>
+              <?php if (is_array($approved_records) || is_object($approved_records)): ?>
+                <?php
+                  foreach($approved_records as $approved_record) {
+                    if ($org_type == 'N/A') {
+                      if ($this->proposals_model->checkDuplicationTitle($approved_record->ActivityName)) {
+                        echo '<p class="card-text"><a style="text-decoration: underline !important; color: grey !important;" href='. base_url() .'proposal/view/'. $approved_record->Proposal_ID .'><div class="table-tae proposal-list-item" style="width: 100% !important;" id="view_btn/'.$approved_record->Proposal_ID.'">'. $approved_record->ActivityName . ' (' . $approved_record->Account_ID . ') ' .' - ' . $this->proposals_model->getApprovedDate($approved_record->Proposal_ID, $account_id, $org_type) . '</div></a></p>';
+                      } else {
+                        echo '<p class="card-text"><a style="text-decoration: underline !important; color: grey !important;" href='. base_url() .'proposal/view/'. $approved_record->Proposal_ID .'><div class="table-tae proposal-list-item" style="width: 100% !important;" id="view_btn/'.$approved_record->Proposal_ID.'">'. $approved_record->ActivityName . ' - ' . $this->proposals_model->getApprovedDate($approved_record->Proposal_ID, $account_id, $org_type) . '</div></a></p>';
+                      }
+                    } else {
+                      echo '<p class="card-text"><a style="text-decoration: underline !important; color: grey !important;" href='. base_url() .'proposal/view/'. $approved_record->Proposal_ID .'><div class="table-tae proposal-list-item" style="width: 100% !important;" id="view_btn/'.$approved_record->Proposal_ID.'">'. $approved_record->ActivityName . ' - ' . $this->proposals_model->getApprovedDate($approved_record->Proposal_ID, $account_id, $org_type) . '</div></a></p>';
+                    }
+                  } 
+                ?>
+              <?php else: ?>
+                <h1 id="nav-left-container-no-records" class="proposal-list-empty">No Records</h1>
+              <?php endif ?>
           </div>
         </div>
       </div>
-    </div>
+    <!-- MAIN END -->
+  </div>
 
-  <!-- MAIN END -->
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->

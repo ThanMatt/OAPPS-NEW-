@@ -28,138 +28,218 @@
   </script>
   <script src="<?=base_url();?>assets/js/jquery-3.3.1.js"></script>
   <script src="<?=base_url();?>assets/js/plugin.js"></script>
-
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="<?=base_url();?>assets/css/styles.css">
 </head>
 <body>
-  <div class="main-container-proposal">
-    <div class="container-proposal">
-      <div class="container-proposal-activity-revise">
-        <div class="header-proposal">
-          <h3>
-            Proposed by the <?=$record->Organization?>
-          </h3>
+
+  <div class="container-fluid" style="height: 100vh; max-width: 100%;"><!-- CONTAINER START -->
+    <?php 
+      $this->load->view('layouts/header');
+    ?>
+    <div class="row no-gutters d-flex justify-content-center mt-5"> <!-- ROW HEADER START -->
+      <div class="card w-75" style="min-height: 100px;">
+        <div class="card-header">
+          <h4>Proposed by the <?=$record->Organization?></h4>
         </div>
-        <div class="content-container-proposal-activity">
-          <input type="text" class="field_ap" name="proposal_id" id="proposal_id" value="<?=$record->Proposal_ID?>" hidden readonly>
-          <hr id="proposal_hr"> Name of the Activity: <?=$record->ActivityName?>
-          <br>Date: <?=$record->DateActivity?>
-          <br> Time: <?=$record->StartTime . " to " . $record->EndTime ?>
-          <br>
-
-          <label>Nature of the Activity: </label>
-          <br>
-          <p><?=$record->Nature?></p>
-          <br>
-
-          <label>Rationale:</label>
-          <p><?=$record->Rationale?></p>
-
-          <br> Activity Chair: <?=$record->ActivityChair?>
-          <br> Contact Number: <?=$record->ChairContactNumber?>
-
-          <br>
-          <label>Participants: </label>
-          <p><?=$record->Participants?></p>
-
-          <br> Venue: <?=$record->ActivityVenue?>
-          <br>
-
-          <div class="radio-container-proposal">
-            <div class="radio-subcontainer-proposal-1">
-              <label id="label_radiobutton"><?=$record->ProposalType1?></label>
-            
-            <?php if ($record->ProposalType1 == 'Collaborative'):?>
-              <div id="collab-container">
-                Partner/s: <label><?=$record->Partners?></label>
-              </div>
-            <?php endif ?>
-
-            </div>
-
-            <div class="radio-subcontainer-proposal-2">
-              <label id="label_radiobutton"><?=$record->ProposalType2?></label>
-              <br>
-              <div class="rd-non-academic-container">
-
-                <?php if ($record->ProposalType2 == 'Non-Academic'): ?>
-                  <label><?=$record->NonAcademicType?></label>
-
-                  <?php if ($record->NonAcademicType != 'Community Involvement'):?>
-                    <br>
-                    Specified: <label><?=$record->Specified?></label>
-                  <?php endif ?>
-
-                <?php endif ?>
-              
-              </div>
-
-            </div>
-          </div>
-          <a href="<?=base_url()?>proposal/view/<?=$proposal_id?>">
-            <input type="button" value="Go Back">
-          </a>
+        <div class="card-body">
+          <p>Organization Representative: </p>
+          <p>Contact Number: </p>
+          <p>Date Submitted: </p>
         </div>
       </div>
-      <?=form_open("submit/comments/" . $proposal_id);?>
-        <div class="comments-container">
-          <div class="header-proposal">
-            <h1>Comments</h1>
+    </div> <!-- ROW HEADER END -->  
+    <div class="row w-100 no-gutters"> <!-- LEFT ROW START --> 
+      <div class="col-lg-6 col-md-12 d-flex flex-column justify-content-center"> <!-- LEFT SIDE COL START -->
+        <div class="card mt-5 mx-4 w-100"> <!-- AP CARD START -->  
+          <div class="card-header">
+            Activity Proposal
           </div>
-          <div class="content-container-proposal-activity">
-            <hr id="proposal_hr"> Name of the Activity:
-            <input type="text" name="activity_name" id="activity_name">
-
-            <br> Date:
-            <input type="text" name="date_activity" id="date_activity">
-
-            <br> Time:
-            <input type="text" name="time_activity" id="time_activity">
+          <div class="card-body">
+            <input type="text" class="field_ap" name="proposal_id" id="proposal_id" value="<?=$record->Proposal_ID?>" hidden readonly>
+            <label id="proposal_hr"> Name of the Activity: <?=$record->ActivityName?>
+            <br> Date: <?=$record->DateActivity?>
+            <br> Time: <?=$record->StartTime . " to " . $record->EndTime ?>
             <br>
-        
-            <label>Nature of the Activity</label>
+  
+            <label>Nature of the Activity: </label>
             <br>
-            <textarea rows="5" cols="40" id="nature_textarea" name="nature"></textarea>
+            <p><?=$record->Nature?></p>
             <br>
-
-            <label>Rationale</label>
-            <textarea rows="5" cols="40" id="rationale_textarea" name="rationale"></textarea>
-
-            <br> Activity Chair:
-            <input type="text" name="activity_chair" id="activity_chair">
+  
+            <label>Rationale:</label>
+            <p><?=$record->Rationale?></p>
+  
+            <br> Activity Chair: <?=$record->ActivityChair?>
+            <br> Contact Number: <?=$record->ChairContactNumber?>
+  
             <br>
-
-            Contact Number:
-            <input type="text" name="contact_number" id="contact_number">
+            <label>Participants: </label>
+            <p><?=$record->Participants?></p>
+  
+            <br> Venue: <?=$record->ActivityVenue?>
             <br>
-
-            <label>Participants</label>
-            <textarea rows="5" cols="40" id="participants_textarea" name="participants"></textarea>
-
-            <br> Venue:
-            <input type="text" name="activity_venue" id="activity_venue">
-            <br>
-            Proposal Type 1:
-            <input type="text" name="proposal_type1" id="proposal_type1">
-            <br>
-            Proposal Type 2:
-            <input type="text" name="proposal_type2" id="proposal_type2">
-            <br>
-            <div class="button-container-proposal">
-              <input type="reset" name="clear" id="button" value="Clear">
-              <input type="submit" name="btn_comment" id="button_submit" value="Submit Revision">
+  
+            <div class="radio-container-proposal">
+              <div class="radio-subcontainer-proposal-1">
+                <label id="label_radiobutton"><?=$record->ProposalType1?></label>
+              
+              <?php if ($record->ProposalType1 == 'Collaborative'):?>
+                <div id="collab-container">
+                  Partner/s: <label><?=$record->Partners?></label>
+                </div>
+              <?php endif ?>
+  
+              </div>
+  
+              <div class="radio-subcontainer-proposal-2">
+                <label id="label_radiobutton"><?=$record->ProposalType2?></label>
+                <br>
+                <div class="rd-non-academic-container">
+  
+                  <?php if ($record->ProposalType2 == 'Non-Academic'): ?>
+                    <label><?=$record->NonAcademicType?></label>
+  
+                    <?php if ($record->NonAcademicType != 'Community Involvement'):?>
+                      <br>
+                      Specified: <label><?=$record->Specified?></label>
+                    <?php endif ?>
+  
+                  <?php endif ?>
+                
+                </div>
+  
+              </div>
             </div>
           </div>
-        </div>
-        <?=form_close()?>
-    </div>
-  </div>
+        </div> <!-- AP CARD END --> 
   
+        <div class="card mt-5 mx-4 w-100"> <!-- FAR CARD START -->  
+          <div class="card-header">
+            Fixed Asset Requirements
+          </div>
+          <div class="card-body">
+            
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Items</th>
+                  <th>Quantity</th>
+                  <th>Unit Price</th>
+                  <th>Total Amount</th>
+                  <th>Source of Fund</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Printer</td>
+                  <td>2</td>
+                  <td>1500</td>
+                  <td>3000</td>
+                  <td>Mamamoo</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Monitor</td>
+                  <td>2</td>
+                  <td>1500</td>
+                  <td>3000</td>
+                  <td>Mamamooulet</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div> <!-- FAR CARD END -->
+  
+        <div class="card mt-5 mx-4 w-100"> <!-- OE CARD START -->  
+          <div class="card-header">
+            Operating Expenses
+          </div>
+          <div class="card-body">
+            
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Items</th>
+                  <th>Quantity</th>
+                  <th>Unit Price</th>
+                  <th>Total Amount</th>
+                  <th>Source of Fund</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Printer</td>
+                  <td>2</td>
+                  <td>1500</td>
+                  <td>3000</td>
+                  <td>Mamamoo</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Monitor</td>
+                  <td>2</td>
+                  <td>1500</td>
+                  <td>3000</td>
+                  <td>Mamamooulet</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div> <!-- OE CARD END -->
+      </div> <!-- LEFT SIDE COL END -->
+      <div class="col-lg-6 col-md-12 d-flex flex-column"> <!-- RIGHT SIDE COL START -->
+        <label class="mt-5 mx-5">Comments</label>
+        <textarea rows="3" class="form-control form-control-sm mx-5" id="objectives_textarea" name="objectives" placeholder="Put your comments regarding the proposal here. You can give them instructions on what to change and they will be prompted to resubmit based on these comments."
+        maxlength="230" style="width: 90%; height: 400px;" required></textarea>
+  
+        <div class="row">
+          <div class="col-2">
+            <a href="<?=base_url()?>proposal/view/<?=$proposal_id?>">
+              <input class="btn btn-light mt-5 mx-5" type="button" value="Go Back">
+            </a>
+          </div>
+          <div class="col-2">
+            <a href="">
+              <input class="btn btn-light mt-5 mx-5" type="button" value="Submit">
+            </a>
+          </div>
+        </div>
+      </div> <!-- RIGHT SIDE COL END -->
 
-  <?php else: ?>
-  <?php 
-  $this->load->view('users/login_view');
-  ?>
-  <?php endif ?>
+    <?=form_open("submit/comments/" . $proposal_id);?>
+        
+    <?=form_close()?>
+
+    <?php else: ?>
+    <?php 
+    $this->load->view('users/login_view');
+    ?>
+    <?php endif ?>
+  </div> <!-- CONTAINER END --> 
+
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" 
+    crossorigin="anonymous">
+  </script>
+  <script type="text/javascript">
+    var BASE_URL = "<?=base_url();?>";
+  </script>
+  <script src="<?=base_url();?>assets/js/dropdown.js">
+  </script>
+  <script src="<?=base_url();?>assets/js/plugin.js">
+  </script>
 
 </body>
 </html>
