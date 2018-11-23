@@ -23,6 +23,10 @@ class Admin_Model extends CI_Model {
 
   }
 
+  public function editAccount($account_id) {
+    
+  }
+
   public function viewAccountInfo($account_id) {
     $this->db->from('accounts');
     $this->db->where('Account_ID', $account_id);

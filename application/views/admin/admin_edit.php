@@ -48,7 +48,7 @@
         </div> <!-- EDIT/ADD HEAD ROW END -->
         <div class="oapps-ch" style="overflow-y: auto; width: 100%; margin-left: .95rem !important">
           <!-- ADD/EDIT FORM START -->
-          <div class="form-group mt-4 ml-5" style="width: 70%;">
+          <div class="form-group mt-4 ml-5" id="account-container" style="width: 70%;">
           
           </div>
             <!-- ADD/EDIT FORM END -->
@@ -69,6 +69,8 @@
   <script type="text/javascript">
     var BASE_URL = "<?= base_url();?>";
   </script>
+
+  <script src="<?=base_url();?>assets/js/admin-core.js"></script>
   
   <?php else: ?>
   <?php 

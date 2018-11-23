@@ -515,6 +515,7 @@ $(function () {
     setTimeout(function () {
       btn.prop('disabled', false);
     }, fewSeconds * 1000);
+    
     var proposal_id = $("#proposal_id").val();
     var activity_name = $("#activity_name").val();
     var date_activity = $("#date_activity").val();

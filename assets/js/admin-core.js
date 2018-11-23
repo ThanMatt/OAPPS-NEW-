@@ -54,6 +54,7 @@ $(function () {
         account_id: account_id,
       },
       success: function (response) {
+
         $('#account-container').html(response);
       },
       error: function (response) {

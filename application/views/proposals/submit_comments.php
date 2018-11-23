@@ -7,12 +7,13 @@
   $position = $this->session->userdata('position');
   $org_type = $this->session->userdata('org_type');
   $prefix = $this->session->userdata('prefix');
-  $proposal_id = $record->Proposal_ID;
+  $proposal_id = $records_ap->Proposal_ID;
+  $org = $this->accounts_model->getOrgInfo($records_ap->Account_ID);
 
   if ($proposal_id == "") {
     redirect("home");
   }
-  $non_academic_type = $record->NonAcademicType;
+  $non_academic_type = $records_ap->NonAcademicType;
   ?>
 
   <?php if ($org_type != 'N/A') : ?>
@@ -42,15 +43,16 @@
     <div class="row no-gutters d-flex justify-content-center mt-5"> <!-- ROW HEADER START -->
       <div class="card w-75" style="min-height: 100px;">
         <div class="card-header">
-          <h4>Proposed by the <?=$record->Organization?></h4>
+          <h4>Proposed by the <?=$records_ap->Organization?></h4>
         </div>
         <div class="card-body">
-          <p>Organization Representative: </p>
-          <p>Contact Number: </p>
-          <p>Date Submitted: </p>
+          <p>Organization Representative: <?=$org->FullName?> </p>
+          <p>Contact Number: <?=$org->ContactNumber?></p>
+          <p>Date Submitted: <?=$this->proposals_model->getSubmitDate($proposal_id)?> </p>
         </div>
       </div>
     </div> <!-- ROW HEADER END -->  
+    <?=form_open("submit/comments/" . $proposal_id);?>
     <div class="row w-100 no-gutters"> <!-- LEFT ROW START --> 
       <div class="col-lg-6 col-md-12 d-flex flex-column justify-content-center"> <!-- LEFT SIDE COL START -->
         <div class="card mt-5 mx-4 w-100"> <!-- AP CARD START -->  
@@ -58,53 +60,53 @@
             Activity Proposal
           </div>
           <div class="card-body">
-            <input type="text" class="field_ap" name="proposal_id" id="proposal_id" value="<?=$record->Proposal_ID?>" hidden readonly>
-            <label id="proposal_hr"> Name of the Activity: <?=$record->ActivityName?>
-            <br> Date: <?=$record->DateActivity?>
-            <br> Time: <?=$record->StartTime . " to " . $record->EndTime ?>
+            <input type="text" class="field_ap" name="proposal_id" id="proposal_id" value="<?=$records_ap->Proposal_ID?>" hidden readonly>
+            <label id="proposal_hr"> Name of the Activity: <?=$records_ap->ActivityName?>
+            <br> Date: <?=$records_ap->DateActivity?>
+            <br> Time: <?=$records_ap->StartTime . " to " . $records_ap->EndTime ?>
             <br>
   
             <label>Nature of the Activity: </label>
             <br>
-            <p><?=$record->Nature?></p>
+            <p><?=$records_ap->Nature?></p>
             <br>
   
             <label>Rationale:</label>
-            <p><?=$record->Rationale?></p>
+            <p><?=$records_ap->Rationale?></p>
   
-            <br> Activity Chair: <?=$record->ActivityChair?>
-            <br> Contact Number: <?=$record->ChairContactNumber?>
+            <br> Activity Chair: <?=$records_ap->ActivityChair?>
+            <br> Contact Number: <?=$records_ap->ChairContactNumber?>
   
             <br>
             <label>Participants: </label>
-            <p><?=$record->Participants?></p>
+            <p><?=$records_ap->Participants?></p>
   
-            <br> Venue: <?=$record->ActivityVenue?>
+            <br> Venue: <?=$records_ap->ActivityVenue?>
             <br>
   
             <div class="radio-container-proposal">
               <div class="radio-subcontainer-proposal-1">
-                <label id="label_radiobutton"><?=$record->ProposalType1?></label>
+                <label id="label_radiobutton"><?=$records_ap->ProposalType1?></label>
               
-              <?php if ($record->ProposalType1 == 'Collaborative'):?>
+              <?php if ($records_ap->ProposalType1 == 'Collaborative'):?>
                 <div id="collab-container">
-                  Partner/s: <label><?=$record->Partners?></label>
+                  Partner/s: <label><?=$records_ap->Partners?></label>
                 </div>
               <?php endif ?>
   
               </div>
   
               <div class="radio-subcontainer-proposal-2">
-                <label id="label_radiobutton"><?=$record->ProposalType2?></label>
+                <label id="label_radiobutton"><?=$records_ap->ProposalType2?></label>
                 <br>
                 <div class="rd-non-academic-container">
   
-                  <?php if ($record->ProposalType2 == 'Non-Academic'): ?>
-                    <label><?=$record->NonAcademicType?></label>
+                  <?php if ($records_ap->ProposalType2 == 'Non-Academic'): ?>
+                    <label><?=$records_ap->NonAcademicType?></label>
   
-                    <?php if ($record->NonAcademicType != 'Community Involvement'):?>
+                    <?php if ($records_ap->NonAcademicType != 'Community Involvement'):?>
                       <br>
-                      Specified: <label><?=$record->Specified?></label>
+                      Specified: <label><?=$records_ap->Specified?></label>
                     <?php endif ?>
   
                   <?php endif ?>
@@ -134,24 +136,30 @@
                 </tr>
               </thead>
               <tbody>
+              <?php if (is_array($records_far) || is_object($records_far)): ?>
+              <?php 
+              $counter = 0;
+              $sum_far = 0;
+              ?>
+              <?php foreach($records_far as $record_far): ?>
+              <?php $counter++?>
                 <tr>
-                  <td>1</td>
-                  <td>Printer</td>
-                  <td>2</td>
-                  <td>1500</td>
-                  <td>3000</td>
-                  <td>Mamamoo</td>
+                  <td><?=$counter?></td>
+                  <td><?=$record_far->Item?></td>
+                  <td><?=$record_far->Quantity?></td>
+                  <td><?=$record_far->Unit_Price?></td>
+                  <td><?=$record_far->Total_Amount?></td>
+                  <td><?=$record_far->Source?></td>
+                  <?php $sum_far += $record_far->Total_Amount?>
                 </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Monitor</td>
-                  <td>2</td>
-                  <td>1500</td>
-                  <td>3000</td>
-                  <td>Mamamooulet</td>
-                </tr>
+              <?php endforeach ?>
+              <?php else: ?>
+              <p>No records</p>
+              <?php endif ?>
               </tbody>
+              
             </table>
+            <p>Total: PHP <?=number_format($sum_far)?></p>
           </div>
         </div> <!-- FAR CARD END -->
   
@@ -172,32 +180,37 @@
                   <th>Source of Fund</th>
                 </tr>
               </thead>
-              <tbody>
+              <?php if (is_array($records_oe) || is_object($records_oe)): ?>
+              <?php 
+              $counter = 0;
+              $sum_oe = 0;
+              ?>
+              <?php foreach($records_oe as $record_oe): ?>
+              <?php $counter++?>
                 <tr>
-                  <td>1</td>
-                  <td>Printer</td>
-                  <td>2</td>
-                  <td>1500</td>
-                  <td>3000</td>
-                  <td>Mamamoo</td>
+                  <td><?=$counter?></td>
+                  <td><?=$record_oe->Item?></td>
+                  <td><?=$record_oe->Quantity?></td>
+                  <td><?=$record_oe->Unit_Price?></td>
+                  <td><?=$record_oe->Total_Amount?></td>
+                  <td><?=$record_oe->Source?></td>
+                  <?php $sum_oe += $record_oe->Total_Amount?>
                 </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Monitor</td>
-                  <td>2</td>
-                  <td>1500</td>
-                  <td>3000</td>
-                  <td>Mamamooulet</td>
-                </tr>
+              <?php endforeach ?>
+              <?php else: ?>
+              <p>No records</p>
+              <?php endif ?>
               </tbody>
+              
             </table>
+            <p>Total: PHP <?=number_format($sum_oe)?></p>
           </div>
         </div> <!-- OE CARD END -->
       </div> <!-- LEFT SIDE COL END -->
       <div class="col-lg-6 col-md-12 d-flex flex-column"> <!-- RIGHT SIDE COL START -->
         <label class="mt-5 mx-5">Comments</label>
-        <textarea rows="3" class="form-control form-control-sm mx-5" id="objectives_textarea" name="objectives" placeholder="Put your comments regarding the proposal here. You can give them instructions on what to change and they will be prompted to resubmit based on these comments."
-        maxlength="230" style="width: 90%; height: 400px;" required></textarea>
+        <textarea rows="3" class="form-control form-control-sm mx-5" id="objectives_textarea" name="comment" placeholder="Put your comments regarding the proposal here. You can give them instructions on what to change and they will be prompted to resubmit based on these comments."
+         style="width: 90%; height: 400px;" required></textarea>
   
         <div class="row">
           <div class="col-2">
@@ -207,13 +220,12 @@
           </div>
           <div class="col-2">
             <a href="">
-              <input class="btn btn-light mt-5 mx-5" type="button" value="Submit">
+              <input class="btn btn-light mt-5 mx-5" type="submit" value="Submit">
             </a>
           </div>
         </div>
       </div> <!-- RIGHT SIDE COL END -->
 
-    <?=form_open("submit/comments/" . $proposal_id);?>
         
     <?=form_close()?>
 

@@ -65,11 +65,14 @@ $org_type = $this->session->userdata('org_type');
             </ul>
           <?php endif ?>
           </div> 
-          <table class="table table-striped">
+          <?php if ($records->ProposalStatus != 'DRAFT'):?>
+            <table class="table table-striped">
               <thead>
                 <tr>
                   <th>Date Proposed</th>
-                  <th>Treasurer</th>
+                  <?php if ($this->proposals_model->checkIfBPExists($records->Proposal_ID)): ?>
+                    <th>Treasurer</th>
+                  <?php endif ?>
                   <th>Sec-Gen</th>
                   <th>President</th>
                   <th>Asst. Prefect</th>
@@ -97,8 +100,28 @@ $org_type = $this->session->userdata('org_type');
                 </tr>
               </tbody>
             </table>
+          <?php endif ?>
+          <?php if(is_array($comments) || is_object($comments)):?>
+            <?php foreach($comments as $comment): ?>  
+              <div class="card" style="width: 40rem;">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item font-weight-bold">
+
+                    <?=$comment->Account_ID?> (<?=$comment->Status?>)
+                    <span class="text-muted oapps-text-small">
+                      <?=$this->proposals_model->timeElapsed($comment->DateTime)?>
+                    </span>
+                  </li>
+
+                  <li class="list-group-item"><?=$comment->Comment?></li>
+                </ul>
+              </div>
+            <?php endforeach ?>
+          <?php endif ?>
         </div>
+        
       </div>
+
     </div>
     
     
@@ -120,20 +143,27 @@ $org_type = $this->session->userdata('org_type');
           <input class="table-header btn btn-light mx-5 mt-2" type="button" value="View Proposal">
         </a>
 
+        <?php if ($records->ProposalStatus == 'UNDER REVISION' && $this->session->userdata('org_type') != 'N/A'): ?>
+          <a href="proposal/revise/<?=$records->Proposal_ID?>">
+          <input class="table-header btn btn-light mx-5 mt-2" type="button" value="Revise">
+          </a>
+        <?php endif ?>
+
         <?php if($this->session->userdata('org_type') == 'N/A'): ?>
+          <?php if ($this->proposals_model->didIAskThis($account_id, $records->Proposal_ID)): ?>
+            <?php if($this->proposals_model->didIApproveThis($account_id, $records->Proposal_ID)): ?>
+              <a href="<?=base_url()?>proposal/approve/<?=$records->Proposal_ID?>">
+                <input class="table-header btn btn-light mx-5 mt-2" id="approve_btn" type="button" value="Approve">
+              </a>
+              
+              <a href="<?=base_url()?>proposal/ask/<?=$records->Proposal_ID?>">
+                <input class="table-header btn btn-light mx-5 mt-2" id="revise_btn" type="button" value="Ask for Revision">
+              </a>
 
-          <?php if($this->proposals_model->didIApproveThis($account_id, $records->Proposal_ID)): ?>
-            <a href="<?=base_url()?>proposal/approve/<?=$records->Proposal_ID?>">
-              <input class="table-header btn btn-light mx-5 mt-2" id="approve_btn" type="button" value="Approve">
-            </a>
-            
-            <a href="<?=base_url()?>proposal/ask/<?=$records->Proposal_ID?>">
-              <input class="table-header btn btn-light mx-5 mt-2" id="revise_btn" type="button" value="Ask for Revision">
-            </a>
-
-            <a href="#">
-              <input class="table-header btn btn-light mx-5 mt-2" type="button" value="Decline">
-            </a>
+              <a href="#">
+                <input class="table-header btn btn-light mx-5 mt-2" type="button" value="Decline">
+              </a>
+            <?php endif ?>
           <?php endif ?>
 
         <?php endif ?>
