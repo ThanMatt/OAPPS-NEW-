@@ -24,12 +24,14 @@ class Home extends CI_Controller {
       $record = $this->proposals_model->viewAPRecord($proposal_id);
       $timetable = $this->proposals_model->getTimeTable($proposal_id);
       $org_info = $this->accounts_model->getOrgInfo($record->Account_ID);
+      $comments = $this->proposals_model->getComments($proposal_id);
       $data['records'] = null;
 
       if ($record) {
         $data['records'] = $record;
         $data['timetable'] = $timetable;
         $data['org_info'] = $org_info;
+        $data['comments'] = $comments;
         $response = $this->load->view('layouts/display', $data);
       }
 

@@ -42,6 +42,7 @@ class Accounts_Model extends CI_Model {
 
   }
 
+
   public function getOfficeInfo($account_id) {
     $this->db->where('Account_ID', $account_id);
     $this->db->from('accounts');
