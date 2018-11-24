@@ -963,16 +963,92 @@ class Proposals_Model extends CI_Model {
     $activity_venue, $proposal_type1, $proposal_type2, $non_academic_type,
     $collab_partner, $specified) {
 
-    $office_proposal = "SC_SG";
-    $proposal_status = "PENDING";
-
     $this->db->where('Proposal_ID', $proposal_id);
     $this->db->from('activity_proposal');
     $result = $this->db->get();
 
-    $rows = $result->num_rows();
+    $row = $result->row();
 
-    if ($rows == 1) {
+    if ($row->ProposalStatus != 'UNDER REVISION') {
+      
+
+      $office_proposal = "SC_SG";
+      $proposal_status = "PENDING";
+
+      $this->db->where('Proposal_ID', $proposal_id);
+      $this->db->from('activity_proposal');
+      $result = $this->db->get();
+
+      $rows = $result->num_rows();
+
+      if ($rows == 1) {
+
+        $data = array(
+          'Account_ID' => $account_id,
+          'ActivityName' => $activity_name,
+          'DateActivity' => $date_activity,
+          'StartTime' => $start_time,
+          'EndTime' => $end_time,
+          'Nature' => $nature,
+          'Objectives' => $objectives,
+          'Rationale' => $rationale,
+          'ActivityChair' => $activity_chair,
+          'ChairContactNumber' => $contact_number,
+          'Participants' => $participants,
+          'ActivityVenue' => $activity_venue,
+          'ProposalType1' => $proposal_type1,
+          'Partners' => $collab_partner,
+          'ProposalType2' => $proposal_type2,
+          'NonAcademicType' => $non_academic_type,
+          'Specified' => $specified,
+          'OfficeProposal' => $office_proposal,
+          'ProposalStatus' => $proposal_status,
+        );
+
+        $this->db->where('Proposal_ID', $proposal_id);
+        $result = $this->db->update('activity_proposal', $data);
+
+        if (!$result) {
+          return false;
+        } else {
+          $this->updateDate($proposal_id);
+          return true;
+        }
+      } else {
+        $data = array(
+          'Account_ID' => $account_id,
+          'Proposal_ID' => $proposal_id,
+          'ActivityName' => $activity_name,
+          'DateActivity' => $date_activity,
+          'StartTime' => $start_time,
+          'EndTime' => $end_time,
+          'Nature' => $nature,
+          'Objectives' => $objectives,
+          'Rationale' => $rationale,
+          'ActivityChair' => $activity_chair,
+          'ChairContactNumber' => $contact_number,
+          'Participants' => $participants,
+          'ActivityVenue' => $activity_venue,
+          'ProposalType1' => $proposal_type1,
+          'Partners' => $collab_partner,
+          'ProposalType2' => $proposal_type2,
+          'NonAcademicType' => $non_academic_type,
+          'Specified' => $specified,
+          'OfficeProposal' => $office_proposal,
+          'ProposalStatus' => $proposal_status,
+        );
+
+        $result = $this->db->insert('activity_proposal', $data);
+
+        if (!$result) {
+          return false;
+        } else {
+          $this->createDate($proposal_id);
+          return true;
+        }
+      }
+
+    } else {
 
       $data = array(
         'Account_ID' => $account_id,
@@ -992,8 +1068,6 @@ class Proposals_Model extends CI_Model {
         'ProposalType2' => $proposal_type2,
         'NonAcademicType' => $non_academic_type,
         'Specified' => $specified,
-        'OfficeProposal' => $office_proposal,
-        'ProposalStatus' => $proposal_status,
       );
 
       $this->db->where('Proposal_ID', $proposal_id);
@@ -1005,39 +1079,8 @@ class Proposals_Model extends CI_Model {
         $this->updateDate($proposal_id);
         return true;
       }
-    } else {
-      $data = array(
-        'Account_ID' => $account_id,
-        'Proposal_ID' => $proposal_id,
-        'ActivityName' => $activity_name,
-        'DateActivity' => $date_activity,
-        'StartTime' => $start_time,
-        'EndTime' => $end_time,
-        'Nature' => $nature,
-        'Objectives' => $objectives,
-        'Rationale' => $rationale,
-        'ActivityChair' => $activity_chair,
-        'ChairContactNumber' => $contact_number,
-        'Participants' => $participants,
-        'ActivityVenue' => $activity_venue,
-        'ProposalType1' => $proposal_type1,
-        'Partners' => $collab_partner,
-        'ProposalType2' => $proposal_type2,
-        'NonAcademicType' => $non_academic_type,
-        'Specified' => $specified,
-        'OfficeProposal' => $office_proposal,
-        'ProposalStatus' => $proposal_status,
-      );
-
-      $result = $this->db->insert('activity_proposal', $data);
-
-      if (!$result) {
-        return false;
-      } else {
-        $this->createDate($proposal_id);
-        return true;
-      }
     }
+
 
   }
 
@@ -1241,12 +1284,63 @@ class Proposals_Model extends CI_Model {
 
   }
 
-  public function updateTracker($office_id, $proposal_id) {
+  public function getOffice($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('activity_proposal');
 
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    return $row->OfficeProposal;
+  }
+
+  public function changeRevisionStatus($proposal_id) {
     $data = array(
-      $office_id => 'PENDING',
+      'Status' => 'REVISED',
     );
 
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->update('comments', $data);
+  }
+
+  public function isItRevised($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->where('ProposalStatus', 'UNDER REVISION');
+    $this->db->from('activity_proposal');
+
+    $result = $this->db->get();
+
+    $rows = $result->num_rows();
+
+    if ($rows == 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public function updateTracker($office_id, $proposal_id) {
+
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('proposal_tracker');
+
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    if ($row->SC_TR == 'UNDER REVISION') {  
+      $data = array (
+        'SC_SG' => 'PENDING',
+        'SC_TR' => 'PENDING',
+      );
+    } else {
+      
+      $data = array(
+        $office_id => 'PENDING',
+      );
+    }
+      
     $this->db->where('Proposal_ID', $proposal_id);
     $result = $this->db->update('proposal_tracker', $data);
   }
@@ -1257,27 +1351,19 @@ class Proposals_Model extends CI_Model {
     return $date_time;
   }
 
-  public function submitComments($field_name, $values, $proposal_id) {
-    $counter = 0;
-    $account_id = $this->session->userdata('account_id');
-    while ($counter < count($values)) {
-      $comment_id = rand(1000, 9999);
-      $data = array(
-        "CommentID" => $comment_id,
-        "Proposal_ID" => $proposal_id,
-        "Account_ID" => $account_id,
-        "Field" => $field_name[$counter],
-        "Comment" => $values[$counter],
-      );
+  public function submitComment($proposal_id, $account_id, $comment, $date_time, $status) {
 
-      $result = $this->db->insert('comments', $data);
-      if (!$result) {
-        return false;
-      }
-      $counter++;
+    $data = array(
+      'Proposal_ID' => $proposal_id,
+      'Account_ID' => $account_id,
+      'Comment' => $comment,
+      'DateTime' => $date_time,
+      'Status' => $status,
+    );
 
-    }
-    return true;
+    $result = $this->db->insert('comments', $data);
+
+    return $result;
   }
 
   public function forwardProposal($next_office, $next_position, $proposal_id, $account_id, $far, $oe) {
@@ -1361,6 +1447,22 @@ class Proposals_Model extends CI_Model {
 
     $this->db->where('Proposal_ID', $proposal_id);
     $this->db->where($account_id, 'APPROVED');
+    $this->db->from('proposal_tracker');
+    $query = $this->db->get();
+
+    $row = $query->num_rows();
+
+    if ($row == 0) {
+      return true;
+    }
+
+    return false;
+  }
+
+  public function didIAskThis($account_id, $proposal_id) {
+
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->where($account_id, 'UNDER REVISION');
     $this->db->from('proposal_tracker');
     $query = $this->db->get();
 
@@ -1722,6 +1824,131 @@ class Proposals_Model extends CI_Model {
     $this->db->from('proposal_tracker');
 
     $result = $this->db->get();
+
+    $row = $result->row();
+
+    if ($row->OPSA_P == 'APPROVED') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public function checkApprovalDean($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('proposal_tracker');
+
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    if ($row->OD == 'APPROVED') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  public function getSignaturePresident($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('proposal_tracker');
+
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    if ($row->SC_P == 'APPROVED') {
+      $this->db->where('Account_ID', 'SC_P');
+      $this->db->from('accounts');
+      $result = $this->db->get();
+
+      $row = $result->row();
+      return $row->Signature;
+    }
+  }
+
+  public function getSignaturePrefect($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('proposal_tracker');
+
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    if ($row->OPSA_P == 'APPROVED') {
+      $this->db->where('Account_ID', 'OPSA_P');
+      $this->db->from('accounts');
+      $result = $this->db->get();
+
+      $row = $result->row();
+      return $row->Signature;
+    }
+  }
+
+  public function getSignatureDean($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->from('proposal_tracker');
+
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    if ($row->OD == 'APPROVED') {
+      $this->db->where('Account_ID', 'OD');
+      $this->db->from('accounts');
+      $result = $this->db->get();
+
+      $row = $result->row();
+      return $row->Signature;
+    }
+  }
+
+  public function getComments($proposal_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->order_by('CommentID', 'desc');
+    $this->db->from('comments');
+
+    $result = $this->db->get();
+
+    return $result->result();
+  }
+
+  public function changeProposalStatus($proposal_id) {
+    $data = array(
+      'ProposalStatus' => 'PENDING',
+    );
+
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->update('activity_proposal', $data);
+  }
+
+  public function timeElapsed($datetime, $full = false) {
+    $now = new DateTime;
+    $ago = new DateTime($datetime);
+    $diff = $now->diff($ago);
+
+    $diff->w = floor($diff->d / 7);
+    $diff->d -= $diff->w * 7;
+
+    $string = array(
+      'y' => 'year',
+      'm' => 'month',
+      'w' => 'week',
+      'd' => 'day',
+      'h' => 'hour',
+      'i' => 'minute',
+      's' => 'second',
+    );
+    foreach ($string as $k => &$v) {
+        if ($diff->$k) {
+            $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+        } else {
+            unset($string[$k]);
+        }
+    }
+
+    if (!$full) $string = array_slice($string, 0, 1);
+    return $string ? implode(', ', $string) . ' ago' : 'just now';
+  }
 
     $row = $result->row();
 

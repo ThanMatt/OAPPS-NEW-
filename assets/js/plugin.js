@@ -171,6 +171,15 @@ $(function () {
   //:: Initialize proposal
   $(document).on('click', '.save', function () {
     event.preventDefault();
+
+    var btn = $(this);
+
+    btn.prop('disabled', true);
+    var fewSeconds = 5;
+    setTimeout(function () {
+      btn.prop('disabled', false);
+    }, fewSeconds * 1000);
+
     var activity_name = $("#activity_name").val();
     var date_activity = $("#date_activity").val();
     proposal_id = Math.floor((Math.random() * 9999) + 1000);
@@ -270,6 +279,7 @@ $(function () {
       dataType: 'json',
       success: function (response) {
         if (response.success) {
+          alert("Save successful!");
           window.location.replace(BASE_URL + "proposal/edit/" + response.proposal_id);
         } else {
           alert("There was an error");
@@ -287,6 +297,15 @@ $(function () {
   //:: Saving Activity Proposal
   $("#btn_save_ap").click(function (event) {
     event.preventDefault();
+
+    var btn = $(this);
+
+    btn.prop('disabled', true);
+    var fewSeconds = 5;
+    setTimeout(function () {
+      btn.prop('disabled', false);
+    }, fewSeconds * 1000);
+
     var proposal_id = $("#proposal_id").val();
     var activity_name = $("#activity_name").val();
     var date_activity = $("#date_activity").val();
@@ -351,6 +370,15 @@ $(function () {
   //:: Saving FAR
   $("#btn_save_far").click(function (event) {
     event.preventDefault();
+
+    var btn = $(this);
+
+    btn.prop('disabled', true);
+    var fewSeconds = 5;
+    setTimeout(function () {
+      btn.prop('disabled', false);
+    }, fewSeconds * 1000);
+
     var proposal_id = $("#proposal_id").val();
 
     var far_item = $("input[name='far_item[]']")
@@ -400,6 +428,15 @@ $(function () {
   //:: Saving OE
   $("#btn_save_oe").click(function (event) {
     event.preventDefault();
+
+    var btn = $(this);
+
+    btn.prop('disabled', true);
+    var fewSeconds = 5;
+    setTimeout(function () {
+      btn.prop('disabled', false);
+    }, fewSeconds * 1000);
+
     var proposal_id = $("#proposal_id").val();
 
     var oe_item = $("input[name='oe_item[]']")
@@ -470,6 +507,15 @@ $(function () {
 
   $("#ajax_form_activity").submit(function (event) {
     event.preventDefault();
+
+    var btn = $(this);
+
+    btn.prop('disabled', true);
+    var fewSeconds = 5;
+    setTimeout(function () {
+      btn.prop('disabled', false);
+    }, fewSeconds * 1000);
+    
     var proposal_id = $("#proposal_id").val();
     var activity_name = $("#activity_name").val();
     var date_activity = $("#date_activity").val();
