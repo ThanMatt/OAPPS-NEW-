@@ -3,6 +3,7 @@
 !composer.lock
 !application/config/*
 application/config/autoload.php
+assets/image.php
 application/logs/*
 application/logs/index.html
 !vendor/
