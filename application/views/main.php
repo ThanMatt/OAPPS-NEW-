@@ -134,22 +134,22 @@
                           if ($this->notifications_model->unreadNotification($record->Proposal_ID, $account_id)) {
                             echo '<div class="oapps-btn proposal-view col-12 text-center oapps-bmb py-3" id="view_btn/' . $record->Proposal_ID . '">' . $record->ActivityName . ' (' . $record->Account_ID . ')*' . '</div>';
                           } else {
-                            echo '<div class="oapps-btn proposal-view col-12 text-center oapps-bmb py-3" id="view_btn/' . $record->Proposal_ID . '">' . $record->ActivityName . ' (' . $record->Account_ID . ')*' . '</div>';
+                            echo '<div class="oapps-btn proposal-view col-12 text-center oapps-bmb py-3" id="view_btn/' . $record->Proposal_ID . '">' . $record->ActivityName . ' (' . $record->Account_ID . ')' . '</div>';
                           }
 
                         } else {
                           if ($this->notifications_model->unreadNotification($record->Proposal_ID, $account_id)) {
-                            echo '<div class="oapps-btn proposal-view col-12 text-center oapps-bmb py-3" id="view_btn/' . $record->Proposal_ID . '">' . $record->ActivityName . ' (' . $record->Account_ID . ')*' . '</div>';
+                            echo '<div class="oapps-btn proposal-view col-12 text-center oapps-bmb py-3" id="view_btn/' . $record->Proposal_ID . '">' . $record->ActivityName  . '* </div>';
                           } else {
-                            echo '<div class="oapps-btn proposal-view col-12 text-center oapps-bmb py-3" id="view_btn/' . $record->Proposal_ID . '">' . $record->ActivityName . ' (' . $record->Account_ID . ')*' . '</div>';
+                            echo '<div class="oapps-btn proposal-view col-12 text-center oapps-bmb py-3" id="view_btn/' . $record->Proposal_ID . '">' . $record->ActivityName . '</div>';
                           }
                         }
                       //:: If not an office, then for orgs...
                       } else {
                         if ($this->notifications_model->unreadNotification($record->Proposal_ID, $account_id)) {
-                          echo '<div class="oapps-btn proposal-view col-12 text-center oapps-bmb py-3" id="view_btn/' . $record->Proposal_ID . '">' . $record->ActivityName . ' (' . $record->Account_ID . ')*' . '</div>';
+                          echo '<div class="oapps-btn proposal-view col-12 text-center oapps-bmb py-3" id="view_btn/' . $record->Proposal_ID . '">' . $record->ActivityName . '* </div>';
                         } else {
-                          echo '<div class="oapps-btn proposal-view col-12 text-center oapps-bmb py-3" id="view_btn/' . $record->Proposal_ID . '">' . $record->ActivityName . ' (' . $record->Account_ID . ')*' . '</div>';
+                          echo '<div class="oapps-btn proposal-view col-12 text-center oapps-bmb py-3" id="view_btn/' . $record->Proposal_ID . '">' . $record->ActivityName . '</div>';
                         }
                       }
                     }
