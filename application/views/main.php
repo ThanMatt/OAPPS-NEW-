@@ -42,7 +42,7 @@
 
        <!-- BUTTONS FOR OFFICES -->
        <?php if ($this->session->userdata('org_type') == 'N/A'): ?>
-        <div class="col-lg-2 mt-5 h-100" > <!-- BUTTONS COL START -->
+        <div class="col-xl-2 mt-5 h-100" > <!-- BUTTONS COL START -->
           <div class="row align-items-center"> <!-- BUTTONS ROW START-->
             <!-- PENDING -->
             <div class="oapps-btn oapps-hh col-12" id="btn_pending" style="border: 1px black solid">
@@ -68,7 +68,7 @@
 
         <!-- BUTTONS FOR ORGS -->
 
-        <div class="col-lg-2 mt-5 h-100" > <!-- BUTTONS COL START -->
+        <div class="col-xl-2 mt-5 h-100" > <!-- BUTTONS COL START -->
           <div class="row align-items-center"> <!-- BUTTONS ROW START-->
             <!-- PENDING -->
             <div class="oapps-btn oapps-hh col-12" id="btn_pending" style="border: 1px black solid">
@@ -113,56 +113,60 @@
 
         <!-- PROPOSAL LIST -->
 
-        <div class="col-lg-2 offset-lg-1 mt-5 oapps-rh h-100" style="border: 1px black solid"> <!-- PROPOSAL LIST COL START -->
-          <div class="row oapps-bg-head"> <!-- PROPOSAL LIST HEAD ROW START -->
+        <div class="col-xl-2 offset-xl-1 mt-5 oapps-rh h-100" style="border: 1px black solid; padding: 0px !important;"> <!-- PROPOSAL LIST COL START -->
+          <div class="row oapps-bg-head w-100" style="margin: 0px !important;"> <!-- PROPOSAL LIST HEAD ROW START -->
             <div class="oapps-hh col-12 oapps-head-text-1 text-white">
               <p class="text-center oapps-bmb">Proposal List</p>
             </div>
           </div> <!-- PROPOSAL LIST HEAD ROW END -->
-          <div class="d-flex flex-column oapps-ch" style="overflow-y: auto; overflow-x: hidden;"> <!-- PROPOSAL LIST ROW START -->
+            <div class="oapps-ch" style="overflow-y: auto; overflow-x: hidden; width: 100%;">
+              <div class="row no-gutters w-100"> <!-- PROPOSAL LIST ROW START -->
+                <?php if (is_array($records) || is_object($records)): ?>
+                  <?php
+                    foreach ($records as $record) {
+                      $counter++;
+                      //:: N/A = Office
+                      //:: If it is N/A, then for offices...
+                      if ($org_type == 'N/A') {
+                        //:: checkDuplicationTitle returns boolean values
+                        if ($this->proposals_model->checkDuplicationTitle($record->ActivityName)) {
+                          //:: unreadNotification returns boolean values
+                          if ($this->notifications_model->unreadNotification($record->Proposal_ID, $account_id)) {
+                            echo '<div class="oapps-btn proposal-view col-12 text-center oapps-bmb py-3" id="view_btn/' . $record->Proposal_ID . '">' . $record->ActivityName . ' (' . $record->Account_ID . ')*' . '</div>';
+                          } else {
+                            echo '<div class="oapps-btn proposal-view col-12 text-center oapps-bmb py-3" id="view_btn/' . $record->Proposal_ID . '">' . $record->ActivityName . ' (' . $record->Account_ID . ')' . '</div>';
+                          }
 
-          <?php if (is_array($records) || is_object($records)): ?>
-          <?php
-            foreach ($records as $record) {
-              $counter++;
-              //:: N/A = Office
-              //:: If it is N/A, then for offices...
-              if ($org_type == 'N/A') {
-                //:: checkDuplicationTitle returns boolean values
-                if ($this->proposals_model->checkDuplicationTitle($record->ActivityName)) {
-                  //:: unreadNotification returns boolean values
-                  if ($this->notifications_model->unreadNotification($record->Proposal_ID, $account_id)) {
-                    echo '<div class="oapps-btn proposal-view" id="view_btn/' . $record->Proposal_ID . '"><p class="text-center oapps-bmb">' . $record->ActivityName . ' (' . $record->Account_ID . ')*' . '</p></div>';  
-                  } else {
-                    echo '<div class="oapps-btn proposal-view" id="view_btn/' . $record->Proposal_ID . '"><p class="text-center oapps-bmb">' . $record->ActivityName . ' (' . $record->Account_ID . ') ' . '</p></div>';
-                  }
+                        } else {
+                          if ($this->notifications_model->unreadNotification($record->Proposal_ID, $account_id)) {
+                            echo '<div class="oapps-btn proposal-view col-12 text-center oapps-bmb py-3" id="view_btn/' . $record->Proposal_ID . '">' . $record->ActivityName  . '* </div>';
+                          } else {
+                            echo '<div class="oapps-btn proposal-view col-12 text-center oapps-bmb py-3" id="view_btn/' . $record->Proposal_ID . '">' . $record->ActivityName . '</div>';
+                          }
+                        }
+                      //:: If not an office, then for orgs...
+                      } else {
+                        if ($this->notifications_model->unreadNotification($record->Proposal_ID, $account_id)) {
+                          echo '<div class="oapps-btn proposal-view col-12 text-center oapps-bmb py-3" id="view_btn/' . $record->Proposal_ID . '">' . $record->ActivityName . '* </div>';
+                        } else {
+                          echo '<div class="oapps-btn proposal-view col-12 text-center oapps-bmb py-3" id="view_btn/' . $record->Proposal_ID . '">' . $record->ActivityName . '</div>';
+                        }
+                      }
+                    }
+                  ?>
+                  <?php else: ?>
+                  <h1 id="nav-left-container-no-records" class="oapps-btn-norec  col-12 text-center oapps-bmb py-3">No Records</h1>
+                  <?php endif?>
 
-                } else {
-                  if ($this->notifications_model->unreadNotification($record->Proposal_ID, $account_id)) {
-                    echo '<div class="oapps-btn proposal-view" id="view_btn/' . $record->Proposal_ID . '"><p class="text-center oapps-bmb">' . $record->ActivityName . '*</p></div>';
-                  } else {
-                    echo '<div class="oapps-btn proposal-view" id="view_btn/' . $record->Proposal_ID . '"><p class="text-center oapps-bmb">' . $record->ActivityName . '</p></div>';
-                  }
-                }
-              //:: If not an office, then for orgs...
-              } else {
-                if ($this->notifications_model->unreadNotification($record->Proposal_ID, $account_id)) {
-                  echo '<div class="oapps-btn proposal-view" id="view_btn/' . $record->Proposal_ID . '"><p class="text-center oapps-bmb">' . $record->ActivityName . '*</p></div>';
-                } else {
-                  echo '<div class="oapps-btn proposal-view" id="view_btn/' . $record->Proposal_ID . '"><p class="text-center oapps-bmb">' . $record->ActivityName . '</p></div>';
-                }
-              }
-            }
-          ?>
-          <?php else: ?>
-          <h1 id="nav-left-container-no-records" class="oapps-btn-norec mb-3"><p class="text-center oapps-bmb">No Records</p></h1>
-          <?php endif?>
-          </div> <!-- PROPOSAL LIST ROW END -->
+
+
+              </div><!-- PROPOSAL LIST ROW END -->
+            </div> 
         </div> <!-- PROPOSAL LIST COL END -->
 
         <!-- PROPOSAL OVERVIEW -->
 
-        <div class="col-lg-6 offset-lg-1 mt-5 mb-2 oapps-rh h-100" style="border: 1px black solid"> <!-- PROPOSAL OVERVIEW COL START -->
+        <div class="col-xl-6 offset-xl-1 mt-5 mb-2 oapps-rh h-100" style="border: 1px black solid"> <!-- PROPOSAL OVERVIEW COL START -->
           <div class="row oapps-bg-head"> <!-- PROPOSAL OVERVIEW HEAD ROW START -->
             <div class="oapps-hh col-12 oapps-head-text-1 text-white">
               <p class="text-center oapps-bmb">Proposal Overview</p>
@@ -173,7 +177,6 @@
           </div> <!-- PROPOSAL OVERVIEW END -->
         </div> <!-- PROPOSAL OVERVIEW COL END -->
       </div>
-
     </div> <!-- MAIN END -->
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

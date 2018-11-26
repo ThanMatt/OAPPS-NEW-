@@ -647,6 +647,27 @@ class Proposal extends CI_Controller {
 
     $this->load->view('proposals/revise_view', $data);
   }
+	
+	public function summary($proposal_id){
+    $account_id = $this->session->userdata('account_id');
+    $org_type = $this->session->userdata('org_type');
+
+    if ($org_type == 'N/A') {
+      if ($this->proposals_model->didIApproveThis($account_id, $proposal_id)) {
+        $this->proposals_model->getDateTime($account_id, $proposal_id);
+      }
+    }
+    $this->accounts_model->logMyActivity($account_id, 2, $proposal_id);
+    
+    $record_oe = $this->proposals_model->viewOERecord($proposal_id);
+    $records_far = $this->proposals_model->viewFARRecord($proposal_id);
+    $records_ap = $this->proposals_model->viewAPRecord($proposal_id);
+    $data['records_oe'] = $record_oe;
+    $data['records_far'] = $records_far;
+    $data['records_ap'] = $records_ap;
+    
+    $this->load->view('proposals/summary', $data);  
+  }
 
 }
 

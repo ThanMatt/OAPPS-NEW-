@@ -8,6 +8,8 @@ $(function () {
   var field_counter_oe = 0;
   var field_counter_far = 0;
 
+
+
   if ($('#rd_ind').prop('checked')) {
     $("#partner_collab").prop('disabled', true);
     $("#partner_collab").val('');
@@ -172,13 +174,15 @@ $(function () {
   $(document).on('click', '.save', function () {
     event.preventDefault();
 
+
     var btn = $(this);
 
     btn.prop('disabled', true);
-    var fewSeconds = 5;
+    var fewSeconds = 3;
     setTimeout(function () {
       btn.prop('disabled', false);
     }, fewSeconds * 1000);
+
 
     var activity_name = $("#activity_name").val();
     var date_activity = $("#date_activity").val();
@@ -294,17 +298,149 @@ $(function () {
 
   })
 
-  //:: Saving Activity Proposal
-  $("#btn_save_ap").click(function (event) {
+  $('#btn_review').click(function () {
     event.preventDefault();
+
 
     var btn = $(this);
 
     btn.prop('disabled', true);
-    var fewSeconds = 5;
+    var fewSeconds = 3;
     setTimeout(function () {
       btn.prop('disabled', false);
     }, fewSeconds * 1000);
+
+
+    var activity_name = $("#activity_name").val();
+    var date_activity = $("#date_activity").val();
+    var proposal_id = $("#proposal_id").val();
+    if (proposal_id == '') {
+      proposal_id = Math.floor((Math.random() * 9999) + 1000);
+    }
+    var start_time_activity = $("#start_time_activity").val();
+    var end_time_activity = $("#end_time_activity").val();
+    var contact_number = $("#contact_number").val();
+    var nature = $("#nature_textarea").val();
+    var objectives = $("#objectives_textarea").val();
+    var rationale = $("#rationale_textarea").val();
+    var activity_chair = $("#activity_chair").val();
+    var participants = $("#participants_textarea").val();
+    var activity_venue = $("#activity_venue").val();
+    var proposal_type1 = $(".rd_proposal_type1:checked").val();
+    var proposal_type2 = $(".rd_proposal_type2:checked").val();
+    var non_academic_type = $(".non_acad_rd:checked").val();
+    var collab_partner = $("#partner_collab").val();
+    var specified_ex = $("#specified_ex").val();
+    var specified_co = $("#specified_co").val();
+
+    var far_item = $("input[name='far_item[]']")
+      .map(function () { return $(this).val(); }).get();
+
+    var far_quantity = $("input[name='far_quantity[]']")
+      .map(function () { return $(this).val(); }).get();
+
+    var far_unit = $("input[name='far_unit_price[]']")
+      .map(function () { return $(this).val(); }).get();
+
+    var far_total_amount = $("input[name='far_total_amount[]']")
+      .map(function () { return $(this).val(); }).get();
+
+    var far_source = $("select[name='far_source[]']")
+      .map(function () { return $(this).val(); }).get();
+
+    var far_id = $("input[name='far_id[]']")
+      .map(function () { return $(this).val(); }).get();
+
+
+    var oe_item = $("input[name='oe_item[]']")
+      .map(function () { return $(this).val(); }).get();
+
+    var oe_quantity = $("input[name='oe_quantity[]']")
+      .map(function () { return $(this).val(); }).get();
+
+    var oe_unit = $("input[name='oe_unit_price[]']")
+      .map(function () { return $(this).val(); }).get();
+
+    var oe_total_amount = $("input[name='oe_total_amount[]']")
+      .map(function () { return $(this).val(); }).get();
+
+    var oe_source = $("select[name='oe_source[]']")
+      .map(function () { return $(this).val(); }).get();
+
+    var oe_id = $("input[name='oe_id[]']")
+      .map(function () { return $(this).val(); }).get();
+
+    var flag = true;
+
+    $.ajax({
+      type: 'POST',
+      url: BASE_URL + 'proposal/create',
+      data: {
+        flag: flag,
+        proposal_id: proposal_id,
+        activity_name: activity_name,
+        date_activity: date_activity,
+        start_time_activity: start_time_activity,
+        end_time_activity: end_time_activity,
+        contact_number: contact_number,
+        nature: nature,
+        objectives: objectives,
+        rationale: rationale,
+        activity_chair: activity_chair,
+        participants: participants,
+        activity_venue: activity_venue,
+        proposal_type1: proposal_type1,
+        proposal_type2: proposal_type2,
+        non_academic_type: non_academic_type,
+        collab_partner: collab_partner,
+        specified_ex: specified_ex,
+        specified_co: specified_co,
+
+        far_item: far_item,
+        far_quantity: far_quantity,
+        far_unit: far_unit,
+        far_total_amount: far_total_amount,
+        far_source: far_source,
+        far_id: far_id,
+
+        oe_item: oe_item,
+        oe_quantity: oe_quantity,
+        oe_unit: oe_unit,
+        oe_total_amount: oe_total_amount,
+        oe_source: oe_source,
+        oe_id: oe_id
+      },
+      dataType: 'json',
+      success: function (response) {
+        if (response.success) {
+          window.location.replace(BASE_URL + "proposal/review/" + response.proposal_id);
+        } else {
+          alert("There was an error");
+        }
+      },
+      error: function (response) {
+        if (!response.success) {
+          alert("There was an error");
+        }
+      },
+    });
+
+  });
+
+  $(".readonly").keydown(function (e) {
+    e.preventDefault();
+  });
+
+  //:: Saving Activity Proposal
+  $("#btn_save_ap").click(function (event) {
+    event.preventDefault();
+    var btn = $(this);
+    btn.prop('disabled', true);
+    var fewSeconds = 3;
+    setTimeout(function () {
+      btn.prop('disabled', false);
+    }, fewSeconds * 1000);
+
 
     var proposal_id = $("#proposal_id").val();
     var activity_name = $("#activity_name").val();
@@ -374,10 +510,11 @@ $(function () {
     var btn = $(this);
 
     btn.prop('disabled', true);
-    var fewSeconds = 5;
+    var fewSeconds = 3;
     setTimeout(function () {
       btn.prop('disabled', false);
     }, fewSeconds * 1000);
+
 
     var proposal_id = $("#proposal_id").val();
 
@@ -432,10 +569,11 @@ $(function () {
     var btn = $(this);
 
     btn.prop('disabled', true);
-    var fewSeconds = 5;
+    var fewSeconds = 3;
     setTimeout(function () {
       btn.prop('disabled', false);
     }, fewSeconds * 1000);
+
 
     var proposal_id = $("#proposal_id").val();
 
@@ -508,14 +646,14 @@ $(function () {
   $("#ajax_form_activity").submit(function (event) {
     event.preventDefault();
 
-    var btn = $(this);
+    var btn = $('#submit_btn');
 
     btn.prop('disabled', true);
-    var fewSeconds = 5;
+    var fewSeconds = 3;
     setTimeout(function () {
       btn.prop('disabled', false);
     }, fewSeconds * 1000);
-    
+
     var proposal_id = $("#proposal_id").val();
     var activity_name = $("#activity_name").val();
     var date_activity = $("#date_activity").val();
@@ -625,6 +763,15 @@ $(function () {
 
   $("#ajax_form_review").submit(function (event) {
     event.preventDefault();
+
+    var btn = $('#submit_btn');
+
+    btn.prop('disabled', true);
+    var fewSeconds = 5;
+    setTimeout(function () {
+      btn.prop('disabled', false);
+    }, fewSeconds * 1000);
+
 
     var activity_name = $("#activity_name").val();
     var date_activity = $("#date_activity").val();

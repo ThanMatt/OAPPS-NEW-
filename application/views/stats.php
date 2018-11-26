@@ -47,18 +47,30 @@
               <div class="row h-75">
                 <div class="col-6">
                 <p class="card-text">Pending Proposals:</p>
-                <?php for($counter = 0; $counter < $this->proposals_model->pendingCount($org->Account_ID); $counter++) :?>
-                    <p class="card-text"><?=$this->proposals_model->showPendingRecords($org->Account_ID)?></p>
-                <?php endfor ?>
+                <?php 
+                $pending_records = $this->proposals_model->showPendingRecords($org->Account_ID);
+                ?>
+                <?php if (is_array($pending_records) || is_object($pending_records)): ?>
+                  <?php foreach($pending_records as $pending_record): ?>
+                    <p class="card-text"><?=$pending_record->ActivityName?></p>
+                  <?php endforeach ?>
+                <?php endif ?>
            
                   <!-- <p class="card-text font-weight-bold">No Records</p> -->
             
                 </div>
                 <div class="col-6">
                   <p class="card-text">Approved Proposals:</p>
-                
-              
-                    <p class="card-text"></p>
+                  <?php 
+                  $approved_records = $this->proposals_model->showApprovedRecords($org->Account_ID);
+                  $counter = 0;
+                  ?>
+                  <?php if (is_array($approved_records) || is_object($approved_records)): ?>
+                    <?php foreach($approved_records as $approved_record): ?>
+                    <?php $counter++;?>
+                      <p class="card-text"><?=$approved_record->ActivityName?></p>
+                    <?php endforeach ?>
+                  <?php endif ?>
                 
                 
                   <!-- <p class="card-text font-weight-bold">No Records</p> -->
@@ -68,9 +80,9 @@
               <h4 class="card-title mt-3">General Info</h4>
               <div class="row h-25">
                 <div class="col-12">
-                  <p class="card-text">Total Approved Proposals:</p>
-                  <p class="card-text">Total Expenditure:</p>
-                  <p class="card-text">Average Expenditure Per Proposal:</p>
+                  <p class="card-text">Total Approved Proposals: <?=$counter?></p>
+                  <p class="card-text">Total Expenditure: PHP <?=number_format($this->proposals_model->totalExpenditure($org->Account_ID))?></p>
+                  <p class="card-text">Average Expenditure Per Proposal: PHP <?=number_format($this->proposals_model->averageExpenditure($org->Account_ID))?></p>
                 </div>
               </div>
             </div>

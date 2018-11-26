@@ -139,7 +139,7 @@ $org_type = $this->session->userdata('org_type');
 
       <!-- For Pending/Approved/Revisions -->
       <?php else: ?>
-        <a href="proposal/view/<?=$records->Proposal_ID?>" target="_blank">
+        <a href="proposal/summary/<?=$records->Proposal_ID?>" target="_blank">
           <input class="table-header btn btn-light mx-5 mt-2" type="button" value="View Proposal">
         </a>
 
