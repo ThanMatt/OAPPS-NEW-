@@ -651,6 +651,13 @@ class Proposal extends CI_Controller {
 	public function summary($proposal_id){
     $account_id = $this->session->userdata('account_id');
     $org_type = $this->session->userdata('org_type');
+
+    if ($org_type == 'N/A') {
+      if ($this->proposals_model->didIApproveThis($account_id, $proposal_id)) {
+        $this->proposals_model->getDateTime($account_id, $proposal_id);
+      }
+    }
+    $this->accounts_model->logMyActivity($account_id, 2, $proposal_id);
     
     $record_oe = $this->proposals_model->viewOERecord($proposal_id);
     $records_far = $this->proposals_model->viewFARRecord($proposal_id);

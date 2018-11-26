@@ -245,6 +245,18 @@ a:hover {
   text-decoration: none;
 }
 
+/* :: custom readonly (used only in review_proposal.php) */
+.readonly {
+  background-color: #E9ECEF;
+  color: transparent !important;
+  text-shadow: 0 0 0 black !important;
+}
+
+.readonly:focus {
+  outline: none !important;
+  background-color: #E9ECEF;
+}
+
 /* :: Dropdown content */
 
 .oapps-dropdown-details {

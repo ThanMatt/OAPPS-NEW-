@@ -49,46 +49,46 @@
             <p class="m-4">
               <!-- This serves as a buffer. Do not delete this. It's hidden anyway -->
               <input type="text" class="" name="proposal_id" id="proposal_id" value="<?=$ap_record->Proposal_ID?>" hidden
-              readonly>
+              >
               <!-- ACTIVITY PROPOSAL CONTENT START -->
               <div class="ap-text form-group col-md-5 mr-5 mt-5"><!-- ACTIVITY PROPOSAL FORM TEXT SECTION START-->
 
                 Activity Name:
-                <input type="text" class="form-control form-control-sm" name="activity_name" id="activity_name" value="<?=$ap_record->ActivityName?>"
-                  required disabled>
+                <input type="text" class="readonly form-control form-control-sm" name="activity_name" id="activity_name" value="<?=$ap_record->ActivityName?>"
+                  oninvalid="this.setCustomValidity('Please go back to fill this up')" autocomplete="off" required >
 
                 <br>
 
                 Activity Chair:
-                <input type="text" class="form-control form-control-sm" name="activity_chair" id="activity_chair" value="<?=$ap_record->ActivityChair?>"
-                  required disabled>
+                <input type="text" class="form-control form-control-sm readonly" name="activity_chair" id="activity_chair" value="<?=$ap_record->ActivityChair?>"
+                 oninvalid="this.setCustomValidity('Please go back to fill this up')" autocomplete="off"  required >
 
                 <br>
 
                 Contact Number:
-                <input type="text" class="form-control form-control-sm" name="contact_number" id="contact_number" value="<?=$ap_record->ChairContactNumber?>"
-                  required disabled>
+                <input type="text" class="form-control form-control-sm readonly" name="contact_number" id="contact_number" value="<?=$ap_record->ChairContactNumber?>"
+                oninvalid="this.setCustomValidity('Please go back to fill this up')" autocomplete="off" autocomplete="off" required >
 
                 <br>
 
 
                 Activity Date:
-                <input type="date" class="form-control form-control-sm" name="date_activity" id="date_activity" value="<?=$ap_record->DateActivity?>"
-                  required disabled>
+                <input type="date" class="form-control form-control-sm readonly" name="date_activity" id="date_activity" value="<?=$ap_record->DateActivity?>"
+                 oninvalid="this.setCustomValidity('Please go back to fill this up')" autocomplete="off" disabled >
 
                 <br>
 
                 Activity Time:
-                <input type="time" class="form-control form-control-sm" name="start_time_activity" id="start_time_activity"
-                  value="<?=$ap_record->StartTime?>" required disabled> <br> To <br>
-                <input type="time" class="form-control form-control-sm" name="end_time_activity" id="end_time_activity"
-                  value="<?=$ap_record->EndTime?>" required disabled>
+                <input type="time" class="form-control form-control-sm readonly" name="start_time_activity" id="start_time_activity"
+                  value="<?=$ap_record->StartTime?>" oninvalid="this.setCustomValidity('Please go back to fill this up')" autocomplete="off" disabled required > <br> To <br>
+                <input type="time" class="form-control form-control-sm readonly" name="end_time_activity" id="end_time_activity"
+                  value="<?=$ap_record->EndTime?>" oninvalid="this.setCustomValidity('Please go back to fill this up')" autocomplete="off" disabled required >
 
                 <br>
 
                 Activity Venue:
-                <input type="text" class="form-control form-control-sm" name="activity_venue" id="activity_venue" value="<?=$ap_record->ActivityVenue?>"
-                  required disabled>
+                <input type="text" class="form-control form-control-sm readonly" name="activity_venue" id="activity_venue" value="<?=$ap_record->ActivityVenue?>"
+                 oninvalid="this.setCustomValidity('Please go back to fill this up')" autocomplete="off" required >
 
               </div><!-- ACTIVITY PROPOSAL FORM TEXT SECTION END-->
 
@@ -100,77 +100,77 @@
                   <hr>
 
                   <input type="radio" name="radio_activity_type_2" class="form-check-input rd_proposal_type2" id="rd_acad"
-                    value="Academic" <?=$this->proposals_model->checkAcademic($proposal_id)?> required disabled>
+                    value="Academic" <?=$this->proposals_model->checkAcademic($proposal_id)?> oninvalid="this.setCustomValidity('Please go back to fill this up')" required disabled>
                   <label id="label_radiobutton">ACADEMIC</label>
                   <br>
-                  <input type="radio" name="radio_activity_type_2" class="form-check-input rd_proposal_type2" id="rd_nacad"
-                    value="Non-Academic" <?=$this->proposals_model->checkNonAcademic($proposal_id)?> required disabled>
+                  <input type="radio" name="radio_activity_type_2" class="form-check-input rd_proposal_type2 readonly" id="rd_nacad"
+                    value="Non-Academic" <?=$this->proposals_model->checkNonAcademic($proposal_id)?> oninvalid="this.setCustomValidity('Please go back to fill this up')" required disabled>
                   <label id="label_radiobutton">NON-ACADEMIC</label>
                   <div class="rd-non-academic-container">
 
                     <div style="position: relative; left: 30px">
 
-                      <input type="radio" name="non_academic_rd" class="form-check-input non_acad_rd" id="rd_comm" value="Community Involvement"
-                        <?=$this->proposals_model->checkCommunity($proposal_id)?> disabled>Community Involvement
+                      <input type="radio" name="non_academic_rd" class="form-check-input non_acad_rd readonly" id="rd_comm" value="Community Involvement"
+                        <?=$this->proposals_model->checkCommunity($proposal_id)?> oninvalid="this.setCustomValidity('Please go back to fill this up')" disabled>Community Involvement
                       <br>
 
-                      <input type="radio" name="non_academic_rd" class="form-check-input non_acad_rd" id="rd_cocur" value="Co-Curricular"
-                        <?=$this->proposals_model->checkCoCurricular($proposal_id)?> disabled>Co-Curricular
+                      <input type="radio" name="non_academic_rd" class="form-check-input non_acad_rd readonly" id="rd_cocur" value="Co-Curricular"
+                        <?=$this->proposals_model->checkCoCurricular($proposal_id)?> oninvalid="this.setCustomValidity('Please go back to fill this up')" disabled>Co-Curricular
                       <br>
                       <div id="co-curricular">
-                        Specified: <input type="text" name="specified_co_curric" class="form-control" id="specified_co"
-                          value="<?=$ap_record->Specified?>" disabled>
+                        Specified: <input type="text" name="specified_co_curric" class="form-control readonly" id="specified_co"
+                          value="<?=$ap_record->Specified?>" oninvalid="this.setCustomValidity('Please go back to fill this up')" disabled >
                       </div>
 
-                      <input type="radio" name="non_academic_rd" class="form-check-input non_acad_rd" id="rd_excur" value="Extra-Curricular"
-                        <?=$this->proposals_model->checkExtraCurricular($proposal_id)?> disabled>Extra-Curricular
+                      <input type="radio" name="non_academic_rd" class="form-check-input non_acad_rd readonly" id="rd_excur" value="Extra-Curricular"
+                        <?=$this->proposals_model->checkExtraCurricular($proposal_id)?> oninvalid="this.setCustomValidity('Please go back to fill this up')" disabled>Extra-Curricular
                       <br>
                       <div id="extra-curricular">
-                        Specified: <input type="text" name="specified_ex_curric" class="form-control" id="specified_ex"
-                          value="<?=$ap_record->Specified?>" disabled>
+                        Specified: <input type="text" name="specified_ex_curric" class="form-control readonly" id="specified_ex"
+                          value="<?=$ap_record->Specified?>" oninvalid="this.setCustomValidity('Please go back to fill this up')" disabled >
                       </div>
 
                       <hr>
                     </div>
 
-                    <input type="radio" name="radio_activity_type_1" class="rd_proposal_type1" id="rd_ind" value="Independent"
-                      <?=$this->proposals_model->checkIndependent($proposal_id)?> required disabled>
+                    <input type="radio" name="radio_activity_type_1" class="rd_proposal_type1 readonly" id="rd_ind" value="Independent"
+                      <?=$this->proposals_model->checkIndependent($proposal_id)?> oninvalid="this.setCustomValidity('Please go back to fill this up')" required disabled>
                     <label id="label_radiobutton">INDEPENDENT</label>
                     <br>
-                    <input type="radio" name="radio_activity_type_1" class="rd_proposal_type1" id="rd_col" value="Collaborative" 
-                      <?=$this->proposals_model->checkCollaborative($proposal_id)?> required disabled>
+                    <input type="radio" name="radio_activity_type_1" class="rd_proposal_type1 readonly" id="rd_col" value="Collaborative" 
+                      <?=$this->proposals_model->checkCollaborative($proposal_id)?> oninvalid="this.setCustomValidity('Please go back to fill this up')" required disabled >
                     <label id="label_radiobutton">COLLABORATIVE</label>
 
                     <div id="collab-container">
-                      Partner/s: <input type="text" class="field_ap form-control" name="specified_co_curric" id="partner_collab"
-                        value="<?=$ap_record->Partners?>">
+                      Partner/s: <input type="text" class="field_ap form-control readonly" name="specified_co_curric" id="partner_collab"
+                        value="<?=$ap_record->Partners?>" oninvalid="this.setCustomValidity('Please go back to fill this up')" disabled>
                     </div>
                   </div>
                 </div>
               </div><!-- ACTIVITY PROPOSAL FORM RADIO SECTION END-->
               <div class="ap-longtext my-5 col-md-12"><!-- ACTIVITY PROPOSAL FORM LONG TEXT SECTION START-->
                 <label>Nature of the Activity</label>
-                <textarea rows="3" class="form-control form-control-sm" id="nature_textarea" name="nature" placeholder="What is the activity all about?"
-                  maxlength="230" required disabled><?=$ap_record->Nature?></textarea>
+                <textarea rows="3" class="form-control form-control-sm readonly" id="nature_textarea" name="nature" placeholder="What is the activity all about?"
+                  maxlength="230" oninvalid="this.setCustomValidity('Please go back to fill this up')" required ><?=$ap_record->Nature?></textarea>
 
                 <br>
 
                 <label>Objectives of the Activity</label>
-                <textarea rows="3" class="form-control form-control-sm" id="objectives_textarea" name="objectives" placeholder="Goal or Aim in doing this activity in number form"
-                  maxlength="230" required disabled><?=$ap_record->Objectives?></textarea>
+                <textarea rows="3" class="form-control form-control-sm readonly" id="objectives_textarea" name="objectives" placeholder="Goal or Aim in doing this activity in number form"
+                  maxlength="230" oninvalid="this.setCustomValidity('Please go back to fill this up')" required ><?=$ap_record->Objectives?></textarea>
 
                 <br>
 
                 <label>Rationale</label>
-                <textarea rows="3" class="form-control form-control-sm" id="rationale_textarea" name="rationale"
-                  placeholder="Goal or Aim in doing this activity in number form" maxlength="350" required disabled><?=$ap_record->Rationale?></textarea>
+                <textarea rows="3" class="form-control form-control-sm readonly" id="rationale_textarea" name="rationale"
+                  placeholder="Goal or Aim in doing this activity in number form" maxlength="350" oninvalid="this.setCustomValidity('Please go back to fill this up')" required ><?=$ap_record->Rationale?></textarea>
 
                 <br>
 
 
                 <label>Participants</label>
-                <textarea rows="3" class="form-control form-control-sm" id="participants_textarea" name="participants"
-                  required disabled><?=$ap_record->Participants?></textarea>
+                <textarea rows="3" class="form-control form-control-sm readonly" id="participants_textarea" name="participants"
+                 oninvalid="this.setCustomValidity('Please go back to fill this up')" required ><?=$ap_record->Participants?></textarea>
 
                 <br>
               </div><!-- ACTIVITY PROPOSAL FORM LONG TEXT SECTION END-->              
@@ -191,7 +191,7 @@
               <p class="text-center oapps-bmb">Fixed Asset Requirements</p>
             </div>
           </div> <!-- FIXED ASSET REQ HEAD ROW END -->
-          <div class="row oapps-ch" style="overflow-y: auto;" disabled> <!-- FIXED ASSET REQ START -->
+          <div class="row oapps-ch" style="overflow-y: auto;" > <!-- FIXED ASSET REQ START -->
             <p class="m-4">
               <!-- FIXED ASSET REQ CONTENT START -->
               <div class="container-far">
@@ -213,23 +213,23 @@
                       <?=$far_counter?>
                     </td>
                     <td>
-                      <input type="text" class="form-control form-control-sm medium-text-box far-item" name="far_item[]"
-                        id="far_txt_item<?=$far_counter?>" value="<?=$far_record->Item?>" maxlength="15" disabled />
+                      <input type="text" class="form-control form-control-sm medium-text-box far-item readonly" name="far_item[]"
+                        id="far_txt_item<?=$far_counter?>" oninvalid="this.setCustomValidity('Please go back to fill this up')" autocomplete="off" value="<?=$far_record->Item?>" maxlength="15" />
                     </td>
                     <td>
-                      <input type="number" class="form-control form-control-sm small-text-box far-quantity" name="far_quantity[]"
-                        id="far_txt_quantity<?=$far_counter?>" oninput="calculate(this.id)" min=0 value="<?=$far_record->Quantity?>" disabled />
+                      <input type="number" class="form-control form-control-sm small-text-box far-quantity readonly" name="far_quantity[]"
+                        id="far_txt_quantity<?=$far_counter?>" oninvalid="this.setCustomValidity('Please go back to fill this up')" autocomplete="off" oninput="calculate(this.id)" min=0 value="<?=$far_record->Quantity?>" />
                     </td>
                     <td>
-                      <input type="number" class="form-control form-control-sm small-text-box far-unit" name="far_unit_price[]"
-                        id="far_txt_unit<?=$far_counter?>" oninput="calculate(this.id)" step="any" min=0 value="<?=$far_record->Unit_Price?>" disabled/>
+                      <input type="number" class="form-control form-control-sm small-text-box far-unit readonly" name="far_unit_price[]"
+                        id="far_txt_unit<?=$far_counter?>" oninvalid="this.setCustomValidity('Please go back to fill this up')" autocomplete="off" oninput="calculate(this.id)" step="any" min=0 value="<?=$far_record->Unit_Price?>" />
                     </td>
                     <td>
-                      <input type="number" class="form-control form-control-sm small-text-box far-total" name="far_total_amount[]"
-                        id="far_txt_total<?=$far_counter?>" value="<?=$far_record->Total_Amount?>" readonly />
+                      <input type="number" class="form-control form-control-sm small-text-box far-total readonly" name="far_total_amount[]"
+                        id="far_txt_total<?=$far_counter?>" oninvalid="this.setCustomValidity('Please go back to fill this up')" autocomplete="off" value="<?=$far_record->Total_Amount?>" />
                     </td>
                     <td>
-                      <select class="form-control medium-text-box far-source" name="far_source[]" id="far_source_of_fund<?=$far_counter?>" disabled>
+                      <select class="form-control medium-text-box far-source readonly" oninvalid="this.setCustomValidity('Please go back to fill this up')" name="far_source[]" id="far_source_of_fund<?=$far_counter?>" >
                         <option <?=$this->proposals_model->selectSAF($far_id, 0)?> >Student Activity Fund</option>
                         <option <?=$this->proposals_model->selectCF($far_id, 0)?> >Cultural Fund</option>
                         <option <?=$this->proposals_model->selectOF($far_id, 0)?> >Organizational Fund</option>
@@ -241,10 +241,10 @@
                     <td>
                       
 
-                      <input type="text" class="form-control form-control-sm far-id" name="far_id[]" id="far_txt_id<?=$far_counter?>"
-                        value="<?=$far_id?>" hidden required readonly />
-                      <input type="text" class="form-control form-control-sm far-proposal-id" name="proposal_id" id="far_txt_proposal_id<?=$far_counter?>"
-                        value="<?=$far_record->Proposal_ID?>" hidden required readonly />
+                      <input type="text" class="form-control form-control-sm far-id readonly" name="far_id[]" id="far_txt_id<?=$far_counter?>"
+                        value="<?=$far_id?>" oninvalid="this.setCustomValidity('Please go back to fill this up')" hidden required />
+                      <input type="text" class="form-control form-control-sm far-proposal-id readonly" name="proposal_id" id="far_txt_proposal_id<?=$far_counter?>"
+                        value="<?=$far_record->Proposal_ID?>" oninvalid="this.setCustomValidity('Please go back to fill this up')" hidden required />
 
                     </td>
                   </tr>
@@ -295,23 +295,23 @@
                       <?=$oe_counter?>
                     </td>
                     <td>
-                      <input type="text" class="form-control form-control-sm medium-text-box" name="oe_item[]" id="oe_txt_item<?=$oe_counter?>"
-                        value="<?=$oe_record->Item?>" maxlength="15" disabled/>
+                      <input type="text" class="form-control form-control-sm medium-text-box readonly" name="oe_item[]" id="oe_txt_item<?=$oe_counter?>"
+                        value="<?=$oe_record->Item?>" oninvalid="this.setCustomValidity('Please go back to fill this up')" autocomplete="off" maxlength="15" />
                     </td>
                     <td>
-                      <input type="number" class="form-control form-control-sm small-text-box" name="oe_quantity[]" id="oe_txt_quantity<?=$oe_counter?>"
-                        oninput="calculate2(this.id)" min=0 value="<?=$oe_record->Quantity?>" disabled/>
+                      <input type="number" class="form-control form-control-sm small-text-box readonly" name="oe_quantity[]" id="oe_txt_quantity<?=$oe_counter?>"
+                        oninput="calculate2(this.id)" oninvalid="this.setCustomValidity('Please go back to fill this up')" autocomplete="off" min=0 value="<?=$oe_record->Quantity?>" />
                     </td>
                     <td>
-                      <input type="number" class="form-control form-control-sm small-text-box" name="oe_unit_price[]" id="oe_txt_unit<?=$oe_counter?>"
-                        oninput="calculate2(this.id)" step="any" min=0 value="<?=$oe_record->Unit_Price?>" disabled/>
+                      <input type="number" class="form-control form-control-sm small-text-box readonly" name="oe_unit_price[]" id="oe_txt_unit<?=$oe_counter?>"
+                        oninput="calculate2(this.id)" oninvalid="this.setCustomValidity('Please go back to fill this up')" autocomplete="off" step="any" min=0 value="<?=$oe_record->Unit_Price?>" />
                     </td>
                     <td>
-                      <input type="number" class="form-control form-control-sm small-text-box" name="oe_total_amount[]" id="oe_txt_total<?=$oe_counter?>"
-                        value="<?=$oe_record->Total_Amount?>" readonly />
+                      <input type="number" class="form-control form-control-sm small-text-box readonly" name="oe_total_amount[]" id="oe_txt_total<?=$oe_counter?>"
+                       oninvalid="this.setCustomValidity('Please go back to fill this up')" value="<?=$oe_record->Total_Amount?>" />
                     </td>
                     <td>
-                      <select class="form-control medium-text-box" name="oe_source[]" id="oe_source_of_fund<?=$oe_counter?>" disabled>
+                      <select class="form-control medium-text-box readonly" oninvalid="this.setCustomValidity('Please go back to fill this up')" name="oe_source[]" id="oe_source_of_fund<?=$oe_counter?>" >
                         <option <?=$this->proposals_model->selectSAF(0, $oe_id)?> >Student Activity Fund</option>
                         <option <?=$this->proposals_model->selectCF(0, $oe_id)?> >Cultural Fund</option>
                         <option <?=$this->proposals_model->selectOF(0, $oe_id)?> >Organizational Fund</option>
@@ -321,10 +321,10 @@
                       </select>
                     </td>
                     <td>
-                      <input type="text" class="form-control form-control-sm" hidden name="oe_id[]" id="oe_txt_id<?=$oe_counter?>"
-                      value="<?=$oe_id?>" hidden required readonly />
+                      <input type="text" class="form-control form-control-sm readonly" hidden name="oe_id[]" id="oe_txt_id<?=$oe_counter?>"
+                      value="<?=$oe_id?>" autocomplete="off" hidden required />
                       <input type="text" class="form-control form-control-sm oe-proposal-id" name="proposal_id" id="oe_txt_proposal_id<?=$oe_counter?>"
-                        value="<?=$oe_record->Proposal_ID?>" hidden required readonly />
+                        value="<?=$oe_record->Proposal_ID?>" autocomplete="off" hidden required />
                     </td>
                   </tr>
                   <?php $oe_counter++;?>

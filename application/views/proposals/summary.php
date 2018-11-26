@@ -9,15 +9,17 @@
   $prefix = $this->session->userdata('prefix');
   $proposal_id = $records_ap->Proposal_ID;
 
-//   if ($proposal_id == "") {
-//     redirect("home");
-//   }
+  $org = $this->accounts_model->getOrgInfo($records_ap->Account_ID);
+
+  if ($proposal_id == "") {
+    redirect("home");
+  }
   $non_academic_type = $records_ap->NonAcademicType;
   ?>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Revise</title>
+  <title>Proposal Summary</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="<?=base_url();?>assets/css/styles.css">
   <script type="text/javascript">
@@ -42,9 +44,9 @@
           <h4>Proposed by the <?=$records_ap->Organization?></h4>
         </div>
         <div class="card-body">
-          <p>Organization Representative: </p>
-          <p>Contact Number: </p>
-          <p>Date Submitted: </p>
+          <p>Organization Representative: <?=$org->FullName?> </p>
+          <p>Contact Number: <?=$org->ContactNumber?></p>
+          <p>Date Submitted: <?=$this->proposals_model->getSubmitDate($proposal_id)?> </p>
         </div>
       </div>
     </div> <!-- ROW HEADER END -->  
@@ -131,24 +133,30 @@
                 </tr>
               </thead>
               <tbody>
+              <?php if (is_array($records_far) || is_object($records_far)): ?>
+              <?php 
+              $counter = 0;
+              $sum_far = 0;
+              ?>
+              <?php foreach($records_far as $record_far): ?>
+              <?php $counter++?>
                 <tr>
-                  <td>1</td>
-                  <td>Printer</td>
-                  <td>2</td>
-                  <td>1500</td>
-                  <td>3000</td>
-                  <td>Mamamoo</td>
+                  <td><?=$counter?></td>
+                  <td><?=$record_far->Item?></td>
+                  <td><?=$record_far->Quantity?></td>
+                  <td><?=$record_far->Unit_Price?></td>
+                  <td><?=$record_far->Total_Amount?></td>
+                  <td><?=$record_far->Source?></td>
+                  <?php $sum_far += $record_far->Total_Amount?>
                 </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Monitor</td>
-                  <td>2</td>
-                  <td>1500</td>
-                  <td>3000</td>
-                  <td>Mamamooulet</td>
-                </tr>
+              <?php endforeach ?>
+              <?php else: ?>
+              <p>No records</p>
+              <?php endif ?>
               </tbody>
+              
             </table>
+            <p>Total: PHP <?=number_format($sum_far)?></p>
           </div>
         </div> <!-- FAR CARD END -->
   
@@ -169,30 +177,40 @@
                   <th>Source of Fund</th>
                 </tr>
               </thead>
-              <tbody>
+              <?php if (is_array($records_oe) || is_object($records_oe)): ?>
+              <?php 
+              $counter = 0;
+              $sum_oe = 0;
+              ?>
+              <?php foreach($records_oe as $record_oe): ?>
+              <?php $counter++?>
                 <tr>
-                  <td>1</td>
-                  <td>Printer</td>
-                  <td>2</td>
-                  <td>1500</td>
-                  <td>3000</td>
-                  <td>Mamamoo</td>
+                  <td><?=$counter?></td>
+                  <td><?=$record_oe->Item?></td>
+                  <td><?=$record_oe->Quantity?></td>
+                  <td><?=$record_oe->Unit_Price?></td>
+                  <td><?=$record_oe->Total_Amount?></td>
+                  <td><?=$record_oe->Source?></td>
+                  <?php $sum_oe += $record_oe->Total_Amount?>
                 </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Monitor</td>
-                  <td>2</td>
-                  <td>1500</td>
-                  <td>3000</td>
-                  <td>Mamamooulet</td>
-                </tr>
+              <?php endforeach ?>
+              <?php else: ?>
+              <p>No records</p>
+              <?php endif ?>
               </tbody>
+              
             </table>
+            <p>Total: PHP <?=number_format($sum_oe)?></p>
           </div>
         </div> <!-- OE CARD END -->
       </div> <!-- LEFT SIDE COL END -->
       <div class="col-lg-6 col-md-12 d-flex flex-column"> <!-- RIGHT SIDE COL START -->
         <div class="row">
+          <div class="col-2">
+            <a href="<?=base_url()?>home">
+              <input class="btn btn-light mt-5 mx-5" type="button" value="Go Back">
+            </a>
+          </div>
           <div class="col-2">
             <a href="<?=base_url()?>proposal/view/<?=$proposal_id?>">
               <input class="btn btn-light mt-5 mx-5" type="button" value="Print">

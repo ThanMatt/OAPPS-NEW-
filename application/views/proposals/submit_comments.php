@@ -214,7 +214,7 @@
   
         <div class="row">
           <div class="col-2">
-            <a href="<?=base_url()?>proposal/view/<?=$proposal_id?>">
+            <a href="<?=base_url()?>home">
               <input class="btn btn-light mt-5 mx-5" type="button" value="Go Back">
             </a>
           </div>
