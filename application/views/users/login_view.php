@@ -65,7 +65,6 @@
           </div>
         </div>
         <div class="row d-flex justify-content-around mt-3">
-          <p style="color: blue;">Forgot Password?</p>
           <input type="submit" id="button" name="submit" class="btn btn-light mt-3" value="Log-in"/>
         </div>
       </div>
