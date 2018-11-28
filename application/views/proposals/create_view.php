@@ -279,7 +279,7 @@
             <input type="button" class="table-header btn btn-light btn-lg" name="back" id="button" value="Go Back">
           </a>
           <input type="button" class="table-header btn btn-light btn-lg save" name="submit" id="btn_save" value="Save">
-          <input type="submit" class="table-header btn btn-light btn-lg" name="submit" id="submit_btn" value="Review">
+          <input type="button" class="table-header btn btn-light btn-lg" name="submit" id="btn_review" value="Review">
         </div>
       </div>
 

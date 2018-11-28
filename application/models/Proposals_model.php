@@ -118,22 +118,65 @@ class Proposals_Model extends CI_Model {
     $rows = $result->num_rows();
 
     if ($rows >= 1) {
-      $row = $result->row();
-      return $row->ActivityName;
+      return $result->result();
     } else {
       return 'No Records';
     }
 
   }
 
-  public function pendingCount($org_id) {
+  public function showApprovedRecords($org_id) {
     $this->db->from('activity_proposal');
     $this->db->where('Account_ID', $org_id);
-    $this->db->where('ProposalStatus', 'PENDING');
+    $this->db->where('ProposalStatus', 'APPROVED');
+
+    $result = $this->db->get();
+    $rows = $result->num_rows();
+
+    if ($rows >= 1) {
+      return $result->result();
+    } else {
+      return 'No Records';
+    }
+
+  }
+
+  public function totalExpenditure($org_id) {
+    $this->db->select_sum('Total_Amount');
+    $this->db->from('fixed_assets_requirements');
+    $this->db->where('Account_ID', $org_id);
+    $this->db->where('(ProposalStatus = "PENDING" OR ProposalStatus = "APPROVED")');
 
     $result = $this->db->get();
 
-    return $result->num_rows();
+    $row = $result->row();
+
+    $far_total = $row->Total_Amount;
+
+    $this->db->select_sum('Total_Amount');
+    $this->db->from('operating_expenses');
+    $this->db->where('Account_ID', $org_id);
+
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    $oe_total = $row->Total_Amount;
+
+    return ($oe_total + $far_total);
+
+  }
+
+  public function averageExpenditure($org_id) {
+    $this->db->select_avg('operating_expenses.Total_Amount');
+    $this->db->from('operating_expenses');
+    $this->db->join('fixed_assets_requirements', 'fixed_assets_requirements.Account_ID = operating_expenses.Account_ID');
+    $this->db->where('operating_expenses.Account_ID', $org_id);
+
+    $result = $this->db->get();
+    $row = $result->row();
+
+    return $row->Total_Amount;
 
   }
 

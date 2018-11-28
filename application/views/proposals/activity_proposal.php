@@ -390,7 +390,7 @@
           <a href="delete/<?=$ap_record->Proposal_ID?>">
             <input type="button" class="table-header btn btn-light btn-lg" name="delete_btn" id="btn_delete" value="Delete Proposal">
           </a>
-          <input type="submit" class="table-header btn btn-light btn-lg" name="submit" id="submit_btn" value="Submit">
+          <input type="button" class="table-header btn btn-light btn-lg" name="submit" id="btn_review" value="Review">
         </div>
       </div>
 

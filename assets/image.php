@@ -1,9 +1,9 @@
 <?php 
 
-$host = getenv('OAPPS_MYSQL_HOST');
-$user = getenv('OAPPS_MYSQL_USER');
-$pass = getenv('OAPPS_MYSQL_PASS');
-$db = getenv('OAPPS_MYSQL_DB');
+$host = "localhost";
+$user = "root";
+$pass = "mysql";
+$db = "sbu_oapps";
 
 $connect = new mysqli ($host, $user, $pass, $db);
 
