@@ -170,6 +170,48 @@ $(function () {
     }
   });
 
+  $('#upload-btn-first').click(function() {
+    alert("You have to save your proposal first!");
+  });
+
+  $('#upload-doc').submit(function (e) {
+    e.preventDefault();
+
+    var proposal_id = $('#proposal_id').val();
+
+    $.ajax({
+      type: 'POST',
+      url: BASE_URL + 'upload/documents/' + proposal_id,
+      data: new FormData(this),
+      contentType: false,
+      cache: false,
+      processData: false,
+      dataType: 'json',
+      success: function (response) {
+        if (response.success) {
+          alert('Upload successful');
+        } else {
+          alert(response.remark);
+        }
+      },
+      error: function (response) {
+        alert(response.remark);
+      }
+    });
+  });
+
+  $(document).on('click', '.checklist', function() {
+    var id = $(this).attr('id');
+    var checkbox = $(this);
+    var value = $(this).val();
+
+    if (checkbox.is(':checked')) {
+      $('#upload-box').append("<div class='files' id='upload-"+ (id + 1) +"'><input type='file' id='"+ (id + 1) + "' name='"+ id +"'>" + value + "</div>");
+    } else {
+      $('#upload-' + id + 1).remove();
+    }
+  });
+
   //:: Initialize proposal
   $(document).on('click', '.save', function () {
     event.preventDefault();

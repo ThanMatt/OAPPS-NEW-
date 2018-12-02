@@ -1993,6 +1993,74 @@ class Proposals_Model extends CI_Model {
     return $string ? implode(', ', $string) . ' ago' : 'just now';
   }
 
+  public function uploadDocs($proposal_id, $account_id, $document, $name) {
+    $data = array(
+      'Proposal_ID' => $proposal_id,
+      'Account_ID' => $account_id,
+      'Document_Type' => $name,
+      'Document' => $document,
+    );
+
+    $result = $this->db->insert('documents', $data);
+
+    return $result;
+  }
+
+  public function checkIfUploadExists($proposal_id, $account_id, $document_type) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->where('Account_ID', $account_id);
+    $this->db->where('Document_Type', $document_type);
+    $this->db->from('documents');
+
+    $result = $this->db->get();
+
+    $rows = $result->num_rows();
+
+    if ($rows == 1) {
+      return true;
+    } else {
+      return false;
+    }
+
+  }
+
+  public function overwriteDocs($proposal_id, $account_id, $document_type, $document) {
+    $data = array(
+      'Document' => $document,
+    );
+
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->where('Account_ID', $account_id);
+    $this->db->where('Document_Type', $document_type);
+    $result = $this->db->update('documents', $data);
+
+    return $result;
+  }
+
+  public function showDocuments($proposal_id, $account_id) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->where('Account_ID', $account_id);
+    $this->db->from('documents');
+
+    $result = $this->db->get();
+
+    return $result->result();
+  }
+
+  public function shadeCheckList($proposal_id, $account_id, $document_type) {
+    $this->db->where('Proposal_ID', $proposal_id);
+    $this->db->where('Account_ID', $account_id);
+    $this->db->where('Document_Type', $document_type);
+    $this->db->from('documents');
+
+    $result = $this->db->get();
+    $rows = $result->num_rows();
+
+    if ($rows == 1) {
+      return 1;
+    }
+  }
+
 }
 
 ?>

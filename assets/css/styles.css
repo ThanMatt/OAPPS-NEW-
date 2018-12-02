@@ -100,11 +100,11 @@ a:visited {
   color: white;
 }
 
-img {
+/* img {
   border-radius: 50%;
   width: 125px;
   height: 125px;
-}
+} */
 
 .oapps-h {
   min-height: 18.5% !important;
@@ -218,8 +218,18 @@ img {
 .oapps-profile-img {
   border-radius: 50%;
   width: 125px;
-  height: 125px;
-  
+  height: 125px; 
+}
+
+.oapps-logos {
+  border-radius: 50%;
+  width: 125px;
+  height: 125px; 
+}
+
+.oapps-signature {
+  width: 250px;
+  height: 125px; 
 }
 
 .oapps-profile-img:focus, .oapps-profile-img:hover {

@@ -345,7 +345,20 @@
 
       <div class="row no-gutters mt-5"><!-- FOURTH ROW END -->
         <div class="col-lg-10 ml-5 mt-5"> <!-- INSERT DOCUMENT SUBMISSION HERE -->
-          <p class="mt-5 text-monospace">Show list of uploaded documents here</p>
+          <div class="card" style="width: 18rem;">
+            <div class="card-header">
+              Documents
+            </div>
+            <ul class="list-group list-group-flush">
+              <?php if(is_array($documents) || is_object($documents)):?>
+                <?php foreach($documents as $document): ?>
+                  <li class="list-group-item"><a href="<?=base_url()?>uploads/files/<?=$document->Document?>"><?=$document->Document_Type?></a></li>
+                <?php endforeach ?>
+              <?php else: ?>
+                <li class="list-group-item">No Documents</a></li>
+              <?php endif ?>
+            </ul>
+          </div>
         </div>
 
       </div>

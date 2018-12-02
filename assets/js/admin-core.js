@@ -10,13 +10,6 @@ $(function () {
       $('#admin-log').load(BASE_URL + 'Admin/displayLogs').fadeIn("slow");
     }, 5500); // refreshing after every 15000 milliseconds
 
-
-
-
-  $(".img").on("click", function () {
-    $(".dropdown-content").toggle("dropdowntest");
-  });
-
   //:: Check login credentials
   $("#ajax_form").submit(function (event) {
     event.preventDefault();
@@ -41,7 +34,7 @@ $(function () {
   });
 
   //:: View clicked proposals
-  $('body').on('click', '.proposal-view', function () {
+  $(document).on('click', '.proposal-view', function () {
     var view_buttonID = $(this).attr('id');
     var account_id = view_buttonID.split("/")[1];
 
@@ -53,6 +46,7 @@ $(function () {
       data: {
         account_id: account_id,
       },
+      cache: false,
       success: function (response) {
         $('#account-container').html(response);
       },
@@ -61,6 +55,33 @@ $(function () {
         location.reload();
       },
     });
-  })
+  });
+
+  $('#admin-new').submit(function (e) {
+    e.preventDefault();
+
+    $.ajax({
+      type: 'POST',
+      url: BASE_URL + 'admin/register',
+      data: new FormData(this),
+      contentType: false,
+      cache: false,
+      processData: false,
+      dataType: 'json',
+      success: function (response) {
+        if (response.success) {
+          alert('Registration successful');
+          window.location.replace(BASE_URL + "admin/edit");
+
+        } else {
+          alert(response.remark);
+        }
+      },
+      error: function (response) {
+        alert("There was an error");
+        location.reload();
+      }
+    });
+  });
 
 });

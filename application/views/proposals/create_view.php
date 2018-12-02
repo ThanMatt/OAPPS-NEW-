@@ -269,19 +269,24 @@
 
       <div class="row no-gutters mt-5"><!-- FOURTH ROW END -->
         <div class="col-lg-10 ml-5 mt-5"> <!-- INSERT DOCUMENT SUBMISSION HERE -->
-          <p class="mt-5 text-monospace">Upload Document Here Upload Another Document Here Upload Another Document Here Upload Another Document Here</p>
+          <input type="button" class="table-header btn btn-light btn-lg" data-toggle="modal" data-target="#uploadModal" name="" id="upload-btn-first" value="Upload Documents">
         </div>
 
       </div>
+
       <div class="row d-flex">
         <div class="col-lg-5 offset-lg-7 col-md-6 offset-md-6 col-sm-8 offset-sm-4 col-xs-8 offset-xs-4 my-5"> <!-- FINAL BUTTONS HERE -->
           <a href="<?=base_url()?>home">
             <input type="button" class="table-header btn btn-light btn-lg" name="back" id="button" value="Go Back">
           </a>
+
+          
+
           <input type="button" class="table-header btn btn-light btn-lg save" name="submit" id="btn_save" value="Save">
           <input type="button" class="table-header btn btn-light btn-lg" name="submit" id="btn_review" value="Review">
         </div>
       </div>
+
 
 
         <?php else: ?>

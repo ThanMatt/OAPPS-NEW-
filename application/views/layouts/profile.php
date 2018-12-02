@@ -10,6 +10,7 @@
   $full_name = $this->session->userdata('full_name');
   $position = $this->session->userdata('position');
   $contact_number = $this->session->userdata('contact_number');
+  $contact_number = $this->session->userdata('logo');
   ?>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,7 +37,7 @@
           <div class="img">
             <div class="display-picture-holder">
               <div class="display-picture">
-                <img class="dropbtn" src="<?=base_url()?>assets/img/logo/<?=$prefix?>_logo.png">
+                <img class="dropbtn" src="<?=base_url()?>uploads/logos/<?=$logo?>">
 
               </div>
             </div>

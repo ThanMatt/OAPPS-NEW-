@@ -25,76 +25,109 @@
     $this->load->view('layouts/adminheader');
     ?>
     <div class="row m-5 oapps-mh"> <!-- FIRST ROW START -->
-
-      <div class="col-lg-3 mt-3 oapps-rh h-100" style="border: 1px black solid"> <!-- PROPOSAL LIST COL START -->
-          <div class="row oapps-bg-head"> <!-- PROPOSAL LIST HEAD ROW START -->
-            <div class="oapps-hh col-12 oapps-head-text-1 text-white">
-              <p class="text-center oapps-bmb">Org List</p>
-            </div>
-          </div> <!-- PROPOSAL LIST HEAD ROW END -->
-          <div class="d-flex flex-column oapps-ch" style="overflow-y: auto; overflow-x: hidden;"> <!-- PROPOSAL LIST ROW START -->
-            <div class="oapps-btn proposal-view" id=""><p class="text-center oapps-bmb">BITS</p></div> <!-- LOOP THIS FOR EACH ORG -->
-          </div> <!-- PROPOSAL LIST ROW END -->
-        </div> <!-- PROPOSAL LIST COL END -->
-      <div class="col-lg-8 mt-3 offset-lg-1 oapps-rh" style="border: 1px solid black"> <!-- EDIT/ADD COL START -->
+    <div class="col-lg-8 offset-lg-2 oapps-rh mb-5" style="border: 1px solid black"> <!-- ADMIN LOG COL START -->
         <div class="row oapps-bg-head "> <!-- EDIT/ADD HEAD ROW START -->
           <div class="oapps-hh col-12 oapps-head-text-1 text-white">
-              <p class="text-center oapps-bmb">Org Info</p>
+              <p class="text-center oapps-bmb">Register a new organization</p>
           </div> 
         </div> <!-- EDIT/ADD HEAD ROW END -->
         <div class="oapps-ch" style="overflow-y: auto; width: 100%; margin-left: .95rem !important">
           <!-- ADD/EDIT FORM START -->
           <div class="form-group mt-4 ml-5" style="width: 70%;">
-            <form>
-              <p class="lead">
-                Username: 
-                <!-- (BITS and other orgs. Can also be used to change office names if they change name) -->
-              </p>
-                
-              <input type="text" class="form-control form-control-sm" name="" id="" value="" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHklEQVQ4EaVTO26DQBD1ohQWaS2lg9JybZ+AK7hNwx2oIoVf4UPQ0Lj1FdKktevIpel8AKNUkDcWMxpgSaIEaTVv3sx7uztiTdu2s/98DywOw3Dued4Who/M2aIx5lZV1aEsy0+qiwHELyi+Ytl0PQ69SxAxkWIA4RMRTdNsKE59juMcuZd6xIAFeZ6fGCdJ8kY4y7KAuTRNGd7jyEBXsdOPE3a0QGPsniOnnYMO67LgSQN9T41F2QGrQRRFCwyzoIF2qyBuKKbcOgPXdVeY9rMWgNsjf9ccYesJhk3f5dYT1HX9gR0LLQR30TnjkUEcx2uIuS4RnI+aj6sJR0AM8AaumPaM/rRehyWhXqbFAA9kh3/8/NvHxAYGAsZ/il8IalkCLBfNVAAAAABJRU5ErkJggg==&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">
+            <form id="admin-new">
+            <p class="lead">
+              Account ID: 
+              <!-- (BITS and other orgs. Can also be used to change office names if they change name) -->
+            </p>
 
-              <br>
+            <input type="text" class="form-control form-control-sm" id="account-id" name="account_id" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHklEQVQ4EaVTO26DQBD1ohQWaS2lg9JybZ+AK7hNwx2oIoVf4UPQ0Lj1FdKktevIpel8AKNUkDcWMxpgSaIEaTVv3sx7uztiTdu2s/98DywOw3Dued4Who/M2aIx5lZV1aEsy0+qiwHELyi+Ytl0PQ69SxAxkWIA4RMRTdNsKE59juMcuZd6xIAFeZ6fGCdJ8kY4y7KAuTRNGd7jyEBXsdOPE3a0QGPsniOnnYMO67LgSQN9T41F2QGrQRRFCwyzoIF2qyBuKKbcOgPXdVeY9rMWgNsjf9ccYesJhk3f5dYT1HX9gR0LLQR30TnjkUEcx2uIuS4RnI+aj6sJR0AM8AaumPaM/rRehyWhXqbFAA9kh3/8/NvHxAYGAsZ/il8IalkCLBfNVAAAAABJRU5ErkJggg==&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" required>
 
-              <p class="lead">
-                Organization Name: 
-                <!-- (If orgs or offices decide to change their name.)  -->
-              </p>
-              <input type="text" class="form-control form-control-sm" name="" id="" value="">
+            <br>
 
-              <br>
+            <p class="lead">
+              Organization Name: 
+              <!-- (If orgs or offices decide to change their name.)  -->
+            </p>
+            <input type="text" class="form-control form-control-sm" name="organization" id="org-id" required>
 
-              <p class="lead">
-                Password: 
-              </p>
-              <input type="text" class="form-control form-control-sm" name="" id="" value="">
+            <br>
 
-              <br>
+            <p class="lead">
+              Password: 
+            </p>
+            <input type="password" autocomplete="new-password" class="form-control form-control-sm" name="password" id="pass-id" value="" required>
 
-              <p class="lead">
-                Representative Name: 
-                <!-- (When the representative changes.) -->
-              </p>
-              <input type="text" class="form-control form-control-sm" name="" id="" value="">
+            <br>
 
-              <br>    
-              <p class="lead">
-                Logo: 
-              </p>
-              <br>
-              Upload Box Here
+            <p class="lead">
+              Representative Name: 
+              <!-- (When the representative changes.) -->
+            </p>
+            <input type="text" class="form-control form-control-sm" name="full_name" id="rep-id" required>
 
-              <br>
-              <br>
+            <br> 
 
-              <p class="lead">
-                Signature: 
-              </p>
-              <br>
-              Upload Box Here
+            <p class="lead">
+              Email Address: 
+              <!-- (When the representative changes.) -->
+            </p>
+            <input type="email" class="form-control form-control-sm" name="email" id="email-id" required>
 
-              <br>      
-              <br>
-              <input type="submit" class="mt-5 btn btn-light btn-lg" name="submit" id="submit_btn" value="Submit">
+            <br>       
+
+            <p class="lead">
+              Contact Number: 
+              <!-- (When the representative changes.) -->
+            </p>
+            <input type="text" class="form-control form-control-sm" name="contact_number" id="contact-id" required>
+
+            <br>    
+
+            <p class="lead">
+              Position: 
+            </p>
+            <input type="text" class="form-control form-control-sm" name="position" id="position-id" required>
+
+            <br>  
+
+            <p class="lead">
+              Batch: 
+              <!-- (When the representative changes.) -->
+            </p>
+            <input type="text" class="form-control form-control-sm" name="batch" id="batch-id" required>
+
+            <br>    
+
+            <p class="lead">
+              Type: 
+              <!-- (When the representative changes.) -->
+            </p>
+            <select class="form-control" name="type" required>
+              <option value="Pro">Professional</option>
+              <option value="NonPro">Non-Professional</option>
+              <option value="N/A">N/A</option>
+            </select>
+
+            <br>    
+
+            <p class="lead">
+              Logo: 
+            </p>
+            <br>
+            <input type="file" class="form-control form-control-sm" name="logo" id="logo-id" required>
+
+            <br>
+            <br>
+
+            <p class="lead">
+              Signature: 
+            </p>
+            <input type="file" class="form-control form-control-sm" name="signature" id="signature-id" required>
+            <br>
+
+            <br>      
+            <br>
+            <input type="submit" class="mt-5 btn btn-light btn-lg" name="submit" id="submit_btn" value="Submit">
             </form>
           </div>
             <!-- ADD/EDIT FORM END -->
@@ -115,7 +148,7 @@
   <script type="text/javascript">
     var BASE_URL = "<?= base_url();?>";
   </script>
-  
+  <script src="<?=base_url();?>assets/js/admin-core.js"></script>
   <?php else: ?>
   <?php 
   $this->load->view('users/admin_login');
