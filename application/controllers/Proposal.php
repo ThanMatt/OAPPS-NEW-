@@ -12,9 +12,33 @@ class Proposal extends CI_Controller {
       $record_oe = $this->proposals_model->viewOERecord($proposal_id);
       $records_far = $this->proposals_model->viewFARRecord($proposal_id);
       $records_ap = $this->proposals_model->viewAPRecord($proposal_id);
+
       $data['records_oe'] = $record_oe;
       $data['records_far'] = $records_far;
       $data['records_ap'] = $records_ap;
+      $data['org_logo'] = $this->accounts_model->getMyLogo($records_ap->Account_ID);
+      $data['signature_president'] = $this->proposals_model->getSignaturePresident($proposal_id);
+      $data['signature_prefect'] = $this->proposals_model->getSignaturePrefect($proposal_id);
+      $data['signature_dean'] = $this->proposals_model->getSignatureDean($proposal_id);
+
+      $data['cash_request'] = $this->proposals_model->shadeCheckList($proposal_id, $records_ap->Account_ID, 'Cash Request');
+      $data['program'] = $this->proposals_model->shadeCheckList($proposal_id, $records_ap->Account_ID, 'Program');
+      $data['moa'] = $this->proposals_model->shadeCheckList($proposal_id, $records_ap->Account_ID, 'Moa of Suppliers');
+      $data['participants'] = $this->proposals_model->shadeCheckList($proposal_id, $records_ap->Account_ID, 'List of Participants');
+      $data['food_request'] = $this->proposals_model->shadeCheckList($proposal_id, $records_ap->Account_ID, 'Food Request');
+      $data['map_contact'] = $this->proposals_model->shadeCheckList($proposal_id, $records_ap->Account_ID, 'Map and Contact Person');
+      $data['contact_hospital'] = $this->proposals_model->shadeCheckList($proposal_id, $records_ap->Account_ID, 'Contact of Hospital & Police Station');
+      $data['letter_moderator'] = $this->proposals_model->shadeCheckList($proposal_id, $records_ap->Account_ID, 'Letter of Moderator');
+      $data['letter_parents'] = $this->proposals_model->shadeCheckList($proposal_id, $records_ap->Account_ID, 'Letter to the Parents');
+      $data['waiver_form'] = $this->proposals_model->shadeCheckList($proposal_id, $records_ap->Account_ID, 'Waiver Forms');
+      $data['medical_kit'] = $this->proposals_model->shadeCheckList($proposal_id, $records_ap->Account_ID, 'Medical Kit');
+      $data['letter_reserve'] = $this->proposals_model->shadeCheckList($proposal_id, $records_ap->Account_ID, 'Letter of Reservation');
+      $data['letter_entry'] = $this->proposals_model->shadeCheckList($proposal_id, $records_ap->Account_ID, 'Letter of Entry');
+      $data['imc_reserve'] = $this->proposals_model->shadeCheckList($proposal_id, $records_ap->Account_ID, 'IMC Reservation');
+      $data['letter_sponsor'] = $this->proposals_model->shadeCheckList($proposal_id, $records_ap->Account_ID, 'Letter of Sponsorship');
+      $data['letter_invite'] = $this->proposals_model->shadeCheckList($proposal_id, $records_ap->Account_ID, 'Letter of Invitation');
+      $data['excuse_letter'] = $this->proposals_model->shadeCheckList($proposal_id, $records_ap->Account_ID, 'Excuse Letter');
+
 
       if ($org_type == 'N/A') {
         if ($this->proposals_model->didIApproveThis($account_id, $proposal_id)) {
@@ -53,8 +77,16 @@ class Proposal extends CI_Controller {
   public function ask($proposal_id) {
     $account_id = $this->session->userdata('account_id');
     $this->proposals_model->getDateTime($account_id, $proposal_id);
+    $this->accounts_model->logMyActivity($account_id, 2, $proposal_id);
 
-    $data['record'] = $this->proposals_model->viewAPRecord($proposal_id);
+    $records_ap = $this->proposals_model->viewAPRecord($proposal_id);
+    $documents = $this->proposals_model->showDocuments($proposal_id, $records_ap->Account_ID);
+
+    $data['records_ap'] = $records_ap;
+    $data['records_oe'] = $this->proposals_model->viewOERecord($proposal_id);
+    $data['records_far'] = $this->proposals_model->viewFARRecord($proposal_id);
+    $data['documents'] = $documents;
+
     $this->load->view('proposals/submit_comments', $data);
   }
 
@@ -587,9 +619,24 @@ class Proposal extends CI_Controller {
 
       }
 
-      $this->accounts_model->logMyActivity($account_id, 9, $proposal_id);
-      $this->notifications_model->createNotifications($proposal_id, $account_id, $bp);
-      $this->proposals_model->insertTracker($account_id, $proposal_id);
+
+      if ($this->proposals_model->isItRevised($proposal_id)) {
+        $this->proposals_model->changeProposalStatus($proposal_id);
+        
+        $this->proposals_model->changeRevisionStatus($proposal_id);
+        $this->accounts_model->logMyActivity($account_id, 6, $proposal_id);
+
+        $office_id = $this->proposals_model->getOffice($proposal_id);
+
+        $this->proposals_model->updateTracker($office_id, $proposal_id);
+        $this->notifications_model->sendNotification($proposal_id, $account_id, 2, $office_id);
+        redirect("home");
+
+      } else {
+        $this->accounts_model->logMyActivity($account_id, 9, $proposal_id);
+        $this->notifications_model->createNotifications($proposal_id, $account_id, $bp);
+        $this->proposals_model->insertTracker($account_id, $proposal_id);
+      }
       echo json_encode($response);
 
     } else {
@@ -615,10 +662,45 @@ class Proposal extends CI_Controller {
     $data['ap_record'] = $this->proposals_model->viewAPRecord($proposal_id);
     $data['far_records'] = $this->proposals_model->viewFARRecord($proposal_id);
     $data['oe_records'] = $this->proposals_model->viewOERecord($proposal_id);
+    $data['documents'] = $this->proposals_model->showDocuments($proposal_id, $account_id);
 
     $this->load->view('proposals/review_proposal', $data);
 
   } 
+
+  public function revise($proposal_id) {
+    $account_id = $this->session->userdata('account_id');
+
+    $data['ap_record'] = $this->proposals_model->viewAPRecord($proposal_id);
+    $data['far_records'] = $this->proposals_model->viewFARRecord($proposal_id);
+    $data['oe_records'] = $this->proposals_model->viewOERecord($proposal_id);
+
+    $this->load->view('proposals/revise_view', $data);
+  }
+	
+	public function summary($proposal_id){
+    $account_id = $this->session->userdata('account_id');
+    $org_type = $this->session->userdata('org_type');
+
+    if ($org_type == 'N/A') {
+      if ($this->proposals_model->didIApproveThis($account_id, $proposal_id)) {
+        $this->proposals_model->getDateTime($account_id, $proposal_id);
+      }
+    }
+    $this->accounts_model->logMyActivity($account_id, 2, $proposal_id);
+    
+    $record_oe = $this->proposals_model->viewOERecord($proposal_id);
+    $records_far = $this->proposals_model->viewFARRecord($proposal_id);
+    $records_ap = $this->proposals_model->viewAPRecord($proposal_id);
+    $documents = $this->proposals_model->showDocuments($proposal_id, $records_ap->Account_ID);
+
+    $data['records_oe'] = $record_oe;
+    $data['records_far'] = $records_far;
+    $data['records_ap'] = $records_ap;
+    $data['documents'] = $documents;
+    
+    $this->load->view('proposals/summary', $data);  
+  }
 
 }
 
