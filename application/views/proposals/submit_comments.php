@@ -117,7 +117,22 @@
             </div>
           </div>
         </div> <!-- AP CARD END --> 
-  
+        <div class="card mt-5 mx-4 w-100"> <!-- DOCS CARD START -->  
+        <div class="card-header">
+          Documents
+        </div>
+          <div class="card-body">
+            <ul class="list-group list-group-flush">
+              <?php if(is_array($documents) || is_object($documents)):?>
+                <?php foreach($documents as $document): ?>
+                  <li class="list-group-item"><a href="<?=base_url()?>uploads/files/<?=$document->Document?>"><?=$document->Document_Type?></a></li>
+                <?php endforeach ?>
+              <?php else: ?>
+                <li class="list-group-item">No Documents</a></li>
+              <?php endif ?>
+            </ul>
+          </div>
+        </div> <!-- DOCS CARD END -->
         <div class="card mt-5 mx-4 w-100"> <!-- FAR CARD START -->  
           <div class="card-header">
             Fixed Asset Requirements

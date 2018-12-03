@@ -12,7 +12,7 @@ $date = date("F j, Y", strtotime($records_ap->DateActivity));
 $proposal_id = $records_ap->Proposal_ID;
 
 // Instanciation of inherited class
-$pdf = new PDF_MemImage();
+$pdf = new FPDF();
 $pdf->AliasNbPages();
 $pdf->AddPage();
 
@@ -30,7 +30,7 @@ $pdf->Image(base_url() . 'assets/img/print/sbu.png', 20, 15);
 //OPSA Image
 $pdf->Image(base_url() . 'assets/img/print/opsa.png', 45, 15);
 //ORG Image
-$pdf->MemImage($this->accounts_model->getMyLogo($records_ap->Account_ID), 70, 15, 21);
+$pdf->Image(base_url() . 'uploads/logos/' . $org_logo, 70, 15, 21);
 
 // Line break
 $pdf->Ln(0);
@@ -397,7 +397,7 @@ $pdf->Cell(3, 3, 'Cash Request', 0, 0, '');
 
 $pdf->SetY('175');
 $pdf->SetX('25');
-$pdf->Cell(3, 3, '', 1, 0, 'C');
+$pdf->Cell(3, 3, '', 1, 0, 'C', $cash_request);
 
 $pdf->SetY('180.3');
 $pdf->SetX('28');
@@ -405,7 +405,7 @@ $pdf->Cell(3, 3, 'Program', 0, 0, '');
 
 $pdf->SetY('180');
 $pdf->SetX('25');
-$pdf->Cell(3, 3, '', 1, 0, 'C');
+$pdf->Cell(3, 3, '', 1, 0, 'C', $program);
 
 $pdf->SetY('185.3');
 $pdf->SetX('28');
@@ -413,7 +413,7 @@ $pdf->Cell(3, 3, 'MOA of Suppliers', 0, 0, '');
 
 $pdf->SetY('185');
 $pdf->SetX('25');
-$pdf->Cell(3, 3, '', 1, 0, 'C');
+$pdf->Cell(3, 3, '', 1, 0, 'C', $moa);
 
 $pdf->SetY('190.3');
 $pdf->SetX('28');
@@ -421,7 +421,7 @@ $pdf->Cell(3, 3, 'List of Participants', 0, 0, '');
 
 $pdf->SetY('190');
 $pdf->SetX('25');
-$pdf->Cell(3, 3, '', 1, 0, 'C');
+$pdf->Cell(3, 3, '', 1, 0, 'C', $participants);
 
 $pdf->SetY('195.3');
 $pdf->SetX('28');
@@ -429,7 +429,7 @@ $pdf->Cell(3, 3, 'Food Request', 0, 0, '');
 
 $pdf->SetY('195');
 $pdf->SetX('25');
-$pdf->Cell(3, 3, '', 1, 0, 'C');
+$pdf->Cell(3, 3, '', 1, 0, 'C', $food_request);
 
 //ADDITIONAL FOR OFF CAMPUS ACTIVITY
 
@@ -443,7 +443,7 @@ $pdf->Cell(3, 3, 'Map and Contact Person', 0, 0, '');
 
 $pdf->SetY('208');
 $pdf->SetX('25');
-$pdf->Cell(3, 3, '', 1, 0, 'C');
+$pdf->Cell(3, 3, '', 1, 0, 'C', $map_contact);
 
 $pdf->SetY('213.3');
 $pdf->SetX('28');
@@ -451,7 +451,7 @@ $pdf->Cell(3, 3, 'Contact of Hospital & Police Station', 0, 0, '');
 
 $pdf->SetY('213');
 $pdf->SetX('25');
-$pdf->Cell(3, 3, '', 1, 0, 'C');
+$pdf->Cell(3, 3, '', 1, 0, 'C', $contact_hospital);
 
 $pdf->SetY('218.3');
 $pdf->SetX('28');
@@ -459,7 +459,7 @@ $pdf->Cell(3, 3, 'Letter of Moderator', 0, 0, '');
 
 $pdf->SetY('218');
 $pdf->SetX('25');
-$pdf->Cell(3, 3, '', 1, 0, 'C');
+$pdf->Cell(3, 3, '', 1, 0, 'C', $letter_moderator);
 
 $pdf->SetY('223.3');
 $pdf->SetX('28');
@@ -467,7 +467,7 @@ $pdf->Cell(3, 3, 'Letter To The Parents', 0, 0, '');
 
 $pdf->SetY('223');
 $pdf->SetX('25');
-$pdf->Cell(3, 3, '', 1, 0, 'C');
+$pdf->Cell(3, 3, '', 1, 0, 'C', $letter_parents);
 
 $pdf->SetY('228.3');
 $pdf->SetX('28');
@@ -475,7 +475,7 @@ $pdf->Cell(3, 3, 'Waiver Forms', 0, 0, '');
 
 $pdf->SetY('228');
 $pdf->SetX('25');
-$pdf->Cell(3, 3, '', 1, 0, 'C');
+$pdf->Cell(3, 3, '', 1, 0, 'C', $waiver_form);
 
 $pdf->SetY('233.3');
 $pdf->SetX('28');
@@ -483,7 +483,7 @@ $pdf->Cell(3, 3, 'Medical Kit', 0, 0, '');
 
 $pdf->SetY('233');
 $pdf->SetX('25');
-$pdf->Cell(3, 3, '', 1, 0, 'C');
+$pdf->Cell(3, 3, '', 1, 0, 'C', $medical_kit);
 
 // LOGISTICS
 
@@ -512,7 +512,7 @@ $pdf->Cell(3, 3, 'Letter of Reservation', 0, 0, '');
 
 $pdf->SetY('246');
 $pdf->SetX('25');
-$pdf->Cell(3, 3, '', 1, 0, 'C');
+$pdf->Cell(3, 3, '', 1, 0, 'C', $letter_reserve);
 
 $pdf->SetY('251.3');
 $pdf->SetX('28');
@@ -520,7 +520,7 @@ $pdf->Cell(3, 3, 'Letter of Entry', 0, 0, '');
 
 $pdf->SetY('251');
 $pdf->SetX('25');
-$pdf->Cell(3, 3, '', 1, 0, 'C');
+$pdf->Cell(3, 3, '', 1, 0, 'C', $letter_entry);
 
 $pdf->SetY('256.3');
 $pdf->SetX('28');
@@ -528,7 +528,7 @@ $pdf->Cell(3, 3, 'IMC Reservation', 0, 0, '');
 
 $pdf->SetY('256');
 $pdf->SetX('25');
-$pdf->Cell(3, 3, '', 1, 0, 'C');
+$pdf->Cell(3, 3, '', 1, 0, 'C', $imc_reserve);
 
 $pdf->SetY('261.3');
 $pdf->SetX('28');
@@ -536,7 +536,7 @@ $pdf->Cell(3, 3, 'Letter of Sponsorship', 0, 0, '');
 
 $pdf->SetY('261');
 $pdf->SetX('25');
-$pdf->Cell(3, 3, '', 1, 0, 'C');
+$pdf->Cell(3, 3, '', 1, 0, 'C', $letter_sponsor);
 
 $pdf->SetY('266.3');
 $pdf->SetX('28');
@@ -544,7 +544,7 @@ $pdf->Cell(3, 3, 'Letter of Invitation', 0, 0, '');
 
 $pdf->SetY('266');
 $pdf->SetX('25');
-$pdf->Cell(3, 3, '', 1, 0, 'C');
+$pdf->Cell(3, 3, '', 1, 0, 'C', $letter_invite);
 
 $pdf->SetY('271.3');
 $pdf->SetX('28');
@@ -552,7 +552,7 @@ $pdf->Cell(3, 3, 'Excuse Letter', 0, 0, '');
 
 $pdf->SetY('271');
 $pdf->SetX('25');
-$pdf->Cell(3, 3, '', 1, 0, 'C');
+$pdf->Cell(3, 3, '', 1, 0, 'C', $excuse_letter);
 
 $pdf->SetFont('century', '', 12);
 $pdf->SetTextColor('0', '0', '0');
@@ -599,7 +599,7 @@ $pdf->Image(base_url() . 'assets/img/print/sbu.png', 20, 15);
 //OPSA Image
 $pdf->Image(base_url() . 'assets/img/print/opsa.png', 45, 15);
 //ORG Image
-$pdf->MemImage($this->accounts_model->getMyLogo($records_ap->Account_ID), 70, 15, 21);
+$pdf->Image(base_url() . 'uploads/logos/' . $org_logo, 70, 15, 21);
 
 // Line break
 $pdf->Ln(0);
@@ -1192,14 +1192,14 @@ $pdf->Image(base_url() . 'assets/img/signature/signature.png', 80, 76, 70, 25); 
 
 
 if ($this->proposals_model->checkApprovalPresident($proposal_id)) { 
-  $pdf->MemImage($this->proposals_model->getSignaturePresident($proposal_id), 80, 135, 70, 25); //SC Pres Sig
+  $pdf->Image(base_url() . 'uploads/signatures/' . $signature_president, 80, 135, 70, 25); //SC Pres Sig
 } 
 
 if ($this->proposals_model->checkApprovalPrefect($proposal_id)) {  
-  $pdf->MemImage($this->proposals_model->getSignaturePrefect($proposal_id), 30, 195, 70, 25); //OPSA Sig
+  $pdf->Image(base_url() . 'uploads/signatures/' . $signature_prefect, 30, 195, 70, 25); //OPSA Sig
 }
 if ($this->proposals_model->checkApprovalDean($proposal_id)) {  
-  $pdf->MemImage($this->proposals_model->getSignatureDean($proposal_id), 115, 195, 70, 25); //Dean Sig
+  $pdf->Image(base_url() . 'uploads/signatures/' . $signature_dean, 115, 195, 70, 25); //Dean Sig
 }
 
 $pdf->Output();

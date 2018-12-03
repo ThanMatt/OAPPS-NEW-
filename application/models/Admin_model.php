@@ -23,8 +23,66 @@ class Admin_Model extends CI_Model {
 
   }
 
-  public function editAccount($account_id) {
-    
+  public function editAccount($account_id, $account_id2, $organization, $password, $full_name, $email, $contact_number, $batch, $type, $logo, $signature) {
+    $data = array (
+      'Account_ID' => $account_id2,
+      'Pass' => $password,
+      'Organization' => $organization,
+      'EmailAddress' => $email,
+      'ContactNumber' => $contact_number,
+      'FullName' => $full_name,
+      'Batch' => $batch,
+      'Type' => $type,
+      'Signature' => $signature,
+      'Logo' => $logo,
+    );
+
+    foreach($data as $key => $value) {
+      if ($value == null || $value == '') {
+        unset($data[$key]);
+      } else {
+        continue;
+      }
+    }
+
+    $this->db->where('Account_ID', $account_id);
+    $result = $this->db->update('accounts', $data);
+
+    return $result;
+  
+  }
+
+  public function addAccount($account_id, $organization, $password, $position, $full_name, $email, $contact_number, $batch, $type, $logo, $signature) {
+    $data = array (
+      'Account_ID' => $account_id,
+      'Pass' => $password,
+      'Organization' => $organization,
+      'EmailAddress' => $email,
+      'Position' => $position,
+      'ContactNumber' => $contact_number,
+      'FullName' => $full_name,
+      'Batch' => $batch,
+      'Type' => $type,
+      'Signature' => $signature,
+      'Logo' => $logo,
+    );
+
+    $result = $this->db->insert('accounts', $data);
+
+    return $result;
+  
+  }
+
+  //:: Password hasher
+  public function hashMyPass($password) {
+    $options = [
+      'cost' => 12,
+    ];
+
+    $hashedPassword = password_hash($password,
+      PASSWORD_DEFAULT, $options);
+
+    return $hashedPassword;
   }
 
   public function viewAccountInfo($account_id) {
@@ -91,6 +149,51 @@ class Admin_Model extends CI_Model {
       return false;
     } else {
       return true;
+    }
+  }
+
+  public function selectPro($account_id) {
+    $this->db->where('Account_ID', $account_id);
+    $this->db->from('accounts');
+
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    $type = $row->Type;
+
+    if ($type == 'Pro') {
+      return 'selected="selected"';
+    }
+  }
+
+  public function selectNonPro($account_id) {
+    $this->db->where('Account_ID', $account_id);
+    $this->db->from('accounts');
+
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    $type = $row->Type;
+
+    if ($type == 'NonPro') {
+      return 'selected="selected"';
+    }
+  }
+
+  public function selectNA($account_id) {
+    $this->db->where('Account_ID', $account_id);
+    $this->db->from('accounts');
+
+    $result = $this->db->get();
+
+    $row = $result->row();
+
+    $type = $row->Type;
+
+    if ($type == 'N/A') {
+      return 'selected="selected"';
     }
   }
 }
