@@ -96,6 +96,10 @@ class Home extends CI_Controller {
 
   }
 
+  public function forms() {
+    $this->load->view('forms');
+  }
+
 }
 
 ?>
