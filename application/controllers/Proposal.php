@@ -310,14 +310,14 @@ class Proposal extends CI_Controller {
 
   public function delete($proposal_id) {
     $account_id = $this->session->userdata('account_id');
-    $this->accounts_model->logMyActivity($account_id, 11, 0);
+    $this->accounts_model->logMyActivity($account_id, 11, $proposal_id);
     $this->proposals_model->deleteThis($proposal_id);
     redirect(base_url() . "home");
   }
 
   public function decline($proposal_id) {
     $account_id = $this->session->userdata('account_id');
-    $this->accounts_model->logMyActivity($account_id, 5, 0);
+    $this->accounts_model->logMyActivity($account_id, 5, $proposal_id);
     $this->proposals_model->deleteThis($proposal_id);
     redirect(base_url() . "home");
   }
