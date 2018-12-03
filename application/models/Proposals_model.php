@@ -1272,9 +1272,10 @@ class Proposals_Model extends CI_Model {
 
     if (!$result) {
       return false;
+    } else {
+      return true;
     }
 
-    return true;
   }
 
   public function deleteComments($proposal_id) {

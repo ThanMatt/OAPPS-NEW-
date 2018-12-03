@@ -160,7 +160,7 @@ $org_type = $this->session->userdata('org_type');
                 <input class="table-header btn btn-light mx-5 mt-2" id="revise_btn" type="button" value="Ask for Revision">
               </a>
 
-              <a href="#">
+              <a href="proposal/decline/<?=$records->Proposal_ID?>">
                 <input class="table-header btn btn-light mx-5 mt-2" type="button" value="Decline">
               </a>
             <?php endif ?>
