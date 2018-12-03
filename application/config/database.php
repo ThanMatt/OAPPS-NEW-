@@ -73,12 +73,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $active_group = 'default';
 $query_builder = TRUE;
 
+//Get Heroku ClearDB connection information
+$cleardb_url      = parse_url(getenv("CLEARDB_DATABASE_URL"));
+$cleardb_server   = $cleardb_url["host"];
+$cleardb_username = $cleardb_url["user"];
+$cleardb_password = $cleardb_url["pass"];
+$cleardb_db       = substr($cleardb_url["path"],1);
+
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => getenv('OAPPS_MYSQL_HOST'),
-	'username' => getenv('OAPPS_MYSQL_USER'),
-	'password' => getenv('OAPPS_MYSQL_PASS'),
-	'database' => getenv('OAPPS_MYSQL_DB'),
+	'hostname' => $cleardb_server,
+	'username' => $cleardb_username,
+	'password' => $cleardb_password,
+	'database' => $cleardb_db,
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
