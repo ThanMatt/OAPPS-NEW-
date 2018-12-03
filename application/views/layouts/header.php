@@ -93,7 +93,7 @@ $logo = $this->session->userdata('logo');
       </div>
 
       <div class="col-lg-2" style="margin-left: 2.08333%">
-        <a href="<?=base_url()?>forms"><p class="oapps-nav-text-1">Downloadable Forms</p></a>
+        <a href="<?=base_url()?>home/forms"><p class="oapps-nav-text-1">Downloadable Forms</p></a>
       </div>
     <?php else: ?>
     <div class="col-lg-2" style="margin-left: 2.08333%">
