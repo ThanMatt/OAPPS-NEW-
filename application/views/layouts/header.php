@@ -92,8 +92,8 @@ $logo = $this->session->userdata('logo');
         <a href="<?=base_url()?>submit"><p class="oapps-nav-text-1">Make New Proposal</p></a>
       </div>
 
-          <div class="col-lg-2" style="margin-left: 2.08333%">
-        <p class="oapps-nav-text-1">Downloadable Forms</p>
+      <div class="col-lg-2" style="margin-left: 2.08333%">
+        <a href="<?=base_url()?>forms"><p class="oapps-nav-text-1">Downloadable Forms</p></a>
       </div>
     <?php else: ?>
     <div class="col-lg-2" style="margin-left: 2.08333%">

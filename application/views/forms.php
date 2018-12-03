@@ -11,7 +11,7 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Proposal Summary</title>
+  <title>Downloadable Forms</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="<?=base_url();?>assets/css/styles.css">
   <script type="text/javascript">
@@ -37,6 +37,9 @@
             Forms
           </div>
           <div class="card-body">
+            <a href="<?=base_url()?>assets/forms/CASHREQ.docx">Cash Request Form</a>
+            <a href="<?=base_url()?>assets/forms/FOODREQ.docx">Food Request Form</a>
+            <a href="<?=base_url()?>assets/forms/MOA.docx">Memorandum of Agreement Form (MOA)</a>
           </div>
         </div> <!-- AP CARD END --> 
       </div>
