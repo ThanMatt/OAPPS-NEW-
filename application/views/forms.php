@@ -38,7 +38,11 @@
           </div>
           <div class="card-body">
             <a href="<?=base_url()?>assets/forms/CASHREQ.docx">Cash Request Form</a>
+          </div>
+          <div class="card-body">
             <a href="<?=base_url()?>assets/forms/FOODREQ.docx">Food Request Form</a>
+          </div>
+          <div class="card-body">
             <a href="<?=base_url()?>assets/forms/MOA.docx">Memorandum of Agreement Form (MOA)</a>
           </div>
         </div> <!-- AP CARD END --> 
