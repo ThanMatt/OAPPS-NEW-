@@ -288,7 +288,7 @@ class Proposal extends CI_Controller {
         }
       }
 
-      $this->accounts_model->logMyActivity($account_id, 8, $proposal_id);
+      $this->accounts_mgodel->logMyActivity($account_id, 8, $proposal_id);
       echo json_encode($response);
 
     } else {
