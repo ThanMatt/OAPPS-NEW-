@@ -10,6 +10,7 @@
   $full_name = $this->session->userdata('full_name');
   $position = $this->session->userdata('position');
   $contact_number = $this->session->userdata('contact_number');
+  $logo = $this->session->userdata('logo');
   ?>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,7 +40,7 @@
             <div class="card-body">
               <div class="display-picture-holder">
                 <div class="display-picture">
-                  <img src="<?=base_url()?>assets/image.php?id=<?=$prefix?>">
+                  <img class="oapps-profile-img" src="<?=base_url()?>uploads/logos/<?=$logo?>">
                 </div>
               </div>
               <h4 class="card-title"><?=$organization?></h4>
@@ -59,8 +60,8 @@
             <h4 class="card-title">Proposal Details: </h4>
             <p class="card-text">Total Approved Proposals: <?=$this->proposals_model->countApprovedProposals($account_id, $org_type)?> </p>
             <?php if ($org_type != 'N/A'): ?>
-              <p class="card-text">Total Expenditure: P 50</p>
-              <p class="card-text">Average Expenditure Per Proposal: P 4 </p>
+              <p class="card-text">Total Expenditure: PHP <?=number_format($total_expenditure)?></p>
+              <p class="card-text">Average Expenditure Per Proposal: PHP <?=number_format($average_expenditure)?></p>
             <?php endif ?>
           </div>
         </div>

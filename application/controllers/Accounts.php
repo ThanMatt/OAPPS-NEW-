@@ -31,6 +31,7 @@ class Accounts extends CI_Controller {
         'org_type' => $account['Org_Type'],
         'position' => $account['Position'],
         'prefix' => $account['Prefix'],
+        'logo' => $account['Logo'],
         'logged_in' => true,
         'user_type' => 0,
       );

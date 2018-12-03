@@ -378,9 +378,8 @@
 
       <div class="row no-gutters mt-5"><!-- FOURTH ROW END -->
         <div class="col-lg-10 ml-5 mt-5"> <!-- INSERT DOCUMENT SUBMISSION HERE -->
-          <p class="mt-5 text-monospace">Upload Document Here</p>
+          <input type="button" class="table-header btn btn-light btn-lg" data-toggle="modal" data-target="#uploadModal" name="" id="" value="Upload Documents">
         </div>
-
       </div>
       <div class="row d-flex">
         <div class="col-lg-5 offset-lg-7 col-md-6 offset-md-6 col-sm-8 offset-sm-4 col-xs-8 offset-xs-4 my-5"> <!-- FINAL BUTTONS HERE -->
@@ -393,6 +392,57 @@
           <input type="submit" class="table-header btn btn-light btn-lg" name="submit" id="submit_btn" value="Submit">
         </div>
       </div>
+    </form>
+
+    <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <form id="upload-doc">    
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Check List</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <input type="checkbox" class="checklist" id="cashreq" value="Cash Request"> Cash Request<br>
+              <input type="checkbox" class="checklist" id="prog" value="Program"> Program<br>
+              <input type="checkbox" class="checklist" id="moa" value="Suppliers MOA"> Moa of Suppliers <br>
+              <input type="checkbox" class="checklist" id="list" value="Participants"> List of Participants <br>
+              <input type="checkbox" class="checklist" id="food" value="Food Request"> Food Request<br>
+              <br>
+              <p>Additional for Off-Campus Activity</p>
+              <hr>
+              <input type="checkbox" class="checklist" id="map" value="Map & Contact Person"> Map and Contact Person<br>
+              <input type="checkbox" class="checklist" id="hospital" value="Contact of Hospital & Police Station"> Contact of Hospital & Police Station<br>
+              <input type="checkbox" class="checklist" id="mod" value="Letter of Moderator"> Letter of Moderator <br>
+              <input type="checkbox" class="checklist" id="parents" value="Letter to the Parents"> Letter to the Parents<br>
+              <input type="checkbox" class="checklist" id="waiver" value="Waiver Form"> Waiver Forms<br>
+              <input type="checkbox" class="checklist" id="med" value="Medical Kit"> Medical Kit<br>
+              <br>
+              <p>Logistics</p>
+              <hr>
+              <input type="checkbox" class="checklist" id="reserv" value="Letter of Reservation"> Letter of Reservation <br>
+              <input type="checkbox" class="checklist" id="entry" value="Letter of Entry"> Letter of Entry <br>
+              <input type="checkbox" class="checklist" id="imc" value="IMC Reservation"> IMC Reservation <br> 
+              <input type="checkbox" class="checklist" id="sponsor" value="Letter of Sponsorship"> Letter of Sponsorship <br>
+              <input type="checkbox" class="checklist" id="invite" value="Letter of Invitation"> Letter of Invitation <br>
+              <input type="checkbox" class="checklist" id="excuse" value="Excuse Letter"> Excuse Letter
+              <hr>
+              <div id="upload-box">
+
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <input type="submit" class="btn btn-danger" value="Upload"></button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
 
 
         <?php else: ?>
@@ -402,7 +452,6 @@
       <?php endif?>
 
     </div> <!-- CONTAINER END -->
-</form>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

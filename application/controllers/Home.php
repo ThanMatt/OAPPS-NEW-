@@ -70,6 +70,8 @@ class Home extends CI_Controller {
 
     $approved_records = $this->proposals_model->getApprovedRecords($account_id, $type);
     $pending_records = $this->proposals_model->getPendingRecords($account_id, $type);
+    $total_expenditure = $this->proposals_model->totalExpenditure($account_id);
+    $average_expenditure = $this->proposals_model->averageExpenditure($account_id);
 
     $data['approved_records'] = 'No Records';
     $data['pending_records'] = 'No Records';
@@ -78,7 +80,10 @@ class Home extends CI_Controller {
 
       $data['approved_records'] = $approved_records;
       $data['pending_records'] = $pending_records;
+
     }
+    $data['total_expenditure'] = $total_expenditure;
+    $data['average_expenditure'] = $average_expenditure;
     $this->load->view('users/profile', $data);
 
   }
