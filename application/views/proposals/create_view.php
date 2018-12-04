@@ -213,10 +213,6 @@
                   <th class="lead">Source of Fund</th>
                 </table>
 
-                Total:
-                <input class="form-control form-control-sm medium-text-box" type="number" id="far_overall_amount" value=0
-                  readonly>
-
                 <input type="button" class="table-header btn btn-light m-2" name="btn_add_far" id="button-add-far" value="Add">
                 <!-- <input type="button" class="table-header btn btn-light m-2" name="btn_delete_far" id="button-delete-far" value="Delete"> -->
                 <input type="reset" class="table-header btn btn-light m-2" id="button" value="Clear">
@@ -250,10 +246,6 @@
                   <th class="lead">Total Amount</th>
                   <th class="lead" class="lead">Source of Fund</th>
                 </table>
-
-                Total:
-                <input type="number" class="form-control form-control-sm medium-text-box" id="oe_overall_amount" value=0
-                  readonly>
 
                 <input type="button" class="table-header btn btn-light m-2" name="btn_add_oe" id="button-add-oe" value="Add">
                 <!-- <input type="button" class="table-header btn btn-light m-2" name="btn_delete_oe" id="button-delete-oe" value="Delete"> -->

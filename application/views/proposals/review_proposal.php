@@ -258,7 +258,7 @@
                 </table>
 
                 Total:
-                <input class="form-control form-control-sm medium-text-box" type="number" id="far_overall_amount" value= 'PHP <?=number_format($far_total)?>'
+                <input class="form-control form-control-sm medium-text-box" type="text" id="far_overall_amount" value= 'PHP <?=number_format($far_total)?>'
                   readonly>
 
               </div>
@@ -341,7 +341,7 @@
                 </table>
 
                 Total:
-                <input type="number" class="form-control form-control-sm medium-text-box" id="oe_overall_amount" value= 'PHP <?=number_format($oe_total)?>'
+                <input type="text" class="form-control form-control-sm medium-text-box" id="oe_overall_amount" value= 'PHP <?=number_format($oe_total)?>'
                   readonly>
 
               </div>
