@@ -6,15 +6,6 @@ var flag;
 
 $(function () {
 
-
-  $(".img").on("click", function () {
-    $(".dropdown-content").toggle("dropdowntest");
-  });
-
-  // $(document).on("click", function (){
-  //   $(".dropdown-content").hide("dropdowntest");
-  // });
-
   function queryTable(response) {
     account_id = response['account_id'];
 

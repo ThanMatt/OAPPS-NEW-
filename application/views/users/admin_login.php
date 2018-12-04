@@ -18,7 +18,7 @@
   <div class="row d-flex justify-content-center align-items-center" style="width: 100vw; height: 100vh;">
     <div class="col-lg-3 col-md-6 col-sm-7 col-xs-8 m-5" style="border: 2px solid black; height: 500px; border-radius: 3%; background-color: white; box-shadow: 20px 20px 30px 0px rgba(0,0,0,0.2);">
       <div class="row d-flex justify-content-center mt-5">
-        <img class="oapps-logos" src="<?= base_url();?>assets/img/BITS logo.png">
+        <img class="oapps-logos" src="<?=base_url();?>assets/img/BITS_Logo.png">
         <p class="oapps-login-text-1 text-center">Online Activity Proposal Processing System Administrator</p>
       </div>
 

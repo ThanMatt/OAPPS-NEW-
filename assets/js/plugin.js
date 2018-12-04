@@ -170,7 +170,7 @@ $(function () {
     }
   });
 
-  $('#upload-btn-first').click(function() {
+  $('#upload-btn-first').click(function () {
     alert("You have to save your proposal first!");
   });
 
@@ -200,13 +200,13 @@ $(function () {
     });
   });
 
-  $(document).on('click', '.checklist', function() {
+  $(document).on('click', '.checklist', function () {
     var id = $(this).attr('id');
     var checkbox = $(this);
     var value = $(this).val();
 
     if (checkbox.is(':checked')) {
-      $('#upload-box').append("<div class='files' id='upload-"+ (id + 1) +"'><input type='file' id='"+ (id + 1) + "' name='"+ id +"'>" + value + "</div>");
+      $('#upload-box').append("<div class='files' id='upload-" + (id + 1) + "'><input type='file' id='" + (id + 1) + "' name='" + id + "'>" + value + "</div>");
     } else {
       $('#upload-' + id + 1).remove();
     }
