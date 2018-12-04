@@ -61,11 +61,6 @@ $org_type = $this->session->userdata('org_type');
             <?=$full_name?>
           </div>
            <div>
-            <a href="<?=base_url()?>home/profile">
-              <div class="oapps-btn-dropdown" id="logout_btn">
-                Profile
-              </div>
-            </a>
             <?php if ($this->session->userdata('user_type') == 0):?>
               <a href="<?=base_url()?>accounts/logout">
             <?php else: ?>
