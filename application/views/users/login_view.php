@@ -20,7 +20,7 @@
       <div class="col-lg-3 col-md-6 col-sm-7 col-xs-8 m-5" style="border: 2px solid black; height: 500px; border-radius: 3%; background-color: white; box-shadow: 20px 20px 30px 0px rgba(0,0,0,0.2);">
         <div class="row d-flex justify-content-center mt-5">
           <img class="oapps-logos" src="<?= base_url();?>assets/img/SBU.png">
-          <p class="oapps-login-text-1 text-center">San Beda Online Activity Proposal Processing System</p>
+          <p class="oapps-login-text-1 text-center">Online Activity Proposal Processing System</p>
         </div>
 
         <?php 
