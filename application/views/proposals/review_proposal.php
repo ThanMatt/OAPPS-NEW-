@@ -205,7 +205,10 @@
                   <th class="lead">Source of Fund</th>
 
                   <?php if (is_array($far_records) || is_object($far_records)): ?>
-                  <?php $far_counter = 1;?>
+                  <?php 
+                  $far_counter = 1;
+                  $far_total = 0;
+                  ?>
                   <?php foreach ($far_records as $far_record): ?>
                   <?php $far_id = $far_record->Far_ID ?>
                   <tr id="far-row<?=$far_counter?>" value="<?=$far_counter?>">
@@ -227,6 +230,7 @@
                     <td>
                       <input type="number" class="form-control form-control-sm small-text-box far-total readonly" name="far_total_amount[]"
                         id="far_txt_total<?=$far_counter?>" oninvalid="this.setCustomValidity('Please go back to fill this up')" autocomplete="off" value="<?=$far_record->Total_Amount?>" />
+                        <?php $far_total += $far_record->Total_Amount?>
                     </td>
                     <td>
                       <select class="form-control medium-text-box far-source readonly" oninvalid="this.setCustomValidity('Please go back to fill this up')" name="far_source[]" id="far_source_of_fund<?=$far_counter?>" >
@@ -254,7 +258,7 @@
                 </table>
 
                 Total:
-                <input class="form-control form-control-sm medium-text-box" type="number" id="far_overall_amount" value=0
+                <input class="form-control form-control-sm medium-text-box" type="number" id="far_overall_amount" value= 'PHP <?=number_format($far_total)?>'
                   readonly>
 
               </div>
@@ -287,7 +291,10 @@
                   <th class="lead">Total Amount</th>
                   <th class="lead" class="lead">Source of Fund</th>
                   <?php if (is_array($oe_records) || is_object($oe_records)): ?>
-                  <?php $oe_counter = 1;?>
+                  <?php 
+                  $oe_counter = 1;
+                  $oe_total = 0;
+                  ?>
                   <?php foreach ($oe_records as $oe_record): ?>
                   <?php $oe_id = $oe_record->OE_ID ?>
                   <tr id="oe-row<?=$oe_counter?>">
@@ -309,6 +316,7 @@
                     <td>
                       <input type="number" class="form-control form-control-sm small-text-box readonly" name="oe_total_amount[]" id="oe_txt_total<?=$oe_counter?>"
                        oninvalid="this.setCustomValidity('Please go back to fill this up')" value="<?=$oe_record->Total_Amount?>" />
+                       <?php $oe_total += $oe_record->Total_Amount?>
                     </td>
                     <td>
                       <select class="form-control medium-text-box readonly" oninvalid="this.setCustomValidity('Please go back to fill this up')" name="oe_source[]" id="oe_source_of_fund<?=$oe_counter?>" >
@@ -333,7 +341,7 @@
                 </table>
 
                 Total:
-                <input type="number" class="form-control form-control-sm medium-text-box" id="oe_overall_amount" value=0
+                <input type="number" class="form-control form-control-sm medium-text-box" id="oe_overall_amount" value= 'PHP <?=number_format($oe_total)?>'
                   readonly>
 
               </div>
