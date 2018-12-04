@@ -58,7 +58,7 @@ $org_type = $this->session->userdata('org_type');
             </div>
           <?php endif ?>
           <div class="oapps-dropdown-details">
-            <?=$position . ': ' . $full_name?>
+            <?=$full_name?>
           </div>
            <div>
             <a href="<?=base_url()?>home/profile">
