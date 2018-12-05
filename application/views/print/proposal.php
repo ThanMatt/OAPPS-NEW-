@@ -1048,7 +1048,7 @@ $pdf->Image(base_url() . 'assets/img/print/sbu.png', 20, 15);
 //OPSA Image
 $pdf->Image(base_url() . 'assets/img/print/opsa.png', 45, 15);
 //ORG Image
-$pdf->Image(base_url() . 'assets/img/logo/sc_logo.png', 70, 15, 21);
+$pdf->Image(base_url() . 'assets/img/print/sc.png', 70, 15, 21);
 
 // Line break
 $pdf->Ln(0);
