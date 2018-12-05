@@ -195,10 +195,12 @@ $(function () {
           $('#upload-btn').prop('disabled', false);
         } else {
           alert(response.remark);
+          $('#upload-btn').prop('disabled', false);
         }
       },
       error: function (response) {
         alert(response.remark);
+        $('#upload-btn').prop('disabled', false);
       }
     });
   });
