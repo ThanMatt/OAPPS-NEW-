@@ -1,6 +1,6 @@
 <?php 
 
-class Acknowledgement extends CI_Controller {
+class Dedication extends CI_Controller {
   public function aethan() {
 
   }
