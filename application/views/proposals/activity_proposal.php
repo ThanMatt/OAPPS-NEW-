@@ -457,8 +457,6 @@
   <script type="text/javascript">
     var BASE_URL = "<?=base_url();?>";
   </script>
-  <script src="<?=base_url();?>assets/js/dropdown.js">
-  </script>
   <script src="<?=base_url();?>assets/js/plugin.js">
   </script>
   </body>
