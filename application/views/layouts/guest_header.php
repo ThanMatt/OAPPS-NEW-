@@ -1,5 +1,6 @@
 
   <!-- primary header start -->      
+  <link rel="icon" href="<?=base_url()?>assets/img/favicon.ico" type="image/x-icon" />
   <div class="row oapps-h oapps-bg-head"> <!-- HEADER ROW START -->
     <div class="col-lg-10"> <!-- TEXT COL START -->
       <div class="row"> <!-- TEXT ROW START -->
