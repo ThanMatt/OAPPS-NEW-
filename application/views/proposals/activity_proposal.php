@@ -423,6 +423,7 @@
           <input type="checkbox" class="checklist" id="invite" value="Letter of Invitation"> Letter of Invitation <br>
           <input type="checkbox" class="checklist" id="excuse" value="Excuse Letter"> Excuse Letter
           <hr>
+
           <div id="upload-box">
 
           </div>
@@ -430,7 +431,7 @@
 
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <input type="submit" class="btn btn-danger" value="Upload"></button>
+          <input type="submit" class="btn btn-danger" id="upload-btn" value="Upload"></button>
         </div>
       </div>
     </div>

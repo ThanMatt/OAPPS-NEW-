@@ -5,9 +5,11 @@ class Upload extends CI_Controller {
     $account_id = $this->session->userdata('account_id');
     $response = array();
 
+    //:: Document upload configuration
     $config = array(
       'upload_path' => 'uploads/files',
       'allowed_types' => 'pdf|docx|doc',
+      'max_size' => '10240' //:: Maximum file size (in kb)
     );
 
     $counter = 0;
@@ -58,7 +60,6 @@ class Upload extends CI_Controller {
         unset($document_names[$counter]);
       }
       $counter++;
-      
     }
 
     $document_names = array_values($document_names);
@@ -71,7 +72,7 @@ class Upload extends CI_Controller {
     foreach($documents as $key => $value) {
       if (!$this->upload->do_upload($key)) {
         $response['success'] = false;
-        $response['remark'] = "The filetype is invalid. Only upload .pdf, .docx, or .doc files.";
+        $response['remark'] = $this->upload->display_errors();
         echo json_encode($response);
         exit;
 

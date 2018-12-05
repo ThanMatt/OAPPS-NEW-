@@ -179,6 +179,8 @@ $(function () {
 
     var proposal_id = $('#proposal_id').val();
 
+    $('#upload-btn').prop('disabled', true);
+
     $.ajax({
       type: 'POST',
       url: BASE_URL + 'upload/documents/' + proposal_id,
@@ -190,6 +192,7 @@ $(function () {
       success: function (response) {
         if (response.success) {
           alert('Upload successful');
+          $('#upload-btn').prop('disabled', false);
         } else {
           alert(response.remark);
         }

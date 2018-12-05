@@ -64,6 +64,7 @@ class Admin extends CI_Controller {
 
     if (!empty($_FILES['logo']['tmp_name'])) {
 
+      //:: Logo upload configuration
       $config = array(
         'upload_path' => 'uploads/logos',
         'allowed_types' => 'jpg|jpeg|png',
@@ -83,6 +84,7 @@ class Admin extends CI_Controller {
       $logo = '';
     }
 
+    //:: Signature upload configuration
     if (!empty($_FILES['signature']['tmp_name'])) {
       $config = array(
         'upload_path' => 'uploads/signatures',
@@ -135,9 +137,11 @@ class Admin extends CI_Controller {
 
     $password = $this->admin_model->hashMyPass($password);
 
+    //:: Logo upload configuration
       $config = array(
         'upload_path' => 'uploads/logos',
         'allowed_types' => 'jpg|jpeg|png',
+        'max_size' => '3072', //:: in kilobytes
       );
       
       $this->load->library('upload', $config);
@@ -153,9 +157,11 @@ class Admin extends CI_Controller {
         $logo = $data_logo['file_name'];
       }
 
+      //:: Signature upload configuration
       $config = array(
         'upload_path' => 'uploads/signatures',
         'allowed_types' => 'jpg|jpeg|png',
+        'max_size' => '1024', //:: in kilobytes
       );
       
       $this->load->library('upload', $config);
