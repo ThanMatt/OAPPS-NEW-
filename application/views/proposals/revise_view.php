@@ -436,7 +436,7 @@
 
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <input type="submit" class="btn btn-danger" value="Upload"></button>
+              <input type="submit" class="btn btn-danger" id="upload-btn" value="Upload"></button>
             </div>
           </div>
         </div>
