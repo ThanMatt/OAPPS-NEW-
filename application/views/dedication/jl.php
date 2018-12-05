@@ -34,7 +34,7 @@
   
     <div class="row mx-5 oapps-mh"><!-- MAIN START -->
     <!-- Card start -->
-      <div class="card" style="width: 100%;">
+      <div class="card mt-5" style="width: 100%;">
         <div class="card-body">
           <h5 class="card-title">JL's Dedication</h5>
           <p class="card-text">
@@ -100,12 +100,6 @@
           <p class="card-text">
            Moving past my family and team, I hope you’d allow much shorter messages, this does not mean you are any less dear to me though. I’d like to thank my best friend Arvi for always being so understanding and ever present for me. My other best friend Tristan for being such an outstanding person to perhaps exist as the second half of me in our duality. My best friend from Ateneo, Regie Santiago, though we haven’t talked in a while, I still would like to give gratitude to you. To my dear friend, Angela Se for being so welcoming and heartwarming for the past year. The rest of my high school friends: Pedro, Jaoie, Charles, Renzo, Franz, Paolo, Kishiro, Edward, Logatoc, and everybody else. I love you all dearly
           </p>  
-
-
-
-
-          
-
           <a href="#" class="card-link">Card link</a>
           <a href="#" class="card-link">Another link</a>
         </div>
@@ -156,7 +150,7 @@
   
     <div class="row mx-5 oapps-mh"><!-- MAIN START -->
         <!-- Card start -->
-      <div class="card" style="width: 100%;">
+      <div class="card mt-5" style="width: 100%;">
         <div class="card-body">
           <h5 class="card-title">JL's Dedication</h5>
           <p class="card-text">
