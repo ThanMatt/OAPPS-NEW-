@@ -5,10 +5,15 @@ class Accounts_Model extends CI_Model {
   public function login_user($account_id, $password) {
     $this->db->where('Account_ID', $account_id);
     $result = $this->db->get('accounts');
-    
-    $db_password = $result->row(1)->Pass;
 
-    return password_verify($password, $db_password);
+    $rows = $result->num_rows();
+
+    if ($rows == 1) { 
+      $db_password = $result->row(1)->Pass;
+      return password_verify($password, $db_password);
+    } else {
+      return false;
+    }
   }
 
   public function getMyRecords($account_id) {
