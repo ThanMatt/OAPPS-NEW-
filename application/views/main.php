@@ -197,8 +197,6 @@
     </script>
     <script src="<?=base_url();?>assets/js/core.js">
     </script>
-    <script src="<?=base_url();?>assets/js/progress.js">
-    </script>
 
     <?php else: ?>
     <?php
