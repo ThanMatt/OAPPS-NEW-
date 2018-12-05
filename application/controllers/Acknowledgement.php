@@ -6,7 +6,7 @@ class Acknowledgement extends CI_Controller {
   }
 
   public function jl() {
-
+    $this->load->view('dedication/jl');
   }
 
   public function joseph() {
