@@ -35,7 +35,3 @@
   </div> <!-- HEADER END START -->
   <!-- primary header end -->
   <!-- secondary header start -->
-  <div class="row oapps-sh oapps-bg-nav">
-  
-    </div>
-    <!-- secondary header end -->
