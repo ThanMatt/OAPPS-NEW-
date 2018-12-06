@@ -75,7 +75,6 @@
   <p class="lead">
     Logo: 
   </p>
-  <br>
   <input type="file" class="form-control form-control-sm" name="logo" id="logo-id">
   <p class="text-muted oapps-text-small">
     Maximum size: 3 MB or 3072 KB | File Format: jpg/jpeg/png
