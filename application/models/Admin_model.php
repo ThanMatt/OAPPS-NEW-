@@ -5,10 +5,15 @@ class Admin_Model extends CI_Model {
   public function login_user($admin_id, $password) {
     $this->db->where('Admin_ID', $admin_id);
     $result = $this->db->get('admin');
-    
-    $db_password = $result->row(2)->Pass;
 
-    return password_verify($password, $db_password);
+    $rows = $result->num_rows();
+
+    if ($rows == 1) {
+      $db_password = $result->row(2)->Pass;
+      return password_verify($password, $db_password);
+    } else {
+      return false;
+    }
   }
 
   public function getMyRecords($admin_id) {
