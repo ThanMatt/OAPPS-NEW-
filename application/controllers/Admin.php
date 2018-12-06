@@ -68,6 +68,7 @@ class Admin extends CI_Controller {
       $config = array(
         'upload_path' => 'uploads/logos',
         'allowed_types' => 'jpg|jpeg|png',
+        'max_size' => '3072' //:: Maximum file size (in kb)
       );
       
       $this->load->library('upload', $config);
@@ -93,6 +94,7 @@ class Admin extends CI_Controller {
       $config = array(
         'upload_path' => 'uploads/signatures',
         'allowed_types' => 'jpg|jpeg|png',
+        'max_size' => '1024' //:: Maximum file size (in kb)
       );
       
       $this->load->library('upload', $config);
