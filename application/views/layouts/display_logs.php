@@ -7,7 +7,7 @@
 
   ?>
   <hr class="mr-5">
-  <span class="text-monospace"><?=$log->Activity?> <span class="text-muted oapps-text-small"><?=$time?></span> </p>
+  <span class="text-monospace"><?=$log->Activity?> <span class="text-muted oapps-text-small"><?=$time?></span> </span>
 <?php endforeach ?>
 
 <?php else: ?>
