@@ -78,22 +78,16 @@
   <br>
   <input type="file" class="form-control form-control-sm" name="logo" id="logo-id">
   <p class="text-muted oapps-text-small">
-    Maximum size: 3 MB or 3072 KB
+    Maximum size: 3 MB or 3072 KB | File Format: jpg/jpeg/png
   </p>
-  <span class="text-muted oapps-text-small">
-     | File Format: jpg/jpeg/png
-  </span>
 
   <p class="lead">
     Signature: 
   </p>
   <input type="file" class="form-control form-control-sm" name="signature" id="signature-id">
   <p class="text-muted oapps-text-small">
-    Maximum size: 1 MB or 1024 KB
-  </p>
-  <span class="text-muted oapps-text-small">
-     | File Format: jpg/jpeg/png
-  </span>    
+    Maximum size: 1 MB or 1024 KB | File Format: jpg/jpeg/png
+  </p>    
   <input type="submit" class="mt-5 btn btn-light btn-lg" name="submit" id="submit_btn" value="Submit">
 </form>
 
