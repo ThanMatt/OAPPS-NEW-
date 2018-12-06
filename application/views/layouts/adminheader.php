@@ -19,7 +19,7 @@ $org_type = $this->session->userdata('org_type');
       <div class="row"> <!-- TEXT ROW START -->
         <div class="col-lg-12 bottom-align-text">
           <p class="oapps-primaryhead-text-1" style="position: relative; top: 30px;">
-            <a href="<?=base_url()?>home">
+            <a href="<?=base_url()?>admin">
               OAPPS
             </a>
           </p>
@@ -27,7 +27,7 @@ $org_type = $this->session->userdata('org_type');
         <div class="col-lg-12">
           <a href="index.html">
             <p class="oapps-subhead-text-1">
-              <a href="<?=base_url()?>home">
+              <a href="<?=base_url()?>admin">
                 Online Activity Proposal Processing System
               </a>
             </p>
@@ -88,10 +88,10 @@ $org_type = $this->session->userdata('org_type');
     <?php endif ?>
 
       <div class="col-lg-2" style="margin-left: 2.08333%">
-        <a href="<?=base_url()?>admin/add"><p class="oapps-nav-text-1">Add New Org</p></a>
+        <a href="<?=base_url()?>admin/add"><p class="oapps-nav-text-1">Add New Organization</p></a>
       </div>
       <div class="col-lg-2" style="margin-left: 2.08333%">
-      <a href="<?=base_url()?>admin/edit"><p class="oapps-nav-text-1">Edit Org Data</p></a>
+      <a href="<?=base_url()?>admin/edit"><p class="oapps-nav-text-1">Edit Organization Data</p></a>
       </div>
     </div>
     <!-- secondary header end -->
