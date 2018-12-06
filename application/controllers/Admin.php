@@ -78,6 +78,7 @@ class Admin extends CI_Controller {
           'error' => $this->upload->display_errors(),
         );
         $this->session->set_flashdata($data);
+        redirect('admin/edit');
         exit;
       } else {
         $data_logo = $this->upload->data();
@@ -102,6 +103,7 @@ class Admin extends CI_Controller {
           'error' => $this->upload->display_errors(),
         );
         $this->session->set_flashdata($data);
+        redirect('admin/edit');
         exit;
       } else {
         $data_sig = $this->upload->data();
