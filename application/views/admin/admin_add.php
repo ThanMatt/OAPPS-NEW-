@@ -127,7 +127,7 @@
               Maximum size: 1 MB or 1024 KB | File Format: jpg/jpeg/png
             </p>
 
-            <input type="submit" class="mt-5 btn btn-light btn-lg" name="submit" id="submit_btn" value="Submit">
+            <input type="submit" class="mt-5 btn btn-light btn-lg" name="submit" id="submit-new-btn" value="Submit">
             </form>
           </div>
             <!-- ADD/EDIT FORM END -->

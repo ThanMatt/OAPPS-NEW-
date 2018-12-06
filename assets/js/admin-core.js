@@ -59,7 +59,7 @@ $(function () {
 
   $('#admin-new').submit(function (e) {
     e.preventDefault();
-
+    $('#submit-new-btn').prop('disabled', true);
     $.ajax({
       type: 'POST',
       url: BASE_URL + 'admin/register',
@@ -71,6 +71,7 @@ $(function () {
       success: function (response) {
         if (response.success) {
           alert('Registration successful');
+          $('#submit-new-btn').prop('disabled', false);
           window.location.replace(BASE_URL + "admin/edit");
 
         } else {
