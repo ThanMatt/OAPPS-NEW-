@@ -74,7 +74,10 @@ class Admin extends CI_Controller {
       $this->upload->initialize($config);
       
       if (!$this->upload->do_upload('logo')) {
-        echo $this->upload->display_errors();
+        $data = array(
+          'error' => $this->upload->display_errors(),
+        );
+        $this->session->set_flashdata($data);
         exit;
       } else {
         $data_logo = $this->upload->data();
@@ -95,7 +98,10 @@ class Admin extends CI_Controller {
       $this->upload->initialize($config);
       
       if (!$this->upload->do_upload('signature')) {
-        echo $this->upload->display_errors();
+        $data = array(
+          'error' => $this->upload->display_errors(),
+        );
+        $this->session->set_flashdata($data);
         exit;
       } else {
         $data_sig = $this->upload->data();
@@ -107,15 +113,20 @@ class Admin extends CI_Controller {
 
     if ($this->admin_model->editAccount($account_id, $account_id2, $organization, $password, $full_name,
     $email, $contact_number, $batch, $type, $logo, $signature)) {
+      $data = array(
+        'success' => 'Edit successful!',
+      );
       $response['success'] = true;
 
     } else {
+      $data = array(
+        'error' => 'There was an error',
+      );
       $response['success'] = false;
+      
     }
 
-    $data = array(
-      'success' => 'Edit successful!',
-    );
+
     $this->session->set_flashdata($data);
     redirect('admin/edit');
 

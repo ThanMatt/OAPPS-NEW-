@@ -28,6 +28,10 @@
     <div class="alert alert-success">
       <strong>Success! </strong><?=$this->session->flashdata('success')?>
     </div>
+    <?php elseif ($this->session->flashdata('error')): ?>
+    <div class="alert alert-success">
+      <strong>Error! </strong><?=$this->session->flashdata('error')?>
+    </div>
     <?php endif ?>
     <div class="row m-5 oapps-mh"> <!-- FIRST ROW START -->
       <div class="col-lg-3 mt-3 oapps-rh h-100" style="border: 1px black solid"> <!-- PROPOSAL LIST COL START -->
