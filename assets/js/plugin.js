@@ -124,6 +124,24 @@ $(function () {
     $("#specified_co").val('');
   });
 
+  $("#ap-btn").click(function () {
+    $([document.documentElement, document.body]).animate({
+      scrollTop: $("#ap-content").offset().top
+    }, 2000);
+  });
+
+  $("#far-btn").click(function () {
+    $([document.documentElement, document.body]).animate({
+      scrollTop: $("#far-content").offset().top
+    }, 2000);
+  });
+
+  $("#oe-btn").click(function () {
+    $([document.documentElement, document.body]).animate({
+      scrollTop: $("#oe-content").offset().top
+    }, 2000);
+  });
+
 
   $("#ajax_form_modal").submit(function (event) {
     event.preventDefault();

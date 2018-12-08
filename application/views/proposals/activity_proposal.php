@@ -42,15 +42,15 @@
         <div class="col-lg-2 mt-5 h-100"> <!-- BUTTONS COL START -->
           <div class="row align-items-center oapps-button-pos"> <!-- BUTTONS ROW START-->
             <!-- PENDING -->
-            <div class="oapps-btn oapps-hh col-12" style="border: 1px black solid">
+            <div class="oapps-btn oapps-hh col-12" id="ap-btn" style="border: 1px black solid">
               <p class="text-center oapps-bmb">Activity Proposal</p>
             </div>
             <!-- APPROVED -->
-            <div class="oapps-btn oapps-hh col-12 mt-4" style="border: 1px black solid">
+            <div class="oapps-btn oapps-hh col-12 mt-4" id="far-btn" style="border: 1px black solid">
               <p class="text-center oapps-bmb">Fixed Asset Req.</p>
             </div>
             <!-- REVISIONS -->
-            <div class="oapps-btn oapps-hh col-12 mt-4" style="border: 1px black solid">
+            <div class="oapps-btn oapps-hh col-12 mt-4" id="oe-btn" style="border: 1px black solid">
               <p class="text-center oapps-bmb">Operating Expenses</p>
             </div>
           </div> <!-- BUTTONS ROW END   -->
@@ -60,7 +60,7 @@
 
         <div class="col-lg-8 offset-lg-1 mt-5 mb-2 oapps-rh h-100" style="border: 1px black solid;"> <!-- ACTIVITY PROPOSAL COL START -->
           <div class="row oapps-bg-head"> <!-- ACTIVITY PROPOSAL HEAD ROW START -->
-            <div class="oapps-hh col-12 oapps-head-text-1 text-white">
+            <div class="oapps-hh col-12 oapps-head-text-1 text-white" id="ap-content">
               <p class="text-center oapps-bmb">Activity Proposal</p>
             </div>
           </div> <!-- ACTIVITY PROPOSAL HEAD ROW END -->
@@ -208,7 +208,7 @@
 
         <div class="col-lg-8 offset-lg-3 oapps-rh h-100" style="border: 1px black solid"> <!-- FIXED ASSET COL START -->
           <div class="row oapps-bg-head"> <!-- FIXED ASSET REQ HEAD ROW START -->
-            <div class="oapps-hh col-12 oapps-head-text-1 text-white">
+            <div class="oapps-hh col-12 oapps-head-text-1 text-white" id="far-content">
               <p class="text-center oapps-bmb">Fixed Asset Requirements</p>
             </div>
           </div> <!-- FIXED ASSET REQ HEAD ROW END -->
@@ -291,7 +291,7 @@
 
         <div class="col-lg-8 offset-lg-3 oapps-rh h-100" style="border: 1px black solid"> <!-- ACTIVITY PROPOSAL COL START -->
           <div class="row oapps-bg-head"> <!-- OPERATING EXPENSES HEAD ROW START -->
-            <div class="oapps-hh col-12 oapps-head-text-1 text-white">
+            <div class="oapps-hh col-12 oapps-head-text-1 text-white" id="oe-content">
               <p class="text-center oapps-bmb">Operating Expenses</p>
             </div>
           </div> <!-- OPERATING EXPENSES HEAD ROW END -->
