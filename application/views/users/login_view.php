@@ -21,6 +21,9 @@
         <div class="row d-flex justify-content-center mt-5">
           <img class="oapps-logos" src="<?= base_url();?>assets/img/SBU.png">
           <p class="oapps-login-text-1 text-center">San Beda Online Activity Proposal Processing System</p>
+          <?php if ($this->session->flashdata('errors')):?>
+          <?php echo $this->session->flashdata('errors') ?>
+          <?php endif?>
         </div>
 
         <?php 

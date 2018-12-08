@@ -4,7 +4,19 @@ class Accounts extends CI_Controller {
 
   public function login() {
 
+    $this->form_validation->set_rules('account-id', 'Account ID', 'required');
+    $this->form_validation->set_rules('password', 'Password', 'required');
     
+    if($this->form_validation->run == FALSE) {
+      $data = array (
+        'errors' => validation_errors(),
+      );
+
+      $this->session->set_flashdata($data);
+
+      redirect('home');
+
+    }
     $account_id = $this->input->post('account-id', true);
 		$account_id = strtoupper($account_id);
     $password = $this->input->post('password', true);
