@@ -127,19 +127,19 @@ $(function () {
   $("#ap-btn").click(function () {
     $([document.documentElement, document.body]).animate({
       scrollTop: $("#ap-content").offset().top
-    }, 2000);
+    }, 500);
   });
 
   $("#far-btn").click(function () {
     $([document.documentElement, document.body]).animate({
       scrollTop: $("#far-content").offset().top
-    }, 2000);
+    }, 500);
   });
 
   $("#oe-btn").click(function () {
     $([document.documentElement, document.body]).animate({
       scrollTop: $("#oe-content").offset().top
-    }, 2000);
+    }, 500);
   });
 
 
