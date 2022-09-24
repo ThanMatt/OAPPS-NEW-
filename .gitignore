@@ -6,6 +6,6 @@ application/config/autoload.php
 assets/image.php
 application/logs/*
 application/logs/index.html
-!vendor/
+vendor/
 application/.htaccess
 system/.htaccess
